@@ -1,14 +1,14 @@
 <div class="form-group">
 	{!!Form::label('Nombre')!!}
-  {!!Form::text('nombre_entidad', null, ['class'=>'form-control', 'placeholder'=>'','required'])!!}
+  {!!Form::text('nombre_entidad', null, ['class'=>'form-control', 'placeholder'=>''])!!}
 		</br>
 
 	{!!Form::label('Tipo Externo')!!}
 		 </br>
 	{!!Form::label('Persona')!!}
-	{!!Form::radio('tipo_entidad', 'p', false )!!} &nbsp
+	{!!Form::radio('tipo_entidad', 'p', false)!!} &nbsp
 	{!!Form::label('Entidad')!!}
-	{!!Form::radio('tipo_entidad', 'e', false, ['required'])!!}
+	{!!Form::radio('tipo_entidad', 'e', false)!!}
 	</br></br>
 
   {!!Form::label('Teléfono')!!}

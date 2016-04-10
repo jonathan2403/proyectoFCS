@@ -52,7 +52,7 @@ class EncuentroGrupoController extends Controller
         else{
             EncuentroGrupo::create($datos);
         }
-        return redirect()->to('encuentro-grupo');
+        return redirect('encuentro-grupo')->with('message', 'Registro creado!');
     }
 
     /**
