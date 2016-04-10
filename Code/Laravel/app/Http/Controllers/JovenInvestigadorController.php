@@ -16,15 +16,9 @@ class JovenInvestigadorController extends Controller
      */
     public function index()
     {
-
-$publicaciones = \DB::table('publicacion')
-        ->join('grupo', 'publicacion.id_grupo', '=', 'grupo.id')
-        ->where('publicacion.id', $id)
-        ->select('publicacion.id',  'publicacion.descripcion', 'grupo.sigla')
-        ->get();
-    //$jovenes=JovenInvestigador::All();
-    dd('publicaciones');
-        //return view('componentes.joven_investigador.index',compact('jovenes'));
+        $jovenes_investigadores = JovenInvestigador::all();
+        dd($jovenes_investigadores);
+        return view('componentes.joven_investigador.index', compact('jovenes'));
     }
 
     /**

@@ -44,8 +44,15 @@ class EncuentroGrupoController extends Controller
      */
     public function store(Request $request)
     {
-        EncuentroGrupo::create($request->all());
-        return redirect()->to('encuentro-grupo');
+        $datos = $request->all();
+        $valida = \Validator::make($datos, EncuentroGrupo::$reglas, EncuentroGrupo::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }
+        else{
+            EncuentroGrupo::create($datos);
+        }
+        return redirect('encuentro-grupo')->with('message', 'Registro creado!');
     }
 
     /**

@@ -5,6 +5,7 @@
 @section('content')
   <section class="content">
     <div class="row">
+    @include('errors.partials.requesterror')
         <div class="col-md-9">
               <div class="box box-solid box-danger">
                   <div class="box-header with-border">
