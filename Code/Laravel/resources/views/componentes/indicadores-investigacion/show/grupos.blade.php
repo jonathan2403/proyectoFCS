@@ -23,7 +23,7 @@
                 </div><!-- /.box-body -->
                 <div class="col-md-6">
                       <ul class="chart-legend clearfix">
-                        <li><i class="fa fa-circle-o text-red"></i> Grupos de Investigacion : {{$investigacion}}</li>
+                        <li><i class="fa fa-circle-o text-red"></i> Grupos de Investigación : {{$investigacion}}</li>
                         <li><i class="fa fa-circle-o text-green"></i> Grupos de Estudio : {{$estudio}}</li>
                       </ul>
                     </div><!-- /.col -->
@@ -70,7 +70,7 @@
             value: 
                <?php 
                    $porcentaje = number_format(($investigacion*100)/$total, 2, '.', '');
-                   echo $porcentaje;
+                   echo (string)$porcentaje;
                   ?>,
             color: "#f56954",
             highlight: "#f56954",
