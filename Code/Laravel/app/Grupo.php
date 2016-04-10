@@ -1,0 +1,21 @@
+<?php
+
+namespace FCS;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Grupo extends Model
+{
+    protected $table = 'grupo';
+    protected $fillable = ['sigla', 'descripcion', 'tipo', 'id_profesor', 'categoria'];
+
+    public function getFullNameAttribute()
+    {
+      $name = $this->sigla.' - '.$this->descripcion;
+      return ucwords($name);
+    }
+    public function getSiglaAttribute($value)
+    {
+      return ucwords($value);
+    }
+}

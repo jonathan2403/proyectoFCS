@@ -1,0 +1,107 @@
+<?php
+
+namespace FCS\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use FCS\Http\Requests;
+use FCS\Http\Controllers\Controller;
+
+use FCS\Profesor;
+use FCS\Entidad;
+use Session, Redirect;
+
+class ExternoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $entidades = Entidad::where('tipo_entidad','e')
+        ->get();
+
+        $personas = Entidad::where('tipo_entidad','p')
+        ->get();
+        return view('componentes.externo.index', compact('entidades', 'personas'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $route = [ 'route' => 'externo.store','method'=>'POST' ];
+        $nombre_profesor = Profesor::all()->lists('full_name', 'id');
+        return view('componentes.externo.addexterno', compact('route', 'nombre_profesor'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      $externo = Entidad::create($request->all());
+      return redirect('externo')->with('message','Registro Creado!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $externo = Entidad::find($id);
+        $route = ['route'=>['externo.update', $externo->id], 'method'=>'PUT'];
+        return view('componentes.externo.editexterno', compact('externo', 'route'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $externo  = Entidad::find($id);
+        $externo->fill($request->all());
+        $externo->save();
+        Session::flash('message', 'Registro Actualizado!');
+        return redirect::to('externo');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+      Entidad::destroy($id);
+      Session::flash('message','Registro Eliminado!');
+      return Redirect::to('/externo');
+    }
+}
