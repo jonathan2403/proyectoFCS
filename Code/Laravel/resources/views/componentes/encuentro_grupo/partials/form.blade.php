@@ -1,14 +1,14 @@
 <div class="form-group">
 	{!!Form::label('Nombre del Encuentro')!!}
-	{!!Form::text('nombre_encuentro', null, ['class' => 'form-control','required'])!!}
+	{!!Form::text('nombre_encuentro', null, ['class' => 'form-control'])!!}
 	</br>
 
 	{!!Form::label('Tipo de Grupo')!!}
-	{!!Form::select('tipo_grupo', ['i' => 'Grupo Investigación', 'e' => 'Grupo Estudio', 'ps' => 'Grupo Proyección Social'], null, ['class' => 'form-control','required'])!!}
+	{!!Form::select('tipo_grupo', ['i' => 'Grupo Investigación', 'e' => 'Grupo Estudio', 'ps' => 'Grupo Proyección Social'], null, ['class' => 'form-control'])!!}
 	</br>
 
 	{!!Form::label('Ponente')!!}
-	{!!Form::select('id_profesor', $nombre_profesor->toArray(), null,['class' => 'form-control select', 'placeholder' => '','required'])!!}
+	{!!Form::select('id_profesor', $nombre_profesor->toArray(), null,['class' => 'form-control select', 'placeholder' => ''])!!}
 	</br></br>
 
 	{!!Form::label('Fecha del Encuentro')!!}
