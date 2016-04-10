@@ -15,5 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', function(){
-  return 'Home Example';
+    //$user = \DB::table('usuario')->get();
+    $user = App\Usuario::all();
+    dd($user);
 });
