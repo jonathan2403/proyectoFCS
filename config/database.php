@@ -56,7 +56,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
-            'database' => 'fcs', //env('DB_DATABASE', 'forge'),
+            'database' => 'zona_v', //env('DB_DATABASE', 'forge'),
             'username' => 'root', //env('DB_USERNAME', 'forge'),
             'password' => 'root', //env('DB_PASSWORD', ''),
             'charset' => 'utf8',
