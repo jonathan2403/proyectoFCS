@@ -55,5 +55,6 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 });
 
+Route::get('buscarPersona/{usuario}','JovenInvestigador@buscarPersona');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');

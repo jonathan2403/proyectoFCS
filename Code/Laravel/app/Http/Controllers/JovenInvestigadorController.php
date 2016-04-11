@@ -17,8 +17,8 @@ class JovenInvestigadorController extends Controller
     public function index()
     {
         $jovenes_investigadores = JovenInvestigador::all();
-        dd($jovenes_investigadores);
-        return view('componentes.joven_investigador.index', compact('jovenes'));
+        //dd($jovenes_investigadores);
+        return view('componentes.joven_investigador.index', compact('jovenes_investigadores'));
     }
 
     /**
@@ -28,7 +28,8 @@ class JovenInvestigadorController extends Controller
      */
     public function create()
     {
-        //
+        $route = ['route' => 'joven-investigador.store', 'method' => 'POST'];
+        return view('componentes.joven_investigador.addjoven_investigador', compact('route'));
     }
 
     /**
@@ -39,7 +40,7 @@ class JovenInvestigadorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -85,5 +86,16 @@ class JovenInvestigadorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Buscar Estudiante
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function buscarPersona()
+    {
+        
     }
 }
