@@ -21,13 +21,14 @@ class ProyectoInvestigacionController extends Controller
      */
     public function index()
     {
+        $indicador_modulo = 9;
         $proyectos=\DB::table('proyecto')
         ->join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
         ->select('proyecto.id', 'proyecto.titulo_proyecto', 'proyecto.tipo_proyecto', 'proyecto.ejecutado',
                 DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS name_investigador"))
         ->where('tipo', 'i')
         ->get();
-        return view('componentes.proyectos-investigacion.index', compact('proyectos'));
+        return view('componentes.proyectos-investigacion.index', compact('proyectos', 'indicador_modulo'));
     }
 
     /**
@@ -37,11 +38,12 @@ class ProyectoInvestigacionController extends Controller
      */
     public function create()
     {
+        $indicador_modulo = 9;
         $route = [ 'route' => 'proyectos-investigacion.store','method'=>'POST' ];
         $tipo_proyecto = TipoProyecto::allLists();
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_red = RedConocimiento::all()->lists('full_name', 'id');
-        return view('componentes.proyectos-investigacion.addproyecto', compact('route', 'tipo_proyecto', 'nombre_profesor', 'nombre_red'));
+        return view('componentes.proyectos-investigacion.addproyecto', compact('route', 'tipo_proyecto', 'nombre_profesor', 'nombre_red', 'indicador_modulo'));
     }
 
     /**
@@ -64,6 +66,7 @@ class ProyectoInvestigacionController extends Controller
      */
     public function show($id)
     {
+        $indicador_modulo = 9;
         $proyectos = DB::table('proyecto')
         ->where('proyecto.id', $id)
         ->get();
@@ -79,7 +82,7 @@ class ProyectoInvestigacionController extends Controller
         ->where('proyecto.id', $id)
         ->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.proyectos-investigacion.showProyecto', compact('proyectos', 'profesores', 'nombre_profesor', 'bienes'));
+        return view('componentes.proyectos-investigacion.showProyecto', compact('proyectos', 'profesores', 'nombre_profesor', 'bienes', 'indicador_modulo'));
     }
 
     /**
@@ -90,11 +93,12 @@ class ProyectoInvestigacionController extends Controller
      */
     public function edit($id)
     {
+        $indicador_modulo = 9;
         $proyecto=Proyecto::find($id);
         $route = [ 'route'=>['proyectos-investigacion.update',$proyecto->id],'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_red = RedConocimiento::all()->lists('full_name', 'id');
-        return view('componentes.proyectos-investigacion.editproyecto', compact('route','proyecto', 'nombre_profesor', 'nombre_red'));
+        return view('componentes.proyectos-investigacion.editproyecto', compact('route','proyecto', 'nombre_profesor', 'nombre_red', 'indicador_modulo'));
     }
 
     /**

@@ -33,8 +33,7 @@
                 <div class="icon">
                   <i class="ion-wrench"></i>
                 </div>
-                {!!link_to_route('indicadores-investigacion.show', 'Ver mas' ,$parameters='proyectos', $atrributes=['class'=>'small-box-footer'])!!}                
-                <!--<a href="proyectos" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>-->
+               <a href="#" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">

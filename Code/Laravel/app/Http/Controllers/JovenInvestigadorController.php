@@ -16,9 +16,10 @@ class JovenInvestigadorController extends Controller
      */
     public function index()
     {
+        $indicador_modulo = 24;
         $jovenes_investigadores = JovenInvestigador::all();
         //dd($jovenes_investigadores);
-        return view('componentes.joven_investigador.index', compact('jovenes_investigadores'));
+        return view('componentes.joven_investigador.index', compact('jovenes_investigadores', 'indicador_modulo'));
     }
 
     /**
@@ -28,8 +29,9 @@ class JovenInvestigadorController extends Controller
      */
     public function create()
     {
+        $indicador_modulo = 24;
         $route = ['route' => 'joven-investigador.store', 'method' => 'POST'];
-        return view('componentes.joven_investigador.addjoven_investigador', compact('route'));
+        return view('componentes.joven_investigador.addjoven_investigador', compact('route', 'indicador_modulo'));
     }
 
     /**
@@ -62,7 +64,7 @@ class JovenInvestigadorController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$indicador_modulo = 24;
     }
 
     /**

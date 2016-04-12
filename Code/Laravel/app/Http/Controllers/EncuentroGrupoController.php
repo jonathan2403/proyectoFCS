@@ -19,10 +19,11 @@ class EncuentroGrupoController extends Controller
      */
     public function index()
     {
+        $indicador_modulo = 21;
         $encuentros = EncuentroGrupo::join('profesores','encuentros_grupos.id_profesor', '=', 'profesores.id')
         ->select('encuentros_grupos.id', 'encuentros_grupos.nombre_encuentro', 'encuentros_grupos.fecha_realizacion', 'encuentros_grupos.tipo_grupo', 'encuentros_grupos.modalidad', 'encuentros_grupos.lugar', \DB::raw("CONCAT(profesores.primer_nombre,' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS ponente"))
         ->get();
-        return view('componentes.encuentro_grupo.index', compact('encuentros'));
+        return view('componentes.encuentro_grupo.index', compact('encuentros', 'indicador_modulo'));
     }
 
     /**
@@ -32,8 +33,9 @@ class EncuentroGrupoController extends Controller
      */
     public function create()
     {
+        $indicador_modulo = 21;
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.encuentro_grupo.addencuentro_grupo', compact('nombre_profesor'));
+        return view('componentes.encuentro_grupo.addencuentro_grupo', compact('nombre_profesor', 'indicador_modulo'));
     }
 
     /**
@@ -74,10 +76,11 @@ class EncuentroGrupoController extends Controller
      */
     public function edit($id)
     {
+        $indicador_modulo = 21;
         $encuentro = EncuentroGrupo::find($id);
         $route = ['route'=>['encuentro-grupo.update', $encuentro->id], 'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.encuentro_grupo.editencuentro_grupo', compact('encuentro', 'route', 'nombre_profesor'));
+        return view('componentes.encuentro_grupo.editencuentro_grupo', compact('encuentro', 'route', 'nombre_profesor', 'indicador_modulo'));
     }
 
     /**

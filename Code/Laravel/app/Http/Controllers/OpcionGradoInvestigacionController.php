@@ -23,9 +23,10 @@ class OpcionGradoInvestigacionController extends Controller
      */
     public function index()
     {
+       $indicador_modulo = 7;
        $opciongrados=OpcionGrado::whereIn('tipo_opcion_grado', ['epi', 'mi', 'mr'])
         ->get();
-        return view('componentes.opcion_grado_investigacion.index', compact('opciongrados'));
+        return view('componentes.opcion_grado_investigacion.index', compact('opciongrados', 'indicador_modulo'));
     }
 
     /**
@@ -35,13 +36,14 @@ class OpcionGradoInvestigacionController extends Controller
      */
     public function create(Request $request)
     {
+        $indicador_modulo = 7;
         $route = [ 'route' => 'opcion-grado-investigacion.store','method'=>'POST' ];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name', 'id');
         $nombre_grupo = Grupo::all()->lists('full_name', 'id');
         $nombre_entidad = Entidad::all()->lists('nombre_entidad', 'id');
         $tipo = $request->input('tipo');
-        return view('componentes.opcion_grado_investigacion.addopcion_grado', compact('tipo', 'route', 'nombre_profesor', 'nombre_proyecto', 'nombre_grupo', 'nombre_entidad'));
+        return view('componentes.opcion_grado_investigacion.addopcion_grado', compact('tipo', 'route', 'nombre_profesor', 'nombre_proyecto', 'nombre_grupo', 'nombre_entidad', 'indicador_modulo'));
     }
 
     /**
@@ -64,6 +66,7 @@ class OpcionGradoInvestigacionController extends Controller
      */
     public function show($id)
     {
+        $indicador_modulo = 7;
         $director = \DB::table('opcion_grado')
         ->join('profesores', 'opcion_grado.id_director', '=', 'profesores.id')
         ->select('opcion_grado.id', 'opcion_grado.descripcion',
@@ -99,9 +102,9 @@ class OpcionGradoInvestigacionController extends Controller
         $opcion_grados = OpcionGrado::where('id', $id)
         ->get();
         if($opcion_grados[0]->tipo_opcion_grado == 'Mon. Investigativa' || $opcion_grados[0]->tipo_opcion_grado == 'Mon. de Revisión')
-            return view('componentes.opcion_grado_investigacion.show.show_mon', compact('estudiantes', 'director', 'nombre_estudiante', 'opcion_grados', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad'));
+            return view('componentes.opcion_grado_investigacion.show.show_mon', compact('estudiantes', 'director', 'nombre_estudiante', 'opcion_grados', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
         else
-            return view('componentes.opcion_grado_investigacion.show.show_epi', compact('estudiantes', 'director', 'nombre_estudiante', 'opcion_grados', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad'));
+            return view('componentes.opcion_grado_investigacion.show.show_epi', compact('estudiantes', 'director', 'nombre_estudiante', 'opcion_grados', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
     }
 
     /**
@@ -112,13 +115,14 @@ class OpcionGradoInvestigacionController extends Controller
      */
     public function edit($id)
     {
+        $indicador_modulo = 7;
         $opciongrado=OpcionGrado::find($id);
         $route = [ 'route'=>['opcion-grado-investigacion.update',$opciongrado->id],'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name', 'id');
         $nombre_grupo = Grupo::all()->lists('full_name', 'id');
         $nombre_entidad = Entidad::all()->lists('nombre_entidad', 'id');
-        return view('componentes.opcion_grado_investigacion.editopcion_grado', compact('route','opciongrado', 'nombre_profesor', 'nombre_proyecto', 'nombre_grupo', 'nombre_entidad'));
+        return view('componentes.opcion_grado_investigacion.editopcion_grado', compact('route','opciongrado', 'nombre_profesor', 'nombre_proyecto', 'nombre_grupo', 'nombre_entidad', 'indicador_modulo'));
     }
 
     /**
