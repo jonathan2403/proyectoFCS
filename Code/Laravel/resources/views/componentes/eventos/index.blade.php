@@ -34,7 +34,7 @@
                     <td>{{ $evento->tipo->nombre_tipoevento }}</td>
                     <td><center>
                       {!! link_to_route('evento.edit', $title='Editar', $parameters=$evento->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-                      <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $evento->id !!}').modal();">Borrar</button></center>
+                      </center>
                     </td>
                   </tr>
                 @endforeach

@@ -18,8 +18,9 @@ class TipoEventoController extends Controller
      */
     public function index()
     {
+        $indicador_modulo = 2;
         $tipo_eventos=TipoEvento::All();
-        return view('componentes.tipo_evento.index',compact('tipo_eventos'));
+        return view('componentes.tipo_evento.index',compact('tipo_eventos', 'indicador_modulo'));
     }
 
     /**
@@ -29,7 +30,8 @@ class TipoEventoController extends Controller
      */
     public function create()
     {
-        return view('componentes.tipo_evento.addtipoevento');
+        $indicador_modulo = 2;
+        return view('componentes.tipo_evento.addtipoevento', 'indicador_modulo');
     }
 
     /**
@@ -63,10 +65,10 @@ class TipoEventoController extends Controller
      */
     public function edit($id)
     {
-        
+        $indicador_modulo = 2;
         $tipo_eventos=TipoEvento::find($id);
         $route = [ 'route'=>['tipo-evento.update',$tipo_eventos->id],'method'=>'PUT'];
-        return view('componentes.tipo_evento.edittipoevento',compact('route','tipo_eventos'));
+        return view('componentes.tipo_evento.edittipoevento',compact('route','tipo_eventos', 'indicador_modulo'));
     }
 
     /**

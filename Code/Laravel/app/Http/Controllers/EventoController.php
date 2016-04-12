@@ -22,8 +22,9 @@ class EventoController extends Controller
      */
     public function index()
     {
+        $indicador_modulo = 10;
         $eventos=Evento::All();
-        return view('componentes.eventos.index',compact('eventos'));
+        return view('componentes.eventos.index',compact('eventos', 'indicador_modulo'));
     }
 
     /**
@@ -33,9 +34,10 @@ class EventoController extends Controller
      */
     public function create()
     {
+        $indicador_modulo = 10;
         $tipo_evento = TipoEvento::allLists();
         $route = [ 'route' => 'evento.store', 'method' => 'POST' ];
-        return view('componentes.eventos.addevento',compact('tipo_evento','route'));
+        return view('componentes.eventos.addevento',compact('tipo_evento','route', 'indicador_modulo'));
     }
 
     /**
@@ -58,10 +60,10 @@ class EventoController extends Controller
      */
     public function show($id)
     {
+        $indicador_modulo = 10;
         $eventos = \DB::table('eventos')
         ->where('id', $id)
         ->get();
-        //dd($eventos);
         $profesores = \DB::table('asistencia')
         ->join('profesores', 'asistencia.id_profesor', '=', 'profesores.id')
         ->join('eventos', 'asistencia.id_evento', '=', 'eventos.id')
@@ -77,7 +79,7 @@ class EventoController extends Controller
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         
-        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante'));
+        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo'));
     }
 
     /**
@@ -88,10 +90,11 @@ class EventoController extends Controller
      */
     public function edit($id)
     {
+        $indicador_modulo = 10;
         $tipo_evento = TipoEvento::allLists();
         $eventos=Evento::find($id);
         $route = [ 'route'=>['evento.update',$eventos->id],'method'=>'PUT'];
-        return view('componentes.eventos.editevento', compact('tipo_evento','route','eventos'));
+        return view('componentes.eventos.editevento', compact('tipo_evento','route','eventos', 'indicador_modulo'));
     }
 
     /**
