@@ -22,9 +22,10 @@ class RedConocimientoController extends Controller
      */
     public function index()
     {
+        $indicador_modulo = 17;
       $redes = DB::table('red_conocimiento')
       ->get();
-      return view('componentes.red_conocimiento.index', compact('redes'));
+      return view('componentes.red_conocimiento.index', compact('redes', 'indicador_modulo'));
     }
 
     /**
@@ -34,9 +35,10 @@ class RedConocimientoController extends Controller
      */
     public function create()
     {
+      $indicador_modulo = 17;
       $route = [ 'route' => 'red-conocimiento.store','method'=>'POST' ];
       $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-      return view('componentes.red_conocimiento.addred', compact('route', 'nombre_profesor'));
+      return view('componentes.red_conocimiento.addred', compact('route', 'nombre_profesor', 'indicador_modulo'));
     }
 
     /**
@@ -59,6 +61,7 @@ class RedConocimientoController extends Controller
      */
     public function show($id)
     {
+      $indicador_modulo = 17;
       $redes = DB::table('red_conocimiento')
       ->where('id', $id)
       ->get();
@@ -66,7 +69,7 @@ class RedConocimientoController extends Controller
       ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
       ->get();
       //dd($responsable);
-      return view('componentes.red_conocimiento.showRedConocimiento', compact('redes', 'responsable'));
+      return view('componentes.red_conocimiento.showRedConocimiento', compact('redes', 'responsable', 'indicador_modulo'));
     }
 
     /**
@@ -77,10 +80,11 @@ class RedConocimientoController extends Controller
      */
     public function edit($id)
     {
+        $indicador_modulo = 17;
         $red_conocimiento = RedConocimiento::find($id);
         $route = ['route' => ['red-conocimiento.update', $red_conocimiento->id], 'method' => 'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.red_conocimiento.editred', compact('route', 'red_conocimiento', 'nombre_profesor'));
+        return view('componentes.red_conocimiento.editred', compact('route', 'red_conocimiento', 'nombre_profesor', 'indicador_modulo'));
     }
 
     /**

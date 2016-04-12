@@ -7,7 +7,6 @@
 				<div class="box">
 					<div class="box-header">
 	                  @include('layaouts.partials.mensaje')
-						<h3 class="box-title">Jovenes Investigadores</h3>
 					</div><!-- /.box-header -->
 					<div class="box-body">
 						<div class="row form-group">
@@ -17,19 +16,12 @@
 						</div>
 							<table id="example3" class="table table-bordered table-striped">
 								<thead>
-									<th><center>Id</center></th>
-									<th><center>Nombre Estudiante</center></th>
-									<th><center>Tipo</center></th>
-									<th><center>Grupo</center></th>
-									<th><center>Institucion-Entidad</center></th>
-									<th><center>Producto</center></th>
-									<th><center>Acción</center></th>
+									<th>Nombre Investigador</th>
 								</thead>
 								<tbody>
-									@foreach($jovenes as $joven)
-										<tr data-id="{{ $grupo->id }}">
-											<td><center>{{$joven->sigla}}</center></td>
-											
+									@foreach($jovenes_investigadores as $joven_investigador)
+										<tr>
+											<td>{{$joven_investigador->nombre_investigador}}</td>
 										</tr>
 									@endforeach
 								</tbody>
@@ -38,16 +30,5 @@
 				</div><!-- /.box -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
-		<button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
 	</section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-          window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
-        });
-    });
-  </script>
 @endsection

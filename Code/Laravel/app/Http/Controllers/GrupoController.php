@@ -21,6 +21,7 @@ class GrupoController extends Controller
      */
     public function index()
     {
+        $indicador_modulo = 1;
         $grupos = \DB::table('grupo')
         ->join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
         ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo', 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
@@ -29,7 +30,7 @@ class GrupoController extends Controller
         $integrantes = \DB::table('grupo')
         ->join('adscripcion', 'adscripcion.id_grupo', '=', 'grupo.id')
         ->count();
-        return view('componentes.grupo.index', compact('grupos', 'integrantes'));
+        return view('componentes.grupo.index', compact('grupos', 'integrantes', 'indicador_modulo'));
     }
 
     /**
@@ -39,9 +40,10 @@ class GrupoController extends Controller
      */
     public function create()
     {
+        $indicador_modulo = 1;
         $route = [ 'route' => 'grupos.store','method'=>'POST' ];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
-        return view('componentes.grupo.addgrupo', compact('route', 'nombre_profesor'));
+        return view('componentes.grupo.addgrupo', compact('route', 'nombre_profesor', 'indicador_modulo'));
     }
 
     /**
@@ -64,6 +66,7 @@ class GrupoController extends Controller
      */
     public function show($id)
     {
+        $indicador_modulo = 1;
         $grupos = \DB::table('grupo')
         ->select('id', 'sigla', 'descripcion')
         ->where('id', $id)
@@ -76,7 +79,7 @@ class GrupoController extends Controller
         ->where('grupo.id', $id)
         ->get();
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
-        return view('componentes.grupo.showgrupo', compact('grupos', 'estudiantes', 'nombre_estudiante'));
+        return view('componentes.grupo.showgrupo', compact('grupos', 'estudiantes', 'nombre_estudiante', 'indicador_modulo'));
     }
 
     /**
@@ -87,10 +90,11 @@ class GrupoController extends Controller
      */
     public function edit($id)
     {
+        $indicador_modulo = 1;
         $grupo=Grupo::find($id);
         $route = [ 'route'=>['grupos.update',$grupo->id],'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
-        return view('componentes.grupo.editgrupo', compact('route','grupo', 'nombre_profesor'));
+        return view('componentes.grupo.editgrupo', compact('route','grupo', 'nombre_profesor', 'indicador_modulo'));
     }
 
     /**

@@ -10,7 +10,7 @@
                     $menus=\FCS\Permiso::join("menus","menus.id","=","idmenus")->where("iduser","=",DB::raw(Auth::user()->id))->where("permiso","=",DB::raw(1))->orderby("nombre","asc")->get();
                 ?>
                 @foreach($menus as $m)
-                    <li>
+                    <li @if(isset($indicador_modulo) && $indicador_modulo == $m->id) class = "active" @endif>
                         <a href="{!! URL($m->ruta) !!}"><i class="{!! $m->imagen !!}"></i><span>{!! $m->nombre !!}</span></a>
                     </li>
                 @endforeach

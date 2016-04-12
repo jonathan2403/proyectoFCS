@@ -21,7 +21,6 @@
             </div>
           </div><!-- /.box-body -->
         </div><!-- /.box -->
-        <a href="http://proyecto.app/red-conocimiento">back</a>
         <button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><i class="fa fa-file-pdf-o"></i> PDF</button>|<button id="button-excel" class="btn"><i class="fa fa-file-excel-o"></i> Excel</button>
       </div><!-- /.col --></div><!-- /.row -->
   </section><!-- /.content -->

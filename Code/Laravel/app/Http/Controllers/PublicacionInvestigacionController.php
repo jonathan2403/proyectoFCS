@@ -23,10 +23,11 @@ class PublicacionInvestigacionController extends Controller
      */
     public function index()
     {
+        $indicador_modulo = 11;
          $publicaciones=\DB::table('publicacion')
          ->where('tipo_publicacion', 'i')
          ->get ();
-       return view('componentes.publicacion_investigacion.index', compact('publicaciones'));
+       return view('componentes.publicacion_investigacion.index', compact('publicaciones', 'indicador_modulo'));
     }
 
     /**
@@ -36,12 +37,13 @@ class PublicacionInvestigacionController extends Controller
      */
     public function create()
     {
+        $indicador_modulo = 11;
         $route = [ 'route' => 'publicacion-investigacion.store','method'=>'POST' ];
         $nombre_grupo = Grupo::all()->lists('full_name','id');
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name','id');
         $nombre_opcion_grado = OpcionGrado::all()->lists('full_name', 'id');
-        return view('componentes.publicacion_investigacion.addpublicacion', compact('route','nombre_proyecto','nombre_grupo','nombre_profesor', 'nombre_opcion_grado'));
+        return view('componentes.publicacion_investigacion.addpublicacion', compact('route','nombre_proyecto','nombre_grupo','nombre_profesor', 'nombre_opcion_grado', 'indicador_modulo'));
     }
 
     /**
@@ -64,6 +66,7 @@ class PublicacionInvestigacionController extends Controller
      */
     public function show($id)
     {
+      $indicador_modulo = 11;
       $publicaciones = \DB::table('publicacion')
         ->join('grupo', 'publicacion.id_grupo', '=', 'grupo.id')
         ->where('publicacion.id', $id)
@@ -90,7 +93,7 @@ class PublicacionInvestigacionController extends Controller
        ->get();
        
 
-        return view('componentes.publicacion_investigacion.showPublicacion', compact('publicaciones', 'proyecto', 'opcion_grado', 'nombre_estudiante', 'publica'));
+        return view('componentes.publicacion_investigacion.showPublicacion', compact('publicaciones', 'proyecto', 'opcion_grado', 'nombre_estudiante', 'publica', 'indicador_modulo'));
     }
 
     /**
@@ -101,12 +104,13 @@ class PublicacionInvestigacionController extends Controller
      */
     public function edit($id)
     {
+        $indicador_modulo = 11;
         $publicacion=Publicacion::find($id);
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_proyecto = Proyecto::all()->lists('full_name', 'id');
         $nombre_grupo = Grupo::all()->lists('full_name', 'id');
         $route = [ 'route'=>['publicacion.update',$publicacion->id],'method'=>'PUT'];
-        return view('componentes.publicacion_investigacion.editpublicacion', compact('route', 'publicacion', 'nombre_proyecto', 'nombre_profesor', 'nombre_grupo'));
+        return view('componentes.publicacion_investigacion.editpublicacion', compact('route', 'publicacion', 'nombre_proyecto', 'nombre_profesor', 'nombre_grupo', 'indicador_modulo'));
     }
 
     /**
