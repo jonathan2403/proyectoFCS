@@ -40,7 +40,6 @@
 											@endif
 											<td><center>
 													 {!! link_to_route('grupo-proyeccion.edit', $title='Editar', $parameters=$grupo->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-													 <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $grupo->id !!}').modal();">Borrar</button>
 												 </center>
 											</td>
 										</tr>

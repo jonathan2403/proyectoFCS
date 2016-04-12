@@ -57,7 +57,7 @@ return [
             'host'      => 'localhost', //env('DB_HOST', 'localhost'),
             'database'  => 'fcs', //env('DB_DATABASE', 'forge'),
             'username'  => 'root', //env('DB_USERNAME', 'forge'),
-            'password'  => '', //env('DB_PASSWORD', ''),
+            'password'  => 'root', //env('DB_PASSWORD', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

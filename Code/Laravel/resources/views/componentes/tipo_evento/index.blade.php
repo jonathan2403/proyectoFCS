@@ -26,7 +26,6 @@
                     <td>{{ ucfirst($tevento->nombre_tipoevento)}}</td>
                     <td>
                       {!! link_to_route('tipo-evento.edit', $title='Editar', $parameters=$tevento->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-                      <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $tevento->id !!}').modal();">Borrar</button>
                     </td>
                   </tr>
                 @endforeach

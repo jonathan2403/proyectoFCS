@@ -19,13 +19,12 @@ class EducacionContinuaController extends Controller
      */
     public function index()
     {
-        //$edus=EducacionContinua::All();
+        $indicador_modulo = 18;
         $edus = EducacionContinua::join('profesores', 'educacion_continua.id_director', '=', 'profesores.id')
         ->select('educacion_continua.id', 'educacion_continua.nombre', 'educacion_continua.fecha_aprobacion', 'educacion_continua.numero_acta'
             , 'educacion_continua.pais','educacion_continua.ciudad', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->get();
-       // dd($edus);
-        return view('componentes.educacion_continua.index', compact('edus'));
+        return view('componentes.educacion_continua.index', compact('edus', 'indicador_modulo'));
     }
 
     /**
@@ -35,9 +34,10 @@ class EducacionContinuaController extends Controller
      */
     public function create()
     {
+       $indicador_modulo = 18;
        $route = [ 'route' => 'educacion-continua.store', 'method' => 'POST' ];
        $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.educacion_continua.addeducacion_continua',compact('route', 'nombre_profesor'));
+        return view('componentes.educacion_continua.addeducacion_continua',compact('route', 'nombre_profesor', 'indicador_modulo'));
     }
 
     /**
@@ -48,7 +48,6 @@ class EducacionContinuaController extends Controller
      */
     public function store(Request $request)
     {
-        //return "Hello";
         EducacionContinua::create($request->all());
          return redirect('educacion-continua')->with('message','Registro Creado!');
     
@@ -62,6 +61,7 @@ class EducacionContinuaController extends Controller
      */
     public function show($id)
     {
+        $indicador_modulo = 18;
         $edus = \DB::table('educacion_continua')
         ->select('id', 'nombre', 'fecha_inicio', 'departamento', 'ciudad', 'recurso', 'horas_certificadas',
             'area_conocimiento', 'recurso_humano', 'muebles_equipo', 'servicios', 'material', 'gastos_viaje',
@@ -82,7 +82,7 @@ class EducacionContinuaController extends Controller
         ->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
-        return view('componentes.educacion_continua.showeducacion_continua', compact('edus', 'profesores', 'estudiantes', 'nombre_profesor', 'nombre_estudiante'));
+        return view('componentes.educacion_continua.showeducacion_continua', compact('edus', 'profesores', 'estudiantes', 'nombre_profesor', 'nombre_estudiante', 'indicador_modulo'));
     }
 
     /**
@@ -93,10 +93,11 @@ class EducacionContinuaController extends Controller
      */
     public function edit($id)
     {
+        $indicador_modulo = 18;
         $educacion_continua = EducacionContinua::find($id);
         $route = [ 'route'=>['educacion-continua.update',$educacion_continua->id],'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
-        return view('componentes.educacion_continua.editeducacion_continua', compact('route', 'nombre_profesor', 'educacion_continua'));
+        return view('componentes.educacion_continua.editeducacion_continua', compact('route', 'nombre_profesor', 'educacion_continua', 'indicador_modulo'));
     }
 
     /**

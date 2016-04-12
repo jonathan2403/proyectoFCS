@@ -21,6 +21,7 @@ class GrupoProyeccionController extends Controller
      */
     public function index()
     {
+       $indicador_modulo = 20;
        $grupos = \DB::table('grupo')
         ->join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
         ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo',
@@ -30,7 +31,7 @@ class GrupoProyeccionController extends Controller
          $integrantes = \DB::table('grupo')
         ->join('adscripcion', 'adscripcion.id_grupo', '=', 'grupo.id')
         ->count();
-        return view('componentes.grupo_proyeccion.index', compact('grupos', 'integrantes'));
+        return view('componentes.grupo_proyeccion.index', compact('grupos', 'integrantes', 'indicador_modulo'));
     }
 
     /**
@@ -40,9 +41,10 @@ class GrupoProyeccionController extends Controller
      */
     public function create()
     {
+        $indicador_modulo = 20;
         $route = [ 'route' => 'grupo-proyeccion.store','method'=>'POST' ];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
-        return view('componentes.grupo_proyeccion.addgrupo_proyeccion', compact('route', 'nombre_profesor'));
+        return view('componentes.grupo_proyeccion.addgrupo_proyeccion', compact('route', 'nombre_profesor', 'indicador_modulo'));
     }
 
     /**
@@ -76,10 +78,11 @@ class GrupoProyeccionController extends Controller
      */
     public function edit($id)
     {
-         $grupo=Grupo::find($id);
+        $indicador_modulo = 20;
+        $grupo=Grupo::find($id);
         $route = [ 'route'=>['grupo-proyeccion.update',$grupo->id],'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
-        return view('componentes.grupo_proyeccion.editgrupo_proyeccion', compact('route','grupo', 'nombre_profesor'));
+        return view('componentes.grupo_proyeccion.editgrupo_proyeccion', compact('route','grupo', 'nombre_profesor', 'indicador_modulo'));
     }
 
     /**
