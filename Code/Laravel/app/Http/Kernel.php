@@ -29,8 +29,8 @@ class Kernel extends HttpKernel
         'auth' => \FCS\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \FCS\Http\Middleware\RedirectIfAuthenticated::class,
-
         'isadmin' => \FCS\Http\Middleware\is_admin::class,
         'issecretaria' => \FCS\Http\Middleware\is_secretaria::class,
+        'auth_investigacion' => \FCS\Http\Middleware\userInvestigacion::class,
     ];
 }
