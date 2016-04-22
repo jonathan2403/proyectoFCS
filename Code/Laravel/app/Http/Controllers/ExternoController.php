@@ -20,7 +20,7 @@ class ExternoController extends Controller
      */
     public function index()
     {
-        $indicador_modulo = 22;
+        $indicador_modulo = 16;
         $entidades = Entidad::where('tipo_entidad','e')
         ->get();
         $personas = Entidad::where('tipo_entidad','p')
@@ -35,7 +35,7 @@ class ExternoController extends Controller
      */
     public function create()
     {
-        $indicador_modulo = 22;
+        $indicador_modulo = 16;
         $route = [ 'route' => 'externo.store','method'=>'POST' ];
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         return view('componentes.externo.addexterno', compact('route', 'nombre_profesor', 'indicador_modulo'));
@@ -72,7 +72,7 @@ class ExternoController extends Controller
      */
     public function edit($id)
     {
-        $indicador_modulo = 22;
+        $indicador_modulo = 16;
         $externo = Entidad::find($id);
         $route = ['route'=>['externo.update', $externo->id], 'method'=>'PUT'];
         return view('componentes.externo.editexterno', compact('externo', 'route', 'indicador_modulo'));
