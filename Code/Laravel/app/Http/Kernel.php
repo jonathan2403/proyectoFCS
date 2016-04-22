@@ -32,5 +32,6 @@ class Kernel extends HttpKernel
         'isadmin' => \FCS\Http\Middleware\is_admin::class,
         'issecretaria' => \FCS\Http\Middleware\is_secretaria::class,
         'auth_investigacion' => \FCS\Http\Middleware\userInvestigacion::class,
+        'auth_proyeccion' => \FCS\Http\Middleware\userProyeccion::class,
     ];
 }

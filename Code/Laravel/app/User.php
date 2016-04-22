@@ -10,6 +10,9 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
+    const INVESTIGACION = 1;
+    const PROYECCION_SOCIAL = 2;
+
     use Authenticatable, CanResetPassword;
 
     /**
