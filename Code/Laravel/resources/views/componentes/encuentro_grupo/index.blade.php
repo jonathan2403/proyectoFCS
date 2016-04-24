@@ -1,13 +1,11 @@
 @extends('layaouts.tablas')
 @section('content')
   <section class="content">
-  
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
             @include('layaouts.partials.mensaje')
-            <h3 class="box-title">Listado De Encuentros</h3>
           </div><!-- /.box-header -->
           <div class="box-body">
             <div class="row form-group">
@@ -50,8 +48,8 @@
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col -->
-      <button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
     </div>
+    <button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
   </section><!-- /.content -->
 @endsection
 @section('scripts')
