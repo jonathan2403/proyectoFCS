@@ -96,8 +96,7 @@ class ExternoController extends Controller
         $externo  = Entidad::find($id);
         $externo->fill($request->all());
         $externo->save();
-        Session::flash('message', 'Registro Actualizado!');
-        return redirect::to('externo');
+        return redirect('externo')->with('message','Registro Actualizado!');
     }
 
     /**

@@ -5,6 +5,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
+        @include('layaouts.partials.mensaje')
         </div><!-- /.box-header -->
         <div class="box-body">
           <div class="row form-group">
