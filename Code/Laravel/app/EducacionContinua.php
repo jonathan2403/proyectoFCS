@@ -25,7 +25,19 @@ class EducacionContinua extends Model
   						'otros_gastos',
               'id_director'
   						];
+    public static $reglas_crear = array(
+      'nombre' =>'required',
+      'numero_acta' => 'required',
+      'id_director' => 'required',
+      'fecha_aprobacion' => 'required',
+      'fecha_inicio' => 'required',
+      'pais' => 'required',
+      'ciudad' => 'required',
+      );
 
-
+    public static $mensajes = array(
+      'numero_acta.required' => 'El campo número de acta es requerido.',
+      'id_director.required' => 'El campo director es requerido.',
+            );
 
 }

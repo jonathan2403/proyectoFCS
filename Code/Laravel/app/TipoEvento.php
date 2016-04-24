@@ -18,4 +18,12 @@ class TipoEvento extends Model
     {
     	return $this->hasMany('\FCS\Evento');
     }
+
+    public static $reglas = array(
+        'nombre_tipoevento' => 'required'
+        );
+
+    public static $mensajes = array(
+        'nombre_tipoevento.required' => 'El campo nombre es obligatorio.'
+        );
 }

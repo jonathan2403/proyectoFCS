@@ -36,7 +36,7 @@ class ExternoController extends Controller
     public function create()
     {
         $indicador_modulo = 16;
-        $route = [ 'route' => 'externo.store','method'=>'POST' ];
+        $route = ['route' => 'externo.store','method'=>'POST'];
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         return view('componentes.externo.addexterno', compact('route', 'nombre_profesor', 'indicador_modulo'));
     }
@@ -49,7 +49,13 @@ class ExternoController extends Controller
      */
     public function store(Request $request)
     {
-      $externo = Entidad::create($request->all());
+      $datos = $request->all();
+      $valida = \Validator::make($datos, Entidad::$reglas_crear);
+      if($valida->fails()){
+        return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+      }else{
+            Entidad::create($datos);
+      }
       return redirect('externo')->with('message','Registro Creado!');
     }
 
@@ -90,8 +96,7 @@ class ExternoController extends Controller
         $externo  = Entidad::find($id);
         $externo->fill($request->all());
         $externo->save();
-        Session::flash('message', 'Registro Actualizado!');
-        return redirect::to('externo');
+        return redirect('externo')->with('message','Registro Actualizado!');
     }
 
     /**

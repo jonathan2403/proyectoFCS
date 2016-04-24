@@ -7,7 +7,6 @@
         <div class="box">
           <div class="box-header">
             @include('layaouts.partials.mensaje')
-            <h3 class="box-title">Listado Tipo Eventos</h3>
           </div><!-- /.box-header -->
           <div class="box-body">
             <div class="row form-group">

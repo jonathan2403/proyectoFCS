@@ -48,8 +48,14 @@ class EducacionContinuaController extends Controller
      */
     public function store(Request $request)
     {
-        EducacionContinua::create($request->all());
-         return redirect('educacion-continua')->with('message','Registro Creado!');
+        $datos = $request->all();
+        $valida = \Validator::make($datos, EducacionContinua::$reglas_crear, EducacionContinua::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }else{
+            EducacionContinua::create($datos);    
+        }
+        return redirect('educacion-continua')->with('message','Registro Creado!');
     
     }
 

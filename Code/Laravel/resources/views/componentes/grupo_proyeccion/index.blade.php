@@ -7,7 +7,6 @@
 				<div class="box">
 					<div class="box-header">
 						@include('layaouts.partials.mensaje')
-						<h3 class="box-title">Listado de Grupos</h3>
 					</div><!-- /.box-header -->
 					<div class="box-body">
 						<div class="row form-group">
@@ -28,7 +27,7 @@
 								@foreach($grupos as $grupo)
 										<tr data-id="{{ $grupo->id }}">
 											<td><center>{{ucwords($grupo->sigla)}}</center></td>
-											<td>{!!link_to_route('grupos.show', ucfirst($grupo->descripcion), $parameters=$grupo->id)!!}</td>
+											<td>{!!link_to_route('grupo-proyeccion.show', ucfirst($grupo->descripcion), $parameters=$grupo->id)!!}</td>
 											<td><center>{{ucwords($grupo->full_name)}}</center></td>
 											<!--<td>{{$integrantes}}</td>-->
 											@if($grupo->tipo == 'i')

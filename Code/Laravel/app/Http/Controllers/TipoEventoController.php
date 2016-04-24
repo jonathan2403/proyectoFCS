@@ -31,7 +31,7 @@ class TipoEventoController extends Controller
     public function create()
     {
         $indicador_modulo = 2;
-        return view('componentes.tipo_evento.addtipoevento', 'indicador_modulo');
+        return view('componentes.tipo_evento.addtipoevento', compact('indicador_modulo'));
     }
 
     /**
@@ -42,8 +42,14 @@ class TipoEventoController extends Controller
      */
     public function store(Request $request)
     {
-        TipoEvento::create($request->all());
-        return redirect('tipo-evento')->with('message','Tipo Evento creado exitosamente');
+        $datos = $request->all();
+        $valida = \Validator::make($datos, TipoEvento::$reglas, TipoEvento::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }else{
+            TipoEvento::create($datos);    
+        }
+        return redirect('tipo-evento')->with('message', 'Registro Creado!');
     }
 
     /**
