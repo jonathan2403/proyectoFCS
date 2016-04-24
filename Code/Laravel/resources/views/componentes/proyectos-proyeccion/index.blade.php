@@ -1,13 +1,4 @@
 @extends('layaouts.tablas')
-@section('scripts')
-  <script type="text/javascript">
-  	$(document).ready(function(){
-			$('#edit').tooltip({
-				content : "Editar Registro"
-			});
-		});
-  </script>
-@endsection
 @section('content')
 	<section class="content">
     @include('componentes.proyectos-proyeccion.partials.modal')
@@ -15,13 +6,12 @@
 			<div class="col-xs-12">
 				<div class="box">
 					<div class="box-header">
-	    @include('layaouts.partials.mensaje')
-						<h3 class="box-title">Listado de Proyectos</h3>
+	    			@include('layaouts.partials.mensaje')
 					</div><!-- /.box-header -->
 					<div class="box-body">
 						<div class="row form-group">
 							<div class="col-md-3">
-								<a href="{!! URL('proyectos-proyeccion/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i><b> Nuevo</b></a>
+								<a href="{!! URL('proyectos-proyeccion/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
 							</div>
 						</div>
 							<table id="example3" class="table table-bordered table-striped">

@@ -7,7 +7,6 @@
 				<div class="box">
 					<div class="box-header">
 						@include('layaouts.partials.mensaje')
-						<h3 class="box-title">Listado de Opciones de Grado</h3>
 					</div><!-- /.box-header -->
 					<div class="box-body">
 						<div class="row form-group">
@@ -18,14 +17,13 @@
 							<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> <b>Nueva</b></button>
           			{!! Form::close() !!}
 						</div>
-						<table id="example3" class="table table-bordered table-striped">
+						<table id="example3" class="table table-bordered table-striped" style="text-align:center">
 								<thead>
-									<th><center>Id</th>
-									<th><center>Título</th>
-									<th><center>Tipo</th>
-									<th><center>Entrega al Comité</th>
-									<th><center>Concepto</th>
-									<th><center>Acción</th>
+									<th>Título</th>
+									<th>Tipo</th>
+									<th>Entrega al Comité</th>
+									<th>Concepto</th>
+									<th>Acción</th>
 								</thead>
 								<tbody>
 									@foreach($opciongrados as $opciongrado)
@@ -43,7 +41,6 @@
 									<tr class="info">
 									@endif
 								@endif
-											<td>{{$opciongrado->id}}</td>
 											<td>{!!link_to_route('opcion-grado-proyeccion.show', ucfirst($opciongrado->descripcion), $parameters=[$opciongrado->id, $opciongrado->tipo_opcion_grado])!!}</td>
 											<td>{{$opciongrado->tipo_opcion_grado}}</td>
 											@if($opciongrado->fecha_aprobacion == '')

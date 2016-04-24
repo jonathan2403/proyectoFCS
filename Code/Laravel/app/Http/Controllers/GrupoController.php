@@ -22,8 +22,7 @@ class GrupoController extends Controller
     public function index()
     {
         $indicador_modulo = 1;
-        $grupos = \DB::table('grupo')
-        ->join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+        $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
         ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo', 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->whereIn('grupo.tipo', ['i', 'e'])
         ->get();
@@ -75,7 +74,6 @@ class GrupoController extends Controller
         ->join('estudiantes', 'adscripcion.id_estudiante', '=', 'estudiantes.id')
         ->join('grupo', 'adscripcion.id_grupo', '=', 'grupo.id')
         ->select('adscripcion.id', 'estudiantes.codigo_estudiante', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
-        //->groupBy('adscripcion.id_estudiante')
         ->where('grupo.id', $id)
         ->get();
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');

@@ -32,7 +32,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::resource('adquisicion', 'AdquisicionController');
 		Route::resource('externo','ExternoController');
 		Route::resource('grupos','GrupoController');
-		Route::resource('indicador','IndicadorController');
+		Route::resource('indicadores-investigacion','IndicadorInvestigacionController');
 
 
 		// Rutas para Proyeccion Social

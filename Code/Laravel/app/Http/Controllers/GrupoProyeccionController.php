@@ -22,8 +22,7 @@ class GrupoProyeccionController extends Controller
     public function index()
     {
        $indicador_modulo = 20;
-       $grupos = \DB::table('grupo')
-        ->join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+       $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
         ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo',
          DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->where('tipo', 'ps')
@@ -73,7 +72,19 @@ class GrupoProyeccionController extends Controller
      */
     public function show($id)
     {
-        //
+        $indicador_modulo = 20;
+        $grupos = \DB::table('grupo')
+        ->select('id', 'sigla', 'descripcion')
+        ->where('id', $id)
+        ->get();
+        $estudiantes = \DB::table('adscripcion')
+        ->join('estudiantes', 'adscripcion.id_estudiante', '=', 'estudiantes.id')
+        ->join('grupo', 'adscripcion.id_grupo', '=', 'grupo.id')
+        ->select('adscripcion.id', 'estudiantes.codigo_estudiante', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
+        ->where('grupo.id', $id)
+        ->get();
+        $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
+        return view('componentes.grupo.showgrupo', compact('grupos', 'estudiantes', 'nombre_estudiante', 'indicador_modulo'));
     }
 
     /**

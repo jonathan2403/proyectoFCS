@@ -27,7 +27,7 @@
 								@foreach($grupos as $grupo)
 										<tr data-id="{{ $grupo->id }}">
 											<td><center>{{ucwords($grupo->sigla)}}</center></td>
-											<td>{!!link_to_route('grupos.show', ucfirst($grupo->descripcion), $parameters=$grupo->id)!!}</td>
+											<td>{!!link_to_route('grupo-proyeccion.show', ucfirst($grupo->descripcion), $parameters=$grupo->id)!!}</td>
 											<td><center>{{ucwords($grupo->full_name)}}</center></td>
 											<!--<td>{{$integrantes}}</td>-->
 											@if($grupo->tipo == 'i')
