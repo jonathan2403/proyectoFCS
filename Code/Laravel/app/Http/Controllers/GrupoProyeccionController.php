@@ -55,8 +55,14 @@ class GrupoProyeccionController extends Controller
      */
     public function store(Request $request)
     {
-         $grupo = Grupo::create($request->all());
-        return redirect('grupo-proyeccion')->with('message','Grupo creado exitosamente');
+        $datos = $request->all();
+        $valida = \Validator::make($datos, Grupo::$reglas_crear, Grupo::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }else{
+            Grupo::create($datos);
+        }
+        return redirect('grupo-proyeccion')->with('message','Registro Creado!');
     }
 
     /**

@@ -18,4 +18,13 @@ class Grupo extends Model
     {
       return ucwords($value);
     }
+
+    public static $reglas_crear = array(
+      'descripcion' => 'required',
+      'id_profesor' => 'required'
+      );
+
+    public static $mensajes = array(
+      'id_profesor.required' => 'El campo coordinador es obligatorio.'
+      );
 }

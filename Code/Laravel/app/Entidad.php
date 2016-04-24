@@ -23,4 +23,10 @@ class Entidad extends Model
     {
       return ucfirst($value);
     }
+
+  public static $reglas_crear = array(
+    'nombre_externo' => 'required',
+    'tipo_externo' => 'required',
+    'telefono' => 'required'
+    );
 }
