@@ -3,6 +3,7 @@
 namespace FCS\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Guard;
 use FCS\app\User;
 
@@ -35,6 +36,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
+        
          if ($this->auth->check())
             {
                 return redirect('/home');
