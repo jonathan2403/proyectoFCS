@@ -4,6 +4,7 @@ namespace FCS\Http\Controllers;
 
 use Illuminate\Http\Request;
 use FCS\JovenInvestigador;
+use FCS\Estudiante;
 use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
 
@@ -96,8 +97,10 @@ class JovenInvestigadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function buscarPersona()
+    public function buscarPersona($persona)
     {
-        
+        $usuarios = array();
+        $usuarios = Estudiante::all();
+        return \Response::json($usuarios);
     }
 }

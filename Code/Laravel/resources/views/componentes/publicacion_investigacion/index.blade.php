@@ -11,7 +11,7 @@
 					<div class="box-body">
 						<div class="row form-group">
 							<div class="col-md-3">
-								<a href="{!! URL('joven-investigador/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
+								<a href="{!! URL('publicacion-investigacion/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
 							</div>
 						</div>
 							<table id="example3" class="table table-bordered table-striped">

@@ -1,23 +1,6 @@
 @extends('layaouts.tablas')
 @section('scripts')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.select').select2({
-        minimumInputLength: '1'
-      });
-      $('input').iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal-red'
-       });
-      $('.picker').datepicker({
-        format : "dd-mm-yyyy"
-      });
-      //$('#concepto2').attr('width', 30);
-      $('.picker').on('changeDate', function(ev){
-          $(this).datepicker('hide');
-      });
-    });
-  </script>
+   {!!Html::script('/assets/js/load_views.js')!!}
 @endsection
 @section('content')
   <section class="content">
@@ -26,7 +9,7 @@
         @include('errors.partials.requesterror')
           <div class="box box-solid box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">Agregar Opcion Grado</h3>
+              <h3 class="box-title">Registrar Nueva Opción de grado</h3>
                 <div class="box-tools pull-right">
                   <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>

@@ -22,7 +22,7 @@
 									<th><center>Coordinador</center></th>
 									<!--<th>N° Integrantes</th>-->
 									<th><center>Tipo</center></th>
-									<th><center>Categoria</center></th>
+									<th><center>Categoría</center></th>
 									<th><center>Acción</center></th>
 								</thead>
 								<tbody>
@@ -30,14 +30,14 @@
 										<tr data-id="{{ $grupo->id }}">
 											<td><center>{{ucwords($grupo->sigla)}}</center></td>
 											<td>{!!link_to_route('grupos.show', ucfirst($grupo->descripcion), $parameters=$grupo->id)!!}</td>
-											<td><center>{{ucwords($grupo->full_name)}}</center></td>
+											<td><center>{{ucwords($grupo->nombre_coordinador)}}</center></td>
 											<!--<td>{{$integrantes}}</td>-->
 											@if($grupo->tipo == 'i')
 											<td><center>Investigación</center></td>
 											@else
 											<td><center>Estudio</center></td>
 											@endif
-											<td><center>{{$grupo->categoria}}</center></td>
+											<td><center>{{ucfirst($grupo->categoria)}}</center></td>
 											<td><center>
 													 {!! link_to_route('grupos.edit', $title='Editar', $parameters=$grupo->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
 													

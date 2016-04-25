@@ -10,6 +10,7 @@ use FCS\Http\Controllers\Controller;
 use FCS\Grupo;
 use FCS\Profesor;
 use FCS\Estudiante;
+use FCS\Adscripcion;
 use DB, View, Session, Redirect;
 
 class GrupoController extends Controller
@@ -23,7 +24,7 @@ class GrupoController extends Controller
     {
         $indicador_modulo = 1;
         $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-        ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo', 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
+        ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo', 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
         ->whereIn('grupo.tipo', ['i', 'e'])
         ->get();
         $integrantes = \DB::table('grupo')
@@ -54,7 +55,7 @@ class GrupoController extends Controller
     public function store(CreateGrupoRequest $request)
     {
         $grupo = Grupo::create($request->all());
-        return redirect('grupos')->with('message','Grupo creado exitosamente');
+        return redirect('grupos')->with('message','Registro Creado!');
     }
 
     /**
@@ -66,12 +67,11 @@ class GrupoController extends Controller
     public function show($id)
     {
         $indicador_modulo = 1;
-        $grupos = \DB::table('grupo')
-        ->select('id', 'sigla', 'descripcion')
-        ->where('id', $id)
+        $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+        ->select('grupo.id', 'grupo.sigla', 'descripcion', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
+        ->where('grupo.id', $id)
         ->get();
-        $estudiantes = \DB::table('adscripcion')
-        ->join('estudiantes', 'adscripcion.id_estudiante', '=', 'estudiantes.id')
+        $estudiantes = Adscripcion::join('estudiantes', 'adscripcion.id_estudiante', '=', 'estudiantes.id')
         ->join('grupo', 'adscripcion.id_grupo', '=', 'grupo.id')
         ->select('adscripcion.id', 'estudiantes.codigo_estudiante', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('grupo.id', $id)
@@ -107,8 +107,7 @@ class GrupoController extends Controller
         $grupo=Grupo::find($id);
         $grupo->fill($request->all());
         $grupo->save();
-        Session::flash('message','Grupo Editado Correctamente');
-        return redirect::to('grupos');
+        return redirect('grupos')->with('message','Registro Actualizado!');
     }
 
     /**
