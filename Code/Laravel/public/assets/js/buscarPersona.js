@@ -13,7 +13,7 @@ var boton=$("#consignarsaldo");
                 boton.hide();
                 $("#personaPasarSaldo-1").text("No ha seleccionado un usuario correcto");
             });
-            $.getJSON(URL_SERVIDOR+"saldos/buscarPersona/"+request.term,{
+            $.getJSON("localhost:8000/saldos/buscarPersona/"+request.term,{
                 //          term:  ( request.term )
             },response);//fin get JSON
         }, /* este es el script que realiza la busqueda */
