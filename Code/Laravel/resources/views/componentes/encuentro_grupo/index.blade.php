@@ -15,13 +15,13 @@
             </div>
             <table id="example3" class="table table-bordered table-striped">
               <thead>
-                <th>Nombre Encuentro</th>
+                <th>Nombre del Encuentro</th>
                 <th>Ponente</th>
-                <th><center>Fecha</center></th>
-                <th><center>Lugar</center></th>
-                <th><center>Grupo</center></th>
-                 <th><center>Modalidad</center></th>
-                <th><center>Acción</center></th>
+                <th>Fecha</th>
+                <th>Lugar</th>
+                <th>Grupo</th>
+                <th>Modalidad</th>
+                <th>Acción</th>
               </thead>
               <tbody>
               @foreach($encuentros as $encuentro)

@@ -95,7 +95,7 @@ class EncuentroGrupoController extends Controller
         $encuentro = EncuentroGrupo::find($id);
         $encuentro->fill($request->all());
         $encuentro->save();
-        return redirect()->to('encuentro-grupo');
+        return redirect()->to('encuentro-grupo')->with('message', 'Registro Actualizado!');
     }
 
     /**

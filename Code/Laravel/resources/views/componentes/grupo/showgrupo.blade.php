@@ -38,16 +38,14 @@
             <div id="dvData">
                <table id="example3" class="table table-bordered table-striped">
                 <thead>
-                  <th>Id Part.</th>
-                  <th><center>Código</center></th>
-                  <th><center>Nombre</center></th>
-                  <th><center>Email</center></th>
-                  <th><center>Acción</center></th>
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Acción</th>
                 </thead>
                 <tbody>
                   @foreach($estudiantes as $estudiante)
                     <tr>
-                    <td>{{$estudiante->id}}</td>
                       <td><center>{{$estudiante->codigo_estudiante}}</center></td>
                       <td>{{ucwords($estudiante->full_name)}}</td>
                       <td>{{$estudiante->email}}</td>
