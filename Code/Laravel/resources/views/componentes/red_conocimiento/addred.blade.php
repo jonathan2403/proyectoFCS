@@ -1,17 +1,5 @@
 @section('scripts')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.picker').datepicker({
-        format : 'dd-mm-yyyy'
-      });
-      $('.picker').on('changeDate', function(ev){
-          $(this).datepicker('hide');
-      });
-      $('.select').select2({
-        minimumInputLength : '2'
-      });
-    });
-  </script>
+   {!!Html::script('/assets/js/load_views.js')!!}
 @endsection
 @extends('layaouts.tablas')
 @section('content')

@@ -1,4 +1,7 @@
 @extends('layaouts.tablas')
+@section('scripts')
+   {!!Html::script('/assets/js/load_views.js')!!}
+@endsection
 @section('content')
   <section class="content">
   	<div class="row">

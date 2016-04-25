@@ -1,23 +1,6 @@
 @extends('layaouts.tablas')
 @section('scripts')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.select').select2({
-        minimumInputLength: '1'
-      });
-      $('input').iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal-red'
-       });
-      $('.picker').datepicker({
-        format : "dd-mm-yyyy"
-      });
-      //$('#concepto2').attr('width', 30);
-      $('.picker').on('changeDate', function(ev){
-          $(this).datepicker('hide');
-      });
-    });
-  </script>
+   {!!Html::script('/assets/js/load_views.js')!!}
 @endsection
 @section('content')
   <section class="content">
