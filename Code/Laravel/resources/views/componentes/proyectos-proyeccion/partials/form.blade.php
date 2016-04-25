@@ -26,7 +26,7 @@
               </div>
             </div>
           </div>
-        </div><!-- Cierra box danger Inidio del Proyecto -->
+        </div><!-- Cierra box danger Inicio del Proyecto -->
 
         <div class="box box-danger">
           <div class="box-header with-border">

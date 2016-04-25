@@ -26,7 +26,7 @@
      </div>
      </br>
 
-    {!!Form::label('Fecha de Entrega al Comite de Revision')!!}
+    {!!Form::label('Fecha de Entrega al Comite de Revisión')!!}
     <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
@@ -35,83 +35,91 @@
      </div>
     </br>
 
-    {!!Form::label('Fecha de Entrega al Jurado')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_entrega_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
-     </div>
-    </br>
-
-    {!!Form::label('Fecha Maxima del Jurado')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_entrega_max_jurado', null, ['id' => 'datepicker4', 'class'=>'picker form-control', 'readonly'])!!}
-      </div>
+    <!-- Entrega al Jurado  -->
+    <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">Entrega al Jurado</h3>
+          </div>          
+          <div class="box-body">
+            <div class="row">
+              <div class="col-xs-4">
+                    <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                   {!!Form::text('fecha_entrega_jurado', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly', 'placeholder' => 'Fecha de entrega'])!!}
+                  </div>
+              </div>
+              <div class="col-xs-4">
+                  <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    {!!Form::text('fecha_entrega_max_jurado', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly', 'placeholder' => 'Fecha máxima de entrega'])!!}
+                </div>
+              </div>
+              <div class="col-xs-4">
+                  <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      {!!Form::text('fecha_entrega_real_jurado', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly', 'placeholder' => 'Fecha de entrega real'])!!}
+                  </div>
+              </div>
+            </div><br>
+            {!! Form::label('Concepto del Jurado') !!}
+            {!! Form::select('concepto_1', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
+          </div>
+        </div><!-- Final Box Entrega al jurado -->
       </br>
 
-    {!!Form::label('Fecha Real de entrega del Jurado')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
+      <!-- Box Entrega 1 -->
+      <div class="box box-danger">
+        <div class="box-header with-border">
+          <h3 class="box-title">Entrega 1</h3>
         </div>
-    {!!Form::text('fecha_entrega_real_jurado', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
-      </div>
-      </br>
-    {!! Form::select('concepto_1', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
-  </br>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-xs-5">
+                  <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    {!!Form::text('fecha_entrega_1', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly', 'placeholder' => 'Fecha de entrega'])!!}
+                </div>
+              </div>
+              <div class="col-xs-5">
+                  <div class="input-group">
+                    {!! Form::select('concepto_2', array('' => 'Concepto', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'class' => 'form-control']) !!}
+                </div>
+              </div>
+            </div>
+          </div><!-- Cierra Box Body -->
+      </div><!-- Cierra Box Entrega 1 -->
 
-<!--Table Input Entrega 1-->
-<div class="table-responsive">
-  <table class="table">
-                <thead>
-                  <th><center>Fecha Entrega 1</center></th>
-                  <th><center>Concepto</center></th>
-                </thead>
-                <tbody>
-                 <tr>
-                   <td>
-                   <div style="height: 50px; overflow:auto;">
-                       <div class="input-group">
-                        <div class="input-group-addon">
+      <!-- Box Entrega 2 -->
+      <div class="box box-danger">
+        <div class="box-header with-border">
+          <h3 class="box-title">Entrega 2</h3>
+        </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-xs-5">
+                  <div class="input-group">
+                      <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
-                          </div>
-                             {!!Form::text('fecha_entrega_1', null, ['id' => 'entrega1', 'class'=>'picker form-control', 'readonly'])!!}
-                          </div>
-                   </div>
-                   </td>
-                   <td>
-                     {!! Form::select('concepto_2', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'concepto2', 'class' => 'concepto form-control']) !!}
-                   </td>
-                 </tr>
-                </tbody>
-</table>
-</div>
-    <!-- Table Input Entrega 2 -->
-    <table class="table">
-                <thead>
-                  <th><center>Fecha Entrega 2</center></th>
-                  <th><center>Concepto</center></th>
-                </thead>
-                <tbody>
-                 <tr>
-                   <td>
-                        <div class="input-group">
-                        <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                          </div>
-                             {!!Form::text('fecha_entrega_2', null, ['id' => 'datepicker', 'class'=>'picker picker2 form-control', 'readonly'])!!}
-                          </div>
-                   </td>
-                   <td>
-                     {!! Form::select('concepto_3', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'concepto form-control']) !!}
-                   </td>
-                 </tr>
-                </tbody>
-              </table>
+                      </div>
+                    {!!Form::text('fecha_entrega_2', null, ['id' => 'datepicker', 'class'=>'picker picker2 form-control', 'readonly', 'placeholder' => 'Fecha de Entrega'])!!}
+                </div>
+              </div>
+              <div class="col-xs-5">
+                  <div class="input-group">
+                    {!! Form::select('concepto_3', array('' => 'Concepto', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'concepto form-control']) !!}
+                </div>
+              </div>
+            </div>
+          </div><!-- Cierra Box Body -->
+      </div><!-- Cierra Box Entrega 2 -->
       </br>
 
       <hr><font size="4px"><b><center>SECCIÓN INFORME</center></b></font><hr>

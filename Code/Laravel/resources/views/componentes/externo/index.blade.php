@@ -23,11 +23,11 @@
           <div class="box-body" style="display:none;">
             <table id="example" class="table table-bordered table-striped">
               <thead>
-                <th><center>Nombre</center></th>
-                <th><center>Teléfono</center></th>
-                <th><center>Email</center></th>
-                <th><center>Dirección</center></th>
-                <th><center>Acción</center></th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Dirección</th>
+                <th>Acción</th>
               </thead>
               <tbody>
                 @foreach($entidades as $entidad)
@@ -58,14 +58,14 @@
         <div class="box-body" style="display:none;">
           <table id="example3" class="table table-bordered table-striped">
             <thead>
-              <th><center>Nombre</center></th>
-              <th><center>Teléfono</center></th>
-              <th><center>Email</center></th>
-              <th><center>Dirección</center></th>
-              <th><center>Area</center></th>
-              <th><center>Nivel de Estudio</center></th>
-              <th><center>Experiencia</center></th>
-              <th><center>Acción</center></th>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Email</th>
+              <th>Dirección</th>
+              <th>Area</th>
+              <th>Nivel de Estudio</th>
+              <th>Experiencia</th>
+              <th>Acción</th>
             </thead>
             <tbody>
               @foreach($personas as $persona)

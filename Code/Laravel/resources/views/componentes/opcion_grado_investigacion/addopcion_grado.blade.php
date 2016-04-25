@@ -9,7 +9,7 @@
         @include('errors.partials.requesterror')
           <div class="box box-solid box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">Agregar Opcion Grado</h3>
+              <h3 class="box-title">Registrar Nueva Opción de grado</h3>
                 <div class="box-tools pull-right">
                   <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>

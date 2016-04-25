@@ -19,13 +19,12 @@
 						</div>
 						<table id="example3" class="table table-bordered table-striped">
 								<thead>
-									<th><center>Id</center></th>
-									<th><center>Título</center></th>
-									<th><center>Tipo</center></th>
-									<th><center>Aprobación</center></th>
-									<th><center>Informe Final</center></th>
-									<th><center>Finalizado</center></th>
-									<th><center>Acción</center></th>
+									<th>Título</th>
+									<th>Tipo</th>
+									<th>Aprobación</th>
+									<th>Informe Final</th>
+									<th>Finalizado</th>
+									<th>Acción</th>
 								</thead>
 								<tbody>
 									@foreach($opciongrados as $opciongrado)
@@ -43,7 +42,6 @@
 										  <tr class="info">
 										  @endif
 										@endif
-										 	<td>{{$opciongrado->id}}</td>
 										 	<td>{!!link_to_route('opcion-grado-investigacion.show', ucfirst($opciongrado->descripcion), $parameters=$opciongrado->id)!!}</td>
 											<td>{{$opciongrado->tipo_opcion_grado}}</td>
 											@if($opciongrado->fecha_aprobacion == '')
