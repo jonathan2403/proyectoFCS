@@ -29,7 +29,7 @@
               <div class="box-body">
                   <div class="row">
                     <div class="pad">
-                      {!! Form::model($grupo,$route)!!}@include('layaouts.partials.mensaje')
+                      {!! Form::model($grupo,$route)!!}
                         @include('componentes.grupo_proyeccion.partials.form')
                       {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
                       {!!Form::close()!!}
