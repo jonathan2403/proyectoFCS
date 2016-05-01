@@ -99,6 +99,7 @@ class JovenInvestigadorController extends Controller
      */
     public function buscarPersona($persona)
     {
+        dd($persona);
         $usuarios = array();
         $usuarios = Estudiante::all();
         return \Response::json($usuarios);

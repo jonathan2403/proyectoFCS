@@ -11,7 +11,7 @@
         <!-- Ionicons -->
         {!! Html::style('/assets/plugins/ionicons/css/ionicons.min.css')!!}
         <!-- DATA TABLES -->
-        {!!Html::style('assets/plugins/datatables/dataTables.bootstrap1.css')!!}
+        {!!Html::style('assets/plugins/datatables/dataTables.bootstrap.css')!!}
         <!-- Theme style -->
         {!!Html::style('assets/dist/css/AdminLTE1.css')!!}
         {!!Html::style('assets/dist/css/skins/_all-skins.min.css')!!}

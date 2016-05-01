@@ -1,6 +1,10 @@
 @extends('layaouts.tablas')
 @section('scripts')
+   {!!Html::script('/assets/css/autocompletar.css')!!}
+   {!!Html::style('/assets/js/jquery-ui.css')!!}
    {!!Html::script('/assets/js/load_views.js')!!}
+   {!!Html::script('/assets/js/jquery-ui.min.js')!!}
+   {!!Html::script('/assets/js/buscarPersona.js')!!}
 @endsection
 @section('content')
   <section class="content">
