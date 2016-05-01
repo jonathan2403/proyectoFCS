@@ -9,7 +9,7 @@ class Grupo extends Model
     protected $table = 'grupo';
     protected $fillable = ['sigla', 'descripcion', 'tipo', 'id_profesor', 'categoria'];
 
-    public function getFullNameAttribute()
+    public function getNombreGrupoAttribute()
     {
       $name = $this->sigla.' - '.$this->descripcion;
       return ucwords($name);

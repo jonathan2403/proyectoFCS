@@ -30,7 +30,7 @@ var boton=$("#consignarsaldo");
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
         return $( "<li class='li_autocompletar'>"  )
             .append(
-            " <strong>"+item.primer_nombre+" "+item.segundo_nombre+" "+item.apellido_paterno+" "+item.apellido_materno+"</strong>"
+            " <strong><p>"+item.primer_nombre+" "+item.segundo_nombre+" "+item.apellido_paterno+" "+item.apellido_materno+"</p></strong>"
             +" <p style='color:#9ea099'>Código: "+item.codigo_estudiante+"</p>"
             +" </a></li>")
             .appendTo( ul );

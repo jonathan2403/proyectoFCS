@@ -6,6 +6,6 @@
     height: 60px;
 }
 
-.li_autocompletar{
-	background-color: red;
+.li_autocompletar:hover{
+	/*background-color: #8FFAEE;*/
 }

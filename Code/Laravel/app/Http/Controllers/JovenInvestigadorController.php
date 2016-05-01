@@ -5,8 +5,10 @@ namespace FCS\Http\Controllers;
 use Illuminate\Http\Request;
 use FCS\JovenInvestigador;
 use FCS\Estudiante;
+use FCS\Grupo;
 use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
+
 
 class JovenInvestigadorController extends Controller
 {
@@ -18,8 +20,10 @@ class JovenInvestigadorController extends Controller
     public function index()
     {
         $indicador_modulo = 24;
-        $jovenes_investigadores = JovenInvestigador::all();
-        //dd($jovenes_investigadores);
+        $jovenes_investigadores = JovenInvestigador::join('estudiantes', 'joven_investigador.id_estudiante', '=', 'estudiantes.id')
+        ->join('grupo', 'joven_investigador.id_grupo', '=', 'grupo.id')
+        ->select(\DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS nombre_estudiante"), 'grupo.descripcion as nombre_grupo')
+        ->get();
         return view('componentes.joven_investigador.index', compact('jovenes_investigadores', 'indicador_modulo'));
     }
 
@@ -31,8 +35,9 @@ class JovenInvestigadorController extends Controller
     public function create()
     {
         $indicador_modulo = 24;
-        $route = ['route' => 'joven-investigador.store', 'method' => 'POST'];
-        return view('componentes.joven_investigador.addjoven_investigador', compact('route', 'indicador_modulo'));
+        $grupos = Grupo::all()->lists('NombreGrupo', 'id');
+        $route = ['route' => 'joven-investigador.store', 'method' => 'POST']; 
+        return view('componentes.joven_investigador.addjoven_investigador', compact('route', 'grupos', 'indicador_modulo'));
     }
 
     /**
@@ -43,7 +48,8 @@ class JovenInvestigadorController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $joven_investigador = JovenInvestigador::create($request->all());
+        return redirect('joven-investigador')->with('message', 'Registro Creado!');
     }
 
     /**

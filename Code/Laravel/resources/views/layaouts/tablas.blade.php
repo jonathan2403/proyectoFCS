@@ -14,6 +14,10 @@
         {!!Html::style('assets/plugins/datatables/dataTables.bootstrap.css')!!}
         <!-- Theme style -->
         {!!Html::style('assets/dist/css/AdminLTE1.css')!!}
+        <!--  Jquery UI css -->
+        {!!Html::style('/assets/js/jquery-ui.css')!!}
+        <!-- Autocompletar CSS -->
+        {!!Html::style('/assets/css/autocompletar.css')!!}
         {!!Html::style('assets/dist/css/skins/_all-skins.min.css')!!}
     </head>
     <body class="skin-red sidebar-mini">
@@ -65,7 +69,9 @@
         <!-- Export Table Excel-->
         {!!Html::script('assets/plugins/export-excel/src/jquery.table2excel.js')!!}
 
-
+        <!--  Jquery UI  -->
+        {!!Html::script('/assets/js/jquery-ui.min.js')!!}
+        <!-- Charts Graficas -->
         {!!Html::script('assets/plugins/chartjs/Chart.min.js')!!}
         <!--Flot-->
         {!!Html::script('assets/plugins/flot/jquery.flot.min.js')!!}
