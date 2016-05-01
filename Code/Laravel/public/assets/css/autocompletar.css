@@ -5,3 +5,7 @@
 .autcompletar_saldos, .autcompletar_distribuidor_ct{
     height: 60px;
 }
+
+.li_autocompletar{
+	background-color: red;
+}
