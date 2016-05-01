@@ -48,7 +48,13 @@ class JovenInvestigadorController extends Controller
      */
     public function store(Request $request)
     {
-        $joven_investigador = JovenInvestigador::create($request->all());
+        $datos = $request->all();
+        $valida = \Validator::make($datos, JovenInvestigador::$reglas_crear, JovenInvestigador::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }else{
+            $joven_investigador = JovenInvestigador::create($datos);
+        }
         return redirect('joven-investigador')->with('message', 'Registro Creado!');
     }
 
