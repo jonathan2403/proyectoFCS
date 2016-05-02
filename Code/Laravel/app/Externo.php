@@ -4,19 +4,19 @@ namespace FCS;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Entidad extends Model
+class Externo extends Model
 {
-  protected $table = 'entidad';
-  protected $fillable = ['nombre_entidad', 'tipo_entidad', 'telefono', 'correo', 'direccion','area_conocimiento', 'nivel_estudio', 'experiencia'];
+  protected $table = 'externo';
+  protected $fillable = ['nombre_externo', 'tipo_externo', 'telefono', 'correo', 'direccion','area_conocimiento', 'nivel_estudio', 'experiencia'];
 
   public function getFullNameEntidadAttribute()
   {
-     if($this->attributes['tipo_entidad'] == "e")
+     if($this->attributes['tipo_externo'] == "e")
      return ucwords($this->nombre_entidad);
   }
   public function getFullNamePersonaAttribute()
   {
-     if($this->attributes['tipo_entidad'] == "p")
+     if($this->attributes['tipo_externo'] == "p")
      return ucwords($this->nombre_entidad);
   }
   public function getNombreEtindadAttribute($value)

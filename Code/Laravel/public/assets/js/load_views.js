@@ -12,11 +12,8 @@ $(document).ready(function(){
        id_profesor = $('#select_profesor').val();
       });
     $('.picker').datepicker({
-      format : "dd-mm-yyyy"
-    });
-    $('.picker').on('changeDate', function(ev){
-        $(this).datepicker('hide');
-    });
+      format : "dd/mm/yyyy"
+    })
     $('input').iCheck({
         checkboxClass: 'icheckbox_minimal',
         radioClass: 'iradio_minimal-red'

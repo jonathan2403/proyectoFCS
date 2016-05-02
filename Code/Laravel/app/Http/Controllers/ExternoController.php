@@ -8,7 +8,7 @@ use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
 
 use FCS\Profesor;
-use FCS\Entidad;
+use FCS\Externo;
 use Session, Redirect;
 
 class ExternoController extends Controller
@@ -21,10 +21,10 @@ class ExternoController extends Controller
     public function index()
     {
         $indicador_modulo = 16;
-        $entidades = Entidad::where('tipo_entidad','e')
-        ->get();
-        $personas = Entidad::where('tipo_entidad','p')
-        ->get();
+        $entidades = Externo::where('tipo_entidad','e')
+        ->paginate(10);
+        $personas = Externo::where('tipo_entidad','p')
+        ->paginate(10);
         return view('componentes.externo.index', compact('entidades', 'personas', 'indicador_modulo'));
     }
 

@@ -6,6 +6,7 @@
   <section class="content">
    <div class="row">
       <div class="col-md-9">
+      @include('errors.partials.requesterror')
         <div class="box box-solid box-danger">
         	<div class="box-header with-border">
         		<h3 class="box-title">Editar Encuentro de Grupos</h3>

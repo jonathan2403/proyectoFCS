@@ -1,5 +1,5 @@
 /* autor: Jonathan Cuellar
-* Autocompletar nommbres, apellidos y cedula de usuarios distribuidores y supervisores
+* Autocompletar nommbres, apellidos y cedula de usuarios
 * */
 var idestudiante_oculto = $("#id_estudiante");
 var input_visible = $("#nombre_estudiante");
@@ -28,6 +28,7 @@ var boton=$("#consignarsaldo");
             return false;
         }
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+        
         return $( "<li class='li_autocompletar'>"  )
             .append(
             " <strong><p>"+item.primer_nombre+" "+item.segundo_nombre+" "+item.apellido_paterno+" "+item.apellido_materno+"</p></strong>"
