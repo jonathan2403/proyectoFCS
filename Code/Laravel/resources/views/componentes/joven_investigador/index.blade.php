@@ -1,7 +1,6 @@
 @extends('layaouts.tablas')
 @section('content')
 	<section class="content">
-
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="box">
@@ -17,11 +16,15 @@
 							<table id="example3" class="table table-bordered table-striped">
 								<thead>
 									<th>Nombre Investigador</th>
+									<th>Nombre Grupo</th>
+									<th>Acción</th>
 								</thead>
 								<tbody>
 									@foreach($jovenes_investigadores as $joven_investigador)
 										<tr>
-											<td>{{$joven_investigador->nombre_investigador}}</td>
+											<td>{{$joven_investigador->nombre_estudiante}}</td>
+											<td>{{$joven_investigador->nombre_grupo}}</td>
+											<td>{!! link_to_route('joven-investigador.edit', $title='Editar', $parameters=$joven_investigador->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}</td>
 										</tr>
 									@endforeach
 								</tbody>

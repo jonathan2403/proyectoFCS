@@ -1,47 +1,39 @@
-/* autor: Andrea Camargo
-* Autocompletar nommbres, apellidos y cedula de usuarios distribuidores y supervisores
+/* autor: Jonathan Cuellar
+* Autocompletar nommbres, apellidos y cedula de usuarios
 * */
-var input_oculto= $("#personaPasarSaldo_escondido");
-var input_visible=$("#personaPasarSaldo");
+var idestudiante_oculto = $("#id_estudiante");
+var input_visible = $("#nombre_estudiante");
 var boton=$("#consignarsaldo");
 
     boton.hide();
-    $("#personaPasarSaldo").autocomplete({
+    $("#nombre_estudiante").autocomplete({
         source: function(request, response)
         {
             input_visible.change(function(){
-                boton.hide();
-                $("#personaPasarSaldo-1").text("No ha seleccionado un usuario correcto");
+                //boton.hide();
+                $("#label_oculto").text("No ha seleccionado un usuario correcto");
             });
-            $.getJSON("localhost:8000/saldos/buscarPersona/"+request.term,{
-                //          term:  ( request.term )
+            $.getJSON("http://localhost:8000/buscarEstudiante/"+request.term,{
             },response);//fin get JSON
         }, /* este es el script que realiza la busqueda */
-        //minLength: 2, /* le decimos que espere hasta que haya 2 caracteres escritos */
+
+        // seleccionar id
         select:function(event, ui)
         {
 
-            input_visible.val(ui.item.nombreusuario+" "+ui.item.apellidousuario+" ");
-            $("#personaPasarSaldo-1").text("Ha seleccionado "+ui.item.nombreusuario+" "+ui.item.apellidousuario);
-            input_oculto.val(ui.item.idusuario);
-            boton.show();
-
+            input_visible.val(ui.item.primer_nombre+" "+ui.item.segundo_nombre+" "+ui.item.apellido_paterno+" "+ui.item.apellido_materno);
+            $("#label_oculto").text("Ha seleccionado "+ui.item.primer_nombre+" "+ui.item.segundo_nombre+" "+ui.item.apellido_paterno+" "+ui.item.apellido_materno);
+            idestudiante_oculto.val(ui.item.id);
+            //boton.show();
             return false;
         }
-    })
-        .autocomplete( "instance" )._renderItem = function( ul, item ) {
-        return $( "<li class='autcompletar_saldos' > "  )
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+        
+        return $( "<li class='li_autocompletar'>"  )
             .append(
-            "  <div class='col-md-2 img_autocompletado'> "
-            +" <a href='#fakelink' class='dropdown-toggle line_base_autompletado' data-toggle='dropdown'> "
-            +" <img src='"+URL_SERVIDOR+'img_db/usuario/'+item.imagen+"' class='avatar img-circle imagen_autocompletado' alt=''>"
-            +"</div> "
-            +"<div class='col-md-10 cuerpo_autocompletado'>"
-            +" <strong>"+item.nombreusuario+" "+item.apellidousuario+"</strong>"
-            +" <p style='color:#9ea099'>Cedula: "+item.cedulausuario+"</p>"
-            +" </a></div>")
-            // .append( "<a>" + item.name+ "" + item.cedula + "</a>" )
-                .appendTo( ul );
+            " <strong><p>"+item.primer_nombre+" "+item.segundo_nombre+" "+item.apellido_paterno+" "+item.apellido_materno+"</p></strong>"
+            +" <p style='color:#9ea099'>Código: "+item.codigo_estudiante+"</p>"
+            +" </a></li>")
+            .appendTo( ul );
     };
 ;// fin defincion de autocompletado
-

@@ -1,0 +1,11 @@
+.img_autocompletado{
+    margin-top:10px
+}
+
+.autcompletar_saldos, .autcompletar_distribuidor_ct{
+    height: 60px;
+}
+
+.li_autocompletar:hover{
+	/*background-color: #8FFAEE;*/
+}

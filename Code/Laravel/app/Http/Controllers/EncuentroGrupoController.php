@@ -47,7 +47,7 @@ class EncuentroGrupoController extends Controller
     public function store(Request $request)
     {
         $datos = $request->all();
-        $valida = \Validator::make($datos, EncuentroGrupo::$reglas, EncuentroGrupo::$mensajes);
+        $valida = \Validator::make($datos, EncuentroGrupo::$reglas_crear, EncuentroGrupo::$mensajes);
         if($valida->fails()){
             return redirect()->back()->withErrors($valida->errors())->withInput($datos);
         }
@@ -92,9 +92,15 @@ class EncuentroGrupoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $encuentro = EncuentroGrupo::find($id);
-        $encuentro->fill($request->all());
-        $encuentro->save();
+        $datos = $request->all();
+        $valida = \Validator::make($datos, EncuentroGrupo::$reglas_editar, EncuentroGrupo::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }else{
+            $encuentro = EncuentroGrupo::find($id);
+            $encuentro->fill($datos);
+            $encuentro->save();
+        }
         return redirect()->to('encuentro-grupo')->with('message', 'Registro Actualizado!');
     }
 
