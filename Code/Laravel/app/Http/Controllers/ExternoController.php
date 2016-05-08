@@ -21,9 +21,9 @@ class ExternoController extends Controller
     public function index()
     {
         $indicador_modulo = 16;
-        $entidades = Externo::where('tipo_entidad','e')
+        $entidades = Externo::where('tipo_externo','e')
         ->paginate(10);
-        $personas = Externo::where('tipo_entidad','p')
+        $personas = Externo::where('tipo_externo','p')
         ->paginate(10);
         return view('componentes.externo.index', compact('entidades', 'personas', 'indicador_modulo'));
     }
@@ -50,11 +50,11 @@ class ExternoController extends Controller
     public function store(Request $request)
     {
       $datos = $request->all();
-      $valida = \Validator::make($datos, Entidad::$reglas_crear);
+      $valida = \Validator::make($datos, Externo::$reglas);
       if($valida->fails()){
         return redirect()->back()->withErrors($valida->errors())->withInput($datos);
       }else{
-            Entidad::create($datos);
+            Externo::create($datos);
       }
       return redirect('externo')->with('message','Registro Creado!');
     }
@@ -79,7 +79,7 @@ class ExternoController extends Controller
     public function edit($id)
     {
         $indicador_modulo = 16;
-        $externo = Entidad::find($id);
+        $externo = Externo::find($id);
         $route = ['route'=>['externo.update', $externo->id], 'method'=>'PUT'];
         return view('componentes.externo.editexterno', compact('externo', 'route', 'indicador_modulo'));
     }
@@ -93,9 +93,15 @@ class ExternoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $externo  = Entidad::find($id);
-        $externo->fill($request->all());
-        $externo->save();
+        $datos = $request->all();
+        $valida = \Validator::make($datos, Externo::$reglas);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }else{
+            $externo  = Externo::find($id);
+            $externo->fill($datos);
+            $externo->save();
+        }
         return redirect('externo')->with('message','Registro Actualizado!');
     }
 
@@ -107,7 +113,7 @@ class ExternoController extends Controller
      */
     public function destroy($id)
     {
-      Entidad::destroy($id);
+      Externo::destroy($id);
       Session::flash('message','Registro Eliminado!');
       return Redirect::to('/externo');
     }

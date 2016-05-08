@@ -46,7 +46,7 @@
                                       <tbody>
                                         @foreach($personas as $persona)
                                         <tr>
-                                          <td>{{ucwords($persona->nombre_entidad)}}</td>               
+                                          <td>{{ucwords($persona->nombre_externo)}}</td>               
                                           <td>{{$persona->telefono}}</td>
                                           <td>{{$persona->correo}}</td>
                                           <td>{{$persona->direccion}}</td>
@@ -85,7 +85,7 @@
                                     <tbody>
                                       @foreach($entidades as $entidad)
                                       <tr>
-                                        <td>{{ucwords($entidad->nombre_entidad)}}</td>                   
+                                        <td>{{ucwords($entidad->nombre_externo)}}</td>                   
                                         <td>{{$entidad->telefono}}</td>
                                         <td>{{$entidad->correo}}</td>
                                         <td>{{$entidad->direccion}}</td>

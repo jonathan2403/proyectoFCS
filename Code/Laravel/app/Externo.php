@@ -24,7 +24,7 @@ class Externo extends Model
       return ucfirst($value);
     }
 
-  public static $reglas_crear = array(
+  public static $reglas = array(
     'nombre_externo' => 'required',
     'tipo_externo' => 'required',
     'telefono' => 'required'
