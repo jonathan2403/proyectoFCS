@@ -22,9 +22,8 @@
                             <a href="#tabZonas" data-toggle="tab">Personas Externas</a>
                         </li>
                         <li >
-                            <a href="#tabSectores" data-toggle="tab">Entidades Externas</a></li>
-                        <li >
-                            <a href="#tabTarifas" data-toggle="tab">Tarifas</a></li>
+                            <a href="#tabSectores" data-toggle="tab">Entidades Externas</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="panel-body">
@@ -47,7 +46,7 @@
                                       <tbody>
                                         @foreach($personas as $persona)
                                         <tr>
-                                          <td>{{ucwords($persona->nombre_entidad)}}</td>               
+                                          <td>{{ucwords($persona->nombre_externo)}}</td>               
                                           <td>{{$persona->telefono}}</td>
                                           <td>{{$persona->correo}}</td>
                                           <td>{{$persona->direccion}}</td>
@@ -86,7 +85,7 @@
                                     <tbody>
                                       @foreach($entidades as $entidad)
                                       <tr>
-                                        <td>{{ucwords($entidad->nombre_entidad)}}</td>                   
+                                        <td>{{ucwords($entidad->nombre_externo)}}</td>                   
                                         <td>{{$entidad->telefono}}</td>
                                         <td>{{$entidad->correo}}</td>
                                         <td>{{$entidad->direccion}}</td>
@@ -104,28 +103,6 @@
                             <div class="row text-center">
                                 {!! $entidades->render() !!}
                             </div>
-                        </div>
-
-                        <!-- panel - tab de tarifas -->
-                        <div class="tab-pane" id="tabTarifas">
-                            <div class="row">
-                             
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-th-block table-dark">
-                                    <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Tarifa Moto</th>
-                                        <th>Tarifa Carros</th>
-                                        
-                                        <th>Acciones</th>
-                                        
-                                    </tr>
-                                    </thead>
-                                    
-                                </table>
-                            </div><!-- /.table-responsive -->
                         </div>
                     </div>
                 </div><!-- /.panel-body -->

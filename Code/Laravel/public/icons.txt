@@ -1,0 +1,5 @@
+fa fa-child - Jóvenes Investigadores
+fa fa-eye   - Visibilidad
+fa fa-cogs  - Proyectos
+fa fa-external-link - Externos
+fa fa-object-group - Redes de Conocimiento
