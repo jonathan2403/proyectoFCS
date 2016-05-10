@@ -126,15 +126,15 @@ class EncuentroGrupoController extends Controller
     \Excel::create('Encuentro de Grupos', function($excel) use($encuentros){
         $excel->sheet('datosIndex', function($sheet) use($encuentros){
             $sheet->fromModel($encuentros);
-            $sheet->setAutoSize(true);
-            $sheet->cell('A1:F1', function($cells){
+            //$sheet->setAutoSize(true);
+            /*$sheet->cell('A1:F1', function($cells){
                 $cells->setFont([
                     'family' => 'Comic Sans MS',
                     'size' => '13',
                     'bold' => true,
                     ]);
                 $cells->setAlignment('center');
-            });
+            });*/
         });
     })->export('xls');
     }
