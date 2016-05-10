@@ -49,7 +49,7 @@
         </div><!-- /.box -->
       </div><!-- /.col -->
     </div>
-    <button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
+    <a href="{{URL('/excel/encuentros')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>
   </section><!-- /.content -->
 @endsection
 @section('scripts')
