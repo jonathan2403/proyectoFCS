@@ -80,4 +80,10 @@ Route::get('/excel', function(){
 		});
 	})->export('xls');
 });
+
+// exportar Encuentro de Grupos Index a Excel
 Route::get('/excel/encuentros', 'EncuentroGrupoController@excel');
+
+// exportar Encuentro de Grupos Index a PDF
+Route::get('/pdf/encuentros', 'EncuentroGrupoController@ExportPdf');
+

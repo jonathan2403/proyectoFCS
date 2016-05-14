@@ -49,16 +49,6 @@
         </div><!-- /.box -->
       </div><!-- /.col -->
     </div>
-    <a href="{{URL('/excel/encuentros')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>
+    <a href="{{URL('/excel/encuentros')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>|<a href="{{URL('/pdf/encuentros')}}" class="btn btn-default" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
   </section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-          window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
-        });
-    });
-  </script>
 @endsection

@@ -8,6 +8,7 @@ use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
 use FCS\EncuentroGrupo;
 use FCS\Profesor;
+use FCS\Base\ExportFiles;
 
 
 class EncuentroGrupoController extends Controller
@@ -120,23 +121,23 @@ class EncuentroGrupoController extends Controller
      */
     public function excel(){
     $encuentros = EncuentroGrupo::join('profesores','encuentros_grupos.id_profesor', '=', 'profesores.id')
-        ->select('encuentros_grupos.nombre_encuentro AS Título', 'encuentros_grupos.fecha_realizacion AS Fecha', 'encuentros_grupos.tipo_grupo AS Grupo', 'encuentros_grupos.modalidad AS Modalidad', 'encuentros_grupos.lugar AS Lugar', \DB::raw("CONCAT(profesores.primer_nombre,' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Ponente"))
+        ->select('encuentros_grupos.nombre_encuentro AS Título', 'encuentros_grupos.fecha_realizacion AS Fecha', \DB::raw("CASE WHEN encuentros_grupos.tipo_grupo = 'i' THEN 'investigación' ELSE 'proyección social' END AS Grupo"), 'encuentros_grupos.modalidad AS Modalidad', 'encuentros_grupos.lugar AS Lugar', \DB::raw("CONCAT(profesores.primer_nombre,' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Ponente"))
         ->orderBy('encuentros_grupos.nombre_encuentro', 'ASC')
         ->get();
-    \Excel::create('Encuentro de Grupos', function($excel) use($encuentros){
-        $excel->sheet('datosIndex', function($sheet) use($encuentros){
-            $sheet->fromModel($encuentros);
-            //$sheet->setAutoSize(true);
-            /*$sheet->cell('A1:F1', function($cells){
-                $cells->setFont([
-                    'family' => 'Comic Sans MS',
-                    'size' => '13',
-                    'bold' => true,
-                    ]);
-                $cells->setAlignment('center');
-            });*/
-        });
-    })->export('xls');
+    $exportExcel = new ExportFiles();
+    $exportExcel->createExcel($encuentros, 'Encuentro de Grupos', 'F1');
+    }
+
+    /**
+     * Descargar PDF
+     */
+    public function ExportPdf(){
+        $encuentros = EncuentroGrupo::join('profesores','encuentros_grupos.id_profesor', '=', 'profesores.id')
+        ->select('encuentros_grupos.nombre_encuentro AS Título', 'encuentros_grupos.fecha_realizacion AS Fecha','encuentros_grupos.modalidad AS Modalidad', 'encuentros_grupos.lugar AS Lugar', \DB::raw("CASE WHEN encuentros_grupos.tipo_grupo = 'i' THEN 'investigación' ELSE 'proyección social' END AS Grupo"), \DB::raw("CONCAT(profesores.primer_nombre,' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Ponente"))
+        ->orderBy('encuentros_grupos.nombre_encuentro', 'ASC')
+        ->get();
+        $exportPdf = new ExportFiles();
+        $exportPdf->createPdf($encuentros, 'Encuentro de Grupos', 'F1');   
     }
 
 }
