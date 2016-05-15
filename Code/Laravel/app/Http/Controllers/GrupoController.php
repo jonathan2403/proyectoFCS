@@ -52,9 +52,14 @@ class GrupoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateGrupoRequest $request)
+    public function store(Request $request)
     {
-        $grupo = Grupo::create($request->all());
+        $datos = $request->all();
+        $valida = \Validator::make($datos, Grupo::$reglas, Grupo::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }
+        Grupo::create($datos);
         return redirect('grupos')->with('message','Registro Creado!');
     }
 
@@ -67,6 +72,9 @@ class GrupoController extends Controller
     public function show($id)
     {
         $indicador_modulo = 1;
+        $grupo = Grupo::find($id);
+        if(!$grupo)
+            return redirect()->back();
         $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
         ->select('grupo.id', 'grupo.sigla', 'descripcion', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
         ->where('grupo.id', $id)
@@ -104,6 +112,11 @@ class GrupoController extends Controller
      */
     public function update(EditGrupoRequest $request, $id)
     {
+        $datos = $request->all();
+        $valida = \Validator::make($datos, Grupo::$reglas, Grupo::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput();
+        }
         $grupo=Grupo::find($id);
         $grupo->fill($request->all());
         $grupo->save();

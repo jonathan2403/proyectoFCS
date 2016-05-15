@@ -48,18 +48,22 @@
              background:#53554F;
              border-radius: 6px;
              text-align: center;
-             font-size: 16px;
              padding: 5px;
              width: 130px;
              cursor: pointer;
              margin: 5px;
+
          }
-         .button a{
+         a {
+             font-weight: bold;
              text-decoration: none;
              color: #e7e7e7;
-             font-weight: bold;
+             font-size: 17px; 
          }
-         .button:hover {background-color: white;}
+         .button:hover {
+            background-color: #1D1E1B;
+
+        }
  
      </style>
  </head>
@@ -69,7 +73,8 @@
      <div class="content">
          <div class="error">404</div>
          <div class="title">Oops!!...Página no encontrada</div>
-         <button class="button"><a href="{{url("/")}}">Regresar</a></button>
+         <a href="{{URL::previous()}}" class="button">Regresar</a>
+         <!--<button class="button"><a href="{{url("/")}}">Regresar</a></button>
      </div>
  </div>
  </body>

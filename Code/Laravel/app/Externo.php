@@ -25,8 +25,13 @@ class Externo extends Model
     }
 
   public static $reglas = array(
-    'nombre_externo' => 'required',
-    'tipo_externo' => 'required',
-    'telefono' => 'required'
+    'tipo_externo' => 'required|in:p,e',
+    'nombre_externo' => 'required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+    'correo' => 'email|max:50',
+    'area_conocimiento' => 'max:150|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+    'nivel_estudio' => 'max:50|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+    'experiencia' => 'max:50|numeric',
+    'telefono' => 'required|digits_between:5,10',
+    'direccion' => 'max:80'
     );
 }
