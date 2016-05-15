@@ -1,7 +1,6 @@
 @extends('layaouts.tablas')
 @section('content')
 	<section class="content">
-	@include('componentes.grupo.partials.modal')
 		<div class="row">
 			<div class="col-xs-11">
 				<div class="box">
@@ -29,7 +28,7 @@
 									@foreach($grupos as $grupo)
 										<tr data-id="{{ $grupo->id }}">
 											<td><center>{{ucwords($grupo->sigla)}}</center></td>
-											<td>{!!link_to_route('grupos.show', ucfirst($grupo->descripcion), $parameters=$grupo->id)!!}</td>
+											<td>{{$grupo->descripcion}}</td>
 											<td><center>{{ucwords($grupo->nombre_coordinador)}}</center></td>
 											<!--<td>{{$integrantes}}</td>-->
 											@if($grupo->tipo == 'i')
@@ -40,7 +39,6 @@
 											<td><center>{{ucfirst($grupo->categoria)}}</center></td>
 											<td><center>
 													 {!! link_to_route('grupos.edit', $title='Editar', $parameters=$grupo->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-													
 												 </center>
 											</td>
 										</tr>

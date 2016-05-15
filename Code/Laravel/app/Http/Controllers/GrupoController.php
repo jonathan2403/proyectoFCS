@@ -20,12 +20,16 @@ class GrupoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($tipo_grupo)
     {
         $indicador_modulo = 1;
+        switch($tipo_grupo){
+            case 'investigacion':
+            $tipo_grupo = Grupo::INVESTIGACION;
+        }
         $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
         ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo', 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
-        ->whereIn('grupo.tipo', ['i', 'e'])
+        ->where('grupo.tipo', $tipo_grupo)
         ->get();
         $integrantes = \DB::table('grupo')
         ->join('adscripcion', 'adscripcion.id_grupo', '=', 'grupo.id')

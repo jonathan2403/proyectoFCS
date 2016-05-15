@@ -9,14 +9,14 @@ class Grupo extends Model
     protected $table = 'grupo';
     protected $fillable = ['sigla', 'descripcion', 'tipo', 'id_profesor', 'categoria'];
 
+    const INVESTIGACION = 'i';
+    const ESTUDIO = 'e';
+    const PROYECCION_SOCIAL = 'ps';
+
     public function getNombreGrupoAttribute()
     {
       $name = $this->sigla.' - '.$this->descripcion;
       return ucwords($name);
-    }
-    public function getSiglaAttribute($value)
-    {
-      return ucwords($value);
     }
 
     public static $reglas = array(
@@ -28,6 +28,10 @@ class Grupo extends Model
       );
 
     public static $mensajes = array(
-      'id_profesor.required' => 'El campo coordinador es obligatorio.'
+      'id_profesor.required' => 'El campo coordinador es obligatorio.',
+      'id_profesor.exists' => 'coordinador no existe',
+      'descripcion.required' => 'El campo nombre es obligatorio.',
+      'descripcion.max' => 'nombre no debe ser mayor que 100 caracteres.',
+      'descripcion.regex' => 'El formato de nombre es inválido.'
       );
 }
