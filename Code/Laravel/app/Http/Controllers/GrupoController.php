@@ -98,6 +98,8 @@ class GrupoController extends Controller
     {
         $indicador_modulo = 1;
         $grupo=Grupo::find($id);
+        if(!$grupo)
+            return redirect()->back();
         $route = [ 'route'=>['grupos.update',$grupo->id],'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         return view('componentes.grupo.editgrupo', compact('route','grupo', 'nombre_profesor', 'indicador_modulo'));

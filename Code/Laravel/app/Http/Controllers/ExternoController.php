@@ -80,6 +80,8 @@ class ExternoController extends Controller
     {
         $indicador_modulo = 16;
         $externo = Externo::find($id);
+        if(!$externo)
+            return redirect()->back();
         $route = ['route'=>['externo.update', $externo->id], 'method'=>'PUT'];
         return view('componentes.externo.editexterno', compact('externo', 'route', 'indicador_modulo'));
     }
