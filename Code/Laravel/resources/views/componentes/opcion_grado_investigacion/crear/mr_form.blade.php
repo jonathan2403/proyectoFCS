@@ -2,7 +2,7 @@
     <font size="4px"><b><center>SECCIÓN PROYECTO</center></b></font><hr>
     {!!Form::hidden('tipo_opcion_grado', 'mr', ['id' => 'id_opcion_grado'])!!}
     {!!Form::label('Título')!!}
-    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo','required'])!!}
+    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo'])!!}
       </br>
 
     {!!Form::label('Director del Proyecto')!!}
@@ -133,7 +133,7 @@
         </div></br>
 
         {!!Form::label('Numero de Acta')!!}
-        {!!Form::text('numero_acta_2', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta','required'])!!}
+        {!!Form::text('numero_acta_2', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
            </br>
 
         {!! Form::select('concepto_4', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
