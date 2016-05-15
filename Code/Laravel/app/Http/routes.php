@@ -31,8 +31,12 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::resource('publica', 'PublicaController');
 		Route::resource('adquisicion', 'AdquisicionController');
 		Route::resource('externo','ExternoController');
-		//Route::resource('grupos','GrupoController');
+		Route::get('grupos/{tipo_grupo}/create','GrupoController@create');
+		Route::get('grupos/ver/{id_grupo}','GrupoController@show');
 		Route::get('grupos/{tipo_grupo}', 'GrupoController@index');
+		Route::get('grupos/edit/{id_grupo}', 'GrupoController@edit');
+		Route::resource('grupos/store', 'GrupoController@store');
+		Route::resource('grupos', 'GrupoController@update');
 		Route::resource('indicadores-investigacion','IndicadorInvestigacionController');
 
 

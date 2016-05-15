@@ -29,9 +29,9 @@
               <div class="box-body">
                   <div class="row">
                     <div class="pad">
-                      {!! Form::model($grupo,$route)!!}@include('layaouts.partials.mensaje')
-                        @include('componentes.grupo.partials.form')
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
+                      {!! Form::model($grupo, ['route' => 'grupos.update', 'method' => 'PUT'])!!}
+                        @include('componentes.grupo.partials.form_editar')
+                      {!! Form::submit('Editar', ['class'=>'btn btn-danger']) !!}
                       {!!Form::close()!!}
                     </div>
                   </div><!-- /.row pad-->
