@@ -19,9 +19,12 @@ class Grupo extends Model
       return ucwords($value);
     }
 
-    public static $reglas_crear = array(
-      'descripcion' => 'required',
-      'id_profesor' => 'required'
+    public static $reglas = array(
+      'sigla' => 'max:50',
+      'descripcion' => 'required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+      'tipo' => 'required|in:i,e,ps',
+      'categoria' => 'required|in:a,b,c,d',
+      'id_profesor' => 'required|exists:profesores,id'
       );
 
     public static $mensajes = array(

@@ -1,14 +1,14 @@
 <div class="form-group">
 	{!!Form::label('Nombre')!!}
-  {!!Form::text('nombre_entidad', null, ['class'=>'form-control', 'placeholder'=>''])!!}
+  {!!Form::text('nombre_externo', null, ['class'=>'form-control', 'placeholder'=>''])!!}
 		</br>
 
 	{!!Form::label('Tipo Externo')!!}
 		 </br>
 	{!!Form::label('Persona')!!}
-	{!!Form::radio('tipo_entidad', 'p', false)!!} &nbsp
+	{!!Form::radio('tipo_externo', 'p', false)!!} &nbsp
 	{!!Form::label('Entidad')!!}
-	{!!Form::radio('tipo_entidad', 'e', false)!!}
+	{!!Form::radio('tipo_externo', 'e', false)!!}
 	</br></br>
 
   {!!Form::label('Teléfono')!!}
@@ -19,7 +19,7 @@
 	{!!Form::text('telefono', null, ['class'=>'form-control', 'placeholder'=>''])!!}
 	</div></br>
 
-	{!!Form::label('Email')!!}
+	{!!Form::label('Correo')!!}
 	<div class="input-group">
 		<div class="input-group-addon">
 			<i class="fa fa-envelope"></i>
