@@ -83,3 +83,9 @@ Route::get('/excel/grupos/{tipo_grupo}', 'GrupoController@exportExcel');
 // exportar Grupos a PDF
 Route::get('/pdf/grupos/{tipo_grupo}', 'GrupoController@exportPdf');
 
+// exportar Externos a Excel
+Route::get('/excel/externos', 'ExternoController@exportExcel');
+
+// exportar Externos a PDF
+Route::get('/pdf/externos', 'ExternoController@exportPdf');
+

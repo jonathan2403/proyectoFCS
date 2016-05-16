@@ -32,6 +32,6 @@ class Externo extends Model
     'nivel_estudio' => 'max:50|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
     'experiencia' => 'max:50|numeric',
     'telefono' => 'required|digits_between:5,10',
-    'direccion' => 'max:80'
+    'direccion' => 'max:80|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/'
     );
 }

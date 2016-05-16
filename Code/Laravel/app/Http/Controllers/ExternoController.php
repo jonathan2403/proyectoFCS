@@ -3,13 +3,12 @@
 namespace FCS\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
-
 use FCS\Profesor;
 use FCS\Externo;
 use Session, Redirect;
+use FCS\Base\ExportFiles;
 
 class ExternoController extends Controller
 {
@@ -21,11 +20,8 @@ class ExternoController extends Controller
     public function index()
     {
         $indicador_modulo = 16;
-        $entidades = Externo::where('tipo_externo','e')
-        ->paginate(10);
-        $personas = Externo::where('tipo_externo','p')
-        ->paginate(10);
-        return view('componentes.externo.index', compact('entidades', 'personas', 'indicador_modulo'));
+        $externos = Externo::all();
+        return view('componentes.externo.index', compact('externos', 'indicador_modulo'));
     }
 
     /**
@@ -67,7 +63,10 @@ class ExternoController extends Controller
      */
     public function show($id)
     {
-        return redirect()->back();
+        $externo = Externo::find($id);
+        if($externo->tipo_externo == 'e')
+            return redirect('/externo');
+        return view('componentes.externo.show_externo', compact('externo'));
     }
 
     /**
@@ -119,4 +118,24 @@ class ExternoController extends Controller
       Session::flash('message','Registro Eliminado!');
       return Redirect::to('/externo');
     }
+
+    /**
+     * Descargar Excel
+     */
+    public function ExportExcel(){
+    $externos = Externo::all();
+    $exportExcel = new ExportFiles();
+    $exportExcel->createExcel($externos, 'Externos', 'F1');
+    }
+
+    /**
+     * Descargar PDF
+     */
+    public function ExportPdf(){
+        $externos = Externo::all();
+        $exportPdf = new ExportFiles();
+        $exportPdf->createPdf($externos, 'Externos', 'F1');   
+    }
+
+
 }
