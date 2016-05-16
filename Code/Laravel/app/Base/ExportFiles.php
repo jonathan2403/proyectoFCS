@@ -14,7 +14,7 @@ class ExportFiles {
             $sheet->fromModel($query);
             $sheet->cell('A1:'.$column, function($cells){
                 $cells->setFont([
-                    'family' => 'Comic Sans MS',
+                    'family' => 'Arial',
                     'size' => '13',
                     'bold' => true,
                     ]);

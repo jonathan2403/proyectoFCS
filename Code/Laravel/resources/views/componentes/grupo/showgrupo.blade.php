@@ -8,7 +8,7 @@
         <div class="box">
           <div class="box-header">
             @include('layaouts.partials.mensaje')
-            <table class="table">
+            <table class="table text-center">
               <thead>
                 <th>Sigla del Grupo</th>
                 <th>Nombre del Grupo</th>

@@ -17,8 +17,8 @@
             <div class="box-body">
               <div class="row">
                 <div class="pad">
-                  {!! Form::open($route)!!}
-                  @include('componentes.grupo.partials.form')
+                  {!! Form::open(['url' => 'grupos/store', 'method' => 'POST'])!!}
+                  @include('componentes.grupo.partials.form_crear')
                   {!! Form::submit('Crear',['class'=>'btn btn-danger']) !!}
                   {!!Form::close()!!}
                 </div>

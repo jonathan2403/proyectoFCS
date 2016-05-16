@@ -31,7 +31,12 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::resource('publica', 'PublicaController');
 		Route::resource('adquisicion', 'AdquisicionController');
 		Route::resource('externo','ExternoController');
-		Route::resource('grupos','GrupoController');
+		Route::get('grupos/{tipo_grupo}/create','GrupoController@create');
+		Route::get('grupos/ver/{id_grupo}','GrupoController@show');
+		Route::get('grupos/{tipo_grupo}', 'GrupoController@index');
+		Route::get('grupos/edit/{id_grupo}', 'GrupoController@edit');
+		Route::resource('grupos/store', 'GrupoController@store');
+		Route::resource('grupos', 'GrupoController@update');
 		Route::resource('indicadores-investigacion','IndicadorInvestigacionController');
 
 
@@ -60,30 +65,27 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 });
 
+// ruta para el autocompletado
 Route::get('/buscarEstudiante/{palabra}','buscarPersonaController@buscarEstudiante');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
-Route::get('/excel', function(){
 
-	//$data = \DB::table('estudiantes')->get();
-	//dd($data);
-	$data = array(
-		array('data1', 'data2'),
-		array('data3', 'data4'));
-	//dd($data);
-	$data = FCS\Estudiante::select('numero_documento AS Cédula', 'codigo_estudiante AS Código', \DB::raw("CONCAT(primer_nombre,' ',segundo_nombre, ' ', apellido_paterno, ' ', apellido_materno) AS 'Nombre Estudiante'"), 'telefono AS Teléfono')->get();
-	dd($data);
-	Excel::create('filename', function($excel) use($data){
-		$excel->sheet('SheetName', function($sheet) use($data){
-			//$sheet->fromArray($data);
-			$sheet->fromModel($data);
-		});
-	})->export('xls');
-});
 
 // exportar Encuentro de Grupos Index a Excel
 Route::get('/excel/encuentros', 'EncuentroGrupoController@excel');
 
 // exportar Encuentro de Grupos Index a PDF
 Route::get('/pdf/encuentros', 'EncuentroGrupoController@ExportPdf');
+
+// exportar Grupos Index a Excel
+Route::get('/excel/grupos/{tipo_grupo}', 'GrupoController@exportExcel');
+
+// exportar Grupos a PDF
+Route::get('/pdf/grupos/{tipo_grupo}', 'GrupoController@exportPdf');
+
+// exportar Externos a Excel
+Route::get('/excel/externos', 'ExternoController@exportExcel');
+
+// exportar Externos a PDF
+Route::get('/pdf/externos', 'ExternoController@exportPdf');
 

@@ -1,7 +1,7 @@
 <div class="form-group">
-	{!!Form::label('Grupo')!!}
+	{!!Form::label('Sigla')!!}
     {!!Form::text('sigla', null, ['class'=>'form-control', 'placeholder'=>'sigla del grupo'])!!}
-
+    {!!Form::hidden('id_grupo', $grupo->id)!!}
     {!!Form::label('Nombre')!!}
     {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'nombre del grupo'])!!}
 	</br>

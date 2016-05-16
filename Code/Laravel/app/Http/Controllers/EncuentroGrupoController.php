@@ -79,6 +79,8 @@ class EncuentroGrupoController extends Controller
     {
         $indicador_modulo = 21;
         $encuentro = EncuentroGrupo::find($id);
+        if(!$encuentro)
+            return redirect()->back();
         $route = ['route'=>['encuentro-grupo.update', $encuentro->id], 'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         return view('componentes.encuentro_grupo.editencuentro_grupo', compact('encuentro', 'route', 'nombre_profesor', 'indicador_modulo'));

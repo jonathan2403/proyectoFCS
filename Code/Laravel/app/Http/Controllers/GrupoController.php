@@ -3,8 +3,6 @@
 namespace FCS\Http\Controllers;
 
 use Illuminate\Http\Request;
-use FCS\Http\Requests\CreateGrupoRequest;
-use FCS\Http\Requests\EditGrupoRequest;
 use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
 use FCS\Grupo;
@@ -12,6 +10,7 @@ use FCS\Profesor;
 use FCS\Estudiante;
 use FCS\Adscripcion;
 use DB, View, Session, Redirect;
+use FCS\Base\ExportFiles;
 
 class GrupoController extends Controller
 {
@@ -20,17 +19,19 @@ class GrupoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($tipo_grupo)
     {
+        if($tipo_grupo != 'investigacion' && $tipo_grupo != 'proyeccion')
+            return redirect()->back();
         $indicador_modulo = 1;
-        $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+        switch($tipo_grupo){
+        case 'investigacion':
+            $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
         ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo', 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
-        ->whereIn('grupo.tipo', ['i', 'e'])
-        ->get();
-        $integrantes = \DB::table('grupo')
-        ->join('adscripcion', 'adscripcion.id_grupo', '=', 'grupo.id')
-        ->count();
-        return view('componentes.grupo.index', compact('grupos', 'integrantes', 'indicador_modulo'));
+        ->where('grupo.tipo', 'i')
+        ->get();            
+        }
+        return view('componentes.grupo.index', compact('grupos', 'tipo_grupo', 'indicador_modulo'));
     }
 
     /**
@@ -60,7 +61,7 @@ class GrupoController extends Controller
             return redirect()->back()->withErrors($valida->errors())->withInput($datos);
         }
         Grupo::create($datos);
-        return redirect('grupos')->with('message','Registro Creado!');
+        return redirect('grupos/investigacion')->with('message','Registro Creado!');
     }
 
     /**
@@ -98,7 +99,8 @@ class GrupoController extends Controller
     {
         $indicador_modulo = 1;
         $grupo=Grupo::find($id);
-        $route = [ 'route'=>['grupos.update',$grupo->id],'method'=>'PUT'];
+        if(!$grupo)
+            return redirect()->back();
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         return view('componentes.grupo.editgrupo', compact('route','grupo', 'nombre_profesor', 'indicador_modulo'));
     }
@@ -110,17 +112,17 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditGrupoRequest $request, $id)
+    public function update()
     {
-        $datos = $request->all();
+        $datos = request()->all();
+        $grupo = Grupo::find($datos['id_grupo']);
         $valida = \Validator::make($datos, Grupo::$reglas, Grupo::$mensajes);
         if($valida->fails()){
-            return redirect()->back()->withErrors($valida->errors())->withInput();
+            return redirect()->back()->withErrors($valida->errors());
         }
-        $grupo=Grupo::find($id);
-        $grupo->fill($request->all());
+        $grupo->fill($datos);
         $grupo->save();
-        return redirect('grupos')->with('message','Registro Actualizado!');
+        return redirect('grupos/investigacion')->with('message','Registro Actualizado!');
     }
 
     /**
@@ -135,4 +137,38 @@ class GrupoController extends Controller
         Session::flash('message','Registro Eliminado!');
         return Redirect::to('/grupos');
     }
+
+    /**
+     * Descargar Excel
+     */
+    public function exportExcel($tipo_grupo){
+        switch ($tipo_grupo) {
+            case 'investigacion':
+                $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"))
+                ->where('grupo.tipo', 'i')
+                ->get();
+                break;
+        } // fin siwtch case
+        $exportExcel = new ExportFiles();
+        $exportExcel->createExcel($grupos, 'Grupos de '.$tipo_grupo, 'D1');
+
+    } // fin exportExcel
+
+    /**
+     * Descargar PDF
+     */
+    public function ExportPdf($tipo_grupo){
+        switch ($tipo_grupo) {
+            case 'investigacion':
+                $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"))
+                ->where('grupo.tipo', 'i')
+                ->get();
+                break;
+        } // fin switch case
+        $exportPdf = new ExportFiles();
+        $exportPdf->createPdf($grupos, 'Grupos de '.$tipo_grupo, 'D1');   
+    } // fin función exportar PDF
+
 }
