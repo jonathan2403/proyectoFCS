@@ -52,6 +52,6 @@
         </div><!-- /.box -->
       </div><!-- /.col -->
     </div><!-- /.row -->
-    <a href="{{URL('/excel/externos')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>|<a href="{{URL('/pdf/externos')}}" class="btn btn-default" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
+    <a href="{{URL('/excel/externos/index/null')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>|<a href="{{URL('/pdf/externos/index/null')}}" class="btn btn-default" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
   </section><!-- /.content -->
 @endsection
