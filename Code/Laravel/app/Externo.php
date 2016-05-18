@@ -12,14 +12,16 @@ class Externo extends Model
   public function getFullNameEntidadAttribute()
   {
      if($this->attributes['tipo_externo'] == "e")
-     return ucwords($this->nombre_entidad);
+     {
+       return ucwords($this->nombre_externo);
+     }
   }
   public function getFullNamePersonaAttribute()
   {
      if($this->attributes['tipo_externo'] == "p")
      return ucwords($this->nombre_entidad);
   }
-  public function getNombreEtindadAttribute($value)
+  public function getNombreEntidadAttribute($value)
     {
       return ucfirst($value);
     }

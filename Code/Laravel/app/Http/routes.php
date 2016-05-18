@@ -65,8 +65,13 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 });
 
-// ruta para el autocompletado
+// ruta para el autocompletado estudiante
 Route::get('/buscarEstudiante/{palabra}','buscarPersonaController@buscarEstudiante');
+
+// ruta para el autocompletado externos
+Route::get('/buscarExternoPersona/{palabra}', 'buscarPersonaController@buscarPersonaExterno');
+Route::get('/buscarExternoEntidad/{palabra}', 'buscarPersonaController@buscarEntidadExterno');
+
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 

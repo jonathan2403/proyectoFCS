@@ -24,7 +24,8 @@ class OpcionGradoInvestigacionController extends Controller
     public function index()
     {
        $indicador_modulo = 7;
-       $opciongrados=OpcionGrado::whereIn('tipo_opcion_grado', ['epi', 'mi', 'mr'])
+       $opciongrados=OpcionGrado::select('descripcion', 'tipo_opcion_grado', 'fecha_aprobacion', 'fecha_entrega_informe_final', \DB::raw("CASE WHEN finalizado='s' THEN 'Si' ELSE 'No' END AS finalizado"))
+        ->whereIn('tipo_opcion_grado', ['epi', 'mi', 'mr'])
         ->get();
         return view('componentes.opcion_grado_investigacion.index', compact('opciongrados', 'indicador_modulo'));
     }
@@ -36,13 +37,15 @@ class OpcionGradoInvestigacionController extends Controller
      */
     public function create(Request $request)
     {
+        $tipo = $request->input('tipo');
+        if($tipo != 'mr' && $tipo != 'epi' && $tipo != 'mi')
+            return redirect()->back();
         $indicador_modulo = 7;
         $route = [ 'route' => 'opcion-grado-investigacion.store','method'=>'POST' ];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name', 'id');
         $nombre_grupo = Grupo::all()->lists('full_name', 'id');
-        $nombre_entidad = Externo::all()->lists('nombre_entidad', 'id');
-        $tipo = $request->input('tipo');
+        $nombre_entidad = Externo::all()->lists('full_name_entidad', 'id')->toArray();
         return view('componentes.opcion_grado_investigacion.addopcion_grado', compact('tipo', 'route', 'nombre_profesor', 'nombre_proyecto', 'nombre_grupo', 'nombre_entidad', 'indicador_modulo'));
     }
 
@@ -52,9 +55,14 @@ class OpcionGradoInvestigacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateOpcionGradoRequest $request)
+    public function store(Request $request)
     {
-        OpcionGrado::create($request->all());
+        $datos = $request->all();
+        $valida = \Validator::make($datos, OpcionGrado::$reglas, OpcionGrado::$mensajes);
+        if($valida->fails()){
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        }
+        OpcionGrado::create($datos);
         return redirect('opcion-grado-investigacion')-> with('message','Registro Exitoso!');
     }
 

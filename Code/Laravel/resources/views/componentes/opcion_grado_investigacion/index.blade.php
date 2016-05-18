@@ -43,17 +43,9 @@
 										  @endif
 										@endif
 										 	<td>{!!link_to_route('opcion-grado-investigacion.show', ucfirst($opciongrado->descripcion), $parameters=$opciongrado->id)!!}</td>
-											<td>{{$opciongrado->tipo_opcion_grado}}</td>
-											@if($opciongrado->fecha_aprobacion == '')
-											   <td>{{$opciongrado->fecha_aprobacion}}</td>
-											@else
+											<td>{{$opciongrado->tipo_opcion_grado}}</td>										   
 											<td>{{$opciongrado->fecha_aprobacion}} - Acta: {{$opciongrado->numero_acta}}</td>
-											@endif
-											@if($opciongrado->fecha_entrega_informe_final == '')
-											   <td>{{$opciongrado->fecha_entrega_informe_final}}</td>
-											@else
 											<td>{{$opciongrado->fecha_entrega_informe_final}} - Acta: {{$opciongrado->numero_acta_2}}</td>
-											@endif
 											<td><center>{{$opciongrado->finalizado}}</center></td>
 											<td><center>
 													 {!! link_to_route('opcion-grado-investigacion.edit', $title="Editar", $parameters=[$opciongrado->id, $opciongrado->tipo_opcion_grado], $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
