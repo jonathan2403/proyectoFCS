@@ -14,7 +14,7 @@
 								{!! Form::open(array('route' => 'opcion-grado-investigacion.create', 'method' => 'GET')) !!}
 								{!! Form::select('tipo', array('mr' => 'Monografía de Revisión', 'mi' => 'Monografía Investigativa', 'epi' => 'Proyecto EPI'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
 							</div>
-							<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Nueva</button>
+							<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Registro</button>
           			{!! Form::close() !!}
 						</div>
 						<table id="example3" class="table table-bordered table-striped">
@@ -43,13 +43,12 @@
 										  @endif
 										@endif
 										 	<td>{!!link_to_route('opcion-grado-investigacion.show', ucfirst($opciongrado->descripcion), $parameters=$opciongrado->id)!!}</td>
-											<td>{{$opciongrado->tipo_opcion_grado}}</td>										   
+											<td>{{$opciongrado->tipo_opcion_grado}}</td>									  
 											<td>{{$opciongrado->fecha_aprobacion}} - Acta: {{$opciongrado->numero_acta}}</td>
 											<td>{{$opciongrado->fecha_entrega_informe_final}} - Acta: {{$opciongrado->numero_acta_2}}</td>
 											<td><center>{{$opciongrado->finalizado}}</center></td>
 											<td><center>
 													 {!! link_to_route('opcion-grado-investigacion.edit', $title="Editar", $parameters=[$opciongrado->id, $opciongrado->tipo_opcion_grado], $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-													
 												 </center>
 											</td>
 										
@@ -62,18 +61,6 @@
 				</div><!-- /.box -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
-		<button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><i class="fa fa-file-pdf-o"></i> PDF</button>|<button id="button-excel" class="btn"><i class="fa fa-file-excel-o"></i> Excel</button>
+		
 	</section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-           	$("#example3").table2excel({
-	    		exclude: ".noExl",
-	    		name: "Excel Document Name"
-		  });
-        });
-    });
-  </script>
 @endsection

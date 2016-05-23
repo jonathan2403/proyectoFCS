@@ -24,7 +24,7 @@ class OpcionGradoInvestigacionController extends Controller
     public function index()
     {
        $indicador_modulo = 7;
-       $opciongrados=OpcionGrado::select('descripcion', 'tipo_opcion_grado', 'fecha_aprobacion', 'fecha_entrega_informe_final', \DB::raw("CASE WHEN finalizado='s' THEN 'Si' ELSE 'No' END AS finalizado"))
+       $opciongrados=OpcionGrado::select('id', 'descripcion', 'tipo_opcion_grado', 'fecha_aprobacion', 'fecha_entrega_informe_final', \DB::raw("CASE WHEN finalizado='s' THEN 'Si' ELSE 'No' END AS finalizado"))
         ->whereIn('tipo_opcion_grado', ['epi', 'mi', 'mr'])
         ->get();
         return view('componentes.opcion_grado_investigacion.index', compact('opciongrados', 'indicador_modulo'));
@@ -129,7 +129,7 @@ class OpcionGradoInvestigacionController extends Controller
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name', 'id');
         $nombre_grupo = Grupo::all()->lists('full_name', 'id');
-        $nombre_entidad = Entidad::all()->lists('nombre_entidad', 'id');
+        $nombre_entidad = Externo::all()->lists('nombre_entidad', 'id');
         return view('componentes.opcion_grado_investigacion.editopcion_grado', compact('route','opciongrado', 'nombre_profesor', 'nombre_proyecto', 'nombre_grupo', 'nombre_entidad', 'indicador_modulo'));
     }
 
