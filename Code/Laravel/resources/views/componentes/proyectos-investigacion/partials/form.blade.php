@@ -1,22 +1,22 @@
 <div class="form-group">
-	{!!Form::label('Titulo')!!}
-  {!!Form::text('titulo_proyecto', null, ['class'=>'form-control', 'placeholder'=>'Digite Nombre del Proyecto','required'])!!}
+	{!!Form::label('título')!!}
+  {!!Form::text('titulo_proyecto', null, ['class'=>'form-control', 'placeholder'=>'Digite Nombre del Proyecto'])!!}
 	{!! Form::hidden('tipo', 'i') !!}
         </br>
 
-	{!!Form::label('Tipo de Proyecto')!!}<br>
+	{!!Form::label('tipo de proyecto')!!}<br>
 	{!! Form::select('tipo_proyecto', array('cp' => 'Convocatoria Planta', 'ccr' => 'Convocatoria con Recursos', 'cc' => 'Convocatoria Colciencias', 'cct' => 'Convocatoria con Tiempos', 'cre' => 'Convocatoria Recursos Externos'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
         </br>
 
-    {!!Form::label('Investigador Principal')!!}<br>
+    {!!Form::label('investigador principal')!!}<br>
     {!!Form::select('id_investigador_principal',$nombre_profesor->toArray(), null, ['id' => 'select_profesor', 'class' => 'form-control select', 'placeholder' => ' ']) !!}
 		</br></br>
 
-		{!!Form::label('Tema Central De La Investigacion')!!}<br>
-		{!!Form::text('tema_central', null, ['class'=>'form-control', 'placeholder'=>''])!!}
+	{!!Form::label('tema central')!!}<br>
+	{!!Form::text('tema_central', null, ['class'=>'form-control', 'placeholder'=>''])!!}
 		</br>
 
-		{!!Form::label('Red de Conocimiento')!!}<br>
+	{!!Form::label('red de conocimiento')!!}<br>
     {!!Form::select('id_red_conocimiento',$nombre_red->toArray(), null, ['id' => 'select_profesor', 'class' => 'form-control select', 'placeholder' => ' ']) !!}
 		</br></br>
 
@@ -26,73 +26,86 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_inicio', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_inicio', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div></br>
 
     {!!Form::label('Numero de Acta')!!}
     {!!Form::text('numero_acta', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
         </br>
 
-    {!!Form::label('Avance 1')!!}
+    <!--Avances-->
+    <h4 class="box-title text-center">Avances</h4>
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-4">
+                {!!Form::label('avance n° 1')!!}
+                <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                {!!Form::text('fecha_avance1', null, ['class'=>'picker form-control', 'readonly'])!!}
+                </div>            
+                </div>
+                <div class="col-xs-4">
+                {!!Form::label('avance n° 2')!!}
+                <div class="input-group">
+                       <div class="input-group-addon">
+                         <i class="fa fa-calendar"></i>
+                       </div>
+                 {!!Form::text('fecha_avance2', null, ['class'=>'picker form-control', 'readonly'])!!}
+                    </div>                    
+                </div>
+                <div class="col-xs-4">
+                {!!Form::label('avance n° 3')!!}
+                <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                {!!Form::text('fecha_avance3', null, ['class'=>'picker form-control', 'readonly'])!!}
+                </div>                    
+                </div>
+            </div>
+        </div>
+    </div><!--Fin Avances-->
+
+
+    {!!Form::label('fecha informe final')!!}
     <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_avance1', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_informe_final', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div></br>
 
-    {!!Form::label('Avance 2')!!}
+    {!!Form::label('fecha de prórroga')!!}
     <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_avance2', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_prorroga', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div></br>
 
-    {!!Form::label('Avance 3')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_avance3', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly'])!!}
-    </div></br>
-
-    {!!Form::label('Fecha Informe Final')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_informe_final', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly'])!!}
-    </div></br>
-
-    {!!Form::label('Fecha de Prorroga')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_prorroga', null, ['id' => 'datepicker2', 'class'=>'picker form-control', 'readonly'])!!}
-    </div></br>
-
-    {!!Form::label('Valor efectivo del Proyecto')!!}
+    {!!Form::label('valor efectivo del proyecto')!!}
     {!!Form::text('valor_efectivo', null, ['class'=>'form-control'])!!}
         </br>
 
-	{!!Form::label('Ejecutado')!!}
+	{!!Form::label('ejecutado')!!}
 			 </br>
-    {!!Form::label('Si')!!}
+    {!!Form::label('si')!!}
     {!!Form::radio('ejecutado', 'Si', null)!!}&nbsp
-    {!!Form::label('No')!!}
+    {!!Form::label('no')!!}
     {!!Form::radio('ejecutado', 'No', null)!!}
             </br> </br>
-    {!!Form::label('Tipo de Beneficiados')!!}
+    {!!Form::label('tipo de beneficiados')!!}
     {!!Form::text('tipo_beneficiado', null, ['class'=>'form-control'])!!}
      </br>
-	{!!Form::label('Beneficiados')!!}
+	{!!Form::label('beneficiados')!!}
     {!!Form::text('beneficiados', null, ['class'=>'form-control'])!!}
      </br>
-    {!!Form::label('Poblacion Objeto de Estudio')!!}
+    {!!Form::label('población objeto de estudio')!!}
     {!!Form::text('poblacion_estudio', null, ['class'=>'form-control'])!!}
      </br>
-    {!!Form::label('Producto')!!}
+    {!!Form::label('producto')!!}
     {!!Form::text('producto', null, ['class'=>'form-control'])!!}
 </div>

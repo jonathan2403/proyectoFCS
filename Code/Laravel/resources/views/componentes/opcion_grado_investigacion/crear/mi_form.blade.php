@@ -6,7 +6,7 @@
 
     {!!Form::hidden('tipo_opcion_grado', 'mi', ['id' => 'id_opcion_grado'])!!}
     {!!Form::label('título')!!}
-    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo','required'])!!}
+    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo'])!!}
       </br>
 
     {!!Form::label('director del proyecto')!!}
@@ -165,7 +165,7 @@
       </div>
       <div class="col-xs-4">
         {!!Form::label('número de acta')!!}
-        {!!Form::text('numero_acta_2', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta','required'])!!}
+        {!!Form::text('numero_acta_2', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
       </div>
       <div class="col-xs-4">
         {!!Form::label('concepto')!!}

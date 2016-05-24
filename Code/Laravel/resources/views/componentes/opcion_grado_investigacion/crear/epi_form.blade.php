@@ -1,34 +1,36 @@
 <div class="form-group">
-    <font size="4px"><b><center>SECCIÓN PROYECTO</center></b></font><hr>
+    <h4 class="text-center">
+      <strong>SECCIÓN PROYECTO</strong>
+    </h4>
 
     {!!Form::hidden('tipo_opcion_grado', 'epi', ['id' => 'id_opcion_grado'])!!}
 
-    {!!Form::label('Título del Proyecto')!!}
-    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo','required'])!!}
+    {!!Form::label('título del proyecto')!!}
+    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo'])!!}
       </br>
 
-    {!!Form::label('Director del Proyecto')!!}
+    {!!Form::label('director del proyecto')!!}
     {!!Form::select('id_director',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
       </br></br>
 
 
-    {!!Form::label('Director 2 del Proyecto')!!}
+    {!!Form::label('director n° 2 del proyecto')!!}
     {!!Form::select('id_supervisor',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
       </br></br>
 
-    {!!Form::label('Proyecto al que Pertenece')!!}
+    {!!Form::label('proyecto al que pertenece')!!}
     {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
         </br></br>
 
-    {!!Form::label('Grupo')!!}
+    {!!Form::label('grupo')!!}
     {!!Form::select('id_grupo', $nombre_grupo->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
             </br></br>
 
-    {!!Form::label('Línea de Investigación')!!}
+    {!!Form::label('línea de investigación')!!}
     {!! Form::select('linea_investigacion', array(''=>'','cu' => 'Cuidado', 'sp' => 'Salud Pública'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
       </br>
 
-    {!!Form::label('Fecha de Entrega al Centro de Investigación')!!}
+    {!!Form::label('fecha de entrega al centro de investigación')!!}
     <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
@@ -37,7 +39,7 @@
      </div>
      </br>
 
-    {!!Form::label('Fecha de Entrega al Comité de Revisión')!!}
+    {!!Form::label('fecha de entrega al comité de revisión')!!}
     <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
@@ -46,60 +48,92 @@
      </div>
     </br>
 
-    {!!Form::label('Fecha de Entrega al Jurado')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
+    <!--Entrega al jurado-->
+    <h4 class="box-title text-center">Entrega del jurado</h4>
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-4">
+                  {!!Form::label('fecha de entrega')!!}
+                  <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  {!!Form::text('fecha_entrega_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+               </div>
+          </div>      
+          <div class="col-xs-4">
+                {!!Form::label('fecha máxima de entrega')!!}
+                <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                {!!Form::text('fecha_entrega_max_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+              </div>
+          </div>      
+          <div class="col-xs-4">
+                {!!Form::label('fecha de entrega real')!!}
+                <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                {!!Form::text('fecha_entrega_real_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+              </div>
+          </div>      
         </div>
-    {!!Form::text('fecha_entrega_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
-     </div>
-    </br>
-
-    {!!Form::label('Fecha Máxima del Jurado')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_entrega_max_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
       </div>
-      </br>
+      {!!Form::label('concepto')!!}
+      {!! Form::select('concepto_1', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
+    </div><!--Fin entrega al jurado-->
 
-    {!!Form::label('Fecha Real entrega del Jurado')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
+    <!--Entrega N° 1-->
+    <h4 class="box-title text-center">Entrega N° 1</h4>
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-6">
+                {!!Form::label('fecha de entrega')!!}
+                <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                {!!Form::text('fecha_entrega_1', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+              </div>
+          </div>
+          <div class="col-xs-6">
+                {!!Form::label('concepto')!!}
+                {!! Form::select('concepto_2', array('ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'placeholder' => '', 'class' => 'form-control']) !!}
+          </div>
         </div>
-    {!!Form::text('fecha_entrega_real_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
       </div>
-      </br>
-    {!! Form::select('concepto_1', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
-        </br>
+    </div><!--Final entrega N° 1-->
 
-    {!!Form::label('Fecha entrega 1')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
+    <!--Entrega N° 2-->
+    <h4 class="box-title text-center">Entrega N° 2</h4>
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-4">
+                {!!Form::label('fecha de entrega')!!}
+                <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                {!!Form::text('fecha_entrega_2', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+              </div>
+          </div>
+          <div class="col-xs-4">
+                {!!Form::label('concepto')!!}
+                {!! Form::select('concepto_3', array('ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'placeholder' => '', 'class' => 'form-control']) !!}
+          </div>
+          <div class="col-xs-4">
+                {!!Form::label('número de acta')!!}
+                {!!Form::text('numero_acta', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
+          </div>
         </div>
-    {!!Form::text('fecha_entrega_1', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
       </div>
-      </br>
-    {!! Form::select('concepto_2', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
-        </br>
+    </div><!--Final entrega N° 2-->
 
-    {!!Form::label('Fecha entrega 2')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_entrega_2', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
-      </div>
-      </br>
-    {!! Form::select('concepto_3', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
-
-
-    {!!Form::label('Número de Acta')!!}
-    {!!Form::text('numero_acta', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
-       </br>
     {!!Form::label('Fecha de Aprobación y Ejecución')!!}
     <div class="input-group">
         <div class="input-group-addon">
@@ -117,44 +151,79 @@
     {!!Form::text('fecha_entrega_max_proyecto', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
     </div>
 
-    <hr><font size="4px"><b><center>SECCIÓN INFORME</center></b></font><hr>
+    <h4 class="text-center">
+      <strong>SECCIÓN INFORME</strong>
+    </h4>
 
-    {!!Form::label('Fecha Entrega del Informe Final')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_entrega_informe_final', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
-    </div></br>
-
-    {!!Form::label('Numero de Acta')!!}
-    {!!Form::text('numero_acta_2', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
-       </br>
-
-    {!! Form::select('concepto_4', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
-        </br>
-
-    {!!Form::label('Fecha Segunda entrega Informe Final')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-    {!!Form::text('fecha_entrega_informe_2', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
-      </div>
-      </br>
-    {!! Form::select('concepto_5', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
-        </br>
-
-    {!!Form::label('Fecha Tercera entrega Informe Final')!!}
-       <div class="input-group">
-            <div class="input-group-addon">
-              <i class="fa fa-calendar"></i>
-            </div>
-    {!!Form::text('fecha_entrega_informe_3', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+     <!--Entrega Informe Final-->
+    <h4 class="box-title text-center">Entrega N°1</h4>
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-4">
+                {!!Form::label('fecha de entrega')!!}
+                <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                {!!Form::text('fecha_entrega_informe_final', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+              </div>
           </div>
-          </br>
-    {!! Form::select('concepto_6', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
-            </br>
+          <div class="col-xs-4">
+                {!!Form::label('número de acta')!!}
+                {!!Form::text('numero_acta_2', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
+          </div>
+          <div class="col-xs-4">
+                {!!Form::label('concepto')!!}
+                {!! Form::select('concepto_4', array('ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'placeholder' => '', 'class' => 'form-control']) !!}
+          </div>
+        </div>
+      </div>
+    </div><!--Final entrega Informe Final-->
+
+    <!--Entrega N° 2-->
+    <h4 class="box-title text-center">Entrega N° 2</h4>
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-6">
+                {!!Form::label('fecha de entrega')!!}
+                <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    {!!Form::text('fecha_entrega_informe_2', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                </div>
+          </div>
+          <div class="col-xs-6">
+                {!!Form::label('concepto')!!}
+                {!! Form::select('concepto_5', array('ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'placeholder' => '', 'class' => 'form-control']) !!}
+          </div>
+        </div>
+      </div>
+    </div><!--Final entrega N° 2-->
+
+    <!--Entrega N° 3-->
+    <h4 class="box-title text-center">Entrega N° 3</h4>
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-6">
+                {!!Form::label('fecha de entrega')!!}
+                <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    {!!Form::text('fecha_entrega_informe_3', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                </div>
+          </div>
+          <div class="col-xs-6">
+                {!!Form::label('concepto')!!}
+                {!! Form::select('concepto_6', array('ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado'), null, [ 'placeholder' => '', 'class' => 'form-control']) !!}
+          </div>
+        </div>
+      </div>
+    </div><!--Final entrega N° 3-->
 
     {!!Form::label('Fecha Entrega de Empaste')!!}
     <div class="input-group">
@@ -177,7 +246,7 @@
 
     {!! Form::select('evaluacion', array('' => '', 'ap' => 'Aprobado', 'aa' => 'Aprobado con Ajustes', 'na' => 'No Aprobado', 'me' => 'Meritorio', 'la' => 'Laureado',), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
     </br>
-      </br>
+      
     {!!Form::label('Finalizado')!!}
       </br>
     {!!Form::label('Si')!!}

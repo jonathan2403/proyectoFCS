@@ -61,6 +61,6 @@
 				</div><!-- /.box -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
-		
+		<a href="{{URL('/excel/opcion/grado/investigacion')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>|<a href="{{URL('/pdf/opcion/grado/investigacion')}}" class="btn btn-default" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
 	</section><!-- /.content -->
 @endsection

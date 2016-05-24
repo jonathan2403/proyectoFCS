@@ -45,7 +45,7 @@ class OpcionGrado extends Model
                            'id_grupo'
                          ];
 
-     public static $reglas = array(
+     public static $reglas_investigacion = array(
         'descripcion' => 'required|max:150|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
         'tipo_opcion_grado' => 'in:mr,mi,epi,epps,pas,pos',
         'linea_investigacion' => 'in:cu,sp',
@@ -84,7 +84,7 @@ class OpcionGrado extends Model
         'id_grupo' => 'exists:grupo,id'
       );
 
-     public static $mensajes = array(
+     public static $mensajes_investigacion = array(
         'descripcion.required' => 'El campo título es obligatorio.',
         'descripcion.max' => 'Título no puede exceder 150 caracteres.',
         'descripcion.regex' => 'Título tiene formato inválido.',

@@ -94,3 +94,8 @@ Route::get('/excel/externos/{page}/{id_externo}', 'ExternoController@exportExcel
 // exportar Externos a PDF
 Route::get('/pdf/externos/{page}/{id_externo}', 'ExternoController@exportPdf');
 
+// opciones de grado a Excel
+Route::get('/excel/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportExcel');
+
+// exportar Opciones de Grado a PDF
+Route::get('/pdf/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportPdf');

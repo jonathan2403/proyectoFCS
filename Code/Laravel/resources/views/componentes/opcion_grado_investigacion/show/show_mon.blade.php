@@ -7,23 +7,19 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-
             @include('layaouts.partials.mensaje')
-
-             <table class="table">
+             <table class="table text-center">
               <thead>
-                <th><font size="3px">Descripción</font></th>
-                <th><font size="3px"><center>Director</center></font></th>
-                <th><font size="3px"><center>Jurado</center></font></th>
-                <th><font size="3px"><center>Entidad</center></font></th>
+                <th>Descripción</th>
+                <th>Director</th>
+                <th>Jurado</th>
+                <th>Entidad</th>
               </thead>
               <tbody>
-                <td><font size="3px">{{$opcion_grados[0]->descripcion}}</font></td>
-                <td><font size="3px"><center><?php echo ucwords($director[0]->name_director);?></center></font></td>
-                <td><font size="3px"><center><?php echo ucwords($supervisor[0]->name_supervisor);?></center></font></td>
-               
-                <td><center>{{ucfirst($entidad[0]->nombre_entidad)}}</center></td>
-             
+                <td>{{$opciongrado->descripcion}}</td>               
+                <td>{{$director->nombre_director}}</td>
+                <td>{{$supervisor->nombre_supervisor}}</td>
+                <td>{{isset($entidad) ? $entidad->nombre_entidad : 'No Registra'}}</td>
               </tbody>
             </table></br>
 
@@ -35,10 +31,7 @@
                 <th>Entrega max. del jurado</th>
               </thead>
               <tbody>
-                <td>{{$opcion_grados[0]->fecha_entrega_ci}}</td>
-                <td>{{$opcion_grados[0]->fecha_entrega_cr}}</td>
-                <td>{{$opcion_grados[0]->fecha_entrega_jurado}}</td>
-                <td>{{$opcion_grados[0]->fecha_entrega_max_jurado}}</td>
+             
               </tbody>
             </table>
                <hr>
@@ -50,10 +43,7 @@
                 <th><center>Entrega max. del proyecto</center></th>
               </thead>
               <tbody>
-                <td>{{$opcion_grados[0]->fecha_entrega_real_jurado}} - @if($opcion_grados[0]->concepto_1 == 'ap') Aprobado @endif @if($opcion_grados[0]->concepto_1 == 'na') No Aprobado @endif @if($opcion_grados[0]->concepto_1 == 'aa') Aprobado con Ajustes @endif</center></td>
-                <td><center>{{$opcion_grados[0]->fecha_entrega_1}} - @if($opcion_grados[0]->concepto_2 == 'ap') Aprobado @endif @if($opcion_grados[0]->concepto_2 == 'na') No Aprobado @endif @if($opcion_grados[0]->concepto_2 == 'aa') Aprobado con Ajustes @endif</center></td>
-                <td><center>{{$opcion_grados[0]->fecha_entrega_2}} - @if($opcion_grados[0]->concepto_3 == 'ap') Aprobado @endif @if($opcion_grados[0]->concepto_3 == 'na') No Aprobado @endif @if($opcion_grados[0]->concepto_3 == 'aa') Aprobado con Ajustes @endif</center></td>
-                <td><center>{{$opcion_grados[0]->fecha_entrega_max_proyecto}}</center></td>
+             
               </tbody>
             </table>
             <hr>
@@ -69,26 +59,7 @@
                 <th>Evaluacion</th>
              </thead>
              <tbody>
-               <td>{{$opcion_grados[0]->fecha_entrega_informe_final}} - @if($opcion_grados[0]->concepto_4 == 'ap') Aprobado @endif @if($opcion_grados[0]->concepto_4 == 'na') No Aprobado @endif @if($opcion_grados[0]->concepto_4 == 'aa') Aprobado con Ajustes @endif</td>
-               <td>{{$opcion_grados[0]->fecha_entrega_informe_2}} - @if($opcion_grados[0]->concepto_5 == 'ap') Aprobado @endif @if($opcion_grados[0]->concepto_5 == 'na') No Aprobado @endif @if($opcion_grados[0]->concepto_5 == 'aa') Aprobado con Ajustes @endif</td>
-               <td>{{$opcion_grados[0]->fecha_entrega_informe_3}} - @if($opcion_grados[0]->concepto_6 == 'ap') Aprobado @endif @if($opcion_grados[0]->concepto_6 == 'na') No Aprobado @endif @if($opcion_grados[0]->concepto_6 == 'aa') Aprobado con Ajustes @endif</td>
-               <td>{{$opcion_grados[0]->fecha_entrega_certificado}}</td>
-               <td>{{$opcion_grados[0]->fecha_entrega_empaste}}</td>
-               @if($opcion_grados[0]->evaluacion == 'ap')
-               <td>Aprobado</td>
-               @endif
-               @if($opcion_grados[0]->evaluacion == 'np')
-                <td>Aprobado</td>
-               @endif
-               @if($opcion_grados[0]->evaluacion == 'aa')
-                <td>Apr. con Ajustes</td>
-               @endif
-               @if($opcion_grados[0]->evaluacion == 'me')
-                <td>Meritoria</td>
-               @endif
-               @if($opcion_grados[0]->evaluacion == 'la')
-                <td>Laureada</td>
-               @endif
+             
              </tbody>
            </table><hr>
           </div><!-- /.box-header -->
@@ -100,10 +71,10 @@
             </div>
             {!! Form::open(['id' => 'form1', 'style' => 'display:none', 'name' => 'form1']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-            <input type="hidden" id="id_opcion_grado" value="{{$opcion_grados[0]->id}}">
+            <input type="hidden" id="id_opcion_grado" value="">
             {!! Form::text('id_estudiante', null, ['id' => 'id_estudiante', 'class'=>'form-control', 'placeholder'=>'Id Estudiante','required'])!!}
               </br>
-            {!! link_to('opcion-grado/'.$opcion_grados[0]->id, $title="Registrar", $attributes=['id' => 'registro', 'class' => 'btn btn-primary'], $secure = null) !!}
+            
             {!! Form::close() !!}
             </br>
             <table id="example3" class="table table-bordered table-striped">
@@ -116,18 +87,7 @@
                   <th><center>Acción</center></th>
                 </thead>
                 <tbody>
-                  @foreach($estudiantes as $estudiante)
-                    <tr>
-                      <td><center>{{$estudiante->codigo_estudiante}}</center></td>
-                      <td><center>{{$estudiante->numero_documento}}</center></td>
-                      <td>{{$estudiante->full_name}}</td>
-                      <td><center>{{$estudiante->telefono}}</center></td>
-                      <td>{{$estudiante->email}}</td>
-                      <td>
-                        <button type="button" class="btn btn-danger" onclick="$('#modalBorrar{!! $estudiante->id !!}').modal();">Borrar</button>
-                      </td>
-                    </tr>
-                  @endforeach
+                  
                 </tbody>
               </table>
             </div>
