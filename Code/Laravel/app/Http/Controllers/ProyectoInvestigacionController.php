@@ -113,7 +113,6 @@ class ProyectoInvestigacionController extends Controller
         $proyecto=Proyecto::find($id);
         $proyecto->fill($request->all());
         $proyecto->save();
-
         Session::flash('message','Proyecto Editado Correctamente');
         return redirect::to('proyectos-investigacion');
     }

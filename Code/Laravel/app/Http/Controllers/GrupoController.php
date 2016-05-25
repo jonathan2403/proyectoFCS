@@ -26,9 +26,10 @@ class GrupoController extends Controller
         $indicador_modulo = 1;
         switch($tipo_grupo){
         case 'investigacion':
-            $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+        $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
         ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo', 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
         ->where('grupo.tipo', 'i')
+        ->orWhere('grupo.tipo', 'e')
         ->get();            
         }
         return view('componentes.grupo.index', compact('grupos', 'tipo_grupo', 'indicador_modulo'));
@@ -145,13 +146,14 @@ class GrupoController extends Controller
         switch ($tipo_grupo) {
             case 'investigacion':
                 $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"))
+                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw('CASE WHEN grupo.tipo = "i" THEN "investigación" ELSE "estudio" END AS Tipo'))
                 ->where('grupo.tipo', 'i')
+                ->orWhere('grupo.tipo', 'e')
                 ->get();
                 break;
         } // fin siwtch case
         $exportExcel = new ExportFiles();
-        $exportExcel->createExcel($grupos, 'Grupos de '.$tipo_grupo, 'D1');
+        $exportExcel->createExcel($grupos, 'Grupos de '.$tipo_grupo, 'E1');
 
     } // fin exportExcel
 
@@ -162,13 +164,14 @@ class GrupoController extends Controller
         switch ($tipo_grupo) {
             case 'investigacion':
                 $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"))
+                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw('CASE WHEN grupo.tipo = "i" THEN "investigación" ELSE "estudio" END AS Tipo'))
                 ->where('grupo.tipo', 'i')
+                ->orWhere('grupo.tipo', 'e')
                 ->get();
                 break;
         } // fin switch case
         $exportPdf = new ExportFiles();
-        $exportPdf->createPdf($grupos, 'Grupos de '.$tipo_grupo, 'D1');   
+        $exportPdf->createPdf($grupos, 'Grupos de '.$tipo_grupo, 'E1');   
     } // fin función exportar PDF
 
 }

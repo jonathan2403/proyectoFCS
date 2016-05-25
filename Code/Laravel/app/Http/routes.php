@@ -65,8 +65,13 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 });
 
-// ruta para el autocompletado
+// ruta para el autocompletado estudiante
 Route::get('/buscarEstudiante/{palabra}','buscarPersonaController@buscarEstudiante');
+
+// ruta para el autocompletado externos
+Route::get('/buscarExternoPersona/{palabra}', 'buscarPersonaController@buscarPersonaExterno');
+Route::get('/buscarExternoEntidad/{palabra}', 'buscarPersonaController@buscarEntidadExterno');
+
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
@@ -84,8 +89,13 @@ Route::get('/excel/grupos/{tipo_grupo}', 'GrupoController@exportExcel');
 Route::get('/pdf/grupos/{tipo_grupo}', 'GrupoController@exportPdf');
 
 // exportar Externos a Excel
-Route::get('/excel/externos', 'ExternoController@exportExcel');
+Route::get('/excel/externos/{page}/{id_externo}', 'ExternoController@exportExcel');
 
 // exportar Externos a PDF
-Route::get('/pdf/externos', 'ExternoController@exportPdf');
+Route::get('/pdf/externos/{page}/{id_externo}', 'ExternoController@exportPdf');
 
+// opciones de grado a Excel
+Route::get('/excel/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportExcel');
+
+// exportar Opciones de Grado a PDF
+Route::get('/pdf/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportPdf');

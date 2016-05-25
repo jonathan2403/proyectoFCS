@@ -63,10 +63,11 @@ class ExternoController extends Controller
      */
     public function show($id)
     {
+        $indicador_modulo = 16;
         $externo = Externo::find($id);
         if($externo->tipo_externo == 'e')
             return redirect('/externo');
-        return view('componentes.externo.show_externo', compact('externo'));
+        return view('componentes.externo.show_externo', compact('externo', 'indicador_modulo'));
     }
 
     /**
@@ -122,19 +123,41 @@ class ExternoController extends Controller
     /**
      * Descargar Excel
      */
-    public function ExportExcel(){
-    $externos = Externo::all();
+    public function ExportExcel($page, $id_externo = null){
+    switch($page){
+        case 'index':
+        $externos = Externo::select('externo.nombre_externo AS Nombre', \DB::raw("CASE WHEN externo.tipo_externo = 'p' THEN 'persona' ELSE 'entidad' END AS Tipo"), 'externo.correo AS Correo', 'externo.telefono AS Teléfono', 'externo.direccion AS Dirección')
+        ->get();
+        $nombre_archivo = 'Externos Index';
+        break;
+
+        default:
+        $externos = Externo::where('id', $id_externo)->get();
+        $nombre_archivo = 'Detalle Externo';
+        break;
+    }
     $exportExcel = new ExportFiles();
-    $exportExcel->createExcel($externos, 'Externos', 'F1');
+    $exportExcel->createExcel($externos, $nombre_archivo, 'E1');
     }
 
     /**
      * Descargar PDF
      */
-    public function ExportPdf(){
-        $externos = Externo::all();
+    public function ExportPdf($page, $id_externo = null){
+    switch($page){
+        case 'index':
+        $externos = Externo::select('externo.nombre_externo AS Nombre', \DB::raw("CASE WHEN externo.tipo_externo = 'p' THEN 'persona' ELSE 'entidad' END AS Tipo"), 'externo.correo AS Correo', 'externo.telefono AS Teléfono', 'externo.direccion AS Dirección')
+        ->get();
+        $nombre_archivo = 'Externos Index';
+        break;
+
+        default:
+        $externos = Externo::where('id', $id_externo)->get();
+        $nombre_archivo = 'Detalle Externo';
+        break;
+    }
         $exportPdf = new ExportFiles();
-        $exportPdf->createPdf($externos, 'Externos', 'F1');   
+        $exportPdf->createPdf($externos, $nombre_archivo, 'E1');   
     }
 
 

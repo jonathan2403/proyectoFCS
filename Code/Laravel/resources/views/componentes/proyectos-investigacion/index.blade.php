@@ -16,17 +16,15 @@
 						</div>
 							<table id="example3" class="table table-bordered table-striped">
 								<thead>
-									<th><center>Id</center></th>
-									<th><center>Título</center></th>
-									<th><center>Tipo</center></th>
-									<th><center>Investigador Principal</center></th>
-									<th><center>Ejecutado</center></th>
-									<th><center>Acción</center></th>
+									<th>Título</th>
+									<th>Tipo</th>
+									<th>Investigador Principal</th>
+									<th>Ejecutado</th>
+									<th>Acción</th>
 								</thead>
 								<tbody>
 									@foreach($proyectos as $proyecto)
 										<tr>
-											<td>{{$proyecto->id}}</td>
 											<td>{!!link_to_route('proyectos-investigacion.show', ucfirst($proyecto->titulo_proyecto), $parameters=$proyecto->id)!!}</td>
 											@if($proyecto->tipo_proyecto == 'cp')
 											<td>Conv. Planta</td>
@@ -59,14 +57,4 @@
 		</div><!-- /.row -->
 		<button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
 	</section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-          window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
-        });
-    });
-  </script>
 @endsection
