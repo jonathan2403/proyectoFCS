@@ -8,7 +8,7 @@
       <div class="modal-body">
         <p>Agregar Estudiante a la Opcion de Grado</p>
       </div>
-      <div class="modal-footer" style="text-align:left">
+      <div class="modal-footer">
         {!! Form::open(['route' => 'sustentacion.store', 'method' => 'POST']) !!}
               {!! Form::hidden('id_opcion_grado', $opciongrado->id, ['id' => 'id_opcion_grado']) !!}
               {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['id' => 'select_estudiante', 'class' => 'form-control', 'placeholder' => 'Seleccione Estudiante']) !!}

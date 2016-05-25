@@ -94,17 +94,17 @@ class OpcionGradoInvestigacionController extends Controller
         $grupo = OpcionGrado::join('grupo', 'opcion_grado.id_grupo', '=', 'grupo.id')
         ->select('grupo.sigla')
         ->where('opcion_grado.id', $id)
-        ->get();
-        $estudiantes = Sustentacion::join('estudiantes', 'sustentacion.id_estudiante', '=', 'estudiantes.codigo_estudiante')
+        ->first();
+        $estudiantes = Sustentacion::join('estudiantes', 'sustentacion.id_estudiante', '=', 'estudiantes.id')
         ->join('opcion_grado', 'sustentacion.id_opcion_grado', '=', 'opcion_grado.id')
-        ->select('sustentacion.id', 'estudiantes.numero_documento', 'estudiantes.codigo_estudiante', 'estudiantes.email', 'estudiantes.telefono', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
+        ->select('sustentacion.id as sustentacion', 'estudiantes.numero_documento', 'estudiantes.codigo_estudiante', 'estudiantes.email', 'estudiantes.telefono', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS nombre_estudiante"))
         ->where('opcion_grado.id', $id)
         ->get();
         $nombre_proyecto = OpcionGrado::join('proyecto', 'opcion_grado.id_proyecto', '=', 'proyecto.id')
         ->select('titulo_proyecto')
         ->where('opcion_grado.id', $id)
-        ->get();
-        $nombre_estudiante = Estudiante::all()->lists('full_name', 'codigo_estudiante');
+        ->first();
+        $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         if($opciongrado->tipo_opcion_grado == 'Mon. Investigativa' || $opciongrado->tipo_opcion_grado == 'Mon. de Revisión')
             return view('componentes.opcion_grado_investigacion.show.show_mon', compact('estudiantes', 'director', 'nombre_estudiante', 'opciongrado', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
         else

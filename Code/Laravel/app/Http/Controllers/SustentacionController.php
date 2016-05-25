@@ -37,23 +37,14 @@ class SustentacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateSustentacionRequest $request)
+    public function store(Request $request)
     {
-       $sustentacion = new Sustentacion($request->all());
-       $query = DB::table('sustentacion')
-       ->select('id')
-       ->where('id_opcion_grado', '=', $sustentacion->id_opcion_grado)
-       ->where('id_estudiante', '=', $sustentacion->id_estudiante)
-       ->get();
-       if($query)
-       {
-         Session::flash('message', 'Estudiante ya está Registrado!');
-       }
-       else {
-         $sustentacion->save();
-         Session::flash('message', 'Estudiante Registrado Correctamente!');
-       }
-       return redirect()->back();
+       $datos = $request->all();
+       $valida = \Validator::make($datos, Sustentacion::$reglas);
+       if($valida->fails())
+            return redirect()->back();
+       Sustentacion::create($datos);
+       return redirect()->back()->with('message', 'Registro creado!');
      }
 
     /**

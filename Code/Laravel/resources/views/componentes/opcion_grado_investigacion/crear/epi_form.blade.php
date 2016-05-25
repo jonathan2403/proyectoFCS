@@ -35,7 +35,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_ci', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_ci', null, ['class'=>'picker form-control', 'readonly'])!!}
      </div>
      </br>
 
@@ -44,7 +44,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_cr', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_cr', null, ['class'=>'picker form-control', 'readonly'])!!}
      </div>
     </br>
 
@@ -59,7 +59,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  {!!Form::text('fecha_entrega_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                  {!!Form::text('fecha_entrega_jurado', null, ['class'=>'picker form-control', 'readonly'])!!}
                </div>
           </div>      
           <div class="col-xs-4">
@@ -68,7 +68,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                {!!Form::text('fecha_entrega_max_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                {!!Form::text('fecha_entrega_max_jurado', null, ['class'=>'picker form-control', 'readonly'])!!}
               </div>
           </div>      
           <div class="col-xs-4">
@@ -77,7 +77,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                {!!Form::text('fecha_entrega_real_jurado', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                {!!Form::text('fecha_entrega_real_jurado', null, ['class'=>'picker form-control', 'readonly'])!!}
               </div>
           </div>      
         </div>
@@ -97,7 +97,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                {!!Form::text('fecha_entrega_1', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                {!!Form::text('fecha_entrega_1', null, ['class'=>'picker form-control', 'readonly'])!!}
               </div>
           </div>
           <div class="col-xs-6">
@@ -119,7 +119,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                {!!Form::text('fecha_entrega_2', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                {!!Form::text('fecha_entrega_2', null, ['class'=>'picker form-control', 'readonly'])!!}
               </div>
           </div>
           <div class="col-xs-4">
@@ -139,7 +139,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_aprobacion', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_aprobacion', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div>
        </br>
 
@@ -148,7 +148,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_max_proyecto', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_max_proyecto', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div>
 
     <h4 class="text-center">
@@ -166,7 +166,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                {!!Form::text('fecha_entrega_informe_final', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+                {!!Form::text('fecha_entrega_informe_final', null, ['class'=>'picker form-control', 'readonly'])!!}
               </div>
           </div>
           <div class="col-xs-4">
@@ -192,7 +192,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    {!!Form::text('fecha_entrega_informe_2', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                    {!!Form::text('fecha_entrega_informe_2', null, ['class'=>'picker form-control', 'readonly'])!!}
                 </div>
           </div>
           <div class="col-xs-6">
@@ -214,7 +214,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    {!!Form::text('fecha_entrega_informe_3', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+                    {!!Form::text('fecha_entrega_informe_3', null, ['class'=>'picker form-control', 'readonly'])!!}
                 </div>
           </div>
           <div class="col-xs-6">
@@ -230,7 +230,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_empaste', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_empaste', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div></br>
 
     {!!Form::label('Fecha Entrega de Certificado')!!}
@@ -238,7 +238,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_certificado', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_certificado', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div>
     
     {!!Form::label('Escala de Evaluación')!!}

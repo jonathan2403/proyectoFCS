@@ -9,11 +9,7 @@ class Externo extends Model
   protected $table = 'externo';
   protected $fillable = ['nombre_externo', 'tipo_externo', 'telefono', 'correo', 'direccion','area_conocimiento', 'nivel_estudio', 'experiencia'];
 
-  public function getNombreExternoAttribute($value){
-    if(!$value)
-      return '';
-  }
-
+  
   public function getFullNameEntidadAttribute()
   {
      if($this->attributes['tipo_externo'] == "e")
