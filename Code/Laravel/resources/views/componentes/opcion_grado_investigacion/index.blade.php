@@ -50,9 +50,7 @@
 											<td><center>
 													 {!! link_to_route('opcion-grado-investigacion.edit', $title="Editar", $parameters=[$opciongrado->id, $opciongrado->tipo_opcion_grado], $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
 												 </center>
-											</td>
-										
-											
+											</td>	
 										 </tr>
 									@endforeach
 								</tbody>
