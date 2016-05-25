@@ -75,24 +75,14 @@ Route::get('/buscarExternoEntidad/{palabra}', 'buscarPersonaController@buscarEnt
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+// exportar Encuentro de Grupos Index a [Excel, PDF]
+Route::get('/encuentros/{tipo_archivo}', 'EncuentroGrupoController@reporte');
 
-// exportar Encuentro de Grupos Index a Excel
-Route::get('/excel/encuentros', 'EncuentroGrupoController@excel');
+// exportar Grupos [Excel, PDF]
+Route::get('/grupos/{tipo_archivo}/{tipo_grupo}', 'GrupoController@reporte');
 
-// exportar Encuentro de Grupos Index a PDF
-Route::get('/pdf/encuentros', 'EncuentroGrupoController@ExportPdf');
-
-// exportar Grupos Index a Excel
-Route::get('/excel/grupos/{tipo_grupo}', 'GrupoController@exportExcel');
-
-// exportar Grupos a PDF
-Route::get('/pdf/grupos/{tipo_grupo}', 'GrupoController@exportPdf');
-
-// exportar Externos a Excel
-Route::get('/excel/externos/{page}/{id_externo}', 'ExternoController@exportExcel');
-
-// exportar Externos a PDF
-Route::get('/pdf/externos/{page}/{id_externo}', 'ExternoController@exportPdf');
+// exportar Externos [Excel, PDF]
+Route::get('/externos/{page}/{id_externo}/{tipo_archivo}', 'ExternoController@reporte');
 
 // opciones de grado a Excel
 Route::get('/excel/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportExcel');

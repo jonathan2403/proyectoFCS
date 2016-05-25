@@ -26,26 +26,11 @@
 									@foreach($proyectos as $proyecto)
 										<tr>
 											<td>{!!link_to_route('proyectos-investigacion.show', ucfirst($proyecto->titulo_proyecto), $parameters=$proyecto->id)!!}</td>
-											@if($proyecto->tipo_proyecto == 'cp')
-											<td>Conv. Planta</td>
-											@endif
-											@if($proyecto->tipo_proyecto == 'ccr')
-											<td>Conv. con Recursos</td>
-											@endif
-											@if($proyecto->tipo_proyecto == 'cc')
-											<td>Conv. Colciencias</td>
-											@endif
-											@if($proyecto->tipo_proyecto == 'cct')
-											<td>Conv. con Tiempo</td>
-											@endif
-											@if($proyecto->tipo_proyecto == 'cre')
-											<td>Conv. con Rec. Externos</td>
-											@endif
+											<td>{{$proyecto->tipo}}</td>
 											<td>{{ucwords($proyecto->name_investigador)}}</td>
 											<td><center>{{$proyecto->ejecutado}}</center></td>
 											<td><center>
-													 {!! link_to_route('proyectos-investigacion.edit', $title='Editar', $parameters=$proyecto->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-													 
+													 {!! link_to_route('proyectos-investigacion.edit', $title='Editar', $parameters=$proyecto->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!} 
 											</td>
 										</tr>
 									@endforeach

@@ -123,42 +123,25 @@ class ExternoController extends Controller
     /**
      * Descargar Excel
      */
-    public function ExportExcel($page, $id_externo = null){
+    public function reporte($page, $id_externo = null, $tipo_archivo){
     switch($page){
         case 'index':
         $externos = Externo::select('externo.nombre_externo AS Nombre', \DB::raw("CASE WHEN externo.tipo_externo = 'p' THEN 'persona' ELSE 'entidad' END AS Tipo"), 'externo.correo AS Correo', 'externo.telefono AS Teléfono', 'externo.direccion AS Dirección')
         ->get();
-        $nombre_archivo = 'Externos Index';
+        if($tipo_archivo == 'excel'){
+            $exportExcel = new ExportFiles();
+            $exportExcel->createExcel($externos, 'Externos Index', 'E1');        
+        }else{
+            $exportPdf = new ExportFiles();
+            $exportPdf->createPdf($externos, 'Externos Index', 'E1');   
+        }
         break;
 
         default:
         $externos = Externo::where('id', $id_externo)->get();
         $nombre_archivo = 'Detalle Externo';
         break;
-    }
-    $exportExcel = new ExportFiles();
-    $exportExcel->createExcel($externos, $nombre_archivo, 'E1');
-    }
-
-    /**
-     * Descargar PDF
-     */
-    public function ExportPdf($page, $id_externo = null){
-    switch($page){
-        case 'index':
-        $externos = Externo::select('externo.nombre_externo AS Nombre', \DB::raw("CASE WHEN externo.tipo_externo = 'p' THEN 'persona' ELSE 'entidad' END AS Tipo"), 'externo.correo AS Correo', 'externo.telefono AS Teléfono', 'externo.direccion AS Dirección')
-        ->get();
-        $nombre_archivo = 'Externos Index';
-        break;
-
-        default:
-        $externos = Externo::where('id', $id_externo)->get();
-        $nombre_archivo = 'Detalle Externo';
-        break;
-    }
-        $exportPdf = new ExportFiles();
-        $exportPdf->createPdf($externos, $nombre_archivo, 'E1');   
-    }
-
+        }   // final case
+    }   // final funcion reporte
 
 }

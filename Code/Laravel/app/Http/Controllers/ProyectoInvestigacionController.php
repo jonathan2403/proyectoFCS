@@ -22,9 +22,8 @@ class ProyectoInvestigacionController extends Controller
     public function index()
     {
         $indicador_modulo = 9;
-        $proyectos=\DB::table('proyecto')
-        ->join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
-        ->select('proyecto.id', 'proyecto.titulo_proyecto', 'proyecto.tipo_proyecto', 'proyecto.ejecutado',
+        $proyectos = Proyecto::join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
+        ->select('proyecto.id', 'proyecto.titulo_proyecto', DB::raw("CASE WHEN proyecto.tipo_proyecto='cp' THEN 'Conv. Planta' WHEN proyecto.tipo_proyecto='ccr' THEN 'Conv. con Recursos' WHEN proyecto.tipo_proyecto='cc' THEN 'Conv. Colciencias' WHEN proyecto.tipo_proyecto='cct' THEN 'Conv. con Tiempo' WHEN proyecto.tipo_proyecto='cre' THEN 'Conv. con Rec. Externos' END AS tipo"), 'proyecto.ejecutado',
                 DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS name_investigador"))
         ->where('tipo', 'i')
         ->get();
@@ -52,8 +51,12 @@ class ProyectoInvestigacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateProyectoRequest $request)
+    public function store(Request $request)
     {
+        $datos = $request->all();
+        $valida = \Validator::make($datos, Proyecto::$reglas, Proyecto::$mensajes);
+        if($valida->fails())
+            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
         Proyecto::create($request->all());
         return redirect('proyectos-investigacion')->with('message','Registro Creado!');
     }
@@ -66,6 +69,9 @@ class ProyectoInvestigacionController extends Controller
      */
     public function show($id)
     {
+        $proyecto = Proyecto::find($id);
+        if(!$proyecto)
+            return redirect()->back();
         $indicador_modulo = 9;
         $proyectos = DB::table('proyecto')
         ->where('proyecto.id', $id)
@@ -113,7 +119,7 @@ class ProyectoInvestigacionController extends Controller
         $proyecto=Proyecto::find($id);
         $proyecto->fill($request->all());
         $proyecto->save();
-        Session::flash('message','Proyecto Editado Correctamente');
+        Session::flash('message','Registro editado!');
         return redirect::to('proyectos-investigacion');
     }
 
