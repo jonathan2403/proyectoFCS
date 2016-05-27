@@ -10,6 +10,7 @@ use FCS\Profesor;
 use FCS\Proyecto;
 use FCS\Estudiante;
 use FCS\RedConocimiento;
+use FCS\Base\ExportFiles;
 use DB, View, Session, Redirect;
 
 
@@ -49,6 +50,10 @@ class RedConocimientoController extends Controller
      */
     public function store(Request $request)
     {
+        $datos = $request->all();
+        $valida = \Validator::make($datos, RedConocimiento::$reglas, RedConocimiento::$mensajes);
+          if($valida->fails())
+            return redirect()->back()->withErrors($valida->errors())->withInput();
         RedConocimiento::create($request->all());
         return redirect('red-conocimiento')->with('message', 'Registro Exitoso!');
     }
@@ -62,14 +67,13 @@ class RedConocimientoController extends Controller
     public function show($id)
     {
       $indicador_modulo = 17;
-      $redes = DB::table('red_conocimiento')
-      ->where('id', $id)
-      ->get();
-      $responsable = \DB::table('red_conocimiento')->join('profesores', 'red_conocimiento.id_responsable', '=', 'profesores.id')
+      $red = RedConocimiento::find($id);
+      if(!$red)
+        return redirect()->back();
+      $responsable = RedConocimiento::join('profesores', 'red_conocimiento.id_responsable', '=', 'profesores.id')
       ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
-      ->get();
-      //dd($responsable);
-      return view('componentes.red_conocimiento.showRedConocimiento', compact('redes', 'responsable', 'indicador_modulo'));
+      ->first();
+      return view('componentes.red_conocimiento.showRedConocimiento', compact('red', 'responsable', 'indicador_modulo'));
     }
 
     /**
@@ -82,6 +86,8 @@ class RedConocimientoController extends Controller
     {
         $indicador_modulo = 17;
         $red_conocimiento = RedConocimiento::find($id);
+        if(!$red_conocimiento)
+          return redirect()->back();
         $route = ['route' => ['red-conocimiento.update', $red_conocimiento->id], 'method' => 'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         return view('componentes.red_conocimiento.editred', compact('route', 'red_conocimiento', 'nombre_profesor', 'indicador_modulo'));
@@ -96,11 +102,14 @@ class RedConocimientoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $datos = $request->all();
         $red_conocimiento = RedConocimiento::find($id);
-        $red_conocimiento->fill($request->all());
+        $valida = \Validator::make($datos, RedConocimiento::$reglas, RedConocimiento::$mensajes);
+        if($valida->fails())
+          return redirect()->back()->withErrors($valida->errors())->withInput();
+        $red_conocimiento->fill($datos);
         $red_conocimiento->save();
-        Session::flash('message','Registro Actualizado!');
-        return redirect::to('red-conocimiento');
+        return redirect('red-conocimiento')->with('message', 'Registro Actualizado!');
     }
 
     /**
@@ -115,4 +124,21 @@ class RedConocimientoController extends Controller
       Session::flash('message','Registro Eliminado!');
       return Redirect::to('/red-conocimiento');
     }
+
+    /**
+     * Exporta reporte
+     */
+    public function reporte($tipo_archivo){
+      $redes = RedConocimiento::all();
+      $reporte = new ExportFiles();
+      switch($tipo_archivo){
+        case 'excel':
+        $reporte->createExcel($redes, 'Redes de Conocimiento', 'E1');
+        break;
+        default:
+        $reporte->createPdf($redes, 'Redes de Conocimiento', 'E1');
+        break;
+      }
+    }
+
 }

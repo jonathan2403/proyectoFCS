@@ -84,8 +84,14 @@ Route::get('/grupos/{tipo_archivo}/{tipo_grupo}', 'GrupoController@reporte');
 // exportar Externos [Excel, PDF]
 Route::get('/externos/{page}/{id_externo}/{tipo_archivo}', 'ExternoController@reporte');
 
-// opciones de grado a Excel
-Route::get('/excel/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportExcel');
+// exportar opciones de grado [Excel, PDF]
+Route::get('/opcion/grado/{tipo}/{tipo_archivo}', 'OpcionGradoInvestigacionController@reporte');
 
-// exportar Opciones de Grado a PDF
-Route::get('/pdf/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportPdf');
+// exportar proyectos [Excel, PDF]
+Route::get('/proyectos/{tipo}/{tipo_archivo}', 'ProyectoInvestigacionController@reporte');
+
+// exportar publicaciones [Excel, PDF]
+Route::get('/publicaciones/{tipo}/{tipo_archivo}', 'PublicacionInvestigacionController@reporte');
+
+// exportar red conocimiento [Excel, PDF]
+Route::get('/red/conocimiento/{tipo_archivo}', 'RedConocimientoController@reporte');

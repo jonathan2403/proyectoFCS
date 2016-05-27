@@ -63,12 +63,12 @@
             </div><!--Cierra box tabla de datos-->
 
             <!--Participantes-->
-          <div class="box box-solid box-danger">
+          <div class="box box-danger">
                     <div class="box-header with-border">
                       <h5 class="box-title">Participantes</h5>
                     </div>
             <div class="box-body">
-              <div class="row">
+              <div class="row text-center">
                     <div class="col-xs-12">
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo</button>
                       <hr>
@@ -82,7 +82,10 @@
                           <th>Acción</th>
                         </thead>
                         <tbody>
-                        
+                        <tr>
+                          <td>160002403</td>
+                          <td>1121888930</td>
+                        </tr>
                     </table>
                     </div>                    
               </div>
