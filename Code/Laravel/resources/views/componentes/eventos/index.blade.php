@@ -16,12 +16,12 @@
             </div>
             <table id="example3" class="table table-bordered table-striped">
               <thead>
-                <th><center>Acta de Consejo</center></th>
-                <th><center>Nombre Evento</center></th>
-                <th><center>Fecha</center></th>
-                <th><center>Lugar</center></th>
-                <th><center>Tipo Evento</center></th>
-                <th><center>Acción</center></th>
+                <th>Acta de Consejo</th>
+                <th>Nombre Evento</th>
+                <th>Fecha</th>
+                <th>Lugar</th>
+                <th>Tipo Evento</th>
+                <th>Acción</th>
               </thead>
               <tbody>
                 @foreach($eventos as $evento)
@@ -42,17 +42,7 @@
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col -->
-      <button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
+      <a href="{{URL('/eventos/excel')}}" class="btn btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>|<a href="{{URL('/eventos/pdf')}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> PDF</a>
     </div>
   </section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-          window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
-        });
-    });
-  </script>
 @endsection

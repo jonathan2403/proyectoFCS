@@ -10,6 +10,8 @@ use FCS\Http\Controllers\Controller;
 use FCS\Http\Requests\CreateEventoRequest;
 use FCS\Profesor;
 use FCS\Estudiante;
+use FCS\Base\ExportFiles;
+use FCS\Asistencia;
 
 use DB, View, Session, Redirect;
 
@@ -64,14 +66,14 @@ class EventoController extends Controller
         $eventos = \DB::table('eventos')
         ->where('id', $id)
         ->get();
-        $profesores = \DB::table('asistencia')
-        ->join('profesores', 'asistencia.id_profesor', '=', 'profesores.id')
+        if(!$eventos)
+            return redirect()->back();
+        $profesores = Asistencia::join('profesores', 'asistencia.id_profesor', '=', 'profesores.id')
         ->join('eventos', 'asistencia.id_evento', '=', 'eventos.id')
         ->select('asistencia.id', 'profesores.cedula', 'profesores.email','profesores.telefono', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->where('eventos.id', $id)
         ->get();
-        $estudiantes = \DB::table('asistencia')
-        ->join('estudiantes', 'asistencia.id_estudiante', '=', 'estudiantes.id')
+        $estudiantes = Asistencia::join('estudiantes', 'asistencia.id_estudiante', '=', 'estudiantes.id')
         ->join('eventos', 'asistencia.id_evento', '=', 'eventos.id')
         ->select('asistencia.id', 'estudiantes.telefono', 'estudiantes.numero_documento', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.segundo_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('eventos.id', $id)
@@ -92,7 +94,9 @@ class EventoController extends Controller
     {
         $indicador_modulo = 10;
         $tipo_evento = TipoEvento::allLists();
-        $eventos=Evento::find($id);
+        $eventos = Evento::find($id);
+        if(!$eventos)
+            return redirect()->back();
         $route = [ 'route'=>['evento.update',$eventos->id],'method'=>'PUT'];
         return view('componentes.eventos.editevento', compact('tipo_evento','route','eventos', 'indicador_modulo'));
     }
@@ -126,5 +130,21 @@ class EventoController extends Controller
         Evento::destroy($id);
         Session::flash('message','Registro Eliminado!');
         return Redirect::to('/evento');
+    }
+
+    /**
+     * Genera reporte
+     */
+    public function reporte($tipo_archivo){
+        $eventos=Evento::All();
+        $reporte = new ExportFiles();
+        switch($tipo_archivo){
+            case 'excel':
+            $reporte->createExcel($eventos, 'Eventos', 'E1');
+            break;
+            default:
+            $reporte->createPdf($eventos, 'Eventos', 'E1');
+            break;
+        }
     }
 }

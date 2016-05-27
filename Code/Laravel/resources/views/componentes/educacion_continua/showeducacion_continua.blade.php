@@ -11,25 +11,25 @@
       <div class="box">
         <div class="box-header">
           @include('layaouts.partials.mensaje')
-          <table class="table">
+          <table class="table text-center">
             <thead>
               <th>Nombre</th>
               <th>Área de Conocimiento</th>
-              <th><center>Fecha de Inicio</center></th>
-              <th><center>Departamento</center></th>
-              <th><center>Ciudad</center></th>
+              <th>Fecha de Inicio</th>
+              <th>Departamento</th>
+              <th>Ciudad</th>
             </thead>
             <tbody>
-             <td>{{ ucfirst(strtolower($edus[0]->nombre)) }}</td>
-             <td><center>{{ ucfirst(strtolower($edus[0]->area_conocimiento)) }}</center></td>
-             <td><center>{{ $edus[0]->fecha_inicio }}</center></td>
-             <td><center>{{ ucfirst(strtolower($edus[0]->departamento)) }}</center></td>
-             <td><center>{{ ucfirst(strtolower($edus[0]->ciudad)) }}</center></td>
+             <td>{{ ucfirst(strtolower($educacion_continua->nombre)) }}</td>
+             <td>{{ ucfirst(strtolower($educacion_continua->area_conocimiento)) }}</td>
+             <td>{{ $educacion_continua->fecha_inicio }}</td>
+             <td>{{ ucfirst(strtolower($educacion_continua->departamento)) }}</td>
+             <td>{{ ucfirst(strtolower($educacion_continua->ciudad)) }}</td>
            </tbody>
          </table>
          <div class="box box-danger direct-chat direct-chat-warning collapsed-box">
          <div class="box-header with-border">
-          <h3 class="box-title">Fuentes de Financiacións</h3>
+          <h3 class="box-title">Fuentes de Financiación</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
           </div>
@@ -41,21 +41,21 @@
              <td><center>
               <dl class="dl-horizontal">
                <dt>Recurso Humano </dt>
-               <dd>{{ $edus[0]->recurso_humano }}</dd>
+               <dd>{{ $educacion_continua->recurso_humano }}</dd>
                <dt>Compra de Muebles y Equipos </dt>
-               <dd>{{ $edus[0]->muebles_equipo }}</dd>
+               <dd>{{ $educacion_continua->muebles_equipo }}</dd>
                <dt>Servicios </dt>
-               <dd>{{ $edus[0]->servicios }}</dd>
+               <dd>{{ $educacion_continua->servicios }}</dd>
              </dl></center>
            </td>
            <td><center>
              <dl class="dl-horizontal">
               <dt>Material Bibliografico y Papeleria </dt>
-              <dd>{{ $edus[0]->material }}</dd>
+              <dd>{{ $educacion_continua->material }}</dd>
               <dt>Gastos de Viaje </dt>
-              <dd>{{ $edus[0]->gastos_viaje }}</dd>
+              <dd>{{ $educacion_continua->gastos_viaje }}</dd>
               <dt>Otros Gastos </dt>
-              <dd>{{ $edus[0]->otros_gastos }}</dd>
+              <dd>{{ $educacion_continua->otros_gastos }}</dd>
             </dl></center>
           </td>
         </tr>
@@ -70,25 +70,15 @@
       <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Coinvestigador</button>
     </div>
   </div>
-  @if($errors->any())
-  <div class="alert alert-danger" role="alert">
-    <p>Por favor corrige errores</p>
-    <ul>
-      @foreach($errors->all() as $error)
-      <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-  @endif
   <div id="dvData">
-   <table  class="table table-bordered table-striped">
+   <table  class="table table-striped text-center">
     <thead>
-      <th><center>Cédula</center></th>
-      <th><center>Nombre</center></th>
-      <th><center>Tipo</center></th>
-      <th><center>Teléfono</center></th>
-      <th><center>Email</center></th>
-      <th><center>Acción</center></th>
+      <th>Cédula</th>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Teléfono</th>
+      <th>Email</th>
+      <th>Acción</th>
     </thead>
     <tbody>
       @foreach($profesores as $profesor)

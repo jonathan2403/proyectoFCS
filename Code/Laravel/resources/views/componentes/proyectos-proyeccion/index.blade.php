@@ -16,17 +16,15 @@
 						</div>
 							<table id="example3" class="table table-bordered table-striped">
 								<thead>
-									<th><center>Id</center></th>
-									<th><center>Título</center></th>
-									<th><center>Investigador Principal</center></th>
-									<th><center>Inicio</center></th>
-									<th><center>Ejecutado</center></th>
-									<th><center>Acción</center></th>
+									<th>Título</th>
+									<th>Investigador Principal</th>
+									<th>Inicio</th>
+									<th>Ejecutado</th>
+									<th>Acción</th>
 								</thead>
 								<tbody>
 									@foreach($proyectos as $proyecto)
 										<tr>
-											<td>{{$proyecto->id}}</td>
 											<td>{!!link_to_route('proyectos-proyeccion.show', $proyecto->titulo_proyecto, $parameters=$proyecto->id)!!}</td>
 											<td>{{ucwords($proyecto->nombre_profesor)}}</td>
 											<td>{{$proyecto->fecha_inicio}} - Acta: {{$proyecto->numero_acta}}</td>
@@ -45,16 +43,6 @@
 				</div><!-- /.box -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
-		<button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
+		<a href="{{URL('/proyectos/proyeccion/excel')}}" class="btn btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>|<a href="{{URL('/proyectos/proyeccion/pdf')}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> PDF</a>
 	</section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-          window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
-        });
-    });
-  </script>
 @endsection

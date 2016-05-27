@@ -3,11 +3,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><center>{{$edus[0]->nombre}}</center></h4>
+        <h4 class="modal-title" id="myModalLabel"><center>{{$educacion_continua->nombre}}</center></h4>
       </div>
       <div class="modal-footer" style="text-align:left">
         {!! Form::open(['route' => 'participacion.store', 'method' => 'POST']) !!}
-              {!! Form::hidden('id_educacion_continua', $edus[0]->id, ['id' => 'id_proyecto']) !!}
+              {!! Form::hidden('id_educacion_continua', $educacion_continua->id, ['id' => 'id_proyecto']) !!}
               {!! Form::hidden('participacion', 'ec', ['id' => 'id_proyecto']) !!}
               <center>{!!Form::label('Profesor')!!}
               {!!Form::radio('tipo', 'p', false)!!} &nbsp

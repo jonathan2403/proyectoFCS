@@ -65,8 +65,8 @@ class ExternoController extends Controller
     {
         $indicador_modulo = 16;
         $externo = Externo::find($id);
-        if($externo->tipo_externo == 'e')
-            return redirect('/externo');
+        if(!$externo)
+            return redirect()->back();
         return view('componentes.externo.show_externo', compact('externo', 'indicador_modulo'));
     }
 

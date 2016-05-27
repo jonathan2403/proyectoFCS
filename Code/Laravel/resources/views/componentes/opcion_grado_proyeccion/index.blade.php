@@ -74,18 +74,6 @@
 				</div><!-- /.box -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
-		<button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><i class="fa fa-file-pdf-o"></i> PDF</button>|<button id="button-excel" class="btn"><i class="fa fa-file-excel-o"></i> Excel</button>
+		<a href="{{URL('/opcion/grado/proyeccion/excel')}}" class="btn btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>|<a href="{{URL('/opcion/grado/proyeccion/pdf')}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> PDF</a>
 	</section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-           	$("#example3").table2excel({
-	    		exclude: ".noExl",
-	    		name: "Excel Document Name"
-		  });
-        });
-    });
-  </script>
 @endsection

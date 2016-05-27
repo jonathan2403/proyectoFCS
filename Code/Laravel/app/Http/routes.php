@@ -95,3 +95,9 @@ Route::get('/publicaciones/{tipo}/{tipo_archivo}', 'PublicacionInvestigacionCont
 
 // exportar red conocimiento [Excel, PDF]
 Route::get('/red/conocimiento/{tipo_archivo}', 'RedConocimientoController@reporte');
+
+// exportar educación continua [Excel, PDF]
+Route::get('/educacion/continua/{tipo_archivo}', 'EducacionContinuaController@reporte');
+
+// exportar eventos [Excel, PDF]
+Route::get('/eventos/{tipo_archivo}', 'EventoController@reporte');
