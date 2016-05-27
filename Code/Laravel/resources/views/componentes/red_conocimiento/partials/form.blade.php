@@ -1,9 +1,9 @@
 <div class="form-group">
 	{!!Form::label('Nombre de la Red')!!}
-    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Digite Nombre de la Red', 'required'])!!}
+    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Digite Nombre de la Red'])!!}
     </br>
 		{!!Form::label('Responsable')!!}
-    {!!Form::select('id_responsable',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => '', 'required']) !!}
+    {!!Form::select('id_responsable',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
       </br></br>
 
     {!!Form::label('Propósito')!!}

@@ -16,16 +16,54 @@ class Proyecto extends Model
                               'beneficiados_mayores_60','beneficiados_academia','beneficiados_alianza','beneficiados_sociedad',
                               'beneficiados_otros', 'beneficiados_hombres', 'beneficiados_mujeres'];
 
+
+    public static $reglas = array(
+      'titulo_proyecto' => 'required|max:150|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+      'tema_central' => 'max:150|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+      'id_red_conocimiento' => 'required|exists:red_conocimiento,id',
+      'tipo' => 'in:ps,i',
+      'tipo_proyecto' => 'in:cp,ccr,cc,cct,cre,pc',
+      'fecha_inicio' => 'date_format:m/d/Y',
+      'numero_acta' => 'digits:0,9',
+      'fecha_avance1' => 'date_format:m/d/Y',
+      'fecha_avance2' => 'date_format:m/d/Y',
+      'fecha_avance3' => 'date_format:m/d/Y',
+      'fecha_informe_final' => 'date_format:m/d/Y',
+      'fecha_prorroga' => 'date_format:m/d/Y',
+      'bienes_adquiridos' => 'integer',
+      'valor_efectivo' => 'integer',
+      'beneficiados' => 'integer',
+      'ejecutado' => 'in:Si,No',
+      'id_investigador_principal' => 'required|exists:profesores,id',
+      'beneficiados_administrativos',
+      'beneficiados_estudiantes' => 'integer',
+      'beneficiados_egresado' => 'integer',
+      'beneficiados_docentes' => 'integer',
+      'beneficiados_publico' => 'integer',
+      'beneficiados_privado' => 'integer',
+      'beneficiados_general' => 'integer',
+      'beneficiados_0_10' => 'integer',
+      'beneficiados_11_20' => 'integer',
+      'beneficiados_21_30' => 'integer',
+      'beneficiados_31_60' => 'integer',
+      'beneficiados_mayores_60' => 'integer',
+      'beneficiados_academia' => 'integer',
+      'beneficiados_alianza' => 'integer',
+      'beneficiados_sociedad' => 'integer',
+      'beneficiados_otros' => 'integer',
+      'beneficiados_hombres' => 'integer',
+      'beneficiados_mujeres' => 'integer',
+      );
+
+    public static $mensajes = array(
+      'id_red_conocimiento.required' => 'Red conocimiento es obligatorio.',
+      'id_investigador_principal.required'  => 'Investigador principal es obligatorio.'
+      );
+
     public function getTituloProyectoAttribute($value)
            {
              return ucfirst($value);
            }
-
-    public function getTipoProyectoAttribute($value)
-     {
-       if($value=='pc')
-       return "Proy. Comunitario";
-     }
 
      public function getFullNameAttribute()
       {

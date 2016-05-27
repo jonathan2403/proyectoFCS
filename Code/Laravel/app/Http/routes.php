@@ -75,27 +75,23 @@ Route::get('/buscarExternoEntidad/{palabra}', 'buscarPersonaController@buscarEnt
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+// exportar Encuentro de Grupos Index a [Excel, PDF]
+Route::get('/encuentros/{tipo_archivo}', 'EncuentroGrupoController@reporte');
 
-// exportar Encuentro de Grupos Index a Excel
-Route::get('/excel/encuentros', 'EncuentroGrupoController@excel');
+// exportar Grupos [Excel, PDF]
+Route::get('/grupos/{tipo_archivo}/{tipo_grupo}', 'GrupoController@reporte');
 
-// exportar Encuentro de Grupos Index a PDF
-Route::get('/pdf/encuentros', 'EncuentroGrupoController@ExportPdf');
+// exportar Externos [Excel, PDF]
+Route::get('/externos/{page}/{id_externo}/{tipo_archivo}', 'ExternoController@reporte');
 
-// exportar Grupos Index a Excel
-Route::get('/excel/grupos/{tipo_grupo}', 'GrupoController@exportExcel');
+// exportar opciones de grado [Excel, PDF]
+Route::get('/opcion/grado/{tipo}/{tipo_archivo}', 'OpcionGradoInvestigacionController@reporte');
 
-// exportar Grupos a PDF
-Route::get('/pdf/grupos/{tipo_grupo}', 'GrupoController@exportPdf');
+// exportar proyectos [Excel, PDF]
+Route::get('/proyectos/{tipo}/{tipo_archivo}', 'ProyectoInvestigacionController@reporte');
 
-// exportar Externos a Excel
-Route::get('/excel/externos/{page}/{id_externo}', 'ExternoController@exportExcel');
+// exportar publicaciones [Excel, PDF]
+Route::get('/publicaciones/{tipo}/{tipo_archivo}', 'PublicacionInvestigacionController@reporte');
 
-// exportar Externos a PDF
-Route::get('/pdf/externos/{page}/{id_externo}', 'ExternoController@exportPdf');
-
-// opciones de grado a Excel
-Route::get('/excel/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportExcel');
-
-// exportar Opciones de Grado a PDF
-Route::get('/pdf/opcion/grado/{tipo}', 'OpcionGradoInvestigacionController@exportPdf');
+// exportar red conocimiento [Excel, PDF]
+Route::get('/red/conocimiento/{tipo_archivo}', 'RedConocimientoController@reporte');

@@ -49,6 +49,6 @@
         </div><!-- /.box -->
       </div><!-- /.col -->
     </div>
-    <a href="{{URL('/excel/encuentros')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>|<a href="{{URL('/pdf/encuentros')}}" class="btn btn-default" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
+    <a href="{{URL('/encuentros/excel')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>|<a href="{{URL('/encuentros/pdf')}}" class="btn btn-default" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
   </section><!-- /.content -->
 @endsection

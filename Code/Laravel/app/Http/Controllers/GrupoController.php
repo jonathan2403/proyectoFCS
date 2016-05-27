@@ -140,38 +140,23 @@ class GrupoController extends Controller
     }
 
     /**
-     * Descargar Excel
+     * Genera Informes [pdf, excel]
      */
-    public function exportExcel($tipo_grupo){
-        switch ($tipo_grupo) {
+    public function reporte($tipo_archivo, $tipo_grupo){
+       switch ($tipo_grupo) {
             case 'investigacion':
                 $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
                 ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw('CASE WHEN grupo.tipo = "i" THEN "investigación" ELSE "estudio" END AS Tipo'))
                 ->where('grupo.tipo', 'i')
                 ->orWhere('grupo.tipo', 'e')
                 ->get();
+                $reporte = new ExportFiles();
+                if($tipo_archivo == 'excel')
+                    $reporte->createExcel($grupos, 'Grupos de '.$tipo_grupo, 'E1');
+                else
+                    $reporte->createPdf($grupos, 'Grupos de '.$tipo_grupo, 'E1');
                 break;
-        } // fin siwtch case
-        $exportExcel = new ExportFiles();
-        $exportExcel->createExcel($grupos, 'Grupos de '.$tipo_grupo, 'E1');
-
-    } // fin exportExcel
-
-    /**
-     * Descargar PDF
-     */
-    public function ExportPdf($tipo_grupo){
-        switch ($tipo_grupo) {
-            case 'investigacion':
-                $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw('CASE WHEN grupo.tipo = "i" THEN "investigación" ELSE "estudio" END AS Tipo'))
-                ->where('grupo.tipo', 'i')
-                ->orWhere('grupo.tipo', 'e')
-                ->get();
-                break;
-        } // fin switch case
-        $exportPdf = new ExportFiles();
-        $exportPdf->createPdf($grupos, 'Grupos de '.$tipo_grupo, 'E1');   
-    } // fin función exportar PDF
+        } // fin case
+    }  // fin función reporte
 
 }

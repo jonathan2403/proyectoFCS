@@ -16,32 +16,30 @@
 						</div>
 							<table id="example3" class="table table-bordered table-striped">
 								<thead>
-									<th><center>Descripción</center></th>
-									<th><center>Tipo</center></th>
-									<th><center>Fecha Publicacion</center></th>
-									<th><center>Acción</center></th>
+									<th>Título</th>
+									<th>Tipo</th>
+									<th>Fecha Publicación</th>
+									<th>Acción</th>
 								</thead>
 								<tbody>
 									@foreach($publicaciones as $publicacion)
 										<tr>
 										<td>{!!link_to_route('publicacion-investigacion.show', ucfirst($publicacion->descripcion),$parameters=$publicacion->id)!!}</td>
-										
 											@if($publicacion->tipo == 'ri')
-											<td><center>Revista Indexada</center></td>
+											<td>Revista Indexada</td>
 											@endif
 											@if($publicacion->tipo == 're')
-											<td><center>Revista Especializada</center></td>
+											<td>Revista Especializada</td>
 											@endif
 											@if($publicacion->tipo == 'li')
-											<td><center>Libro</center></td>
+											<td>Libro</td>
 											@endif
 											@if($publicacion->tipo == 'ar')
-											<td><center>Articulo</center></td>
+											<td>Artículo</td>
 											@endif
-											<td><center>{{$publicacion->fecha_publicacion}}</center></td>
-											<td><center>{!! link_to_route('publicacion-investigacion.edit', $title='Editar', $parameters=$publicacion->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-													
-											</td></center>
+											<td>{{$publicacion->fecha_publicacion}}</td>
+											<td><center>{!! link_to_route('publicacion-investigacion.edit', $title='Editar', $parameters=$publicacion->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}	
+											</center></td>
 										</tr>
 									@endforeach
 								</tbody>
@@ -50,6 +48,6 @@
 				</div><!-- /.box -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
-		<button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
+		<a href="{{URL('/publicaciones/investigacion/excel')}}" class="btn btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>|<a href="{{URL('/publicaciones/investigacion/pdf')}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> PDF</a>
 	</section><!-- /.content -->
 @endsection

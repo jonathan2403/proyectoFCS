@@ -1,7 +1,7 @@
 <div class="form-group">
      {!! Form::hidden('tipo_publicacion', 'i') !!}
     {!!Form::label('Nombre de la Publicación')!!}
-    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Descripcion','required'])!!}
+    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Descripcion'])!!}
     </br>
 
     {!!Form::label('Proyecto')!!}
@@ -17,7 +17,7 @@
     </br></br>
 
     {!! Form::label('Tipo')!!}
-	{!! Form::select('tipo', array('' => '', 'ri' => 'Revista Indexada', 're' => 'Revista Especializada', 'li' => 'Libro', 'ar' => 'Artículo'), null, ['class' => 'form-control', 'required']) !!}
+	{!! Form::select('tipo', array('' => '', 'ri' => 'Revista Indexada', 're' => 'Revista Especializada', 'li' => 'Libro', 'ar' => 'Artículo'), null, ['class' => 'form-control']) !!}
 	</br>
 
 	{!!Form::label('Fecha de Publicación')!!}
@@ -25,7 +25,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_publicacion', null, ['id' => 'datepicker3', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_publicacion', null, ['class'=>'picker form-control', 'readonly'])!!}
      </div>
      </br>
 </div>

@@ -118,28 +118,25 @@ class EncuentroGrupoController extends Controller
         //
     }
 
-    /**
-     * Descargar Excel
-     */
-    public function excel(){
-    $encuentros = EncuentroGrupo::join('profesores','encuentros_grupos.id_profesor', '=', 'profesores.id')
-        ->select('encuentros_grupos.nombre_encuentro AS Título', 'encuentros_grupos.fecha_realizacion AS Fecha', \DB::raw("CASE WHEN encuentros_grupos.tipo_grupo = 'i' THEN 'investigación' ELSE 'proyección social' END AS Grupo"), 'encuentros_grupos.modalidad AS Modalidad', 'encuentros_grupos.lugar AS Lugar', \DB::raw("CONCAT(profesores.primer_nombre,' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Ponente"))
-        ->orderBy('encuentros_grupos.nombre_encuentro', 'ASC')
-        ->get();
-    $exportExcel = new ExportFiles();
-    $exportExcel->createExcel($encuentros, 'Encuentro de Grupos', 'F1');
-    }
 
     /**
-     * Descargar PDF
+     * Genera Informes [pdf, excel]
      */
-    public function ExportPdf(){
+    public function reporte($tipo_archivo){
         $encuentros = EncuentroGrupo::join('profesores','encuentros_grupos.id_profesor', '=', 'profesores.id')
-        ->select('encuentros_grupos.nombre_encuentro AS Título', 'encuentros_grupos.fecha_realizacion AS Fecha','encuentros_grupos.modalidad AS Modalidad', 'encuentros_grupos.lugar AS Lugar', \DB::raw("CASE WHEN encuentros_grupos.tipo_grupo = 'i' THEN 'investigación' ELSE 'proyección social' END AS Grupo"), \DB::raw("CONCAT(profesores.primer_nombre,' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Ponente"))
+        ->select('encuentros_grupos.nombre_encuentro AS Título', 'encuentros_grupos.fecha_realizacion AS Fecha', \DB::raw("CASE WHEN encuentros_grupos.tipo_grupo = 'i' THEN 'investigación' ELSE 'proyección social' END AS Grupo"), 'encuentros_grupos.modalidad AS Modalidad', 'encuentros_grupos.lugar AS Lugar', \DB::raw("CONCAT(profesores.primer_nombre,' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Ponente"))
         ->orderBy('encuentros_grupos.nombre_encuentro', 'ASC')
-        ->get();
-        $exportPdf = new ExportFiles();
-        $exportPdf->createPdf($encuentros, 'Encuentro de Grupos', 'F1');   
+        ->get();   
+        switch ($tipo_archivo) {
+             case 'excel':
+                 $exportExcel = new ExportFiles();
+                 $exportExcel->createExcel($encuentros, 'Encuentro de Grupos', 'F1');
+                 break;
+             default:
+                 $exportPdf = new ExportFiles();
+                 $exportPdf->createPdf($encuentros, 'Encuentro de Grupos', 'F1');
+                 break;
+         } 
     }
 
 }

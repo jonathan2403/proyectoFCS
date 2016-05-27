@@ -1,30 +1,15 @@
 @extends('layaouts.tablas')
 @section('scripts')
-<script type="text/javascript">
-  $('.select').select2({
-      minimumInputLength: '1'
-        });
-  $(document).ready(function(){
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_minimal',
-      radioClass: 'iradio_minimal-red'
-     });
-    $('.picker').datepicker({
-      format: "dd-mm-yyyy"
-    });
-    $('.picker').on('changeDate', function(ev){
-        $(this).datepicker('hide');
-    });
-  });
-</script>
+  {!!Html::script('assets/js/load_views.js')!!}
 @endsection
 @section('content')
   <section class="content">
+  @include('errors.partials.requesterror')
     <div class="row">
         <div class="col-md-9">
               <div class="box box-solid box-danger">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Editar Opcion de Grado</h3>
+                    <h3 class="box-title">Editar Red de Conocimiento</h3>
                       <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                       </div>
