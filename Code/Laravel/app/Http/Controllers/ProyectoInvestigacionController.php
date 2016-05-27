@@ -142,11 +142,20 @@ class ProyectoInvestigacionController extends Controller
      * Generación de reporte [Excel, PDF]
      */
     public function reporte($tipo_proyecto, $tipo_archivo){
-        $proyectos = Proyecto::join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
-        ->select('proyecto.titulo_proyecto as Título', DB::raw("CASE WHEN proyecto.tipo_proyecto='cp' THEN 'Conv. Planta' WHEN proyecto.tipo_proyecto='ccr' THEN 'Conv. con Recursos' WHEN proyecto.tipo_proyecto='cc' THEN 'Conv. Colciencias' WHEN proyecto.tipo_proyecto='cct' THEN 'Conv. con Tiempo' WHEN proyecto.tipo_proyecto='cre' THEN 'Conv. con Rec. Externos' END AS Tipo"), 'proyecto.ejecutado',
-                DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Investigador"))
-        ->where('tipo', 'i')
-        ->get();
+        switch($tipo_proyecto){
+            case 'investigacion':
+            $proyectos = Proyecto::join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
+                ->select('proyecto.titulo_proyecto as Título', DB::raw("CASE WHEN proyecto.tipo_proyecto='cp' THEN 'Conv. Planta' WHEN proyecto.tipo_proyecto='ccr' THEN 'Conv. con Recursos' WHEN proyecto.tipo_proyecto='cc' THEN 'Conv. Colciencias' WHEN proyecto.tipo_proyecto='cct' THEN 'Conv. con Tiempo' WHEN proyecto.tipo_proyecto='cre' THEN 'Conv. con Rec. Externos' END AS Tipo"), 'proyecto.ejecutado',
+                        DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Investigador"))
+                ->where('tipo', 'i')
+                ->get();
+            break;
+
+            case 'proyeccion':
+            $proyectos = Proyecto::where('tipo', 'ps')->get();
+            break;
+
+        }
         $reporte = new ExportFiles();
         if($tipo_archivo == 'excel')
             $reporte->createExcel($proyectos, 'Proyectos', 'D1');

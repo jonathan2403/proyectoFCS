@@ -16,24 +16,21 @@
             </div>
             <table id="example3" class="table table-bordered table-striped">
               <thead>
-                <th><center>Id</center></th>
-                <th><center>Nombre</center></th>
-                <th><center>Director</center></th>
-                <th><center>Aprobación</center></th>
-                <th><center>País</center></th>
-                <th><center>Acción</center></th>
+                <th>Nombre</th>
+                <th>Director</th>
+                <th>Aprobación</th>
+                <th>País</th>
+                <th>Acción</th>
               </thead>
               <tbody>
                 @foreach($edus as $edu)
                   <tr>
-                    <td><center>{{ $edu->id }}</center></td>
                     <td>{!! link_to_route('educacion-continua.show', ucfirst(strtolower($edu->nombre)), $parameters=$edu->id) !!}</td>
-                    <td><center>{{ ucwords(strtolower($edu->full_name))}}</center></td>
-                    <td><center>{{ $edu->fecha_aprobacion }} - Acta: {{ $edu->numero_acta }}</center></td>
-                    <td><center>{{ ucwords(strtolower($edu->pais)) }}</center></td>
+                    <td>{{ ucwords(strtolower($edu->full_name))}}</td>
+                    <td>{{ $edu->fecha_aprobacion }} - Acta: {{ $edu->numero_acta }}</td>
+                    <td>{{ ucwords(strtolower($edu->pais)) }}</td>
                     <td><center>
-                      {!! link_to_route('educacion-continua.edit', $title='Editar', $parameters=$edu->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-                      <!--<button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $edu->id !!}').modal();">Borrar</button></center>-->
+                      {!! link_to_route('educacion-continua.edit', $title='Editar', $parameters=$edu->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}</center>
                     </td>
                   </tr>
                 @endforeach
@@ -42,17 +39,7 @@
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col -->
-      <button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
+      <a href="{{URL('/educacion/continua/excel')}}" class="btn btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>|<a href="{{URL('/educacion/continua/pdf')}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> PDF</a>
     </div>
   </section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-          window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
-        });
-    });
-  </script>
 @endsection

@@ -14,30 +14,25 @@
 							</div>
 						</div>
 						<div id="dvData">
-							<table id="example3" class="table table-bordered table-striped">
+							<table id="example3" class="table table-striped text-center">
 								<thead>
-									<th><center>Sigla</center></th>
-									<th><center>Nombre del Grupo</center></th>
-									<th><center>Coordinador</center></th>
-									<th><center>Tipo</center></th>
-									<th><center>Categoría</center></th>
-									<th><center>Acción</center></th>
+									<th>Sigla</th>
+									<th>Nombre del Grupo</th>
+									<th>Coordinador</th>
+									<th>Tipo</th>
+									<th>Categoría</th>
+									<th>Acción</th>
 								</thead>
 								<tbody>
 									@foreach($grupos as $grupo)
 										<tr data-id="{{ $grupo->id }}">
-											<td><center>{{ucwords($grupo->sigla)}}</center></td>
+											<td>{{ucwords($grupo->sigla)}}</td>
 											<td><a href="{{URL::to('grupos/ver/'.$grupo->id)}}">{{$grupo->descripcion}}</a></td>
-											<td><center>{{ucwords($grupo->nombre_coordinador)}}</center></td>
-											@if($grupo->tipo == 'i')
-											<td><center>Investigación</center></td>
-											@else
-											<td><center>Estudio</center></td>
-											@endif
-											<td><center>{{ucfirst($grupo->categoria)}}</center></td>
-											<td><center>
+											<td>{{ucwords($grupo->nombre_coordinador)}}</td>
+											<td>{{$grupo->tipo}}</td>
+											<td>{{ucfirst($grupo->categoria)}}</td>
+											<td>
 											<a href="{{URL::to('grupos/edit/'.$grupo->id)}}" class="btn btn-warning btn-sm" >Editar</a>
-												 </center>
 											</td>
 										</tr>
 									@endforeach
@@ -48,6 +43,6 @@
 				</div><!-- /.box -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
-		<a href="{{URL('/grupos/excel/investigacion')}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>|<a href="{{URL('/grupos/pdf/investigacion')}}" class="btn btn-default" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
+		<a href="{{URL('/grupos/excel/'.$tipo_grupo)}}" class="btn btn-default" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>|<a href="{{URL('/grupos/pdf/'.$tipo_grupo)}}" class="btn btn-default" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
 	</section><!-- /.content -->
 @endsection

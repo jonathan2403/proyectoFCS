@@ -23,14 +23,22 @@ class GrupoController extends Controller
     {
         if($tipo_grupo != 'investigacion' && $tipo_grupo != 'proyeccion')
             return redirect()->back();
-        $indicador_modulo = 1;
         switch($tipo_grupo){
         case 'investigacion':
+        $indicador_modulo = 1;
         $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-        ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', 'grupo.tipo', 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
+        ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investivagión' WHEN grupo.tipo='e' THEN 'Estudio' WHEN grupo.tipo='ps' THEN 'Proyección Social' END AS tipo"), 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
         ->where('grupo.tipo', 'i')
         ->orWhere('grupo.tipo', 'e')
-        ->get();            
+        ->get();
+        break;
+        case 'proyeccion':
+        $indicador_modulo = 20;
+        $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+        ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investivagión' WHEN grupo.tipo='e' THEN 'Estudio' WHEN grupo.tipo='ps' THEN 'Proyección Social' END AS tipo"), 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
+        ->where('grupo.tipo', 'ps')
+        ->get();
+        break;
         }
         return view('componentes.grupo.index', compact('grupos', 'tipo_grupo', 'indicador_modulo'));
     }
@@ -40,12 +48,15 @@ class GrupoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($tipo_grupo)
     {
-        $indicador_modulo = 1;
+        if($tipo_grupo == 'investigacion')
+            $indicador_modulo = 1;
+        else
+            $indicador_modulo = 20;
         $route = [ 'route' => 'grupos.store','method'=>'POST' ];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
-        return view('componentes.grupo.addgrupo', compact('route', 'nombre_profesor', 'indicador_modulo'));
+        return view('componentes.grupo.addgrupo', compact('route', 'nombre_profesor', 'tipo_grupo', 'indicador_modulo'));
     }
 
     /**
@@ -62,7 +73,10 @@ class GrupoController extends Controller
             return redirect()->back()->withErrors($valida->errors())->withInput($datos);
         }
         Grupo::create($datos);
-        return redirect('grupos/investigacion')->with('message','Registro Creado!');
+        if($datos['tipo'] == 'ps')
+            return redirect('grupos/proyeccion')->with('message','Registro Creado!');
+        else
+            return redirect('grupos/investigacion')->with('message','Registro Creado!');
     }
 
     /**
@@ -87,6 +101,8 @@ class GrupoController extends Controller
         ->where('grupo.id', $id)
         ->get();
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
+        if($grupo->tipo == 'ps')
+            $indicador_modulo = 20;
         return view('componentes.grupo.showgrupo', compact('grupos', 'estudiantes', 'nombre_estudiante', 'indicador_modulo'));
     }
 
@@ -123,7 +139,10 @@ class GrupoController extends Controller
         }
         $grupo->fill($datos);
         $grupo->save();
-        return redirect('grupos/investigacion')->with('message','Registro Actualizado!');
+        if($grupo->tipo == 'ps')
+            return redirect('grupos/proyeccion')->with('message','Registro Actualizado!');
+        else
+            return redirect('grupos/investigacion')->with('message','Registro Actualizado!');
     }
 
     /**
@@ -149,6 +168,18 @@ class GrupoController extends Controller
                 ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw('CASE WHEN grupo.tipo = "i" THEN "investigación" ELSE "estudio" END AS Tipo'))
                 ->where('grupo.tipo', 'i')
                 ->orWhere('grupo.tipo', 'e')
+                ->get();
+                $reporte = new ExportFiles();
+                if($tipo_archivo == 'excel')
+                    $reporte->createExcel($grupos, 'Grupos de '.$tipo_grupo, 'E1');
+                else
+                    $reporte->createPdf($grupos, 'Grupos de '.$tipo_grupo, 'E1');
+                break;
+
+            case 'proyeccion':
+                $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
+                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw('CASE WHEN grupo.tipo = "i" THEN "investigación" ELSE "estudio" END AS Tipo'))
+                ->where('grupo.tipo', 'ps')
                 ->get();
                 $reporte = new ExportFiles();
                 if($tipo_archivo == 'excel')

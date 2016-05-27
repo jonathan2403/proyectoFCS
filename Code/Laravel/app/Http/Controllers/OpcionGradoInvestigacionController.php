@@ -162,15 +162,28 @@ class OpcionGradoInvestigacionController extends Controller
      * Descargar reporte [Excel, PDF]
      */
     public function reporte($tipo, $tipo_archivo){
-    $opciongrados = OpcionGrado::select('descripcion as Título', \DB::raw("CASE WHEN tipo_opcion_grado='mr' THEN 'Mon. de Revisión' WHEN tipo_opcion_grado='mi' THEN 'Mon. Investigativa' ELSE 'Proyecto EPI' END AS Tipo"), 'fecha_aprobacion as Aprobación', 'fecha_entrega_informe_final as Informe_Final', \DB::raw("CASE WHEN finalizado='s' THEN 'Si' ELSE 'No' END AS Finalizado"))
+
+    $reporte = new ExportFiles();
+    switch($tipo){
+        case 'investigacion':
+        $opciongrados = OpcionGrado::select('descripcion as Título', \DB::raw("CASE WHEN tipo_opcion_grado='mr' THEN 'Mon. de Revisión' WHEN tipo_opcion_grado='mi' THEN 'Mon. Investigativa' ELSE 'Proyecto EPI' END AS Tipo"), 'fecha_aprobacion as Aprobación', 'fecha_entrega_informe_final as Informe_Final', \DB::raw("CASE WHEN finalizado='s' THEN 'Si' ELSE 'No' END AS Finalizado"))
         ->whereIn('tipo_opcion_grado', ['epi', 'mi', 'mr'])
         ->get();
-    if($tipo_archivo == 'excel'){
-        $exportExcel = new ExportFiles();
-        $exportExcel->createExcel($opciongrados, 'Opciones de Grado', 'E1');
-    }else{
-        $exportPdf = new ExportFiles();
-        $exportPdf->createPdf($opciongrados, 'Opciones de Grado', 'E1');
+        if($tipo_archivo == 'excel')
+            $reporte->createExcel($opciongrados, 'Opciones de Grado', 'E1');
+        else
+            $reporte->createPdf($opciongrados, 'Opciones de Grado', 'E1');
+        break;
+
+        case 'proyeccion':
+        $opciongrados = OpcionGrado::select('descripcion as Título', \DB::raw("CASE WHEN tipo_opcion_grado='epps' THEN 'EPPS' WHEN tipo_opcion_grado='pas' THEN 'Pasantía' ELSE 'Posgrado' END AS Tipo"), 'fecha_aprobacion as Aprobación', 'fecha_entrega_informe_final as Informe_Final', \DB::raw("CASE WHEN finalizado='s' THEN 'Si' ELSE 'No' END AS Finalizado"))
+        ->whereIn('tipo_opcion_grado', ['epps', 'pas', 'pos'])
+        ->get();
+        if($tipo_archivo == 'excel')
+            $reporte->createExcel($opciongrados, 'Opciones de Grado', 'E1');
+        else
+            $reporte->createPdf($opciongrados, 'Opciones de Grado', 'E1');
+        break;
         }
     } // fin función reporte
 
