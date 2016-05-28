@@ -56,9 +56,7 @@ class ProyectoInvestigacionController extends Controller
     public function store(Request $request)
     {
         $datos = $request->all();
-        $valida = \Validator::make($datos, Proyecto::$reglas, Proyecto::$mensajes);
-        if($valida->fails())
-            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        $this->validate($request, Proyecto::$reglas, Proyecto::$mensajes);
         Proyecto::create($request->all());
         return redirect('proyectos-investigacion')->with('message','Registro Creado!');
     }
@@ -118,11 +116,12 @@ class ProyectoInvestigacionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $datos = $request->all();
+        $this->validate($datos, Proyecto::$reglas, Proyecto::$mensajes);
         $proyecto=Proyecto::find($id);
-        $proyecto->fill($request->all());
+        $proyecto->fill($datos);
         $proyecto->save();
-        Session::flash('message','Registro editado!');
-        return redirect::to('proyectos-investigacion');
+        return redirect::to('proyectos-investigacion')->with('message', 'Registro editado!');
     }
 
     /**

@@ -19,7 +19,7 @@ class TipoEventoController extends Controller
     public function index()
     {
         $indicador_modulo = 2;
-        $tipo_eventos=TipoEvento::All();
+        $tipo_eventos=TipoEvento::all();
         return view('componentes.tipo_evento.index',compact('tipo_eventos', 'indicador_modulo'));
     }
 

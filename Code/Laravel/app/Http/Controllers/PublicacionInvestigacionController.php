@@ -152,16 +152,21 @@ class PublicacionInvestigacionController extends Controller
      * Exportar reporte 
      */
     public function reporte($tipo_publicacion, $tipo_archivo){
-        $publicaciones = Publicacion::where('tipo_publicacion', 'i')
-         ->get();
         $reporte = new ExportFiles();
-        switch($tipo_archivo){
-            case 'excel':
-            $reporte->createExcel($publicaciones, 'Publicaciones', 'E1');
-            break;
+        switch ($tipo_publicacion) {
+            case 'investigacion':
+                $publicaciones = Publicacion::where('tipo_publicacion', 'i')
+                ->get();
+                break;
             default:
-            break;
+                $publicaciones = Publicacion::where('tipo_publicacion', 'ps')
+                ->get();
+                break;
         }
-    }
+        if($tipo_archivo == 'excel')
+            $reporte->createExcel($publicaciones, 'Publicaciones', 'E1');
+        else
+            $reporte->createPdf($publicaciones, 'Publicaciones', 'E1');
+    }// final exportar informe
 
 }

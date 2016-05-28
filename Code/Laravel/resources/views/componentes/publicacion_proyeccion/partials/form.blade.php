@@ -1,7 +1,7 @@
 <div class="form-group">
     {!! Form::hidden('tipo_publicacion', 'ps') !!}
     {!!Form::label('Nombre de la Publicación')!!}
-    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Descripcion','required'])!!}
+    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Descripcion'])!!}
     </br>
 
     {!!Form::label('Proyecto')!!}
