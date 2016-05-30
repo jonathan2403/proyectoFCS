@@ -5,6 +5,7 @@ namespace FCS\Http\Controllers;
 use Illuminate\Http\Request;
 use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
+use FCS\Base\ExampleThread;
 
 class HomeController extends Controller
 {
@@ -13,5 +14,4 @@ class HomeController extends Controller
     {
         return view('index');
     }
-
 }

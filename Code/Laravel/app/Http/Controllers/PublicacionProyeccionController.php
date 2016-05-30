@@ -24,8 +24,7 @@ class PublicacionProyeccionController extends Controller
     public function index()
     {
         $indicador_modulo = 19;
-        $publicaciones=\DB::table('publicacion')
-         ->where('tipo_publicacion','ps')
+        $publicaciones = Publicacion::where('tipo_publicacion','ps')
          ->get();
        return view('componentes.publicacion_proyeccion.index', compact('publicaciones', 'indicador_modulo'));
     }
@@ -55,6 +54,7 @@ class PublicacionProyeccionController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Publicacion::$reglas);
         Publicacion::create($request->all());
         return redirect('publicacion-proyeccion')->with('message','Regsitro Creado!');
     }
@@ -85,11 +85,8 @@ class PublicacionProyeccionController extends Controller
         ->get();
        $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
        $publica = \DB::table('publica')
-       //->join('publicacion', 'publica.id_publicacion', '=', 'publicacion.id')
        ->join('profesores', 'publica.id_profesor', '=', 'profesores.id')
-       //->join('estudiantes', 'publica.id_estudiante', '=', 'estudiantes.id')
        ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_profesor"))
-       /*->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_profesor"))*/
        ->where('publica.id_publicacion', $id)
        ->get();
         return view('componentes.publicacion_proyeccion.showPublicacion', compact('publicaciones', 'proyecto', 'opcion_grado', 'nombre_estudiante', 'publica', 'indicador_modulo'));
@@ -105,6 +102,8 @@ class PublicacionProyeccionController extends Controller
     {
         $indicador_modulo = 19;
         $publicacion=Publicacion::find($id);
+        if(!$publicacion)
+            return redirect()->back();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_proyecto = Proyecto::all()->lists('full_name', 'id');
         $nombre_grupo = Grupo::all()->lists('full_name', 'id');

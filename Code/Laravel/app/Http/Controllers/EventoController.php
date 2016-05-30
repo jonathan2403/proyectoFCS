@@ -10,6 +10,7 @@ use FCS\Http\Controllers\Controller;
 use FCS\Http\Requests\CreateEventoRequest;
 use FCS\Profesor;
 use FCS\Estudiante;
+use FCS\Externo;
 use FCS\Base\ExportFiles;
 use FCS\Asistencia;
 
@@ -80,8 +81,8 @@ class EventoController extends Controller
         ->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
-        
-        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo'));
+        $nombre_externo = Externo::all()->lists('full_name_persona', 'id');
+        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo', 'nombre_externo'));
     }
 
     /**

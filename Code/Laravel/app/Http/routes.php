@@ -11,6 +11,9 @@
 |
 */
 
+Route::post('/crear/tipo/evento', 'TipoEventoController@crear');
+Route::get('/consultar/tipo/evento', 'TipoEventoController@consultar');
+
 Route::controllers([
 	'auth'		=> 'Auth\AuthController',
 	'password'	=> 'Auth\PasswordController',

@@ -41,8 +41,8 @@
             </table>
           </div><!-- /.box-body -->
         </div><!-- /.box -->
+        <a href="{{URL('/eventos/excel')}}" class="btn btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>|<a href="{{URL('/eventos/pdf')}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> PDF</a>
       </div><!-- /.col -->
-      <a href="{{URL('/eventos/excel')}}" class="btn btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>|<a href="{{URL('/eventos/pdf')}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> PDF</a>
     </div>
   </section><!-- /.content -->
 @endsection

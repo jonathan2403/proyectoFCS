@@ -10,7 +10,7 @@
           <div class="box-body">
             <div class="row form-group">
               <div class="col-md-3">
-                <a href="{!! URL('encuentro-grupo/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
+                <a href="{!! URL('encuentro-grupo/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Encuentro</a>
               </div>
             </div>
             <table id="example3" class="table table-bordered table-striped">

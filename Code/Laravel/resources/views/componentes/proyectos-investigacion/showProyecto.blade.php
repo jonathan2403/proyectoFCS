@@ -15,30 +15,38 @@
             <div class="box">
               <div class="box-body">
                 <div class="row text-center">
-                  <div class="col-xs-4">
+                  <div class="col-xs-3">
+                    {!!Form::label('inicio - # acta')!!}<br>
+                    {{$proyectos[0]->fecha_inicio.' - '.$proyectos[0]->numero_acta}}
+                  </div>
+                  <div class="col-xs-3">
                     {!!Form::label('avance n° 1')!!}<br>
                     {{ $proyectos[0]->fecha_avance1 }}
                   </div>
-                  <div class="col-xs-4">
+                  <div class="col-xs-3">
                     {!!Form::label('avance n° 2')!!}<br>
                     {{ $proyectos[0]->fecha_avance2 }}
                   </div>
-                  <div class="col-xs-4">
+                  <div class="col-xs-3">
                     {!!Form::label('avance n° 3')!!}<br>
                     {{ $proyectos[0]->fecha_avance3 }}
                   </div>
                 </div>
                 <hr>
                 <div class="row text-center">
-                  <div class="col-xs-4">
+                  <div class="col-xs-3">
+                    {!!Form::label('red conocimiento')!!}<br>
+                    {{ isset($proyectos[0]->red_conocimiento) ? $proyectos[0]->red_conocimiento : 'No Registra'}}
+                  </div>
+                  <div class="col-xs-3">
                   {!!Form::label('informe final')!!}<br>
                   {{ $proyectos[0]->fecha_informe_final }}                    
                   </div>
-                  <div class="col-xs-4">
+                  <div class="col-xs-3">
                   {!!Form::label('prórroga')!!}<br>
                   {{ $proyectos[0]->fecha_prorroga }}                    
                   </div>
-                  <div class="col-xs-4">
+                  <div class="col-xs-3">
                   {!!Form::label('valor')!!}<br>
                   {{ $proyectos[0]->valor_efectivo }}                    
                   </div>
@@ -68,9 +76,9 @@
                       <h5 class="box-title">Participantes</h5>
                     </div>
             <div class="box-body">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo</button>
               <div class="row text-center">
                     <div class="col-xs-12">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo</button>
                       <hr>
                       <table class="table table-bordered table-striped text-center">
                         <thead>

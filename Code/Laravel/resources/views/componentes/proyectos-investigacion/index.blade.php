@@ -11,7 +11,7 @@
 					<div class="box-body">
 						<div class="row form-group">
 							<div class="col-md-3">
-								<a href="{!! URL('proyectos-investigacion/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
+								<a href="{!! URL('proyectos-investigacion/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Proyecto</a>
 							</div>
 						</div>
 							<table id="example3" class="table table-bordered table-striped">
@@ -19,6 +19,7 @@
 									<th>Título</th>
 									<th>Tipo</th>
 									<th>Investigador Principal</th>
+									<th>Tema Central</th>
 									<th>Ejecutado</th>
 									<th>Acción</th>
 								</thead>
@@ -29,6 +30,7 @@
 											<td>{{$proyecto->tipo}}</td>
 											<td>{{ucwords($proyecto->name_investigador)}}</td>
 											<td><center>{{$proyecto->ejecutado}}</center></td>
+											<td>{{$proyecto->tema_central}}</td>
 											<td><center>
 													 {!! link_to_route('proyectos-investigacion.edit', $title='Editar', $parameters=$proyecto->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!} 
 											</td>

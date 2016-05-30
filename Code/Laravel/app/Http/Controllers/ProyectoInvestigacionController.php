@@ -8,6 +8,7 @@ use FCS\Http\Requests\CreateProyectoRequest;
 use FCS\Http\Controllers\Controller;
 use FCS\Profesor;
 use FCS\Proyecto;
+use FCS\Participacion;
 use FCS\RedConocimiento;
 use DB, View, Session, Redirect;
 use FCS\TipoProyecto;
@@ -56,9 +57,7 @@ class ProyectoInvestigacionController extends Controller
     public function store(Request $request)
     {
         $datos = $request->all();
-        $valida = \Validator::make($datos, Proyecto::$reglas, Proyecto::$mensajes);
-        if($valida->fails())
-            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
+        $this->validate($request, Proyecto::$reglas, Proyecto::$mensajes);
         Proyecto::create($request->all());
         return redirect('proyectos-investigacion')->with('message','Registro Creado!');
     }
@@ -78,8 +77,7 @@ class ProyectoInvestigacionController extends Controller
         $proyectos = DB::table('proyecto')
         ->where('proyecto.id', $id)
         ->get();
-        $profesores = \DB::table('participacion')
-        ->join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
+        $profesores = Participacion::join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
         ->join('proyecto', 'participacion.id_proyecto', '=', 'proyecto.id')
         ->select('participacion.id', 'profesores.telefono', 'profesores.cedula', 'profesores.email', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->where('proyecto.id', $id)
@@ -118,11 +116,12 @@ class ProyectoInvestigacionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $datos = $request->all();
+        $this->validate($datos, Proyecto::$reglas, Proyecto::$mensajes);
         $proyecto=Proyecto::find($id);
-        $proyecto->fill($request->all());
+        $proyecto->fill($datos);
         $proyecto->save();
-        Session::flash('message','Registro editado!');
-        return redirect::to('proyectos-investigacion');
+        return redirect::to('proyectos-investigacion')->with('message', 'Registro editado!');
     }
 
     /**

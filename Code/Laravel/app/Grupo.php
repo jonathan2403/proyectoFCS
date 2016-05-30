@@ -20,8 +20,8 @@ class Grupo extends Model
     }
 
     public static $reglas = array(
-      'sigla' => 'max:50',
-      'descripcion' => 'required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+      'sigla' => "max:50|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.\(\)]+$/",
+      'descripcion' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.\(\)]+$/",
       'tipo' => 'required|in:i,e,ps',
       'categoria' => 'required|in:a,b,c,d',
       'id_profesor' => 'required|exists:profesores,id'

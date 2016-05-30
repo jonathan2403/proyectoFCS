@@ -39,7 +39,7 @@ class PublicacionInvestigacionController extends Controller
     {
         $indicador_modulo = 11;
         $route = [ 'route' => 'publicacion-investigacion.store','method'=>'POST' ];
-        $nombre_grupo = Grupo::all()->lists('full_name','id');
+        $nombre_grupo = Grupo::all()->lists('nombre_grupo','id');
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name','id');
         $nombre_opcion_grado = OpcionGrado::all()->lists('full_name', 'id');
@@ -152,16 +152,21 @@ class PublicacionInvestigacionController extends Controller
      * Exportar reporte 
      */
     public function reporte($tipo_publicacion, $tipo_archivo){
-        $publicaciones = Publicacion::where('tipo_publicacion', 'i')
-         ->get();
         $reporte = new ExportFiles();
-        switch($tipo_archivo){
-            case 'excel':
-            $reporte->createExcel($publicaciones, 'Publicaciones', 'E1');
-            break;
+        switch ($tipo_publicacion) {
+            case 'investigacion':
+                $publicaciones = Publicacion::where('tipo_publicacion', 'i')
+                ->get();
+                break;
             default:
-            break;
+                $publicaciones = Publicacion::where('tipo_publicacion', 'ps')
+                ->get();
+                break;
         }
-    }
+        if($tipo_archivo == 'excel')
+            $reporte->createExcel($publicaciones, 'Publicaciones', 'E1');
+        else
+            $reporte->createPdf($publicaciones, 'Publicaciones', 'E1');
+    }// final exportar informe
 
 }

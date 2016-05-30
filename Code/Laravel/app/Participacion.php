@@ -16,8 +16,7 @@ class Participacion extends Model
            $this->attributes['id_estudiante'] = empty($value) ? null : $value;
      }
     public function setIdEducacionContinuaAttribute($value){
-           $this->attributes['id_educacion_continua'] = empty($value) ? null : $value;
-         
+           $this->attributes['id_educacion_continua'] = empty($value) ? null : $value;     
      }    
     
 }
