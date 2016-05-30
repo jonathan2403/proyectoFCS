@@ -39,7 +39,7 @@ class PublicacionInvestigacionController extends Controller
     {
         $indicador_modulo = 11;
         $route = [ 'route' => 'publicacion-investigacion.store','method'=>'POST' ];
-        $nombre_grupo = Grupo::all()->lists('full_name','id');
+        $nombre_grupo = Grupo::all()->lists('nombre_grupo','id');
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name','id');
         $nombre_opcion_grado = OpcionGrado::all()->lists('full_name', 'id');

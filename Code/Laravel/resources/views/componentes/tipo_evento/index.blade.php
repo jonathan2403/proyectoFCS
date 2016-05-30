@@ -1,7 +1,11 @@
 @extends('layaouts.tablas')
+@section('scripts')
+  {!!Html::script('/assets/js/guardaRegistro.js')!!}
+@endsection
 @section('content')
   <section class="content">
     @include('componentes.tipo_evento.partials.modal')  
+    @include('componentes.tipo_evento.partials.modal_editar')  
     <div class="row">
       <div class="col-xs-9">
         <div class="box">
@@ -11,23 +15,16 @@
           <div class="box-body">
             <div class="row form-group">
               <div class="col-md-3">
-                <a href="{!! URL('tipo-evento/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Evento</a>
+                <!--<a href="{!! URL('tipo-evento/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Evento</a>-->
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalTipoEvento"><i class="fa fa-plus"></i> Tipo Evento</button>
               </div>
             </div>
-            <table id="example3" class="table table-bordered table-striped">
+            <table id="example" class="table table-bordered table-striped">
               <thead>
                 <th>Tipo Evento</th>
                 <th>Acción</th>
               </thead>
-              <tbody>
-                @foreach($tipo_eventos as $tevento)
-                  <tr>     
-                    <td>{{ ucfirst($tevento->nombre_tipoevento)}}</td>
-                    <td>
-                      {!! link_to_route('tipo-evento.edit', $title='Editar', $parameters=$tevento->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-                    </td>
-                  </tr>
-                @endforeach
+              <tbody id="datos">
               </tbody>
             </table>   
           </div><!-- /.box-body -->

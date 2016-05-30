@@ -10,20 +10,28 @@
 					<div class="box-body">
 						<div class="row form-group">
 							<div class="col-md-3">
-								<a href="{!! URL('joven-investigador/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
+								<a href="{!! URL('joven-investigador/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Investigador</a>
 							</div>
 						</div>
-							<table id="example3" class="table table-bordered table-striped">
+							<table id="example3" class="table table-bordered table-striped text-center">
 								<thead>
 									<th>Nombre Investigador</th>
+									<th>Tutor</th>
 									<th>Nombre Grupo</th>
+									<th>Colciencias</th>
+									<th>Institucion</th>
+									<th>Producto</th>
 									<th>Acción</th>
 								</thead>
 								<tbody>
 									@foreach($jovenes_investigadores as $joven_investigador)
 										<tr>
 											<td>{{$joven_investigador->nombre_estudiante}}</td>
+											<td>Example</td>
 											<td>{{$joven_investigador->nombre_grupo}}</td>
+											<td>Si</td>
+											<td>Example</td>
+											<td>Example</td>
 											<td>{!! link_to_route('joven-investigador.edit', $title='Editar', $parameters=$joven_investigador->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}</td>
 										</tr>
 									@endforeach

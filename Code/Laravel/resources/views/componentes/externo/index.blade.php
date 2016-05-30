@@ -10,7 +10,7 @@
           <div class="box-body">
             <div class="row form-group">
               <div class="col-md-3">
-                <a href="{!! URL('externo/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
+                <a href="{!! URL('externo/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Externo</a>
               </div>
             </div>
             <div id="dvData">

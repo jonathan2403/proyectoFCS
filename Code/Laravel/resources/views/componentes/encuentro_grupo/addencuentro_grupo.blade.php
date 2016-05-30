@@ -17,7 +17,7 @@
                   <div class="box-body">
                   {!!Form::open(['route'=>'encuentro-grupo.store', 'method'=>'POST'])!!}
                     @include('componentes.encuentro_grupo.partials.form')
-                  {!!Form::submit('Crear', ['class' => 'btn btn-danger'])!!}
+                  {!!Form::submit('Crear', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/encuentro-grupo')}}" class="btn btn-danger" >Cancelar</a>
                   {!!Form::close()!!}
                   </div>
               </div><!-- /.box -->

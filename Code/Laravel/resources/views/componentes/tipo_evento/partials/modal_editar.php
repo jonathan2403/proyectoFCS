@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="modalTipoEvento">
+<div class="modal fade" tabindex="-1" role="dialog" id="modalEditarTipoEvento">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,11 +11,12 @@
             $encrypted_token = $encrypter->encrypt(csrf_token());
         ?>
         <input id="token" type="hidden" value="{{$encrypted_token}}">
-        {!!Form::text('nombre_tipoevento', null, ['class' => 'form-control', 'placeholder' => 'Tipo de Evento', 'id' => 'txt_tipo_evento'])!!}
+        <input type="text" name="" class="form-control" id="nombre_tipo_evento">
+        <input type="hidden" name="" id="id_tipoevento">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnGuardaEtipoEvento">Guardar</button>
+        <button type="button" class="btn btn-primary" id="btnEditaTipoEvento">Guardar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

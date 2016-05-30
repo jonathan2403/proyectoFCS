@@ -11,6 +11,26 @@ use FCS\Http\Controllers\Controller;
 
 class TipoEventoController extends Controller
 {
+
+    /**
+     * consulta datos
+     */
+    public function consultar(){
+        $tipo_eventos = TipoEvento::all();
+        return response()->json($tipo_eventos->toArray());
+    }
+
+    /**
+     * 
+     */
+    public function crear(Request $request){
+        $dato = $request->input('nombre_tipoevento');
+        $tipo_evento = new TipoEvento();
+        $tipo_evento->nombre_tipoevento = $dato;
+        $tipo_evento->save();
+        return response()->json($tipo_evento);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +40,7 @@ class TipoEventoController extends Controller
     {
         $indicador_modulo = 2;
         $tipo_eventos=TipoEvento::all();
+        //return response()->json($tipo_eventos->toArray());
         return view('componentes.tipo_evento.index',compact('tipo_eventos', 'indicador_modulo'));
     }
 
@@ -71,10 +92,12 @@ class TipoEventoController extends Controller
      */
     public function edit($id)
     {
-        $indicador_modulo = 2;
+        $tipo_evento = TipoEvento::find($id);
+        return response()->json($tipo_evento);
+        /*$indicador_modulo = 2;
         $tipo_eventos=TipoEvento::find($id);
         $route = [ 'route'=>['tipo-evento.update',$tipo_eventos->id],'method'=>'PUT'];
-        return view('componentes.tipo_evento.edittipoevento',compact('route','tipo_eventos', 'indicador_modulo'));
+        return view('componentes.tipo_evento.edittipoevento',compact('route','tipo_eventos', 'indicador_modulo'));*/
     }
 
     /**
@@ -84,14 +107,21 @@ class TipoEventoController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $tipo_eventos=TipoEvento::find($id);
+        $datos = array(
+            'id' => $request->input('id'),
+            'nombre_tipoevento' => $request->input('nombre_tipoevento')
+            );
+        $tipo_evento = TipoEvento::find($datos['id']);
+        $tipo_evento->nombre_tipoevento = $datos['nombre_tipoevento'];
+        $tipo_evento->save();
+        return response()->json($tipo_evento);
+        /*$tipo_eventos=TipoEvento::find($id);
         $tipo_eventos->fill($request->all());
         $tipo_eventos->save();
-
         Session::flash('message','Tipo Evento Editado Correctamente');
-        return redirect::to('tipo-evento');
+        return redirect::to('tipo-evento');*/
 
     }
 

@@ -8,6 +8,7 @@ use FCS\Http\Requests\CreateAsistenciaRequest;
 use FCS\Http\Controllers\Controller;
 use DB, View, Session, Redirect;
 use FCS\Asistencia;
+use FCS\Evento;
 
 class AsistenciaController extends Controller
 {
@@ -37,18 +38,31 @@ class AsistenciaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateAsistenciaRequest $request)
+    public function store(Request $request)
     {
-        $tipo = $request->input('tipo');
-        $participacion = $request->input('participacion');
-        if($tipo == "e")
-           {
-            Asistencia::create(['id_evento' => $request->input('id_evento'), 'id_estudiante' => $request->input('id_participante')]);
-           }
-           else
-            {
-          Asistencia::create(['id_evento' => $request->input('id_evento'), 'id_profesor' => $request->input('id_participante')]);
-            }
+        $evento = Evento::find($request->input('id_evento'));
+        if(!$evento)
+            return redirect()->back();
+        switch($request->input('tipo_participante')){
+            case 'es':
+            Asistencia::create([
+                'id_evento' => $request->input('id_evento'),
+                'id_estudiante' => $request->input('id_estudiante')
+                ]);
+            break;
+            case 'p':
+            Asistencia::create([
+                'id_evento' => $request->input('id_evento'),
+                'id_profesor' => $request->input('id_profesor')
+                ]);
+            break;
+            default:
+            Asistencia::create([
+                'id_evento' => $request->input('id_evento'),
+                'id_externo' => $request->input('id_externo')
+                ]);
+            break;
+        }
         return redirect()->back();
     }
 

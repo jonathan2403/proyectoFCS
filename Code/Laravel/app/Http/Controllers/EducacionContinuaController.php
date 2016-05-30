@@ -9,6 +9,7 @@ use FCS\Http\Controllers\Controller;
 use DB, View, Session, Redirect;
 use FCS\Profesor;
 use FCS\Estudiante;
+use FCS\Participacion;
 use FCS\Base\ExportFiles;
 
 class EducacionContinuaController extends Controller
@@ -76,14 +77,12 @@ class EducacionContinuaController extends Controller
         ->first();
         if(!$educacion_continua)
             return redirect()->back();
-        $profesores = \DB::table('participacion')
-        ->join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
+        $profesores = Participacion::join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
         ->join('educacion_continua', 'participacion.id_educacion_continua', '=', 'educacion_continua.id')
         ->select('participacion.id', 'profesores.telefono', 'profesores.cedula', 'profesores.email', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->where('educacion_continua.id', $id)
         ->get();
-        $estudiantes = \DB::table('participacion')
-        ->join('estudiantes', 'participacion.id_estudiante', '=', 'estudiantes.id')
+        $estudiantes = Participacion::join('estudiantes', 'participacion.id_estudiante', '=', 'estudiantes.id')
         ->join('educacion_continua', 'participacion.id_educacion_continua', '=', 'educacion_continua.id')
         ->select('participacion.id', 'estudiantes.telefono', 'estudiantes.numero_documento', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.segundo_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('educacion_continua.id', $id)

@@ -18,11 +18,11 @@ class RedConocimiento extends Model
                           'id_responsable'
                         ];
   public static $reglas = array(
-    'nombre' => 'required|max:150|regex:/[0-9a-zA-Z]/',
-    'proposito' => 'max:150',
-    'compromiso' => 'max:150',
+    'nombre' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+    'proposito' => "max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+    'compromiso' => "max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
     'telefono' => 'required|digits_between:8,15|max:15',
-    'direccion' => 'max:150',
+    'direccion' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\#°.:\(\)]+$/",
     'email' => 'required|email',
     'fecha_ultima_reunion' => 'required|date_format:m/d/Y',
     'asistentes' => 'digits_between:0,9|max:20',

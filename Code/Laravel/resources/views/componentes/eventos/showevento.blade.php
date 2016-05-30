@@ -1,6 +1,29 @@
 @extends('layaouts.tablas')
 @section('scripts')
 {!!Html::script('/assets/js/load_modal.js')!!}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#div_profesor').hide();
+    $('#div_externo').hide();
+  });
+  $('#tipo_participante').change(function(){
+     if($('#tipo_participante').val() == 'p'){
+      $('#div_estudiante').hide();
+      $('#div_externo').hide(); 
+      $('#div_profesor').show();
+     }
+     if($('#tipo_participante').val() == 'es'){
+      $('#div_estudiante').show();
+      $('#div_profesor').hide();
+      $('#div_externo').hide();
+     }
+     if($('#tipo_participante').val() == 'ex'){
+      $('#div_estudiante').hide();
+      $('#div_profesor').hide();
+      $('#div_externo').show();
+     }
+  });
+</script>
 @endsection
 @section('content')
 <section class="content">
@@ -104,31 +127,38 @@
 </div><!-- /.box-body -->
 </div><!-- /.box -->
 
+<div class="box box-danger">
 <div class="box-body">
  <div class="row form-group">
-  <div class="col-md-3">
-  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Participante</button>
+  <div class="col-md-12">
+  {!! Form::open(['route' => 'asistencia.store', 'method' => 'POST']) !!}
+  {!!Form::hidden('id_evento', $eventos[0]->id)!!}
+  <div class="col-md-2">
+    {!!Form::select('tipo_participante', ['es' => 'Estudiante', 'p' => 'Profesor', 'ex' => 'Externo'], null, ['class' => 'form-control', 'id' => 'tipo_participante'])!!}
+  </div>
+  <div id="div_estudiante" class="col-md-4">
+    {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['class' => 'form-control select']) !!}
+  </div>
+  <div id="div_profesor" class="col-md-4">
+    {!! Form::select('id_profesor', $nombre_profesor->toArray(), null, ['class' => 'form-control select']) !!}
+  </div>
+  <div id="div_externo" class="col-md-4">
+    {!! Form::select('id_externo', $nombre_externo->toArray(), null, ['class' => 'form-control select']) !!}
+  </div>
+  <button type="submit" class="btn btn-success">Registrar</button>
+  {!! Form::close() !!}
  </div>
 </div>
-@if($errors->any())
-<div class="alert alert-danger" role="alert">
-  <p>Por favor corrige errores</p>
-  <ul>
-   @foreach($errors->all() as $error)
-   <li>{{ $error }}</li>
-   @endforeach
- </ul>
-</div>
-@endif
+  @include('errors.partials.requesterror')
 <div id="dvData">
   <table class="table table-bordered table-striped">
    <thead>
-    <th><center>Cédula</center></th>
-    <th><center>Nombre</center></th>
-    <th><center>Tipo</center></th>
-    <th><center>Teléfono</center></th>
-    <th><center>Email</center></th>
-    <th><center>Acción</center></th>
+    <th>Cédula</th>
+    <th>Nombre</th>
+    <th>Tipo</th>
+    <th>Teléfono</th>
+    <th>Email</th>
+    <th>Acción</th>
   </thead>
   <tbody>
     @foreach($profesores as $profesor)
@@ -158,21 +188,14 @@
 </tbody>
 </table>
 </div>
-</div>
+</div><!--cierra box body participantes-->
+</div><!--cierra box pane-->
+
+
 </div><!-- /.box-body -->
 </div><!-- /.box -->
 </div><!-- /.col -->
 <button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
 </div><!-- /.row -->
 </section><!-- /.content -->
-@endsection
-@section('scripts')
-<script type="text/javascript">
- $(document).ready(function () {
-  $("#button-excel").click(function(e) {
-   window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' + encodeURIComponent($('#dvData').html()));
-   e.preventDefault();
- });
-});
-</script>
 @endsection

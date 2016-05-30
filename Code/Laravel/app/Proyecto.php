@@ -18,14 +18,14 @@ class Proyecto extends Model
 
 
     public static $reglas = array(
-      'titulo_proyecto' => 'required|max:150|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
-      'tema_central' => 'max:150|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+      'titulo_proyecto' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+      'tema_central' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
       'id_red_conocimiento' => 'required|exists:red_conocimiento,id',
       'tipo' => 'in:ps,i',
       'tipo_proyecto' => 'in:cp,ccr,cc,cct,cre,pc',
       'fecha_inicio' => 'date_format:m/d/Y',
-      'numero_acta' => 'digits:0,9',
-      'fecha_avance1' => 'date_format:m/d/Y',
+      'numero_acta' => 'required|digits_between:2,8',
+      'fecha_avance1' => 'required|date_format:m/d/Y',
       'fecha_avance2' => 'date_format:m/d/Y',
       'fecha_avance3' => 'date_format:m/d/Y',
       'fecha_informe_final' => 'date_format:m/d/Y',

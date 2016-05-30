@@ -35,7 +35,7 @@
             </div><!-- /.content-wrapper -->
 
             <!-- Footer -->
-            @include('Dashboard.footer')
+            
         </div><!-- ./wrapper -->
         <!-- jQuery 2.1.4 -->
         {!!Html::script('assets/plugins/jQuery/jQuery-2.1.4.min.js')!!}

@@ -46,7 +46,7 @@ class OpcionGrado extends Model
                          ];
 
      public static $reglas_investigacion = array(
-        'descripcion' => 'required|max:150|regex:/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/',
+        'descripcion' => "required|max:150|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
         'tipo_opcion_grado' => 'in:mr,mi,epi,epps,pas,pos',
         'linea_investigacion' => 'in:cu,sp',
         'carta_director' => 'in:s,n',
@@ -67,7 +67,7 @@ class OpcionGrado extends Model
         'concepto_6' => 'in:ap,na,aa',
         'fecha_entrega_informe_2' => 'date_format:m/d/Y',
         'fecha_entrega_informe_3' => 'date_format:m/d/Y',
-        'fecha_aprobacion' => 'required|date_format:m/d/Y',
+        'fecha_aprobacion' => 'date_format:m/d/Y',
         'numero_acta' => 'digits:0,9',
         'fecha_entrega_max_proyecto' => 'date_format:m/d/Y',
         'fecha_entrega_informe_final' => 'date_format:m/d/Y',

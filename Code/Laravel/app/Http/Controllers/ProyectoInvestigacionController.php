@@ -8,6 +8,7 @@ use FCS\Http\Requests\CreateProyectoRequest;
 use FCS\Http\Controllers\Controller;
 use FCS\Profesor;
 use FCS\Proyecto;
+use FCS\Participacion;
 use FCS\RedConocimiento;
 use DB, View, Session, Redirect;
 use FCS\TipoProyecto;
@@ -76,8 +77,7 @@ class ProyectoInvestigacionController extends Controller
         $proyectos = DB::table('proyecto')
         ->where('proyecto.id', $id)
         ->get();
-        $profesores = \DB::table('participacion')
-        ->join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
+        $profesores = Participacion::join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
         ->join('proyecto', 'participacion.id_proyecto', '=', 'proyecto.id')
         ->select('participacion.id', 'profesores.telefono', 'profesores.cedula', 'profesores.email', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->where('proyecto.id', $id)

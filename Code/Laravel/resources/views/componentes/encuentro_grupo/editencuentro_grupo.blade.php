@@ -19,7 +19,7 @@
 	        		<div class="pad">
 	        			{!! Form::model($encuentro , $route) !!}
 	        			@include('componentes.encuentro_grupo.partials.form')
-	        			{!! Form::submit('Editar', ['class' => 'btn btn-danger']) !!}
+	        			{!! Form::submit('Editar', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/encuentro-grupo')}}" class="btn btn-danger" >Cancelar</a>
 	        			{!! Form::close() !!}
 	        		</div>
 	        	</div>
