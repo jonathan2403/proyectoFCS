@@ -14,7 +14,7 @@
 								{!! Form::open(array('route' => 'opcion-grado-proyeccion.create', 'method' => 'GET')) !!}
 								{!! Form::select('tipo', array('epps' => 'Proyecto EPPS', 'pas' => 'Pasantía', 'pos' => 'Curso de Posgrado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
 							</div>
-							<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> <b>Nueva</b></button>
+							<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Registro</button>
           			{!! Form::close() !!}
 						</div>
 						<table id="example3" class="table table-bordered table-striped" style="text-align:center">

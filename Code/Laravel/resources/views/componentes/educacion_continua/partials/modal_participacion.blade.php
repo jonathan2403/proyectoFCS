@@ -8,12 +8,12 @@
       <div class="modal-footer" style="text-align:left">
         {!! Form::open(['route' => 'participacion.store', 'method' => 'POST']) !!}
               {!! Form::hidden('id_educacion_continua', $educacion_continua->id, ['id' => 'id_proyecto']) !!}
-              {!! Form::hidden('participacion', 'ec', ['id' => 'id_proyecto']) !!}
-              <center>{!!Form::label('Profesor')!!}
-              {!!Form::radio('tipo', 'p', false)!!} &nbsp
-              {!!Form::label('Estudiante')!!}
-              {!!Form::radio('tipo', 'e', false)!!}</center></br>
-              {!! Form::select('id_participante', [$nombre_profesor->toArray(), $nombre_estudiante->toArray()], null, ['id' => 'select_coinvestigador', 'class' => 'form-control select', 'placeholder' => 'Seleccione Profesor o Estudiante']) !!}
+              <div class="col-xs-12" id="div_profesor">
+                {!! Form::select('id_profesor', $nombre_profesor->toArray(), null, ['id' => 'profesor', 'class' => 'form-control select', 'placeholder' => 'Busca por nombre o Cédula']) !!}
+              </div>
+              <div class="col-xs-12" id="div_estudiante">
+                {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['id' => 'estudiante', 'class' => 'form-control select', 'placeholder' => 'Busca por nombre o Código']) !!}
+              </div>
             </br></br>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-success">Registrar</button>

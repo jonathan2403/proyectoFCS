@@ -79,10 +79,13 @@ class EventoController extends Controller
         ->select('asistencia.id', 'estudiantes.telefono', 'estudiantes.numero_documento', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.segundo_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('eventos.id', $id)
         ->get();
+        $externos = Asistencia::join('externo', 'asistencia.id_externo', '=', 'externo.id')
+        ->select('asistencia.id', 'externo.nombre_externo', 'externo.telefono', 'externo.correo')
+        ->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         $nombre_externo = Externo::all()->lists('full_name_persona', 'id');
-        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo', 'nombre_externo'));
+        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo', 'nombre_externo', 'externos'));
     }
 
     /**

@@ -1,29 +1,7 @@
 @extends('layaouts.tablas')
 @section('scripts')
 {!!Html::script('/assets/js/load_modal.js')!!}
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#div_profesor').hide();
-    $('#div_externo').hide();
-  });
-  $('#tipo_participante').change(function(){
-     if($('#tipo_participante').val() == 'p'){
-      $('#div_estudiante').hide();
-      $('#div_externo').hide(); 
-      $('#div_profesor').show();
-     }
-     if($('#tipo_participante').val() == 'es'){
-      $('#div_estudiante').show();
-      $('#div_profesor').hide();
-      $('#div_externo').hide();
-     }
-     if($('#tipo_participante').val() == 'ex'){
-      $('#div_estudiante').hide();
-      $('#div_profesor').hide();
-      $('#div_externo').show();
-     }
-  });
-</script>
+{!!Html::script('/assets/js/base/participacion.js')!!}
 @endsection
 @section('content')
 <section class="content">
@@ -127,7 +105,13 @@
 </div><!-- /.box-body -->
 </div><!-- /.box -->
 
-<div class="box box-danger">
+<div class="box box-solid box-danger">
+<div class="box-header with-border">
+    <h3 class="box-title">Participantes</h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+</div>
 <div class="box-body">
  <div class="row form-group">
   <div class="col-md-12">
@@ -137,21 +121,22 @@
     {!!Form::select('tipo_participante', ['es' => 'Estudiante', 'p' => 'Profesor', 'ex' => 'Externo'], null, ['class' => 'form-control', 'id' => 'tipo_participante'])!!}
   </div>
   <div id="div_estudiante" class="col-md-4">
-    {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['class' => 'form-control select']) !!}
+    {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['class' => 'form-control select', 'placeholder' => 'Busca por nombre o código']) !!}
   </div>
   <div id="div_profesor" class="col-md-4">
-    {!! Form::select('id_profesor', $nombre_profesor->toArray(), null, ['class' => 'form-control select']) !!}
+    {!! Form::select('id_profesor', $nombre_profesor->toArray(), null, ['class' => 'form-control select', 'placeholder' => 'Busca por nombre o cédula']) !!}
   </div>
   <div id="div_externo" class="col-md-4">
-    {!! Form::select('id_externo', $nombre_externo->toArray(), null, ['class' => 'form-control select']) !!}
+    {!! Form::select('id_externo', $nombre_externo->toArray(), null, ['class' => 'form-control select', 'placeholder' => 'Busca por nombre']) !!}
   </div>
   <button type="submit" class="btn btn-success">Registrar</button>
   {!! Form::close() !!}
+  <hr>
  </div>
 </div>
   @include('errors.partials.requesterror')
 <div id="dvData">
-  <table class="table table-bordered table-striped">
+  <table id="example3" class="table table-bordered table-striped text-center">
    <thead>
     <th>Cédula</th>
     <th>Nombre</th>
@@ -163,28 +148,40 @@
   <tbody>
     @foreach($profesores as $profesor)
     <tr>
-     <td><center>{{$profesor->cedula}}</center></td>
+     <td>{{$profesor->cedula}}</td>
      <td>{{ucwords($profesor->full_name)}}</td>
      <td>Profesor</td>
-     <td><center>{{$profesor->telefono}}</center></td>
-     <td><center>{{$profesor->email}}</center></td>
+     <td>{{$profesor->telefono}}</td>
+     <td>{{$profesor->email}}</td>
      <td>
-      <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $profesor->id !!}').modal();">Borrar</button></center>
+     <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $profesor->id !!}').modal();">Borrar</button>
     </td>
   </tr>
   @endforeach
   @foreach($estudiantes as $estudiante)
   <tr>
-   <td><center>{{$estudiante->numero_documento}}</center></td>
+   <td>{{$estudiante->numero_documento}}</td>
    <td>{{ucwords($estudiante->full_name)}}</td>
    <td>Estudiantes</td>
-   <td><center>{{$estudiante->telefono}}</center></td>
-   <td><center>{{$estudiante->email}}</center></td>
+   <td>{{$estudiante->telefono}}</td>
+   <td>{{$estudiante->email}}</td>
    <td>
-    <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $estudiante->id !!}').modal();">Borrar</button></center>
+   <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $estudiante->id !!}').modal();">Borrar</button>
   </td>
-</tr>
-@endforeach
+  </tr>
+  @endforeach
+  @foreach($externos as $externo)
+    <tr>
+     <td></td>
+     <td>{{ucwords($externo->nombre_externo)}}</td>
+     <td>Externo</td>
+     <td>{{$externo->telefono}}</td>
+     <td>{{$externo->correo}}</td>
+     <td>
+      <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $externo->id !!}').modal();">Borrar</button>
+    </td>
+  </tr>
+  @endforeach
 </tbody>
 </table>
 </div>
@@ -195,7 +192,7 @@
 </div><!-- /.box-body -->
 </div><!-- /.box -->
 </div><!-- /.col -->
-<button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><span class="glyphicon glyphicon-download"></span> PDF</button>|<button id="button-excel" class="btn"><span class="glyphicon glyphicon-download"></span> Excel</button>
+
 </div><!-- /.row -->
 </section><!-- /.content -->
 @endsection

@@ -43,26 +43,9 @@ class AsistenciaController extends Controller
         $evento = Evento::find($request->input('id_evento'));
         if(!$evento)
             return redirect()->back();
-        switch($request->input('tipo_participante')){
-            case 'es':
-            Asistencia::create([
-                'id_evento' => $request->input('id_evento'),
-                'id_estudiante' => $request->input('id_estudiante')
-                ]);
-            break;
-            case 'p':
-            Asistencia::create([
-                'id_evento' => $request->input('id_evento'),
-                'id_profesor' => $request->input('id_profesor')
-                ]);
-            break;
-            default:
-            Asistencia::create([
-                'id_evento' => $request->input('id_evento'),
-                'id_externo' => $request->input('id_externo')
-                ]);
-            break;
-        }
+        $datos = $request->all();
+        $this->validate($request, Asistencia::$reglas);
+        Asistencia::create($datos);
         return redirect()->back();
     }
 
