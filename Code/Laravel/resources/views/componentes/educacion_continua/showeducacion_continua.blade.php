@@ -1,11 +1,13 @@
 @extends('layaouts.tablas')
 @section('scripts')
 {!!Html::script('/assets/js/load_modal.js')!!}
+{!!Html::script('/assets/js/base/participacion.js')!!}
 @endsection
 @section('content')
 <section class="content">
   @include('componentes.educacion_continua.partials.modal_participacion')
-  @include('componentes.educacion_continua.partials.modal_borrarParticipacion')
+  @include('componentes.educacion_continua.partials.modal_borrarProfesor')
+  @include('componentes.educacion_continua.partials.modal_borrarEstudiante')
   <div class="row">
     <div class="col-xs-11">
       <div class="box">
@@ -64,10 +66,21 @@
   </div><!-- /.box-body -->
 </div><!-- /.box -->
 </div><!-- /.box-header -->
+
+<div class="box box-solid box-danger">
+<div class="box-header with-border">
+    <h3 class="box-title">Participantes</h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+</div>
 <div class="box-body">
   <div class="row form-group">
+    <div class="col-xs-3">
+      {!!Form::select('tipo_participante', ['es' => 'Estudiante', 'p' => 'Profesor'], null, ['id' => 'tipo_participante', 'class' => 'form-control'])!!}
+    </div>  
     <div class="col-md-3">
-      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Coinvestigador</button>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Coinvestigador</button>
     </div>
   </div>
   <div id="dvData">
@@ -89,7 +102,7 @@
         <td>{{$profesor->telefono}}</td>
         <td>{{$profesor->email}}</td>
         <td>
-          <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $profesor->id !!}').modal();">Borrar</button></center>
+          <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrarProfesor{!! $profesor->id !!}').modal();">Borrar</button></center>
         </td>
       </tr>
       @endforeach
@@ -101,18 +114,17 @@
         <td>{{$estudiante->telefono}}</td>
         <td>{{$estudiante->email}}</td>
         <td>
-          <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $estudiante->id !!}').modal();">Borrar</button></center>
+          <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrarEstudiante{!! $estudiante->id !!}').modal();">Borrar</button></center>
         </td>
       </tr>
       @endforeach
     </tbody>
   </table>
 </div>
+</div><!-- Cierra body participantes-->
 </div>
-</div><!-- /.box-header -->
-
-</div><!-- /.box-body -->
 </div><!-- /.box -->
-
+</div><!-- col-xs-11 -->
+</div><!-- row -->
 </section><!-- /.content -->
 @endsection

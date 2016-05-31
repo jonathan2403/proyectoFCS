@@ -133,7 +133,7 @@ class EducacionContinuaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 
     /**

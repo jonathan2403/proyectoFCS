@@ -1,5 +1,5 @@
 @foreach($profesores as $profesor)
-  <div class="modal modal-default" id="modalBorrar{!! $profesor->id !!}">
+  <div class="modal modal-default" id="modalBorrarProfesor{!! $profesor->id !!}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
