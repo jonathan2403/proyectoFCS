@@ -49,9 +49,13 @@ class EventoController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(CreateEventoRequest $request)
+    public function store(Request $request)
     {
-        Evento::create($request->all());
+        $datos = $request->all();
+        $valida = \Validator::make($datos, Evento::$reglas);
+        if($valida->fails())
+            return redirect()->back()->withErrors($valida->errors())->withInput();
+        Evento::create($datos);
         return redirect('evento')->with('message','Registro Creado!');
     }
 

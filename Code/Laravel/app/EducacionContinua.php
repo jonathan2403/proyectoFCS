@@ -26,13 +26,13 @@ class EducacionContinua extends Model
               'id_director'
   						];
     public static $reglas_crear = array(
-      'nombre' =>'required',
-      'numero_acta' => 'required',
-      'id_director' => 'required',
-      'fecha_aprobacion' => 'required',
-      'fecha_inicio' => 'required',
-      'pais' => 'required',
-      'ciudad' => 'required',
+      'nombre' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+      'numero_acta' => 'required|digits_between:2,9',
+      'id_director' => 'required|exists:profesores,id',
+      'fecha_aprobacion' => 'required|date_format:m/d/Y',
+      'fecha_inicio' => 'required|date_format:m/d/Y',
+      'pais' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+      'ciudad' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
       );
 
     public static $mensajes = array(
