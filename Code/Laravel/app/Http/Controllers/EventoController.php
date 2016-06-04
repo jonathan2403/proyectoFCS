@@ -124,7 +124,6 @@ class EventoController extends Controller
         $eventos=Evento::find($id);
         $eventos->fill($request->all());
         $eventos->save();
-
         Session::flash('message','Registro Actualizado!');
         return redirect::to('evento');
     }
@@ -146,7 +145,9 @@ class EventoController extends Controller
      * Genera reporte
      */
     public function reporte($tipo_archivo){
-        $eventos=Evento::All();
+        $eventos=Evento::join('tipo_eventos', 'eventos.id_tipoeventos', '=', 'tipo_eventos.id')
+        ->select('eventos.numero_consejo AS Acta', 'eventos.nombre_evento AS Título', "eventos.fecha AS Fecha_Realización", 'eventos.ciudad AS Ciudad', 'tipo_eventos.nombre_tipoevento AS Tipo')
+        ->get();
         $reporte = new ExportFiles();
         switch($tipo_archivo){
             case 'excel':

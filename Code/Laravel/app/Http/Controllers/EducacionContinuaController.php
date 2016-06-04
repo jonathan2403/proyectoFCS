@@ -87,10 +87,8 @@ class EducacionContinuaController extends Controller
         ->select('participacion.id', 'estudiantes.telefono', 'estudiantes.numero_documento', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.segundo_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('educacion_continua.id', $id)
         ->get();
-        $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         $participaciones = Participacion::where('id_educacion_continua', $id)->get();
-        return view('componentes.educacion_continua.showeducacion_continua', compact('educacion_continua', 'profesores', 'estudiantes', 'nombre_profesor', 'nombre_estudiante', 'participaciones', 'indicador_modulo'));
+        return view('componentes.educacion_continua.showeducacion_continua', compact('educacion_continua', 'profesores', 'estudiantes', 'participaciones', 'indicador_modulo'));
     }
 
     /**
@@ -142,16 +140,15 @@ class EducacionContinuaController extends Controller
      */
     public function reporte($tipo_archivo){
         $edus = EducacionContinua::join('profesores', 'educacion_continua.id_director', '=', 'profesores.id')
-        ->select('educacion_continua.id', 'educacion_continua.nombre', 'educacion_continua.fecha_aprobacion', 'educacion_continua.numero_acta'
-            , 'educacion_continua.pais','educacion_continua.ciudad', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
+        ->select('educacion_continua.nombre AS Título', \DB::raw("CONCAT('Fecha: ', educacion_continua.fecha_aprobacion, ' - Acta: ', educacion_continua.numero_acta) AS Aprobación"), \DB::raw("CONCAT(educacion_continua.ciudad, ' - ', educacion_continua.pais) AS Lugar"), \DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Director"))
         ->get();
         $reporte = new ExportFiles();
         switch($tipo_archivo){
             case 'excel':
-            $reporte->createExcel($edus, 'Educación Continua', 'E1');
+            $reporte->createExcel($edus, 'Educación Continua', 'D1');
             break;
             default:
-            $reporte->createPdf($edus, 'Educación Continua', 'E1');
+            $reporte->createPdf($edus, 'Educación Continua', 'D1');
             break;
         }
     }

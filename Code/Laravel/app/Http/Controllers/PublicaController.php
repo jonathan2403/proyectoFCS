@@ -40,7 +40,6 @@ class PublicaController extends Controller
     public function store(Request $request)
     {
         $datos = $request->all();
-        dd($datos);
         Publica::create($datos);
         return redirect()->back();
     }

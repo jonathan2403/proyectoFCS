@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	var table = $('#datos');
-	var route = 'http://localhost:8000/consultar/tipo/evento';
+	var route = 'consultar/tipo/evento';
 	$.get(route, function(res){
 		$(res).each(function(key, value){
 			table.append("<tr><td>"+value.nombre_tipoevento+"</td><td><button value='"+value.id+"' OnClick='mostrar(this)' data-toggle='modal' data-target='#modalEditarTipoEvento' class='btn btn-warning btn-sm'>Editar</button></td></tr>");
@@ -21,7 +21,7 @@ $(document).ready(function(){
 			url: "/crear/tipo/evento",
 			data: { nombre_tipoevento: txt_tipo_evento },
 			success:function(data){
-  				$('#example3 > tbody').append('<tr><td>'
+  				$('#example > tbody').append('<tr><td>'
   					+data.nombre_tipoevento+'</td><td><button class="btn btn-warning btn-sm" value="'+data.id+'" OnClick="mostrar(this)" data-toggle="modal" data-target="#modalEditarTipoEvento">Editar</button></td></tr>');			
   				//carga();
 			}
