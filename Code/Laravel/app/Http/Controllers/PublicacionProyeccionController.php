@@ -86,9 +86,10 @@ class PublicacionProyeccionController extends Controller
        ->get();
        $estudiantes = Publica::join('estudiantes', 'publica.id_estudiante', '=', 'estudiantes.id')
         ->select('publica.id', 'estudiantes.numero_documento','estudiantes.codigo_estudiante', 'estudiantes.email', 'estudiantes.telefono', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
-        ->where('publica.id_pu', $id)
+        ->where('publica.id_publicacion', $id)
         ->get();
-        return view('componentes.publicacion_proyeccion.showPublicacion', compact('publicacion', 'proyecto', 'opcion_grado', 'publicaciones', 'estudiantes', 'indicador_modulo'));
+        $publicaciones = Publica::where('id_publicacion', $id)->get();
+        return view('componentes.publicacion_proyeccion.showPublicacion', compact('publicacion', 'proyecto', 'opcion_grado', 'publicaciones', 'estudiantes', 'profesores', 'indicador_modulo'));
     }
 
     /**

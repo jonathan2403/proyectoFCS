@@ -148,18 +148,23 @@ class ProyectoInvestigacionController extends Controller
                         DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Investigador"))
                 ->where('tipo', 'i')
                 ->get();
+                $celda_fin = 'D1';
             break;
 
             case 'proyeccion':
-            $proyectos = Proyecto::where('tipo', 'ps')->get();
+            $proyectos = Proyecto::join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
+                ->select('proyecto.numero_acta AS Número_Acta', 'proyecto.titulo_proyecto AS Título', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Investigador_Principal"), 'proyecto.fecha_inicio AS Fecha_Inicio', 'proyecto.ejecutado AS Ejecutado')
+                ->where('tipo', 'ps')
+                ->get();
+                $celda_fin = 'E1';
             break;
 
         }
         $reporte = new ExportFiles();
         if($tipo_archivo == 'excel')
-            $reporte->createExcel($proyectos, 'Proyectos', 'D1');
+            $reporte->createExcel($proyectos, 'Proyectos', $celda_fin);
         else
-            $reporte->createPdf($proyectos, 'Proyectos', 'D1');
+            $reporte->createPdf($proyectos, 'Proyectos', $celda_fin);
     }
 
 }

@@ -19,14 +19,16 @@
                 <button class="btn btn-success" data-toggle="modal" data-target="#modalTipoEvento"><i class="fa fa-plus"></i> Tipo Evento</button>
               </div>
             </div>
-            <table id="example" class="table table-bordered table-striped">
-              <thead>
-                <th>Tipo Evento</th>
-                <th>Acción</th>
-              </thead>
-              <tbody id="datos">
-              </tbody>
-            </table>   
+            <div class="col-xs-6">
+              <table id="example" class="table table-bordered table-striped text-center">
+                <thead>
+                  <th>Tipo Evento</th>
+                  <th>Acción</th>
+                </thead>
+                <tbody id="datos">
+                </tbody>
+              </table>   
+            </div>
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col -->
