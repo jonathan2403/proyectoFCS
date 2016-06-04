@@ -43,6 +43,11 @@ class SustentacionController extends Controller
        $valida = \Validator::make($datos, Sustentacion::$reglas);
        if($valida->fails())
             return redirect()->back();
+       $participacion = Sustentacion::where('id_estudiante', $datos['id_estudiante'])
+       ->where('id_opcion_grado', $datos['id_opcion_grado'])
+       ->first();
+       if($participacion)
+         return redirect()->back();
        Sustentacion::create($datos);
        return redirect()->back()->with('message', 'Registro creado!');
      }

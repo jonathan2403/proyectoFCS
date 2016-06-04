@@ -2,7 +2,7 @@
     {!! Form::hidden('tipo_opcion_grado', 'pos', ['id' => 'id_opcion_grado']) !!}
 
     {!!Form::label('Nombre del Posgrado')!!}
-    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'','required'])!!}
+    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>''])!!}
       </br>
 
     {!!Form::label('Director Proyecto')!!}

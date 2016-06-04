@@ -1,4 +1,7 @@
 @extends('layaouts.tablas')
+@section('scripts')
+  {!!Html::script('/assets/js/base/estudiante_modal.js')!!}
+@endsection
 @section('content')
   <section class="content">
     @include('componentes.opcion_grado_investigacion.partials.modal_sustentacion')
@@ -120,7 +123,7 @@
             <div class="box-body">
               <div class="row">
                     <div class="col-xs-12">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo</button>
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo Registro</button>
                       <hr>
                       <table class="table table-bordered table-striped text-center">
                         <thead>

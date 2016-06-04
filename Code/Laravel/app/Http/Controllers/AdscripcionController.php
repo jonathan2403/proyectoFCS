@@ -40,26 +40,20 @@ class AdscripcionController extends Controller
      */
     public function store(Request $request)
     {
-       //dd($request->all());
+       $datos = $request->all();
+       $reglas = [
+       'id_estudiante' => 'required|exists:estudiantes,id',
+       'id_grupo' => 'required|exists:grupo,id'
+       ];       
+       $this->validate($request, $reglas);
+       $participante = Adscripcion::where('id_estudiante', $datos['id_estudiante'])
+       ->where('id_grupo', $datos['id_grupo'])
+       ->first();
+       if($participante)
+            return redirect()->back();
        Adscripcion::create($request->all());
        Session::flash('message', 'Registro Exitoso!');
        return redirect()->back();
-       /*
-       //dd($adscripcion);
-       $query = DB::table('adscripcion')
-       ->select('id')
-       ->where('id_grupo', '=', $adscripcion->id_grupo)
-       ->where('id_estudiante', '=', $adscripcion->id_estudiante)
-       ->get();
-       if($query)
-       {
-         Session::flash('message', 'Estudiante ya está Registrado!');
-       }
-       else {
-         $adscripcion->save();
-         Session::flash('message', 'Estudiante Registrado Correctamente!');
-       }
-       return redirect()->back();*/
     }
 
     /**

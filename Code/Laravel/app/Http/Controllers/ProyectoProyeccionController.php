@@ -9,6 +9,7 @@ use FCS\Http\Controllers\Controller;
 use FCS\Profesor;
 use FCS\Proyecto;
 use FCS\Estudiante;
+use FCS\Participacion;
 use DB, View, Session, Redirect;
 use FCS\TipoProyecto;
 
@@ -65,29 +66,28 @@ class ProyectoProyeccionController extends Controller
     public function show($id)
     {
         $indicador_modulo = 15;
-        $proyectos = DB::table('proyecto')
-        ->where('proyecto.id', $id)
-        ->get();
-        $profesores = \DB::table('participacion')
-        ->join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
+        $proyecto = Proyecto::find($id);
+            if(!$proyecto)
+                return redirect()->back();
+        $profesores = Participacion::join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
         ->join('proyecto', 'participacion.id_proyecto', '=', 'proyecto.id')
         ->select('participacion.id', 'profesores.telefono', 'profesores.cedula', 'profesores.email', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->where('proyecto.id', $id)
         ->get();
-        $estudiantes = \DB::table('participacion')
-        ->join('estudiantes', 'participacion.id_estudiante', '=', 'estudiantes.id')
+        $estudiantes = Participacion::join('estudiantes', 'participacion.id_estudiante', '=', 'estudiantes.id')
         ->join('proyecto', 'participacion.id_proyecto', '=', 'proyecto.id')
         ->select('participacion.id', 'estudiantes.telefono', 'estudiantes.numero_documento', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.segundo_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('proyecto.id', $id)
         ->get();
-        $investigador_principal = \DB::table('proyecto')
-        ->join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
+        $investigador_principal = Proyecto::join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
         ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->where('proyecto.id', $id)
         ->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
-        return view('componentes.proyectos-proyeccion.showProyecto', compact('proyectos', 'profesores', 'nombre_profesor', 'nombre_estudiante', 'investigador_principal', 'estudiantes', 'indicador_modulo'));
+        $participaciones = Participacion::where('id_proyecto', $id)
+                         ->get();
+        return view('componentes.proyectos-proyeccion.showProyecto', compact('proyecto', 'profesores', 'nombre_profesor', 'nombre_estudiante', 'investigador_principal', 'estudiantes', 'indicador_modulo', 'participaciones'));
     }
 
     /**

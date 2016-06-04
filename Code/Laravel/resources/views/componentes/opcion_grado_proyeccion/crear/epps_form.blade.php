@@ -2,7 +2,7 @@
     {!! Form::hidden('tipo_opcion_grado', 'epps', ['id' => 'id_opcion_grado']) !!}
 
     {!!Form::label('Titulo')!!}
-    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo','required'])!!}
+    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo'])!!}
       </br>
 
     {!!Form::label('Director Proyecto')!!}
@@ -42,17 +42,18 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_max_proyecto', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_max_proyecto', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div>
 
-    <hr><font size="4px"><b><center>SECCIÓN INFORME</center></b></font><hr>
+    <h4 class="text-center"><strong>SECCIÓN INFORME</strong></h4>
+    <hr>
 
     {!!Form::label('Entrega al Centro de Proyección Social')!!}
     <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_informe_final', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_informe_final', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div></br>
 
     {!!Form::label('Numero de Acta')!!}
@@ -67,7 +68,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_empaste', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_empaste', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div></br>
 
     {!!Form::label('Fecha Entrega de Certificado')!!}
@@ -75,7 +76,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_entrega_certificado', null, ['id' => 'datepicker', 'class'=>'picker form-control', 'readonly'])!!}
+    {!!Form::text('fecha_entrega_certificado', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div>
   </br>
 

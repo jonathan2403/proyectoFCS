@@ -1,13 +1,13 @@
 @extends('layaouts.tablas')
 @section('scripts')
-{!!Html::script('/assets/js/load_modal.js')!!}
 {!!Html::script('/assets/js/base/participacion.js')!!}
+{!!Html::script('/assets/js/base/profesor_modal.js')!!}
+{!!Html::script('/assets/js/base/estudiante_modal.js')!!}
 @endsection
 @section('content')
 <section class="content">
   @include('componentes.educacion_continua.partials.modal_participacion')
-  @include('componentes.educacion_continua.partials.modal_borrarProfesor')
-  @include('componentes.educacion_continua.partials.modal_borrarEstudiante')
+  @include('componentes.educacion_continua.partials.modal_borrarParticipacion')
   <div class="row">
     <div class="col-xs-11">
       <div class="box">
@@ -67,6 +67,7 @@
 </div><!-- /.box -->
 </div><!-- /.box-header -->
 
+<!--Inicia Participantes-->
 <div class="box box-solid box-danger">
 <div class="box-header with-border">
     <h3 class="box-title">Participantes</h3>
@@ -102,7 +103,7 @@
         <td>{{$profesor->telefono}}</td>
         <td>{{$profesor->email}}</td>
         <td>
-          <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrarProfesor{!! $profesor->id !!}').modal();">Borrar</button></center>
+          <center><button type="button" value="{{$profesor->full_name}}" class="btn btn-danger btn-sm" onclick="$('#modalBorrarParticipacion{!! $profesor->id !!}').modal(this);">Borrar</button></center>
         </td>
       </tr>
       @endforeach
@@ -114,7 +115,7 @@
         <td>{{$estudiante->telefono}}</td>
         <td>{{$estudiante->email}}</td>
         <td>
-          <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrarEstudiante{!! $estudiante->id !!}').modal();">Borrar</button></center>
+          <center><button type="button" value="{{$estudiante->full_name}}" class="btn btn-danger btn-sm" onclick="$('#modalBorrarParticipacion{!! $estudiante->id !!}').modal(this);">Borrar</button></center>
         </td>
       </tr>
       @endforeach
@@ -122,6 +123,7 @@
   </table>
 </div>
 </div><!-- Cierra body participantes-->
+
 </div>
 </div><!-- /.box -->
 </div><!-- col-xs-11 -->

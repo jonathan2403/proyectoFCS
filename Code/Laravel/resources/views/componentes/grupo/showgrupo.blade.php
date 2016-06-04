@@ -1,4 +1,7 @@
 @extends('layaouts.tablas')
+@section('scripts')
+  {!!Html::script('/assets/js/base/estudiante_modal.js')!!}
+@endsection
 @section('content')
   <section class="content">
    @include('componentes.grupo.partials.modal_adscripcion')
@@ -53,4 +56,20 @@
       </div><!-- /.col -->
     </div><!-- /.row -->
   </section><!-- /.content -->
+@endsection
+@section('scripts')
+ <script type="text/javascript">
+   $(document).ready(function(){
+     $('input').iCheck({
+       checkboxClass: 'icheckbox_minimal',
+       radioClass: 'iradio_minimal-red'
+      });
+     $('#select_profesor').select2({
+      width : '100%',
+      display: 'inline-block',
+      minimumInputLength: '1'
+     });
+     $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+   });
+ </script>
 @endsection

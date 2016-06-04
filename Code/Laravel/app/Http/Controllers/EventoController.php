@@ -49,9 +49,13 @@ class EventoController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(CreateEventoRequest $request)
+    public function store(Request $request)
     {
-        Evento::create($request->all());
+        $datos = $request->all();
+        $valida = \Validator::make($datos, Evento::$reglas);
+        if($valida->fails())
+            return redirect()->back()->withErrors($valida->errors())->withInput();
+        Evento::create($datos);
         return redirect('evento')->with('message','Registro Creado!');
     }
 
@@ -81,11 +85,13 @@ class EventoController extends Controller
         ->get();
         $externos = Asistencia::join('externo', 'asistencia.id_externo', '=', 'externo.id')
         ->select('asistencia.id', 'externo.nombre_externo', 'externo.telefono', 'externo.correo')
+        ->where('id_evento', $id)
         ->get();
+        $asistencias = Asistencia::where('id_evento', $id)->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         $nombre_externo = Externo::all()->lists('full_name_persona', 'id');
-        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo', 'nombre_externo', 'externos'));
+        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo', 'nombre_externo', 'externos', 'asistencias'));
     }
 
     /**

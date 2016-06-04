@@ -2,7 +2,7 @@
     {!! Form::hidden('tipo_opcion_grado', 'pas', ['id' => 'id_opcion_grado']) !!}
 
     {!!Form::label('Título')!!}
-    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo','required'])!!}
+    {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo'])!!}
       </br>
 
     {!!Form::label('Director de la Pasantía')!!}

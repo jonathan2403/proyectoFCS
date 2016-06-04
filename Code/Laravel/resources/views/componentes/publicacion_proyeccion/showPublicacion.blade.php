@@ -1,13 +1,13 @@
 @extends('layaouts.tablas')
 @section('content')
   <section class="content">
-
+  
     <div class="row">
       <div class="col-xs-11">
         <div class="box">
           <div class="box-header">
             @include('layaouts.partials.mensaje')
-            <table class="table">
+            <table class="table text-center">
               <thead>
                 <th>Título</th>
                 <th>Grupo</th>
@@ -15,14 +15,10 @@
                 <th>Proyecto</th>
               </thead>
               <tbody>
-                 <td>{{ucfirst($publicaciones[0]->descripcion)}}</td>
-                 <td>{{ucfirst($publicaciones[0]->sigla)}}</td>
-                 @if(empty($opcion_grado[0]->descripcion))
-                 <td>No Registra</td>
-                 @else
-                 <td>{{ucfirst($opcion_grado[0]->descripcion)}}</td>
-                 @endif
-                 <td>{{ucfirst($proyecto[0]->titulo_proyecto)}}</td>
+                 <td>{{isset($publicacion) ? ucfirst($publicacion->descripcion) : 'No Registra'}}</td>
+                 <td>{{isset($publicacion->sigla) ? $publicacion->sigla : 'No Registra'}}</td>
+                 <td>{{isset($opcion_grado->descripcion) ? $opcion_grado->descripcion : 'No Registra'}}
+                 <td>{{isset($proyecto->titulo_proyecto) ? $proyecto->titulo_proyecto : 'No Registra'}}</td>
               </tbody>
             </table>
           </div><!-- /.box-header -->
@@ -32,16 +28,7 @@
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Coinvestigador</button>
               </div>
             </div>
-            @if($errors->any())
-            <div class="alert alert-danger" role="alert">
-              <p>Por favor corrige errores</p>
-              <ul>
-                @foreach($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </div>
-            @endif
+            
             <div id="dvData">
                <table id="example3" class="table table-bordered table-striped">
                 <thead>

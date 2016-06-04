@@ -1,9 +1,9 @@
 <div class="form-group">
     {!!Form::label('Acta de Consejo')!!}
-    {!!Form::text('numero_consejo',null,['class'=>'form-control','placeholder'=>'', 'required'])!!}
+    {!!Form::text('numero_consejo',null,['class'=>'form-control','placeholder'=>''])!!}
 </br>
     {!!Form::label('Nombre del Evento')!!}
-    {!!Form::text('nombre_evento',null,['class'=>'form-control','placeholder'=>'', 'required'])!!}
+    {!!Form::text('nombre_evento',null,['class'=>'form-control','placeholder'=>''])!!}
   </br>
 
     {!!Form::label('Fecha de Realización')!!}<br>
@@ -33,7 +33,7 @@
 
 <hr>
 
-<b><center>BENEFICIADOS</center></b>
+    <h4 class="text-center"><strong>BENEFICIADOS</strong></h4>
     <hr>
     <table class="table table-bordered">
      <thead>

@@ -100,10 +100,9 @@ class GrupoController extends Controller
         ->select('adscripcion.id', 'estudiantes.codigo_estudiante', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('grupo.id', $id)
         ->get();
-        $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         if($grupo->tipo == 'ps')
             $indicador_modulo = 20;
-        return view('componentes.grupo.showgrupo', compact('grupos', 'estudiantes', 'nombre_estudiante', 'indicador_modulo'));
+        return view('componentes.grupo.showgrupo', compact('grupos', 'estudiantes', 'indicador_modulo'));
     }
 
     /**

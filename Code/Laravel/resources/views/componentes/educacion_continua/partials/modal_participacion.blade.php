@@ -8,13 +8,17 @@
       <div class="modal-footer" style="text-align:left">
         {!! Form::open(['route' => 'participacion.store', 'method' => 'POST']) !!}
               {!! Form::hidden('id_educacion_continua', $educacion_continua->id, ['id' => 'id_proyecto']) !!}
-              <div class="col-xs-12" id="div_profesor">
-                {!! Form::select('id_profesor', $nombre_profesor->toArray(), null, ['id' => 'profesor', 'class' => 'form-control select', 'placeholder' => 'Busca por nombre o Cédula']) !!}
-              </div>
-              <div class="col-xs-12" id="div_estudiante">
-                {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['id' => 'estudiante', 'class' => 'form-control select', 'placeholder' => 'Busca por nombre o Código']) !!}
-              </div>
-            </br></br>
+              <div id="div_estudiante">
+            {!! Form::text('estudiante', null,['class' => 'form-control', 'id' => 'nombre_estudiante','placeholder'=>'Buscar por nombre o Código']) !!}
+        <div id="label_oculto_estudiante"></div>                     
+        {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
+          </div>
+          <div id="div_profesor">
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_profesor"></div>                     
+            {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
+          </div>
+          <hr></br>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-success">Registrar</button>
         {!! Form::close() !!}

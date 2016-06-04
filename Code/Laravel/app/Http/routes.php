@@ -71,6 +71,9 @@ Route::group([ 'middleware' => 'auth'], function(){
 // ruta para el autocompletado estudiante
 Route::get('/buscarEstudiante/{palabra}','buscarPersonaController@buscarEstudiante');
 
+// ruta autocompletado profesor
+Route::get('/buscarProfesor/{palabra}','buscarPersonaController@buscarProfesor');
+
 // ruta para el autocompletado externos
 Route::get('/buscarExternoPersona/{palabra}', 'buscarPersonaController@buscarPersonaExterno');
 Route::get('/buscarExternoEntidad/{palabra}', 'buscarPersonaController@buscarEntidadExterno');
