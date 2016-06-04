@@ -39,8 +39,9 @@ class PublicaController extends Controller
      */
     public function store(Request $request)
     {
-        Publica::create($request->all());
-        dd($request->all());
+        $datos = $request->all();
+        dd($datos);
+        Publica::create($datos);
         return redirect()->back();
     }
 
@@ -86,6 +87,7 @@ class PublicaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Publica::destroy($id);
+        return redirect()->back();
     }
 }

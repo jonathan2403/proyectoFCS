@@ -1,6 +1,7 @@
 @extends('layaouts.tablas')
 @section('scripts')
     {!!Html::script('assets/js/load.js')!!}
+    {!!Html::script('/assets/js/base/profesor_modal.js')!!}
 @endsection
 @section('content')
 <section class="content">
@@ -76,13 +77,12 @@
                       <h5 class="box-title">Participantes</h5>
                     </div>
             <div class="box-body">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo Registro</button>
               <div class="row text-center">
                     <div class="col-xs-12">
                       <hr>
                       <table class="table table-bordered table-striped text-center">
                         <thead>
-                          <th>Código</th>
                           <th>N° Documento</th>
                           <th>Nombre</th>
                           <th>Teléfono</th>
@@ -90,10 +90,18 @@
                           <th>Acción</th>
                         </thead>
                         <tbody>
-                        <tr>
-                          <td>160002403</td>
-                          <td>1121888930</td>
-                        </tr>
+                        @foreach($profesores as $profesor)
+                          <tr>
+                            <td>{{$profesor->cedula}}</td>
+                            <td>{{ucwords($profesor->full_name)}}</td>
+                            <td>{{$profesor->telefono}}</td>
+                            <td>{{$profesor->email}}</td>
+                            <td>
+                              <center><button type="button" value="{{$profesor->full_name}}" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $profesor->id !!}').modal(this);">Borrar</button></center>
+                            </td>
+                          </tr>
+                        @endforeach
+                        </tbody>
                     </table>
                     </div>                    
               </div>

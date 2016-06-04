@@ -7,7 +7,7 @@
           <h4 class="modal-title">Eliminar Registro</h4>
         </div>
         <div class="modal-body">
-        <p>¿Esta Seguro De Eliminar El Registro Seleccionado?</p>
+        <p>¿Esta Seguro De Eliminar <strong>{{ucwords($estudiante->full_name)}}</strong>?</p>
         </div>
         <div class="modal-footer">
           {!! Form::open(array("route"=>array("sustentacion.destroy",$estudiante->id),"method"=>"DELETE")) !!}

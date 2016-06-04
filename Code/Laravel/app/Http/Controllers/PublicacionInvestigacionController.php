@@ -12,6 +12,7 @@ use FCS\Grupo;
 use FCS\Publicacion;
 use FCS\OpcionGrado;
 use FCS\Estudiante;
+use FCS\Publica;
 use FCS\Base\ExportFiles;
 use DB, View, Session, Redirect;
 
@@ -86,13 +87,20 @@ class PublicacionInvestigacionController extends Controller
         ->select('grupo.sigla')
         ->where('publicacion.id', $id)
         ->first();
-       $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
-       $publica = \DB::table('publica')
-       ->join('profesores', 'publica.id_profesor', '=', 'profesores.id')
+       $publica = Publica::join('profesores', 'publica.id_profesor', '=', 'profesores.id')
        ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_profesor"))
        ->where('publica.id_publicacion', $id)
        ->get();
-        return view('componentes.publicacion_investigacion.showPublicacion', compact('publicacion', 'proyecto', 'opcion_grado', 'grupo', 'nombre_estudiante', 'publica', 'indicador_modulo'));
+       $profesores = Publica::join('profesores', 'publica.id_profesor', '=', 'profesores.id')
+       ->select('publica.id', 'profesores.cedula', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_profesor"), 'profesores.telefono', 'profesores.email')
+       ->where('publica.id_publicacion', $id)
+       ->get();
+       $estudiantes = Publica::join('estudiantes', 'publica.id_estudiante', '=', 'estudiantes.id')
+        ->select('publica.id', 'estudiantes.numero_documento','estudiantes.codigo_estudiante', 'estudiantes.email', 'estudiantes.telefono', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
+        ->where('publica.id_publicacion', $id)
+        ->get();
+        $publicaciones = Publica::where('id_publicacion', $id)->get();
+        return view('componentes.publicacion_investigacion.showPublicacion', compact('publicacion', 'proyecto', 'opcion_grado', 'grupo', 'nombre_estudiante', 'publica', 'profesores', 'nombre_profesor', 'estudiantes', 'publicaciones', 'indicador_modulo'));
     }
 
     /**

@@ -10,6 +10,7 @@ use FCS\Profesor;
 use FCS\Estudiante;
 use FCS\OpcionGrado;
 use FCS\Externo;
+use FCS\Sustentacion;
 use DB, View, Session, Redirect;
 
 class OpcionGradoProyeccionController extends Controller
@@ -68,37 +69,36 @@ class OpcionGradoProyeccionController extends Controller
     public function show($id)
     {
         $indicador_modulo = 14;
-        $opcion_grados = OpcionGrado::where('opcion_grado.id', $id)
-        ->get();
-        if(!$opcion_grados)
+        $opcion_grado = OpcionGrado::find($id);
+        if(!$opcion_grado)
             return redirect()->back();
         $director = OpcionGrado::join('profesores', 'opcion_grado.id_director', '=', 'profesores.id')
         ->select('opcion_grado.id', 'opcion_grado.descripcion',
            DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS name_director"))
         ->where('opcion_grado.id', $id)
         ->get();
-        $externo = OpcionGrado::join('entidad', 'opcion_grado.id_externo', '=', 'entidad.id')
-        ->select('entidad.nombre_entidad AS nombre_externo')
-        ->get();
-        $entidad = OpcionGrado::join('entidad', 'opcion_grado.id_entidad', '=', 'entidad.id')
-        ->select('entidad.nombre_entidad AS nombre_entidad')
-        ->get();
+        $externo = OpcionGrado::join('externo', 'opcion_grado.id_externo', '=', 'externo.id')
+        ->select('externo.nombre_externo AS nombre_externo')
+        ->first();
+        $entidad = OpcionGrado::join('externo', 'opcion_grado.id_entidad', '=', 'externo.id')
+        ->select('externo.nombre_externo AS nombre_entidad')
+        ->first();
         $supervisor = OpcionGrado::join('profesores', 'opcion_grado.id_supervisor', '=', 'profesores.id')
         ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS name_supervisor"))
         ->where('opcion_grado.id', $id)
-        ->get();
-        $estudiantes = Sustentacion::join('estudiantes', 'sustentacion.id_estudiante', '=', 'estudiantes.codigo_estudiante')
+        ->first();
+        $estudiantes = Sustentacion::join('estudiantes', 'sustentacion.id_estudiante', '=', 'estudiantes.id')
         ->join('opcion_grado', 'sustentacion.id_opcion_grado', '=', 'opcion_grado.id')
-        ->select('sustentacion.id','estudiantes.codigo_estudiante', 'estudiantes.email', 'estudiantes.telefono', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
+        ->select('sustentacion.id', 'estudiantes.numero_documento','estudiantes.codigo_estudiante', 'estudiantes.email', 'estudiantes.telefono', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('opcion_grado.id', $id)
         ->get();
-        $nombre_estudiante = Estudiante::all()->lists('full_name', 'codigo_estudiante');
-        if($opcion_grados[0]->tipo_opcion_grado == "Pasantía")
-              return view('componentes.opcion_grado_proyeccion.show.show_pas', compact('estudiantes', 'opcion_grados', 'supervisor', 'nombre_estudiante','entidad', 'director','externo', 'indicador_modulo'));
-        if($opcion_grados[0]->tipo_opcion_grado == "EPPS")
-              return view('componentes.opcion_grado_proyeccion.show.show_epps', compact('estudiantes', 'opcion_grados', 'supervisor', 'nombre_estudiante','entidad', 'director','externo', 'indicador_modulo'));
-        if($opcion_grados[0]->tipo_opcion_grado == "Posgrado")
-              return view('componentes.opcion_grado_proyeccion.show.show_pos', compact('estudiantes', 'opcion_grados', 'supervisor', 'nombre_estudiante','entidad', 'director','externo', 'indicador_modulo'));
+        $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
+        if($opcion_grado->tipo_opcion_grado == "Pasantía")
+              return view('componentes.opcion_grado_proyeccion.show.show_pas', compact('estudiantes', 'opcion_grado', 'supervisor', 'nombre_estudiante','entidad', 'director','externo', 'indicador_modulo'));
+        if($opcion_grado->tipo_opcion_grado == "EPPS")
+              return view('componentes.opcion_grado_proyeccion.show.show_epps', compact('estudiantes', 'opcion_grado', 'supervisor', 'nombre_estudiante','entidad', 'director','externo', 'indicador_modulo'));
+        if($opcion_grado->tipo_opcion_grado == "Posgrado")
+              return view('componentes.opcion_grado_proyeccion.show.show_pos', compact('estudiantes', 'opcion_grado', 'supervisor', 'nombre_estudiante','entidad', 'director','externo', 'indicador_modulo'));
     }
 
     /**

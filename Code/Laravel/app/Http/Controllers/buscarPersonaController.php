@@ -9,7 +9,8 @@ use FCS\Externo;
 class buscarPersonaController extends Controller{
 
 	public function buscarEstudiante($palabra){
-		$estudiantes = Estudiante::where('primer_nombre', 'like', '%'.$palabra.'%')
+		$estudiantes = Estudiante::select('id', 'primer_nombre', 'segundo_nombre', 'codigo_estudiante', 'apellido_paterno', 'apellido_materno')
+		->where('primer_nombre', 'like', '%'.$palabra.'%')
 		->orWhere('segundo_nombre', 'like', '%'.$palabra.'%')
 		->orWhere('codigo_estudiante', 'like', '%'.$palabra.'%')
 		->orWhere('apellido_paterno', 'like', '%'.$palabra.'%')

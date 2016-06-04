@@ -89,7 +89,8 @@ class EducacionContinuaController extends Controller
         ->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
-        return view('componentes.educacion_continua.showeducacion_continua', compact('educacion_continua', 'profesores', 'estudiantes', 'nombre_profesor', 'nombre_estudiante', 'indicador_modulo'));
+        $participaciones = Participacion::where('id_educacion_continua', $id)->get();
+        return view('componentes.educacion_continua.showeducacion_continua', compact('educacion_continua', 'profesores', 'estudiantes', 'nombre_profesor', 'nombre_estudiante', 'participaciones', 'indicador_modulo'));
     }
 
     /**

@@ -12,6 +12,7 @@ use FCS\Grupo;
 use FCS\Publicacion;
 use FCS\OpcionGrado;
 use FCS\Estudiante;
+use FCS\Publica;
 use DB, View, Session, Redirect;
 
 class PublicacionProyeccionController extends Controller
@@ -68,28 +69,26 @@ class PublicacionProyeccionController extends Controller
     public function show($id)
     {
         $indicador_modulo = 19;
-        $publicaciones = \DB::table('publicacion')
-        ->join('grupo', 'publicacion.id_grupo', '=', 'grupo.id')
-        ->where('publicacion.id', $id)
-        ->select('publicacion.id',  'publicacion.descripcion', 'grupo.sigla')
-        ->get();
-      $proyecto = \DB::table('publicacion')
-        ->join('proyecto', 'publicacion.id_proyecto', '=', 'proyecto.id')
+        $publicacion = Publicacion::find($id);
+        if(!$publicacion)
+            return redirect()->back();
+      $proyecto = Publicacion::join('proyecto', 'publicacion.id_proyecto', '=', 'proyecto.id')
         ->where('publicacion.id', $id)
         ->select('proyecto.titulo_proyecto')
-        ->get();
-      $opcion_grado = \DB::table('publicacion')
-        ->join('opcion_grado', 'publicacion.id_opcion_grado', '=', 'opcion_grado.id')
+        ->first();
+      $opcion_grado = Publicacion::join('opcion_grado', 'publicacion.id_opcion_grado', '=', 'opcion_grado.id')
         ->where('publicacion.id', $id)
         ->select('opcion_grado.descripcion')
-        ->get();
-       $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
-       $publica = \DB::table('publica')
-       ->join('profesores', 'publica.id_profesor', '=', 'profesores.id')
-       ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_profesor"))
+        ->first();
+       $profesores = Publica::join('profesores', 'publica.id_profesor', '=', 'profesores.id')
+       ->select('publica.id', 'profesores.cedula', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_profesor"), 'profesores.telefono', 'profesores.email')
        ->where('publica.id_publicacion', $id)
        ->get();
-        return view('componentes.publicacion_proyeccion.showPublicacion', compact('publicaciones', 'proyecto', 'opcion_grado', 'nombre_estudiante', 'publica', 'indicador_modulo'));
+       $estudiantes = Publica::join('estudiantes', 'publica.id_estudiante', '=', 'estudiantes.id')
+        ->select('publica.id', 'estudiantes.numero_documento','estudiantes.codigo_estudiante', 'estudiantes.email', 'estudiantes.telefono', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
+        ->where('publica.id_pu', $id)
+        ->get();
+        return view('componentes.publicacion_proyeccion.showPublicacion', compact('publicacion', 'proyecto', 'opcion_grado', 'publicaciones', 'estudiantes', 'indicador_modulo'));
     }
 
     /**

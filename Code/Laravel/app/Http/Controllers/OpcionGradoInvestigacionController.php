@@ -104,11 +104,10 @@ class OpcionGradoInvestigacionController extends Controller
         ->select('titulo_proyecto')
         ->where('opcion_grado.id', $id)
         ->first();
-        $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         if($opciongrado->tipo_opcion_grado == 'Mon. Investigativa' || $opciongrado->tipo_opcion_grado == 'Mon. de Revisión')
-            return view('componentes.opcion_grado_investigacion.show.show_mon', compact('estudiantes', 'director', 'nombre_estudiante', 'opciongrado', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
+            return view('componentes.opcion_grado_investigacion.show.show_mon', compact('estudiantes', 'director', 'opciongrado', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
         else
-            return view('componentes.opcion_grado_investigacion.show.show_epi', compact('estudiantes', 'director', 'nombre_estudiante', 'opciongrado', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
+            return view('componentes.opcion_grado_investigacion.show.show_epi', compact('estudiantes', 'director', 'opciongrado', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
     }
 
     /**

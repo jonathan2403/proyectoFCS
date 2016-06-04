@@ -10,9 +10,11 @@
       </div>
       <div class="modal-footer">
         {!! Form::open(['route' => 'adscripcion.store', 'method' => 'POST']) !!}
-              {!! Form::hidden('id_grupo', $grupos[0]->id, ['id' => 'id_grupo']) !!}
-              {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['id' => 'id_profesor', 'class' => 'select form-control']) !!}
-                  </br>
+        {!! Form::hidden('id_grupo', $grupos[0]->id, ['id' => 'id_grupo']) !!}
+        {!! Form::text('estudiante', null,['class' => 'form-control', 'id' => 'nombre_estudiante','placeholder'=>'Buscar por nombre o Código']) !!}
+        <div id="label_oculto"></div>                     
+        {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
+           </br>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-success">Registrar</button>
         {!! Form::close() !!}

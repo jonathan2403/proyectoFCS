@@ -7,7 +7,6 @@
 <section class="content">
  @include('componentes.eventos.partials.modal_borrarAsistencia')
  @include('componentes.eventos.partials.modal_asistencia')
- @include('componentes.eventos.partials.modal_borrarEstudiante')
  <div class="row">
   <div class="col-xs-11">
    <div class="box">
@@ -162,7 +161,7 @@
   <tr>
    <td>{{$estudiante->numero_documento}}</td>
    <td>{{ucwords($estudiante->full_name)}}</td>
-   <td>Estudiantes</td>
+   <td>Estudiante</td>
    <td>{{$estudiante->telefono}}</td>
    <td>{{$estudiante->email}}</td>
    <td>

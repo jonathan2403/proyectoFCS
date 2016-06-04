@@ -1,5 +1,5 @@
-@foreach($profesores as $profesor)
-  <div class="modal modal-default" id="modalBorrar{!! $profesor->id !!}">
+@foreach($asistencias as $asistencia)
+  <div class="modal modal-default" id="modalBorrar{!! $asistencia->id !!}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -10,7 +10,7 @@
         <p>¿Esta Seguro De Eliminar El Registro Seleccionado?</p>
         </div>
         <div class="modal-footer">
-          {!! Form::open(array("route"=>array("asistencia.destroy",$profesor->id),"method"=>"DELETE")) !!}
+          {!! Form::open(array("route"=>array("asistencia.destroy",$asistencia->id),"method"=>"DELETE")) !!}
           <button type="submit" class="btn btn-success">Aceptar</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             {!! Form::close() !!}
