@@ -1,15 +1,5 @@
 @section('scripts')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('input').iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal-red'
-      });
-      $('.select').select2({
-        minimumInputLength : '1'
-      });
-    });
-  </script>
+  {!!Html::script('assets/js/componentes/grupos/validarGrupos.js')!!}
 @endsection
 @extends('layaouts.tablas')
 @section('content')
@@ -29,7 +19,7 @@
               <div class="box-body">
                   <div class="row">
                     <div class="pad">
-                      {!! Form::model($grupo, ['route' => 'grupos.update', 'method' => 'PUT'])!!}
+                      {!! Form::model($grupo, ['route' => 'grupos.update', 'method' => 'PUT', 'id' => 'grupos-form', 'class'=>'formulario_validado'])!!}
                         @include('componentes.grupo.partials.form_editar')
                       {!! Form::submit('Editar', ['class'=>'btn btn-danger']) !!}
                       {!!Form::close()!!}

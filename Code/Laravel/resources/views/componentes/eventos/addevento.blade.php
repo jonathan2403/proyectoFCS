@@ -1,6 +1,7 @@
 @extends('layaouts.tablas')
 @section('scripts')
    {!!Html::script('/assets/js/load_views.js')!!}
+   {!!Html::script('/assets/js/componentes/eventos/validarEventos.js')!!}
 @endsection
 @section('content')
    <section class="content">
@@ -26,7 +27,7 @@
                 @endif
                   <div class="row">
                     <div class="pad">
-                        {!! Form::open($route)!!}
+                        {!! Form::open($route + ['id' => 'eventos-form', 'class'=>'formulario_validado'])!!}
                           @include('componentes.eventos.partials.form')
                         {!!Form::submit('Crear', ['class'=>'btn btn-danger'])!!}
                         {!!Form::close()!!}

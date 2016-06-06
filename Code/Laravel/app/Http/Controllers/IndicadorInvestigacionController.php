@@ -8,11 +8,11 @@ class IndicadorInvestigacionController extends Controller
  	public function index()
  	  {
       $indicador_modulo = 13;
- 	  	$grupos = \DB::table('grupo')->count();
+ 	  	  $grupos = \DB::table('grupo')->count();
         $proyectos = \DB::table('proyecto')->count();
         $publicaciones = \DB::table('publicacion')->count();
         $opciones_grado = \DB::table('opcion_grado')->count();
-        return view('componentes.indicadores-investigacion.index', compact('grupos', 'proyectos', 'publicaciones', 'opciones_grado', 'indicador_modulo'));
+        return view('componentes.indicadores.investigacion.index', compact('grupos', 'proyectos', 'publicaciones', 'opciones_grado', 'indicador_modulo'));
  	  }
  	public function show($indicador)
       {

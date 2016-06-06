@@ -32,7 +32,7 @@ var boton=$("#consignarsaldo");
             input_visible.change(function(){
                     idestudiante_oculto.val('');
                     //console.log(idestudiante_oculto.val());
-                $("#label_oculto_estudiante").text("No ha seleccionado un usuario correcto");
+                $("#label_oculto_estudiante").text("No ha seleccionado un registro correcto");
             });
             $.getJSON("/buscarEstudiante/"+request.term,{
             },response);//fin get JSON

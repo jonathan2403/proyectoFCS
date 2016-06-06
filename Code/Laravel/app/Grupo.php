@@ -19,6 +19,11 @@ class Grupo extends Model
       return ucwords($name);
     }
 
+    // relación uno a muchos con la tabla adscripciones
+    public function adscripciones(){
+      return $this->hasMany('FCS\Adscripcion', 'id_grupo');
+    }
+
     public static $reglas = array(
       'sigla' => "max:50|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.\(\)]+$/",
       'descripcion' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.\(\)]+$/",

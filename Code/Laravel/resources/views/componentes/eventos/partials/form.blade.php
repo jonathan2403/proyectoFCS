@@ -33,9 +33,15 @@
 
 <hr>
 
-    <h4 class="text-center"><strong>BENEFICIADOS</strong></h4>
-    <hr>
-    <table class="table table-bordered">
+  <div class="box box-danger direct-chat direct-chat-warning collapsed-box">
+         <div class="box-header with-border">
+          <h3 class="box-title">Beneficiados</h3>
+          <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <div class="box-body" style="display:none;">
+          <table class="table table-bordered">
      <thead>
       <th><center>Participación UNILLANOS</center></th>
       <th><center>Participación Sectorial</center></th>      
@@ -108,6 +114,8 @@
        </td>  
         </tr>
      </tbody>
-    </table> 
-    </br>
+    </table>
+        </div><!-- /.box-body -->
+</div><!-- /.box --> 
+</br>
 </div>

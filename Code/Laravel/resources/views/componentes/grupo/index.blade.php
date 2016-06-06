@@ -21,6 +21,7 @@
 									<th>Coordinador</th>
 									<th>Tipo</th>
 									<th>Categoría</th>
+									<th>N° Integrantes</th>
 									<th>Acción</th>
 								</thead>
 								<tbody>
@@ -31,6 +32,7 @@
 											<td>{{ucwords($grupo->nombre_coordinador)}}</td>
 											<td>{{$grupo->tipo}}</td>
 											<td>{{ucfirst($grupo->categoria)}}</td>
+											<td>{{$grupo->adscripciones->count()}}</td>
 											<td>
 											<a href="{{URL::to('grupos/edit/'.$grupo->id)}}" class="btn btn-warning btn-sm" >Editar</a>
 											</td>

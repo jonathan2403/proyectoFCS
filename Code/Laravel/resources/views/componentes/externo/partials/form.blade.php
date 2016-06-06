@@ -1,14 +1,16 @@
 <div class="form-group">
 	{!!Form::label('Nombre')!!}
-  {!!Form::text('nombre_externo', null, ['class'=>'form-control', 'placeholder'=>''])!!}
-		</br>
-
+    {!!Form::text('nombre_externo', null, ['class'=>'form-control', 'placeholder'=>''])!!}
+	</br>
+		
 	{!!Form::label('Tipo Externo')!!}
-		 </br>
+	 </br>
 	{!!Form::label('Persona')!!}
-	{!!Form::radio('tipo_externo', 'p', false)!!} &nbsp
+	{!!Form::radio('tipo_externo', 'p', false, ['class' => 'form-control'])!!} 
 	{!!Form::label('Entidad')!!}
-	{!!Form::radio('tipo_externo', 'e', false)!!}
+	{!!Form::radio('tipo_externo', 'e', false, ['class' => 'form-control'])!!}
+		
+
 	</br></br>
 
   {!!Form::label('Teléfono')!!}

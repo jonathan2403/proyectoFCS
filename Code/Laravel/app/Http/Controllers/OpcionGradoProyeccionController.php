@@ -50,12 +50,24 @@ class OpcionGradoProyeccionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateOpcionGradoRequest $request)
+    public function store(Request $request)
     {
         $datos = $request->all();
-        $valida = \Validator::make($datos, OpcionGrado::$reglas_proyeccion, OpcionGrado::$mensajes_proyeccion);
-        if($valida->fails())
-            return redirect()->back()->withErrors($valida->errors())->withInput();
+        switch($datos['tipo_opcion_grado']){
+            case 'epps':
+            $reglas = OpcionGrado::$reglas_epps;
+            $mensajes = OpcionGrado::$mensajes_epps;
+            break;
+            case 'pos':
+            $reglas = OpcionGrado::$reglas_pos;
+            $mensajes = OpcionGrado::$mensajes_pos;
+            break;
+            default;
+            $reglas = OpcionGrado::$reglas_pas;
+            $mensajes = OpcionGrado::$mensajes_pas;
+            break;
+        }
+        $this->validate($request, $reglas, $mensajes);
         OpcionGrado::create($request->all());
         return redirect('opcion-grado-proyeccion')-> with('message','Registro Creado!');
     }
