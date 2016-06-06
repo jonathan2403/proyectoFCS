@@ -1,5 +1,6 @@
 @section('scripts')
    {!!Html::script('/assets/js/load_views.js')!!}
+   {!!Html::script('/assets/js/componentes/externos/validarExterno.js')!!}
 @endsection
 @extends('layaouts.tablas')
 @section('content')
@@ -17,7 +18,7 @@
             <div class="box-body">
               <div class="row">
                 <div class="pad">
-                  {!! Form::open($route)!!}
+                  {!! Form::open($route + ['id' => 'externos-form', 'class'=>'formulario_validado'])!!}
                   @include('componentes.externo.partials.form')
                   {!! Form::submit('Crear',['class'=>'btn btn-danger']) !!}
                   {!!Form::close()!!}

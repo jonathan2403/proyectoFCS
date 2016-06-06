@@ -1,8 +1,8 @@
-<div class="form-group">
+<div class="form-group" id="form-content">
 	{!!Form::label('Sigla')!!}
     {!!Form::text('sigla', null, ['class'=>'form-control', 'placeholder'=>'sigla del grupo'])!!}
 
-    {!!Form::label('Nombre')!!}
+    {!!Form::label('Nombre', null, ['for' => 'descripcion'])!!}
     {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'nombre del grupo'])!!}
 	</br>
 

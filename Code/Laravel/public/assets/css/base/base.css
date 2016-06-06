@@ -1,0 +1,298 @@
+
+.ui-autocomplete-loading
+{
+    background: white url("img/ui-anim_basic_16x16.gif") right center no-repeat;
+}
+
+.formulario_validado label.error {
+    color: #D60404 !important;
+}
+
+.formulario_validado input.error {
+    border-color: #D60404 !important;
+}
+
+
+a.no-link:hover{
+	text-decoration: none;
+}
+.p-full-15{
+	padding: 15px;	
+}
+.m-full-15{
+	margin: 15px;
+}
+.no-m{
+	margin: 0px;
+}
+.no-m-t{
+	margin-top: 0px;
+}
+.no-m-b{
+	margin-bottom: 0px;
+}
+.no-m-r{
+	margin-right: 0px;
+}
+.no-m-l{
+	margin-left: 0px;
+}
+.no-p{
+	padding: 0px;
+}
+.p-15{
+	padding: 15px;
+}
+.no-p-t{
+	padding-top: 0px;
+}
+.no-p-b{
+	padding-bottom: 0px;
+}
+.no-p-r{
+	padding-right: 0px;
+}
+.no-p-l{
+	padding-left: 0px;
+}
+.m-t-5{
+	margin-top: 5px;	
+}
+.m-t-10{
+	margin-top: 10px;
+}
+.m-t-15{
+	margin-top: 15px;
+}
+.m-t-20{
+	margin-top: 20px;
+}
+.m-t-25{
+	margin-top: 25px;
+}
+.m-t-40{
+	margin-top: 40px;	
+}
+.m-r-5{
+	margin-right: 5px;	
+}
+.m-r-10{
+	margin-right: 10px;	
+}
+.m-r-20{
+	margin-right: 20px;	
+}
+.m-r-40{
+	margin-right: 40px;
+}
+.m-r-no-10{
+	margin-right: -10px;	
+}
+.m-r-15{
+	margin-right: 15px;	
+}
+.m-r-30{
+	margin-right: 30px;	
+}
+.m-b-5{
+	margin-bottom: 5px;
+}
+.m-b-10{
+	margin-bottom: 10px;
+}
+.m-b-15{
+	margin-bottom: 15px;
+}
+.m-b-20{
+	margin-bottom: 20px;
+}
+.m-l-5{
+	margin-left: 5px;	
+}
+.m-l-10{
+	margin-left: 10px;	
+}
+.m-l-15{
+	margin-left: 15px;	
+}
+.m-l-20{
+	margin-left: 20px;	
+}
+.m-l-40{
+	margin-left: 40px;		
+}
+
+.m-l-50{
+	margin-left: 50px;
+}
+
+.m-l-60{
+	margin-left: 60px;		
+}
+.p-t-10{
+	padding-top: 10px;
+}
+.p-t-15{
+	padding-top: 15px !important;
+}
+.p-t-20{
+	padding-top: 20px;
+}
+.p-b-10{
+	padding-bottom: 10px;
+}
+.p-b-15{
+	padding-bottom: 15px;
+}
+.p-b-20{
+	padding-bottom: 20px;
+}
+.p-r-20{
+	padding-right: 20px;
+}
+.p-l-20{
+	padding-left: 20px;
+}
+
+.no-b-r{
+	border-radius: 0px;
+}
+.no-border{
+	border: medium none;	
+}
+.b-r-4{
+	border-radius: 4px;			
+    -moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}	
+.borde.borde-1x{
+	border-width: 1px !important; 
+}
+.borde.borde-2x{
+	border-width: 2px !important; 
+}
+.borde.borde-3x{
+	border-width: 3px !important; 
+}
+.borde.borde-4x{
+	border-width: 4px !important; 
+}
+.borde.borde-5x{
+	border-width: 5px !important; 	
+}
+
+
+ul.sidebar-menu li .avatar{
+	height: auto;
+	width: auto;
+	padding: 12px 0;
+	margin: 0 0;	
+}
+
+ul.sidebar-menu li .avatar img{
+	width: 100px;
+	height: auto;
+}
+
+ul.sidebar-menu li .logo{
+	width: auto;
+	height: 130px;
+}
+
+
+.panel-mensaje{
+	margin-bottom: 5px !important;
+	border-radius: 0px;			
+    -moz-border-radius: 0px;
+	-webkit-border-radius: 0px;	
+}
+
+.panel-mensaje.pendiente > .panel-heading{
+	background-color: #F5F7FA;
+	font-weight: 700;
+}
+.panel-mensaje > .panel-heading {
+    //color: #656D78;
+    //background-color: #F5F7FA;
+    border: solid 1px;
+    border-color: #D5DAE0 transparent #D5DAE0;
+
+}
+.panel-mensaje > .panel-heading:hover {
+    //color: #656D78;
+    background-color: #F5F7FA;
+}
+
+
+.box-avatar{
+	text-align: center;
+	overflow: hidden;
+}
+
+.cajaBfile{
+	/*height: 30px;
+    width: 150px;*/
+	//width: 350px;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+	/*Using a background color, but you can use a background image to represent a button
+    background-color: #DDF;*/
+}
+.Bfile{
+	cursor: pointer;
+	height: 420%;
+	width: 350%;
+	position:absolute;
+	top: 0;
+	right: 0;
+	z-index: 99;
+	/*This makes the button huge. If you want a bigger button, increase the font size*/
+	font-size:50px;
+	/*Opacity settings for all browsers*/
+	opacity: 0;
+	-moz-opacity: 0;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+
+.avatar-perfil{
+	height: 350px;
+	//width: 350px;
+	width: auto;
+    //margin: 10px 5px 0 50px;
+}
+.button{
+	height: 350px;
+	width: 350px;
+	border: 1px solid #000;
+	margin: 10px 5px 0 0;
+}
+
+.btn-expulsar{
+	margin-left: 50px;
+	width: 350px;
+
+}
+#expulsara{
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+#expulsara.tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+}
+
+#expulsara:hover .tooltiptext {
+	visibility: visible;
+}

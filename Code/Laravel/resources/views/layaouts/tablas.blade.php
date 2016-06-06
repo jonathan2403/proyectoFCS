@@ -19,6 +19,8 @@
         <!-- Autocompletar CSS -->
         {!!Html::style('/assets/css/autocompletar.css')!!}
         {!!Html::style('assets/dist/css/skins/_all-skins.min.css')!!}
+        <!-- Validar -->
+        {!!Html::style('assets/css/base/base.css')!!}
     </head>
     <body class="skin-red sidebar-mini">
         <div class="wrapper">
@@ -41,6 +43,8 @@
         {!!Html::script('assets/plugins/jQuery/jQuery-2.1.4.min.js')!!}
         <!-- Bootstrap 3.3.2 JS -->
         {!!Html::script('assets/bootstrap/js/bootstrap.min.js')!!}
+        <!-- Validar -->
+        {!!Html::script('assets/js/base/jquery-validate/jquery.validate.js')!!}
         <!-- Datepicker -->
         {!!Html::script('assets/plugins/datepicker/bootstrap-datepicker.js')!!}
         {!!Html::style('assets/plugins/datepicker/datepicker3.css')!!}
@@ -61,13 +65,6 @@
         {!!Html::script('assets/dist/js/app.min.js')!!}
         <!-- AdminLTE for demo purposes -->
         {!!Html::script('assets/dist/js/demo.js')!!}
-        <!-- Export Table -->
-        {!!Html::script('assets/export-table/jspdf/libs/sprintf.js')!!}
-        {!!Html::script('assets/export-table/jspdf/jspdf.js')!!}
-        {!!Html::script('assets/export-table/tableExport.js')!!}
-        {!!Html::script('assets/export-table/html2canvas.js')!!}
-        <!-- Export Table Excel-->
-        {!!Html::script('assets/plugins/export-excel/src/jquery.table2excel.js')!!}
 
         <!--  Jquery UI  -->
         {!!Html::script('/assets/js/jquery-ui.min.js')!!}

@@ -41,7 +41,8 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::resource('grupos/store', 'GrupoController@store');
 		Route::resource('grupos', 'GrupoController@update');
 		Route::resource('indicadores-investigacion','IndicadorInvestigacionController');
-
+		Route::get('indicadores/proyeccion/index', 'IndicadorProyeccionController@index');
+		Route::get('indicadores/proyeccion/show/{indicador}', 'IndicadorProyeccionController@show');
 
 		// Rutas para Proyeccion Social
 		Route::group(['middleware' => 'auth_proyeccion'], function(){
@@ -107,3 +108,6 @@ Route::get('/educacion/continua/{tipo_archivo}', 'EducacionContinuaController@re
 
 // exportar eventos [Excel, PDF]
 Route::get('/eventos/{tipo_archivo}', 'EventoController@reporte');
+
+// consulta datos para graficar opciones de grado proyección
+Route::get('/datos/grafica/opcion/grados/proyeccion', 'IndicadorProyeccionController@consultaOpcionGrado');

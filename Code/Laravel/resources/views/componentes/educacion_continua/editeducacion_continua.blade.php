@@ -1,6 +1,8 @@
 @extends('layaouts.tablas')
 @section('scripts')
    {!!Html::script('/assets/js/load_views.js')!!}
+   {!!Html::script('/assets/js/componentes/educacionContinua/educacionContinua.js')!!}
+   {!!Html::script('/assets/js/base/profesor_modal.js')!!}
 @endsection
 @section('content')
   <section class="content">
@@ -16,7 +18,7 @@
               <div class="box-body">
                   <div class="row">
                     <div class="pad">
-                      {!! Form::model($educacion_continua ,$route)!!}
+                      {!! Form::model($educacion_continua ,$route + ['id' => 'educacion-continua-form', 'class'=>'formulario_validado'])!!}
                       @include('componentes.educacion_continua.partials.form')
                       {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
                       {!!Form::close()!!}

@@ -27,7 +27,7 @@ class GrupoController extends Controller
         case 'investigacion':
         $indicador_modulo = 1;
         $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-        ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investigación' WHEN grupo.tipo='e' THEN 'Estudio' WHEN grupo.tipo='ps' THEN 'Proyección Social' END AS tipo"), 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
+        ->select('grupo.id' , DB::raw("COUNT(*) AS num"),'grupo.sigla', 'grupo.descripcion', DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investigación' WHEN grupo.tipo='e' THEN 'Estudio' WHEN grupo.tipo='ps' THEN 'Proyección Social' END AS tipo"), 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
         ->where('grupo.tipo', 'i')
         ->orWhere('grupo.tipo', 'e')
         ->get();
@@ -117,6 +117,8 @@ class GrupoController extends Controller
         $grupo=Grupo::find($id);
         if(!$grupo)
             return redirect()->back();
+        if($grupo->tipo == 'ps')
+            $indicador_modulo = 20;
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         return view('componentes.grupo.editgrupo', compact('route','grupo', 'nombre_profesor', 'indicador_modulo'));
     }

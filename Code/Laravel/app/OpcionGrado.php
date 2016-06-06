@@ -45,6 +45,34 @@ class OpcionGrado extends Model
                            'id_grupo'
                          ];
 
+     public static $reglas_pas = [
+          'descripcion' => "required|max:150|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+          'id_director' => 'required|exists:profesores,id',
+          'id_externo' => 'required|exists:externo,id',
+          'id_entidad' => 'required|exists:externo,id',
+          'fecha_aprobacion' => 'required|date_format:m/d/Y',
+          'concepto_1' => 'required|in:ap,na,aa',
+          'numero_acta' => 'required|digits_between:2,9',
+          'fecha_entrega_1' => 'required|date_format:m/d/Y',
+          'numero_acta_2' => 'digits_between:2,9',
+          'fecha_entrega_2' => 'required|date_format:m/d/Y',
+          'concepto_2' => 'in:ap,na,aa',
+          'numero_acta_3' => 'digits_between:2,9',
+          'finalizado' => 'in:Si,No'
+     ];
+
+     public static $mensajes_pas = [
+        'descripcion.required' => 'El campo título es obligatorio.',
+        'descripcion.max' => 'Título no puede exceder 150 caracteres.',
+        'id_director.required' => 'El campo director es obligatorio.',
+        'id_director.exists' => 'El director no existe.',
+        'id_externo.required' => 'El campo entidad es obligatotio.',
+        'id_externo.exists' => 'Entidad no existe.',
+        'id_entidad.required' => 'El campo entidad es obligatotio.',
+        'id_entidad.exists' => 'Entidad no existe.',
+        'fecha_aprobacion.required' => 'Fecha de entrega al comité es obligatorio.'
+     ];
+
      public static $reglas_investigacion = array(
         'descripcion' => "required|max:150|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
         'tipo_opcion_grado' => 'in:mr,mi,epi,epps,pas,pos',

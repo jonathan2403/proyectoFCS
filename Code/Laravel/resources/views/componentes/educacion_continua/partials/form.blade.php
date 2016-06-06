@@ -4,7 +4,11 @@
   </br>
 
   {!!Form::label('Director')!!}
-  {!!Form::select('id_director',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
+  <div id="div_profesor">
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_profesor"></div>                     
+            {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
+  </div>
 </br></br>
   
   <div class="box box-danger">
