@@ -3,15 +3,22 @@
 
     {!!Form::label('Titulo')!!}
     {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo'])!!}
+      <br>
+    {!!Form::label('Director Proyecto')!!}
+    <div class="search">
+      <span class="fa fa-search"></span>
+      <input type="text" id="nombre_profesor" name="profesor" class="form-control" placeholder="Buscar por Nombre o Cédula">
+    </div>
+    <div id="label_oculto"></div>                     
+    {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
       </br>
 
-    {!!Form::label('Director Proyecto')!!}
-    {!!Form::select('id_director',$nombre_profesor->toArray(), null, ['id' => 'select_profesor1', 'class' => 'form-control select', 'placeholder' => ' ']) !!}
-      </br></br>
-
     {!!Form::label('Coordinador Externo')!!}
-    {!!Form::select('id_externo',$nombre_persona->toArray(), null, ['id' => 'select_profesor1', 'class' => 'form-control select', 'placeholder' => ' ']) !!}
-        </br></br>
+    <div class="search">
+      <span class="fa fa-search"></span>
+      <input type="text" id="nombre_persona_externa" name="profesor" class="form-control" placeholder="Buscar por Nombre">
+    </div>
+        </br>
 
     {!!Form::label('Entrega al Centro de Proyeccion Social')!!}
     <div class="input-group">

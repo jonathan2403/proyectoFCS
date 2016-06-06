@@ -1,6 +1,7 @@
 @section('scripts')
    {!!Html::script('assets/js/load_views.js')!!}
    {!!Html::script('assets/js/componentes/grupos/validarGrupos.js')!!}
+   {!!Html::script('/assets/js/base/profesor_modal.js')!!}
 @endsection
 @extends('layaouts.tablas')
 @section('content')

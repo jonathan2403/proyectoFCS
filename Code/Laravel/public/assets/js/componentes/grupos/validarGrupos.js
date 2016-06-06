@@ -13,7 +13,7 @@ formulario.validate({
         descripcion: {required:true},
         tipo: {required:true},
         categoria: {required:true},
-        id_profesor: {required:true},
+        profesor: {required:true},
     }
   });
 

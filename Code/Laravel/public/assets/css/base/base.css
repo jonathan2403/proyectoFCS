@@ -12,6 +12,10 @@
     border-color: #D60404 !important;
 }
 
+.formulario_validado select.error {
+    border-color: #D60404 !important;
+}
+
 
 a.no-link:hover{
 	text-decoration: none;

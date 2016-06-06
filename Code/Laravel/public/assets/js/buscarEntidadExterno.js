@@ -2,16 +2,16 @@
 * Autocompletar nommbres, apellidos y cedula de usuarios
 * */
 
-var identidad_oculto = $("#id_entidad");
-var input_visible = $("#nombre_entidad");
+var identidad_oculto = $("#id_persona_externa");
+var input_visible = $("#nombre_persona_externa");
 
-    $("#nombre_entidad").autocomplete({
+    $("#nombre_persona_externa").autocomplete({
         source: function(request, response)
         {
             input_visible.change(function(){
                 $("#label_oculto").text("No ha seleccionado una entidad correcta.");
             });
-            $.getJSON("http://localhost:8000/buscarExternoEntidad/"+request.term,{
+            $.getJSON("/buscarExternoPersona/"+request.term,{
             },response);//fin get JSON
         }, /* este es el script que realiza la busqueda */
 
