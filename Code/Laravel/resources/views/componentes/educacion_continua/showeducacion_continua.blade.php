@@ -29,6 +29,7 @@
              <td>{{ ucfirst(strtolower($educacion_continua->ciudad)) }}</td>
            </tbody>
          </table>
+         <!--Inicia fuentes de financiación-->
          <div class="box box-danger direct-chat direct-chat-warning collapsed-box">
          <div class="box-header with-border">
           <h3 class="box-title">Fuentes de Financiación</h3>
@@ -64,7 +65,7 @@
       </tbody>
     </table>
   </div><!-- /.box-body -->
-</div><!-- /.box -->
+</div><!-- termina fuentes de financiacion-->
 </div><!-- /.box-header -->
 
 <!--Inicia Participantes-->

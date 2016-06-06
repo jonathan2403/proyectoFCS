@@ -6,15 +6,19 @@
       </br>
 
     {!!Form::label('Director de la Pasantía')!!}
-    {!!Form::select('id_director', $nombre_profesor->toArray(), null, ['id' => 'select_profesor1', 'class' => 'select form-control', 'placeholder' => ' ']) !!}
-      </br></br>
+    {!!Form::text('profesor', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre o Cédula', 'id' => 'nombre_profesor'])!!}
+    <div id="label_oculto_profesor"></div>                     
+    {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
+      </br>
 
     {!!Form::label('Coordinador de la Entidad')!!}
-    {!!Form::select('id_externo', $nombre_persona->toArray(), null, ['id' => 'select_profesor2', 'class' => 'select form-control', 'placeholder' => ' ']) !!}
-      </br></br>
+    {!!Form::text('persona_externa', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre', 'id' => 'nombre_persona_externa'])!!}
+    <div id="label_persona"></div>                     
+    {!! Form::hidden('id_externo', null, ['id' => 'id_externo']) !!}
+        </br>
 
     {!!Form::label('Entidad')!!}
-    {!!Form::select('id_entidad', $nombre_entidad->toArray(), null, ['id' => 'select_entidad', 'class' => 'select form-control', 'placeholder' => ' ']) !!}
+    {!!Form::text('entidad_externa', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre', 'id' => 'nombre_entidad_externa'])!!}
   </br></br>
 
     <!--inicio entrega al comite-->
@@ -122,11 +126,7 @@
         </div>
         <div class="col-xs-3">
           {!!Form::label('Finalizado')!!}
-            </br>
-          {!!Form::label('Si')!!}
-          {!!Form::radio('finalizado', 'Si', false)!!} &nbsp
-          {!!Form::label('No')!!}
-          {!!Form::radio('finalizado', 'No', false)!!}
+          {!!Form::select('finalizado', ['' => '', 'Si' => 'Si', 'No' => 'No'], null, ['class' => 'form-control'])!!}  
         </div>
       </div>
     </div><!--fin cartas de cumplimuento-->
