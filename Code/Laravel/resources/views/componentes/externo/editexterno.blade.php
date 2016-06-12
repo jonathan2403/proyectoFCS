@@ -22,7 +22,7 @@
                       {!! Form::model($externo,$route)!!}
                       @include('layaouts.partials.mensaje')
                       @include('componentes.externo.partials.form')
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
+                      {!! Form::submit('Editar',['class'=>'btn btn-warning']) !!}&nbsp<a href="{{URL('/externo')}}" class="btn btn-danger" >Cancelar</a>
                       {!!Form::close()!!}
                     </div>
                   </div><!-- /.row pad-->

@@ -1,6 +1,8 @@
 @extends('layaouts.tablas')
 @section('scripts')
-  {!!Html::script('/assets/js/load_views.js')!!}   
+  {!!Html::script('/assets/js/load_views.js')!!}
+  {!!Html::script('/assets/js/componentes/proyectos/validaProyecto.js')!!}
+  {!! Html::script('assets/js/base/profesor_modal.js') !!}
 @endsection
 @section('content')
   <section class="content">
@@ -17,10 +19,10 @@
             <div class="box-body">
               <div class="row">
                 <div class="pad">
-                  {!! Form::open($route)!!}
+                  {!! Form::open($route + ['class' => 'formulario_validado', 'id' => 'proyecto-proyeccion-form'])!!}
                   @include('componentes.proyectos-proyeccion.partials.form')
-                  {!! Form::submit('Crear',['class'=>'btn btn-danger']) !!}
-                  {!!Form::close()!!}
+                  {!!Form::submit('Crear', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/proyectos-proyeccion')}}" class="btn btn-danger" >Cancelar</a>
+                    {!!Form::close()!!}
                 </div>
               </div><!-- /.row pad-->
             </div><!-- /.box-body -->

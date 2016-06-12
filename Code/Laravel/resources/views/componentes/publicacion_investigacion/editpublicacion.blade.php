@@ -19,7 +19,7 @@
                     <div class="pad">
                       {!! Form::model($publicacion,$route)!!}
                         @include('componentes.publicacion_investigacion.partials.form')
-                      {!! Form::submit('Guardar',['class'=>'btn btn-danger']) !!}
+                      {!! Form::submit('Editar', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/publicacion-investigacion')}}" class="btn btn-danger" >Cancelar</a>
                       {!!Form::close()!!}    
                     </div>
                   </div><!-- /.row pad-->

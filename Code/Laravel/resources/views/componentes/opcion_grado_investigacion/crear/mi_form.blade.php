@@ -9,13 +9,21 @@
     {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo'])!!}
       </br>
 
-    {!!Form::label('director del proyecto')!!}
-    {!!Form::select('id_director',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => ' ']) !!}
-      </br></br>
+    {!! Form::label('Director del Proyecto') !!}
+    <div id="div_profesor">
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_profesor"></div>                     
+            {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
+    </div>
+   </br>
 
-    {!!Form::label('jurado del proyecto')!!}
-    {!!Form::select('id_supervisor',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => ' ']) !!}
-    </br></br>
+    {!! Form::label('Jurado Del Proyecto') !!}
+    <div id="div_profesor">
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_profesor"></div>                     
+            {!! Form::hidden('id_supervisor', null, ['id' => 'id_profesor']) !!}
+    </div>
+   </br>
 
     {!! Form::label('entidad') !!}   
     {!! Form::text('entidad', isset($nombre_estudiante) ? $nombre_estudiante:null,['class' => 'form-control', 'id' => 'nombre_entidad','placeholder'=>'Nombre de la Entidad']) !!}

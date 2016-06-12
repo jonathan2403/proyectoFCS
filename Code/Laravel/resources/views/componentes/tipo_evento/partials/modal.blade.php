@@ -10,8 +10,11 @@
             $encrypter = app('Illuminate\Encryption\Encrypter');
             $encrypted_token = $encrypter->encrypt(csrf_token());
         ?>
+        {!! Form::open(['class' => 'formulario_validado', 'id' => 'tipo-evento-form'])!!}
         <input id="token" type="hidden" value="{{$encrypted_token}}">
         {!!Form::text('nombre_tipoevento', null, ['class' => 'form-control', 'placeholder' => 'Tipo de Evento', 'id' => 'txt_tipo_evento'])!!}
+        <label id="label_error"></label>
+        {!!Form::close()!!}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

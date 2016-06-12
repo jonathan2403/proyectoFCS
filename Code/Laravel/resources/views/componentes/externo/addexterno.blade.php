@@ -20,7 +20,8 @@
                 <div class="pad">
                   {!! Form::open($route + ['id' => 'externos-form', 'class'=>'formulario_validado'])!!}
                   @include('componentes.externo.partials.form')
-                  {!! Form::submit('Crear',['class'=>'btn btn-danger']) !!}
+                  {!! Form::submit('Crear',['class'=>'btn btn-warning']) !!}&nbsp<a href="{{URL('/externo')}}" class="btn btn-danger" >Cancelar</a>
+                  {!!Form::close()!!}
                   {!!Form::close()!!}
                 </div>
               </div><!-- /.row pad-->

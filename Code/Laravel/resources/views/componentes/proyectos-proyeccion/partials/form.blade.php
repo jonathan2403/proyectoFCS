@@ -5,8 +5,11 @@
             </br>  
 
         {!!Form::label('Director')!!}<br>
-        {!!Form::select('id_investigador_principal',$nombre_profesor->toArray(), null, ['id' => 'select_profesor', 'class' => 'form-control select', 'placeholder' => ' ']) !!}
-        </br></br>
+        {!!Form::text('profesor', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre o Cédula', 'id' => 'nombre_profesor'])!!}
+        <div id="label_oculto_profesor"></div>                     
+        {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
+        <br>
+        
         <div class="box box-danger">
           <div class="box-header with-border">
             <h3 class="box-title">Inicio del Proyecto</h3>
@@ -171,11 +174,11 @@
       {!!Form::text('valor_efectivo', null, ['class'=>'form-control'])!!}
             </br>
 
-      {!!Form::label('Ejecutado')!!}
-           </br>
-        {!!Form::label('Si')!!}
-        {!!Form::radio('ejecutado', 'Si', null)!!} &nbsp
-        {!!Form::label('No')!!}
-        {!!Form::radio('ejecutado', 'No', null)!!}
-                </br></br>
-    </div>
+      <div class="row">
+        <div class="col-xs-3">
+        {!!Form::label('Ejecutado')!!}
+        {!!Form::select('ejecutado', ['' => '', 'Si' => 'Si', 'No' => 'No'], null, ['class' => 'form-control'])!!}  
+        </div>
+      </div>
+  </br>
+</div>

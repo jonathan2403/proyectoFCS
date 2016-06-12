@@ -1,8 +1,0 @@
-#to do
-
-- Autocompletado AJAX
-- Módulo joven investigador // Investigación
-- Mejorar index externos 
-- Validaciones lado cliente (ambas dependencias)
-- Validaciones lado servidor (proyección)
-- Corregir Grupos, para que todos usen mismo controlador, misma vista y las consultas sean únicas

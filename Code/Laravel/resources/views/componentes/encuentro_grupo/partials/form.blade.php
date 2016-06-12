@@ -7,9 +7,14 @@
 	{!!Form::select('tipo_grupo', ['i' => 'Grupo Investigación', 'e' => 'Grupo Estudio', 'ps' => 'Grupo Proyección Social'], null, ['class' => 'form-control'])!!}
 	</br>
 
-	{!!Form::label('Ponente')!!}
-	{!!Form::select('id_profesor', $nombre_profesor->toArray(), null,['class' => 'form-control select', 'placeholder' => ''])!!}
-	</br></br>
+	{!! Form::label('Ponente') !!}
+    <div id="div_profesor">
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_profesor"></div>                     
+            {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
+    </div>
+    </br>
+
 
 	{!!Form::label('Fecha de Realización')!!}
 	 <div class="input-group">

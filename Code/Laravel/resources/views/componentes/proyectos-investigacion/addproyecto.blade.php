@@ -1,5 +1,6 @@
 @extends('layaouts.tablas')
 @section('scripts')
+   {!!Html::script('/assets/js/base/profesor_modal.js')!!}
    {!!Html::script('/assets/js/load_views.js')!!}
 @endsection
 @section('content')
@@ -19,7 +20,7 @@
                 <div class="pad">
                   {!! Form::open($route)!!}
                   @include('componentes.proyectos-investigacion.partials.form')
-                  {!! Form::submit('Crear',['class'=>'btn btn-danger']) !!}
+                  {!! Form::submit('Crear', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/proyectos-investigacion')}}" class="btn btn-danger" >Cancelar</a>
                   {!!Form::close()!!}
                 </div>
               </div><!-- /.row pad-->

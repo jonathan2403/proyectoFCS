@@ -21,7 +21,7 @@
                     <div class="pad">
                       {!! Form::model($grupo, ['route' => 'grupos.update', 'method' => 'PUT', 'id' => 'grupos-form', 'class'=>'formulario_validado'])!!}
                         @include('componentes.grupo.partials.form_editar')
-                      {!! Form::submit('Editar', ['class'=>'btn btn-danger']) !!}
+                      {!! Form::submit('Editar',['class'=>'btn btn-warning']) !!}&nbsp<a href="{{URL('/grupos/'.$tipo_grupo)}}" class="btn btn-danger" >Cancelar</a>
                       {!!Form::close()!!}
                     </div>
                   </div><!-- /.row pad-->

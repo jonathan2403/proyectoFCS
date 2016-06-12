@@ -3,6 +3,7 @@
     {!! Html::script('assets/js/load_views.js') !!}
     {!! Html::script('assets/js/componentes/opcionGrado/proyeccion/validarOpcionGrado.js') !!}
     {!! Html::script('assets/js/base/profesor_modal.js') !!}
+    {!! Html::script('assets/js/base/estudiante_modal.js') !!}
     {!! Html::script('assets/js/base/persona_externo_modal.js') !!}
 @endsection
 @section('content')
@@ -32,7 +33,7 @@
                     {!! Form::open($route + ['id' => 'posgrado-form', 'class' => 'formulario_validado'])!!}
                       @include('componentes.opcion_grado_proyeccion.crear.pos_form')
                     @endif
-                    {!! Form::submit('Crear',['class'=>'btn btn-danger']) !!}
+                    {!!Form::submit('Crear', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/opcion-grado-proyeccion')}}" class="btn btn-danger" >Cancelar</a>
                     {!!Form::close()!!}
                 </div>
               </div><!-- /.row pad-->

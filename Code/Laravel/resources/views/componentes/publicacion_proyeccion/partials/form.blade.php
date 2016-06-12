@@ -5,7 +5,8 @@
     </br>
 
     {!!Form::label('Proyecto')!!}
-    {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
+    {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), ['class' => 'form-control'])!!}
+    
     </br></br>
 
 	{!!Form::label('Opción de Grado')!!}
