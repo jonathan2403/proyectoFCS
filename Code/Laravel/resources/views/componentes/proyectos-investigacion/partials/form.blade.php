@@ -8,10 +8,12 @@
 	{!! Form::select('tipo_proyecto', array('cp' => 'Convocatoria Planta', 'ccr' => 'Convocatoria con Recursos', 'cc' => 'Convocatoria Colciencias', 'cct' => 'Convocatoria con Tiempos', 'cre' => 'Convocatoria Recursos Externos'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
         </br>
 
-    {!!Form::label('investigador principal')!!}<br>
-    {!!Form::select('id_investigador_principal',$nombre_profesor->toArray(), null, ['id' => 'select_profesor', 'class' => 'form-control select', 'placeholder' => ' ']) !!}
-		</br></br>
-
+    {!! Form::label('Investigador Principal') !!}
+    {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+     <div id="label_oculto_profesor"></div>                     
+    {!! Form::hidden('id_investigador_principal', null, ['id' => 'id_profesor']) !!}
+    </br>
+   
 	{!!Form::label('tema central')!!}<br>
 	{!!Form::text('tema_central', null, ['class'=>'form-control', 'placeholder'=>''])!!}
 		</br>

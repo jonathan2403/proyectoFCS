@@ -31,8 +31,8 @@
                           {!! Form::model($opciongrado,$route + ['id' => 'pos-form', 'class' => 'formulario_validado'])!!}
                           @include('componentes.opcion_grado_proyeccion.crear.pos_form')
                        @endif
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
-                      {!!Form::close()!!}
+                      {!!Form::submit('Editar', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/opcion-grado-proyeccion')}}" class="btn btn-danger" >Cancelar</a>
+                    {!!Form::close()!!}
                     </div>
                   </div><!-- /.row pad-->
                 </div><!-- /.box-body -->

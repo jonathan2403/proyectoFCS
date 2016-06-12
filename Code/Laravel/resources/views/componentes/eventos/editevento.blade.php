@@ -19,8 +19,8 @@
                     <div class="pad">
                         {!! Form::model($eventos,$route + ['id' => 'eventos-form', 'class'=>'formulario_validado']) !!}
                           @include('componentes.eventos.partials.form')    
-                        {!!Form::submit('Editar',['class'=>'btn btn-danger'])!!}
-                        {!!Form::close()!!}  
+                        {!!Form::submit('Editar', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/evento')}}" class="btn btn-danger" >Cancelar</a>
+                        {!!Form::close()!!} 
                     </div>
                   </div><!-- /.row pad-->
                 </div><!-- /.box-body -->

@@ -1,4 +1,3 @@
-$(document).ready(function(){
     $('.select').select2({
        width : '100%',
        minimumInputLength: '1',
@@ -11,6 +10,7 @@ $(document).ready(function(){
     $("#select_profesor").change(function() {
        id_profesor = $('#select_profesor').val();
       });
+    //formato fecha
     $('.picker').datepicker({
       format : "dd/mm/yyyy"
     })
@@ -18,7 +18,3 @@ $(document).ready(function(){
         checkboxClass: 'icheckbox_minimal',
         radioClass: 'iradio_minimal-red'
       });
-    $('#text_nombre').attr('size', 30);
-    $('#text_cantidad').attr('size', 3);
-    $('#text_unidad').attr('size', 6);
-    });

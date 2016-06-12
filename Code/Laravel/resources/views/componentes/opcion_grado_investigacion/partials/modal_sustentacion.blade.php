@@ -15,7 +15,7 @@
         <div id="label_oculto"></div>                     
         {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
            </br>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-success">Registrar</button>
         {!! Form::close() !!}
       </div>

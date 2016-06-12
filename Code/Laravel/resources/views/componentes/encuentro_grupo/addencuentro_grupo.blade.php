@@ -1,6 +1,8 @@
 @extends('layaouts.tablas')
 @section('scripts')
   {!!Html::script('/assets/js/load_views.js')!!}
+  {!!Html::script('/assets/js/base/profesor_modal.js')!!}
+  {!!Html::script('/assets/js/componentes/encuentroGrupos/validaEncuentroGrupos.js')!!}
 @endsection
 @section('content')
   <section class="content">
@@ -15,7 +17,7 @@
                       </div>
                   </div>
                   <div class="box-body">
-                  {!!Form::open(['route'=>'encuentro-grupo.store', 'method'=>'POST'])!!}
+                  {!!Form::open(['route'=>'encuentro-grupo.store', 'method'=>'POST', 'id' => 'encuentros-form', 'class' => 'formulario_validado'])!!}
                     @include('componentes.encuentro_grupo.partials.form')
                   {!!Form::submit('Crear', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/encuentro-grupo')}}" class="btn btn-danger" >Cancelar</a>
                   {!!Form::close()!!}

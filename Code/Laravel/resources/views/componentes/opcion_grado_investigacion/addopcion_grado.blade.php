@@ -1,5 +1,6 @@
 @extends('layaouts.tablas')
 @section('scripts')
+{!!Html::script('/assets/js/base/profesor_modal.js')!!}
    {!!Html::script('/assets/js/load_views.js')!!}
    {!!Html::script('/assets/js/buscarEntidadExterno.js')!!}
 @endsection
@@ -36,7 +37,7 @@
                     @if($tipo == 'epi')
                       @include('componentes.opcion_grado_investigacion.crear.epi_form')
                     @endif
-                    {!! Form::submit('Crear',['class'=>'btn btn-danger']) !!}
+                    {!! Form::submit('Crear', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/opcion-grado-investigacion')}}" class="btn btn-danger" >Cancelar</a>
                     {!!Form::close()!!}
                 </div>
               </div><!-- /.row pad-->

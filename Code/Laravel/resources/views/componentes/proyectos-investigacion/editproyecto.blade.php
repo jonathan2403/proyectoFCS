@@ -1,11 +1,7 @@
 @section('scripts')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.picker').datepicker({
-        format : 'yyyy-mm-dd'
-      });
-    });
-  </script>
+   {!!Html::script('/assets/js/base/profesor_modal.js')!!}
+      {!!Html::script('/assets/js/highcharts/load_views.js')!!}
+ 
 @endsection
 @extends('layaouts.tablas')
 @section('content')
@@ -24,7 +20,7 @@
                     <div class="pad">
                       {!! Form::model($proyecto,$route)!!}
                         @include('componentes.proyectos-investigacion.partials.form')
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
+                      {!! Form::submit('Editar', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/proyectos-investigacion')}}" class="btn btn-danger" >Cancelar</a>
                       {!!Form::close()!!}    
                     </div>
                   </div><!-- /.row pad-->

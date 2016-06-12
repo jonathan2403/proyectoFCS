@@ -9,14 +9,19 @@
     {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Titulo'])!!}
       </br>
 
-    {!!Form::label('director del proyecto')!!}
-    {!!Form::select('id_director',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
-      </br></br>
+    {!! Form::label('Director Del Proyecto') !!}
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_profesor"></div>                     
+            {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
+    </br>
 
-
-    {!!Form::label('director n° 2 del proyecto')!!}
-    {!!Form::select('id_supervisor',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
-      </br></br>
+  {!! Form::label('director n° 2 del proyecto') !!}
+ 
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'director2','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_profesor"></div>                     
+            {!! Form::hidden('id_supervisor', null, ['id' => 'id_profesor']) !!}
+  
+   </br>
 
     {!!Form::label('proyecto al que pertenece')!!}
     {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
@@ -240,7 +245,7 @@
         </div>
     {!!Form::text('fecha_entrega_certificado', null, ['class'=>'picker form-control', 'readonly'])!!}
     </div>
-    
+    </br>
     {!!Form::label('Escala de Evaluación')!!}
     </br>
 

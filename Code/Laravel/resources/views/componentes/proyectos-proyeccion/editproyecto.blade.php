@@ -1,17 +1,6 @@
 @section('scripts')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.select').select2();
-      $('.picker').datepicker({
-        format : 'yyyy-mm-dd',
-        showAnim : 'slideDown'
-      });
-      $('input').iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal-red'
-       });
-    });
-  </script>
+  {!!Html::script('/assets/js/load_views.js')!!}
+  {!!Html::script('/assets/js/componentes/proyectos/validaProyecto.js')!!}
 @endsection
 @extends('layaouts.tablas')
 @section('content')
@@ -30,8 +19,8 @@
                     <div class="pad">
                       {!! Form::model($proyecto,$route)!!}
                         @include('componentes.proyectos-proyeccion.partials.form')
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
-                      {!!Form::close()!!}    
+                      {!!Form::submit('Editar', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/proyectos-proyeccion')}}" class="btn btn-danger" >Cancelar</a>
+                    {!!Form::close()!!}  
                     </div>
                   </div><!-- /.row pad-->
                 </div><!-- /.box-body -->

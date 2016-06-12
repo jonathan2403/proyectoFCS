@@ -9,11 +9,16 @@
     @if($tipo_grupo == 'investigacion')
     <font size="3px">{!!Form::label('Tipo')!!}</font>
 			 </br>
-    {!!Form::label('Estudio')!!}
-    {!!Form::radio('tipo', 'e', false)!!} &nbsp
-    {!!Form::label('Investigación')!!}
-    {!!Form::radio('tipo', 'i', false)!!}
-	</br></br>
+    <div class="row text-center">
+        <div class="col-xs-2">
+            {!!Form::label('Estudio')!!}
+            {!!Form::radio('tipo', 'e', false, ['class' => 'iradio_minimal-red'])!!}       
+        </div>
+        <div class="col-xs-3">
+            {!!Form::label('Investigación')!!}
+            {!!Form::radio('tipo', 'i', false, ['class' => 'iradio_minimal-red'])!!}  
+        </div>
+    </div>
     @else
     {!!Form::hidden('tipo', 'ps')!!}
     @endif

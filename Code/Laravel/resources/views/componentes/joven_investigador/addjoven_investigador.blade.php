@@ -1,7 +1,9 @@
 @extends('layaouts.tablas')
-@section('scripts')   
+@section('scripts')  
+	{!!Html::script('/assets/js/base/profesor_modal.js')!!} 
    {!!Html::script('/assets/js/load_views.js')!!}
    {!!Html::script('/assets/js/buscarPersona.js')!!}
+   {!!Html::script('/assets/js/componentes/jovenInvestigador/validaJovenInvestigador.js')!!}
 @endsection
 @section('content')
   <section class="content">
@@ -18,9 +20,9 @@
 		        <div class="box-body">
 		        	<div class="row">
 		        		<div class="pad">
-		        			{!! Form::open($route) !!}
+		        			{!! Form::open($route + ['id' => 'joven-investigador-form', 'class' => 'formulario_validado']) !!}
 		        			 @include('componentes.joven_investigador.partials.form')
-		        			{!! Form::submit('Crear', ['class' => 'btn btn-danger']) !!}
+		        			{!! Form::submit('Crear', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/joven-investigador')}}" class="btn btn-danger" >Cancelar</a>
 		        			{!! Form::close() !!}
 		        		</div>
 		        	</div>

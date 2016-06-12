@@ -2,9 +2,12 @@
 	{!!Form::label('Nombre de la Red')!!}
     {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Digite Nombre de la Red'])!!}
     </br>
-		{!!Form::label('Responsable')!!}
-    {!!Form::select('id_responsable',$nombre_profesor->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
-      </br></br>
+
+ {!! Form::label('Responsable') !!}
+    {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+     <div id="label_oculto_profesor"></div>                     
+    {!! Form::hidden('id_responsable', null, ['id' => 'id_profesor']) !!}
+    </br>
 
     {!!Form::label('Propósito')!!}
     {!!Form::text('proposito', null, ['class'=>'form-control', 'placeholder'=>''])!!}

@@ -1,22 +1,7 @@
 @extends('layaouts.tablas')
 @section('scripts')
-<script type="text/javascript">
-  $('.select').select2({
-      minimumInputLength: '1'
-        });
-  $(document).ready(function(){
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_minimal',
-      radioClass: 'iradio_minimal-red'
-     });
-    $('.picker').datepicker({
-      format: "dd-mm-yyyy"
-    });
-    $('.picker').on('changeDate', function(ev){
-        $(this).datepicker('hide');
-    });
-  });
-</script>
+{!!Html::script('/assets/js/base/profesor_modal.js')!!}
+{!!Html::script('/assets/js/highcharts/load_views.js')!!}
 @endsection
 @section('content')
   <section class="content">
@@ -42,8 +27,7 @@
                       @if($opciongrado->tipo_opcion_grado == 'EPI')
                         @include('componentes.opcion_grado_investigacion.crear.epi_form')
                       @endif
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
-                      {!!Form::close()!!}
+                      {!! Form::submit('Editar', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/opcion-grado-investigacion')}}" class="btn btn-danger" >Cancelar</a>
                     </div>
                   </div><!-- /.row pad-->
                 </div><!-- /.box-body -->

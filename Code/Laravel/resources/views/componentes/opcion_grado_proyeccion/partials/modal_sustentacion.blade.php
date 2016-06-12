@@ -11,10 +11,12 @@
       <div class="modal-footer" style="text-align:left">
         {!! Form::open(['route' => 'sustentacion.store', 'method' => 'POST']) !!}
               {!! Form::hidden('id_opcion_grado', $opcion_grado->id, ['id' => 'id_opcion_grado']) !!}
-              {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['id' => 'select_estudiante', 'class' => 'form-control select', 'placeholder' => 'Seleccione Estudiante']) !!}
+               {!! Form::text('estudiante', null,['class' => 'form-control', 'id' => 'nombre_estudiante','placeholder'=>'Buscar por nombre o Código']) !!}
+        <div id="label_oculto_estudiante"></div>                     
+        {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
                   </br>
                   </br>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-success">Registrar</button>
         {!! Form::close() !!}
       </div>

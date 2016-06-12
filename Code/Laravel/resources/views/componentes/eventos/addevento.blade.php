@@ -29,7 +29,7 @@
                     <div class="pad">
                         {!! Form::open($route + ['id' => 'eventos-form', 'class'=>'formulario_validado'])!!}
                           @include('componentes.eventos.partials.form')
-                        {!!Form::submit('Crear', ['class'=>'btn btn-danger'])!!}
+                        {!!Form::submit('Crear', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/evento')}}" class="btn btn-danger" >Cancelar</a>
                         {!!Form::close()!!}
                     </div>
                   </div><!-- /.row pad-->

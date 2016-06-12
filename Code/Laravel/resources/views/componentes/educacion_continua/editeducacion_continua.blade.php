@@ -20,8 +20,8 @@
                     <div class="pad">
                       {!! Form::model($educacion_continua ,$route + ['id' => 'educacion-continua-form', 'class'=>'formulario_validado'])!!}
                       @include('componentes.educacion_continua.partials.form')
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
-                      {!!Form::close()!!}
+                      {!!Form::submit('Editar', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/educacion-continua')}}" class="btn btn-danger" >Cancelar</a>
+                  {!!Form::close()!!}
                     </div>
                   </div><!-- /.row pad-->
                 </div><!-- /.box-body -->

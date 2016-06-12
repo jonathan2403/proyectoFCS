@@ -24,8 +24,8 @@
                     <div class="pad">
                       {!! Form::model($publicacion,$route)!!}
                         @include('componentes.publicacion_proyeccion.partials.form')
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
-                      {!!Form::close()!!}    
+                      {!!Form::submit('Editar', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/publicacion-proyeccion')}}" class="btn btn-danger" >Cancelar</a>
+                    {!!Form::close()!!}  
                     </div>
                   </div><!-- /.row pad-->
                 </div><!-- /.box-body -->

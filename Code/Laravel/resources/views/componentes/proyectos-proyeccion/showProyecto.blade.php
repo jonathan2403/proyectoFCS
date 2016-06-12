@@ -2,6 +2,8 @@
 @section('scripts')
  {!!Html::script('/assets/js/load_modal.js')!!}
  {!!Html::script('/assets/js/base/participacion_proyecto.js')!!}
+ {!!Html::script('/assets/js/base/profesor_modal.js')!!}
+ {!!Html::script('/assets/js/base/estudiante_modal.js')!!}
 @endsection
 @section('content')
   <section class="content">

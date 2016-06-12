@@ -1,6 +1,7 @@
 @extends('layaouts.tablas')
 @section('scripts')
   {!!Html::script('assets/js/load_views.js')!!}
+     {!!Html::script('/assets/js/base/profesor_modal.js')!!}
 @endsection
 @section('content')
   <section class="content">
@@ -19,7 +20,7 @@
                     <div class="pad">
                       {!! Form::model($red_conocimiento, $route)!!}
                       @include('componentes.red_conocimiento.partials.form')
-                      {!! Form::submit('Editar',['class'=>'btn btn-danger']) !!}
+                      {!! Form::submit('Editar', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/red-conocimiento')}}" class="btn btn-danger" >Cancelar</a>
                       {!!Form::close()!!}
                     </div>
                   </div><!-- /.row pad-->

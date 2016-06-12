@@ -1,4 +1,9 @@
 @extends('layaouts.tablas')
+@section('scripts')
+    {!! Html::script('assets/js/base/profesor_modal.js') !!}
+    {!! Html::script('assets/js/base/estudiante_modal.js') !!}
+    {!! Html::script('assets/js/base/persona_externo_modal.js') !!}
+@endsection
 @section('content')
   <section class="content">
     @include('componentes.opcion_grado_investigacion.partials.modal_sustentacion')
