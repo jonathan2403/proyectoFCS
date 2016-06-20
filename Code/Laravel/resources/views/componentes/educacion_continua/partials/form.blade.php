@@ -5,7 +5,7 @@
 
   {!!Form::label('Director')!!}
   <div id="div_profesor">
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            {!! Form::text('profesor', isset($educacion_continua) ? $educacion_continua->director->nombre : null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
             <div id="label_oculto_profesor"></div>                     
             {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
   </div>

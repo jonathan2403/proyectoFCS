@@ -4,13 +4,13 @@
     {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Título'])!!}
       <br>
     {!!Form::label('Director del Proyecto')!!}
-    {!!Form::text('profesor', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre o Cédula', 'id' => 'nombre_profesor'])!!}
+    {!!Form::text('profesor', isset($opciongrado) ? $opciongrado->director->nombre : null , ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre o Cédula', 'id' => 'nombre_profesor'])!!}
     <div id="label_oculto_profesor"></div>                     
     {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
     <br>
 
     {!!Form::label('Coordinador Externo')!!}
-    {!!Form::text('persona_externa', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre', 'id' => 'nombre_persona_externa'])!!}
+    {!!Form::text('persona_externa', isset($opciongrado) ? $opciongrado->coordinadorExterno->nombre_externo : null , ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre', 'id' => 'nombre_persona_externa'])!!}
     <div id="label_persona"></div>                     
     {!! Form::hidden('id_externo', null, ['id' => 'id_externo']) !!}
         </br>
@@ -63,14 +63,11 @@
     <br>
 
     <!--Inicia Informe-->
-         <div class="box box-solid box-danger direct-chat direct-chat-warning collapsed-box">
+         <div class="box box-solid box-danger">
          <div class="box-header with-border">
           <h3 class="box-title">Informe</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-          </div>
         </div>
-        <div class="box-body" style="display:none;">
+        <div class="box-body">
           <!--inicia entrega centro de proyeccion-->
      <div class="box">
      <div class="box-header">
@@ -160,7 +157,7 @@
   <div class="row">
     <div class="col-xs-3">
     {!!Form::label('Finalizado')!!}
-    {!!Form::select('finalizado', ['' => '', 'Si' => 'Si', 'No' => 'No'], null, ['class' => 'form-control'])!!}  
+    {!!Form::select('finalizado', ['' => '', 's' => 'Si', 'n' => 'No'], null, ['class' => 'form-control'])!!}  
     </div>
   </div>
 

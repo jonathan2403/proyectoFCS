@@ -1,5 +1,4 @@
 @section('scripts')
-   {!!Html::script('/assets/js/load_views.js')!!}
    {!!Html::script('/assets/js/componentes/externos/validarExterno.js')!!}
 @endsection
 @extends('layaouts.tablas')

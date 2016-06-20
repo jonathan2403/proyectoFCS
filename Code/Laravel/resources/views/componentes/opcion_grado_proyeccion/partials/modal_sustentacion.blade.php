@@ -3,14 +3,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{$opcion_grado->descripcion}}</h4>
+        <h4 class="modal-title" id="myModalLabel">{{$opciongrado->descripcion}}</h4>
       </div>
       <div class="modal-body">
         <p>Agregar Estudiante a la Opcion de Grado</p>    
       </div>
       <div class="modal-footer" style="text-align:left">
         {!! Form::open(['route' => 'sustentacion.store', 'method' => 'POST']) !!}
-              {!! Form::hidden('id_opcion_grado', $opcion_grado->id, ['id' => 'id_opcion_grado']) !!}
+              {!! Form::hidden('id_opcion_grado', $opciongrado->id, ['id' => 'id_opcion_grado']) !!}
                {!! Form::text('estudiante', null,['class' => 'form-control', 'id' => 'nombre_estudiante','placeholder'=>'Buscar por nombre o Código']) !!}
         <div id="label_oculto_estudiante"></div>                     
         {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}

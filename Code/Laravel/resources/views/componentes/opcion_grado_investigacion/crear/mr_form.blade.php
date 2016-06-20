@@ -18,17 +18,15 @@
 
     {!! Form::label('Jurado Del Proyecto') !!}
    
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
-            <div id="label_oculto_profesor"></div>                     
-            {!! Form::hidden('id_supervisor', null, ['id' => 'id_supervisor']) !!}
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_jurado','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_jurado"></div>                     
+            {!! Form::hidden('id_jurado', null, ['id' => 'id_supervisor']) !!}
     
    </br>
 
-    {!! Form::label('entidad') !!}   
-    {!! Form::text('entidad', isset($nombre_estudiante) ? $nombre_estudiante:null,['class' => 'form-control', 'id' => 'nombre_entidad','placeholder'=>'Nombre de la Entidad']) !!}
-   <div id="label_oculto"></div>                     
-   {!! Form::hidden('id_entidad', null, ['id' => 'id_entidad']) !!}
-    </br></br>
+   {!! Form::label('entidad') !!}
+   {!! Form::select('id_entidad', $nombre_entidad, null, ['class' => 'form-control', 'placeholder' => '']) !!}
+    </br>
 
     {!!Form::label('Fecha de Entrega al Centro de Investigación')!!}
     <div class="input-group">
@@ -226,11 +224,16 @@
     </br>
     
     {!!Form::label('Finalizado')!!}
+    <div class="row text-center">
+      <div class="col-xs-2">
+        {!!Form::label('Si')!!}
+        {!!Form::radio('finalizado', 's', false, ['class' => 'iradio_minimal-red'])!!}
+      </div>
+      <div class="col-xs-1">
+        {!!Form::label('No')!!}
+        {!!Form::radio('finalizado', 'n', false, ['class' => 'iradio_minimal-red'])!!}
+      </div>
+    </div>
       </br>
-    {!!Form::label('Si')!!}
-    {!!Form::radio('finalizado', 's', false)!!}
-    {!!Form::label('No')!!}
-    {!!Form::radio('finalizado', 'n', false)!!}
-
 </div>
     </br>

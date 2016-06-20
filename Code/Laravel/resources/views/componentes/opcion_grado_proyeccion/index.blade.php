@@ -46,7 +46,7 @@
 											@if($opciongrado->fecha_aprobacion == '')
 											   <td>{{$opciongrado->fecha_aprobacion}}</td>
 											@else
-											<td>{{$opciongrado->fecha_aprobacion}} - Acta: {{$opciongrado->numero_acta_2}}</td>
+											<td>{{$opciongrado->fecha_aprobacion}} - Acta: {{$opciongrado->numero_acta}}</td>
 											@endif
 											@if($opciongrado->concepto_1=='ap')
 											<td><center>Aprobado</center></td>

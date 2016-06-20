@@ -2,6 +2,7 @@
 @section('scripts')
 {!!Html::script('/assets/js/base/profesor_modal.js')!!}
 {!!Html::script('/assets/js/highcharts/load_views.js')!!}
+{!! Html::script('assets/js/componentes/opcionGrado/investigacion/validarOpcionGrado.js') !!}
 @endsection
 @section('content')
   <section class="content">
@@ -17,7 +18,7 @@
               <div class="box-body">
                   <div class="row">
                     <div class="pad">
-                      {!! Form::model($opciongrado,$route)!!}
+                      {!! Form::model($opciongrado,$route + ['id' => 'mon_revision-form', 'class' => 'formulario_validado'])!!}
                       @if($opciongrado->tipo_opcion_grado == 'Mon. de Revisión')
                         @include('componentes.opcion_grado_investigacion.crear.mr_form')
                       @endif

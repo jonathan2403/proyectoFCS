@@ -12,113 +12,84 @@
       <div class="col-xs-11">
         <div class="box">
           <div class="box-header">
+          </div><!-- /.box-header -->
             @include('layaouts.partials.mensaje')
 
-            <table class="table">
-             <thead>
-               <th><font size="3px">Título EPPS</font></th>
-               <th><font size="3px"><center>Director</center></font></th>
-               <th><font size="3px"><center>Coordinador Externo</center></font></th>
-             </thead>
-             <tbody>
-               <td>{{$opcion_grados[0]->descripcion}}</td>
-               <td><center>{{ucwords($director[0]->name_director)}}</center></td>
-               <td><center>{{$externo[0]->nombre_externo}}</center></td>
-             </tbody>
-           </table>
-           <table class="table table-striped">
-             <thead>
-               <th><center>Entrega Centro P.S</center></th>
-               <th><center>Plazo Máximo de Entrega</center></th>
-               <th><center>Finalizado</center></th>
-             </thead>
-             <tbody>
-               <td><center>{{$opcion_grados[0]->fecha_entrega_ci}}</center></td>
-               <td><center>{{$opcion_grados[0]->fecha_entrega_max_proyecto}}</center></td>
-               <td><center>{{$opcion_grados[0]->finalizado}}</center></td>
-             </tbody>
-           </table>
-           <font size="4"><b><center>Informe</center></b></font><hr>
-            <table class="table table-striped">
-            <thead>
-              <th><center>Entrega al Centro</center></th>
-              <th><center>Concepto</center></th>
-              <th><center>Empaste</center></th>
-              <th><center>Certificado</center></th>
-              <th><center>Carta Coordinador</center></th>
-              <th><center>Carta Director</center></th>
-              <th><center>Evaluacion</center></th>
-            </thead>
-            <tbody>
-              <td><center>{{$opcion_grados[0]->fecha_entrega_informe_final}} - Acta: {{$opcion_grados[0]->numero_acta_2}}</center></td>
-              <td><center>{{$opcion_grados[0]->concepto_2}}</center></td>
-              <td><center>{{$opcion_grados[0]->fecha_entrega_empaste}}</center></td>
-              <td><center>{{$opcion_grados[0]->fecha_entrega_certificado}}</center></td>
-              <td><center>{{$opcion_grados[0]->carta_coordinador}}</center></td>
-              <td><center>{{$opcion_grados[0]->carta_director}}</center></td>
-              <td><center>{{$opcion_grados[0]->evaluacion}}</center></td>
-            </tbody>
-          </table>
-          </div><!-- /.box-header -->
-            {!! Form::open(['id' => 'form1', 'style' => 'display:none', 'name' => 'form1']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-            <input type="hidden" id="id_opcion_grado" value="{{$opcion_grados[0]->id}}">
-            {!! Form::text('id_estudiante', null, ['id' => 'id_estudiante', 'class'=>'form-control', 'placeholder'=>'Id Estudiante','required'])!!}
-              </br>
-            {!! link_to('opcion-grado/'.$opcion_grados[0]->id, $title="Registrar", $attributes=['id' => 'registro', 'class' => 'btn btn-primary'], $secure = null) !!}
-            {!! Form::close() !!}
-            <font size="4"><b><center>Participantes</center></b></font><hr>
-            <table class="table table-bordered table-striped">
-                <thead>
-                  <th><center>Código</center></th>
-                  <th><center>Nombre</center></th>
-                  <th><center>Telefono</center></th>
-                  <th><center>Email</center></th>
-                  <th><center>Acción</center></th>
-                </thead>
-                <tbody>
-                  @foreach($estudiantes as $estudiante)
-                    <tr>
-                      <td><center>{{$estudiante->codigo_estudiante}}</center></td>
-                      <td>{{ucwords($estudiante->full_name)}}</td>
-                      <td><center>{{$estudiante->telefono}}</center></td>
-                      <td><center>{{$estudiante->email}}</center></td>
-                      <td><center>
-                        <button type="button" class="btn btn-danger" onclick="$('#modalBorrar{!! $estudiante->id !!}').modal();">Borrar</button>
-                      </center></td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
+            <div class="box box-danger">
               <div class="box-body">
-                <div class="row form-group">
-                  <div class="col-md-3">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Estudiante</button>
+                <div class="row text-center">
+                  <div class="col-xs-4">
+                    {!!Form::label('título EPPS')!!}<br>
+                    {{$opciongrado->descripcion}}
+                  </div>
+                  <div class="col-xs-4">
+                    {!!Form::label('director')!!}<br>
+                    {{isset($opciongrado->director->nombre) ? $opciongrado->director->nombre : 'No registra'}}
+                  </div>
+                  <div class="col-xs-4">
+                    {!!Form::label('coordinador externo')!!}<br>
+                    {{isset($opciongrado->coordinadorExterno->nombre_externo) ? $opciongrado->coordinadorExterno->nombre_externo : 'No registra'}}
                   </div>
                 </div>
+              </div>
             </div>
+
+            <div class="box box-danger">
+              <div class="box-body">
+                <div class="row text-center">
+                  <div class="col-xs-6">
+                    {!!Form::label('entrega al centro de P.S')!!}<br>
+                    {{$opciongrado->fecha_entrega_ci}}
+                  </div>
+                  <div class="col-xs-6">
+                    {!!Form::label('fecha máxima de entrega')!!}<br>
+                    {{$opciongrado->fecha_entrega_max_proyecto}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!--Participantes-->
+          <div class="box box-solid box-danger">
+                    <div class="box-header with-border">
+                      <h5 class="box-title">Participantes</h5>
+                    </div>
+            <div class="box-body">
+              <div class="row">
+                    <div class="col-xs-12">
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo Registro</button>
+                      <hr>
+                      <table class="table table-bordered table-striped text-center">
+                        <thead>
+                          <th>Código</th>
+                          <th>N° Documento</th>
+                          <th>Nombre</th>
+                          <th>Teléfono</th>
+                          <th>Email</th>
+                          <th>Acción</th>
+                        </thead>
+                        <tbody>
+                        @foreach($estudiantes as $estudiante)
+                          <tr>
+                            <td>{{$estudiante->codigo_estudiante}}</td>
+                            <td>{{$estudiante->numero_documento}}</td>
+                            <td>{{ucwords($estudiante->nombre_estudiante)}}</td>
+                            <td>{{$estudiante->telefono}}</td>
+                            <td>{{$estudiante->email}}</td>
+                            <td>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $estudiante->sustentacion !!}').modal();">Borrar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                        @endforeach
+                    </table>
+                    </div>                    
+              </div>
+            </div>
+           </div><!--Cierra participantes-->
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col -->
-      <button type="button" class="btn" onClick ="$('#example3').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"><i class="fa fa-file-pdf-o"></i> PDF</button>|<button id="button-excel" class="btn"><i class="fa fa-file-excel-o"></i> Excel</button>
     </div><!-- /.row -->
   </section><!-- /.content -->
-@endsection
-@section('scripts')
-  <script type="text/javascript">
-  $(document).ready(function () {
-           $("#button-excel").click(function(e) {
-            $("#example3").table2excel({
-          exclude: ".noExl",
-          name: "Excel Document Name"
-         });
-       });
-           $('#select_estudiante').select2({
-            width : '50%',
-            display: 'inline-block',
-            minimumInputLength: '1'
-           });
-           $.fn.modal.Constructor.prototype.enforceFocus = function () {};
-    });
-  </script>
 @endsection

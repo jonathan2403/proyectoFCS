@@ -10,6 +10,7 @@ var formulario=$("#joven-investigador-form");
 
 formulario.validate({
     rules: {
-        estudiante: {required:true}
+        estudiante: {required:true},
+        profesor: {required:true}
     }
   });

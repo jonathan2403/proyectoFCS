@@ -5,13 +5,17 @@
 		
 	{!!Form::label('Tipo Externo')!!}
 	 </br>
-	{!!Form::label('Persona')!!}
-	{!!Form::radio('tipo_externo', 'p', false, ['class' => 'form-control'])!!} 
-	{!!Form::label('Entidad')!!}
-	{!!Form::radio('tipo_externo', 'e', false, ['class' => 'form-control'])!!}
-		
-
-	</br></br>
+	<div class="row">
+		<div class="col-xs-2">
+			{!!Form::label('Persona')!!}
+			{!!Form::radio('tipo_externo', 'p', false, ['class' => 'iradio_minimal-red'])!!} 		
+		</div>
+		<div class="col-xs-2">
+			{!!Form::label('Entidad')!!}
+			{!!Form::radio('tipo_externo', 'e', false, ['class' => 'iradio_minimal-red'])!!}		
+		</div>
+	</div>
+	</br>
 
   {!!Form::label('Teléfono')!!}
 	<div class="input-group">

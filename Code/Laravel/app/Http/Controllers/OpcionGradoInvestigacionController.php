@@ -47,7 +47,7 @@ class OpcionGradoInvestigacionController extends Controller
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name', 'id');
         $nombre_grupo = Grupo::all()->lists('full_name', 'id');
-        $nombre_entidad = Externo::all()->lists('full_name_entidad', 'id')->toArray();
+        $nombre_entidad = Externo::all()->where('tipo_externo', 'e')->lists('full_name_entidad', 'id')->toArray();
         return view('componentes.opcion_grado_investigacion.addopcion_grado', compact('tipo', 'route', 'nombre_profesor', 'nombre_proyecto', 'nombre_grupo', 'nombre_entidad', 'indicador_modulo'));
     }
 

@@ -11,7 +11,13 @@ class Profesor extends Model
 
     public function getFullNameAttribute()
     {
-    	$name = $this->cedula.' - '.$this->primer_nombre.' '.$this->primer_apellido.' '.$this->segundo_apellido;
+    	$name = $this->cedula.' - '.$this->primer_nombre.' '.$this->segundo_nombre.' '.$this->primer_apellido.' '.$this->segundo_apellido;
+      return ucwords($name);
+    }
+
+    public function getNombreAttribute()
+    {
+      $name = $this->primer_nombre.' '.$this->segundo_nombre.' '.$this->primer_apellido.' '.$this->segundo_apellido;
       return ucwords($name);
     }
 
