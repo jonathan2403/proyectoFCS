@@ -45,6 +45,16 @@ class OpcionGrado extends Model
                            'id_grupo'
                          ];
 
+     // Relación director
+    public function director(){
+      return $this->belongsTo('FCS\Profesor', 'id_director');
+    }
+
+    // Relación con externo
+    public function coordinadorExterno(){
+      return $this->belongsTo('FCS\Externo', 'id_externo');
+    }
+
      public static $reglas_pas = [
           'descripcion' => "required|max:150|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
           'id_director' => 'required|exists:profesores,id',
@@ -71,6 +81,51 @@ class OpcionGrado extends Model
         'id_entidad.required' => 'El campo entidad es obligatotio.',
         'id_entidad.exists' => 'Entidad no existe.',
         'fecha_aprobacion.required' => 'Fecha de entrega al comité es obligatorio.'
+     ];
+
+     public static $reglas_epps = [
+          'descripcion' => "required|max:150|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+          'id_director' => 'required|exists:profesores,id',
+          'id_externo' => 'required|exists:externo,id',
+          'id_entidad' => 'required|exists:externo,id',
+          'fecha_aprobacion' => 'required|date_format:m/d/Y',
+          'concepto_1' => 'required|in:ap,na,aa',
+          'numero_acta' => 'required|digits_between:2,9',
+          'fecha_entrega_1' => 'required|date_format:m/d/Y',
+          'numero_acta_2' => 'digits_between:2,9',
+          'fecha_entrega_2' => 'required|date_format:m/d/Y',
+          'concepto_2' => 'in:ap,na,aa',
+          'numero_acta_3' => 'digits_between:2,9',
+          'finalizado' => 'in:Si,No'
+     ];
+
+     public static $mensajes_epps = [
+        'descripcion.required' => 'El campo título es obligatorio.',
+        'descripcion.max' => 'Título no puede exceder 150 caracteres.',
+        'id_director.required' => 'El campo director es obligatorio.',
+        'id_director.exists' => 'El director no existe.',
+        'id_externo.required' => 'El campo entidad es obligatotio.',
+        'id_externo.exists' => 'Entidad no existe.',
+        'id_entidad.required' => 'El campo entidad es obligatotio.',
+        'id_entidad.exists' => 'Entidad no existe.',
+        'fecha_aprobacion.required' => 'Fecha de entrega al comité es obligatorio.'
+     ];
+
+     public static $reglas_pos = [
+          'descripcion' => "required|max:150|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+          'id_director' => "required",
+          'fecha_aprobacion' => 'required|date_format:m/d/Y',
+          'concepto_1' => 'required|in:ap,na,aa',
+          'numero_acta' => 'required|digits_between:2,9',
+     ];
+
+     public static $mensajes_pos = [
+        'descripcion.required' => 'El campo título es obligatorio.',
+        'descripcion.max' => 'Título no puede exceder 150 caracteres.',
+        'id_director.required' => "Director es obligatorio.",
+        'fecha_aprobacion.required' => 'Fecha de entrega al comité es obligatorio.',
+        'concepto_1.required' => 'Concepto entrega al comité es obligatorio.',
+        'numero_acta.required'  => 'Número de acta entrega al comité es obligatorio.'
      ];
 
      public static $reglas_investigacion = array(
@@ -194,6 +249,7 @@ class OpcionGrado extends Model
      public function setIdEntidadAttribute($value){
            $this->attributes['id_entidad'] = empty($value) ? null : $value;
      }
+
      public function getTipoOpcionGradoAttribute($value)
      {
       if($value == 'epps')

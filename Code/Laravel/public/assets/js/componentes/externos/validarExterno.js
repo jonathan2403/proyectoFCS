@@ -10,7 +10,7 @@ var formulario=$("#externos-form");
 formulario.validate({
     rules: {
         nombre_externo: {required: true},
-        //tipo_externo: {required: true},
+        tipo_externo: {required: true},
         correo: {required: true},
         telefono: {required: true},  
     }

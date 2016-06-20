@@ -6,13 +6,13 @@
       </br>
 
     {!!Form::label('Director de la Pasantía')!!}
-    {!!Form::text('profesor', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre o Cédula', 'id' => 'nombre_profesor'])!!}
+    {!!Form::text('profesor', isset($opciongrado) ? $opciongrado->director->nombre : null , ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre o Cédula', 'id' => 'nombre_profesor'])!!}
     <div id="label_oculto_profesor"></div>                     
     {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
       </br>
 
     {!!Form::label('Coordinador de la Entidad')!!}
-    {!!Form::text('persona_externa', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre', 'id' => 'nombre_persona_externa'])!!}
+    {!!Form::text('persona_externa', isset($opciongrado->coordinadorExterno) ? $opciongrado->coordinadorExterno->nombre_externo : null , ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre', 'id' => 'nombre_persona_externa'])!!}
     <div id="label_persona"></div>                     
     {!! Form::hidden('id_externo', null, ['id' => 'id_externo']) !!}
         </br>

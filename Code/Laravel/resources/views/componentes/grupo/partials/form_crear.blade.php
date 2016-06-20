@@ -14,7 +14,7 @@
             {!!Form::label('Estudio')!!}
             {!!Form::radio('tipo', 'e', false, ['class' => 'iradio_minimal-red'])!!}       
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             {!!Form::label('Investigación')!!}
             {!!Form::radio('tipo', 'i', false, ['class' => 'iradio_minimal-red'])!!}  
         </div>

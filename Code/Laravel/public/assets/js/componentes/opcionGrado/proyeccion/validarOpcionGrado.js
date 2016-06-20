@@ -3,8 +3,8 @@
 */
 
 /*
- *Realiza la validacion de la creacion de un usuario y
-  *  muestra los mensajes de dichas validaciones
+  * Realiza la validacion de la creacion de una 
+  *  
  */
 var formulario=$("#pasantia-form");
 

@@ -24,6 +24,11 @@ class Grupo extends Model
       return $this->hasMany('FCS\Adscripcion', 'id_grupo');
     }
 
+    // relación con profesor
+    public function coordinador(){
+      return $this->belongsTo('FCS\Profesor', 'id_profesor');
+    }
+
     public static $reglas = array(
       'sigla' => "max:50|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.\(\)]+$/",
       'descripcion' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.\(\)]+$/",

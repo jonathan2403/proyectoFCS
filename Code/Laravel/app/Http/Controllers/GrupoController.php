@@ -121,8 +121,7 @@ class GrupoController extends Controller
             $indicador_modulo = 20;
             $tipo_grupo = 'proyeccion';
         }
-        $nombre_profesor = Profesor::all()->lists('full_name','id');
-        return view('componentes.grupo.editgrupo', compact('route','grupo', 'nombre_profesor', 'tipo_grupo', 'indicador_modulo'));
+        return view('componentes.grupo.editgrupo', compact('route','grupo', 'tipo_grupo', 'indicador_modulo'));
     }
 
     /**

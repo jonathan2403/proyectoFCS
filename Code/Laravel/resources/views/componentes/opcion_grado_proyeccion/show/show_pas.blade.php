@@ -20,7 +20,7 @@
             <div class="row text-center">
               <div class="col-xs-3">
                 {!!Form::label('Nombre Pasantía')!!}<br>
-                {{ucfirst($opcion_grado->descripcion)}}
+                {{ucfirst($opciongrado->descripcion)}}
               </div>
               <div class="col-xs-3">
                 {!!Form::label('Director Pasantía')!!}<br>
@@ -39,21 +39,21 @@
             <div class="row text-center">
               <div class="col-xs-4">
               {!!Form::label('entrega informe 1')!!}<br>
-              {{$opcion_grado->fecha_entrega_1}}- Acta: {{$opcion_grado->numero_acta_2}}
+              {{$opciongrado->fecha_entrega_1}}- Acta: {{$opciongrado->numero_acta_2}}
               </div>
               <div class="col-xs-4">
                {!!Form::label('entrega final')!!}<br>
-               {{$opcion_grado->fecha_entrega_2}}- Acta: {{$opcion_grado->numero_acta_3}}
+               {{$opciongrado->fecha_entrega_2}}- Acta: {{$opciongrado->numero_acta_3}}
               </div>
               <div class="col-xs-4">
                {!!Form::label('concepto')!!}<br> 
-               @if($opcion_grado->concepto_2=='ap')
+               @if($opciongrado->concepto_2=='ap')
                       <td><center>Aprobado</center></td>
                      @endif
-                     @if($opcion_grado->concepto_2=='aa')
+                     @if($opciongrado->concepto_2=='aa')
                       <td><center>Apr. con Ajustes</center></td>
                      @endif
-                     @if($opcion_grado->concepto_2=='na')
+                     @if($opciongrado->concepto_2=='na')
                       <td><center>No Aprobado</center></td>
                 @endif
               </div>
@@ -62,33 +62,33 @@
             <div class="row text-center">
               <div class="col-xs-3">
                 {!!Form::label('Carta Director')!!}<br>
-                {{$opcion_grado->carta_director}}
+                {{$opciongrado->carta_director}}
               </div>
               <div class="col-xs-3">
                 {!!Form::label('Carta Coordinador')!!}<br>
-                {{$opcion_grado->carta_coordinador}}
+                {{$opciongrado->carta_coordinador}}
               </div>
               <div class="col-xs-3">
                 {!!Form::label('Evaluación')!!}<br>
-                @if($opcion_grado->evaluacion=='ap')
+                @if($opciongrado->evaluacion=='ap')
                       Aprobado
                       @endif
-                      @if($opcion_grado->evaluacion=='aa')
+                      @if($opciongrado->evaluacion=='aa')
                       Apr. con Ajustes
                       @endif
-                      @if($opcion_grado->evaluacion=='na')
+                      @if($opciongrado->evaluacion=='na')
                       No Aprobado
                       @endif
-                      @if($opcion_grado->evaluacion=='me')
+                      @if($opciongrado->evaluacion=='me')
                       Meritoria
                       @endif
-                      @if($opcion_grado->evaluacion=='la')
+                      @if($opciongrado->evaluacion=='la')
                       Laureada
                   @endif
               </div>
               <div class="col-xs-3">
                 {!!Form::label('Finalizado')!!}<br>
-                {{$opcion_grado->finalizado}}
+                {{$opciongrado->finalizado}}
               </div>
             </div> 
           </div>           

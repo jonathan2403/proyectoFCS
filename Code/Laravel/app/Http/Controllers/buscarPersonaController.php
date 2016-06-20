@@ -27,7 +27,8 @@ class buscarPersonaController extends Controller{
 	}
 
 	public function buscarProfesor($palabra){
-		$profesores = Profesor::where('cedula', 'like', '%'.$palabra.'%')
+		$profesores = Profesor::select('id', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido')
+		->where('cedula', 'like', '%'.$palabra.'%')
 		->orWhere('primer_nombre', 'like', '%'.$palabra.'%')
 		->orWhere('segundo_nombre', 'like', '%'.$palabra.'%')
 		->orWhere('primer_apellido', 'like', '%'.$palabra.'%')

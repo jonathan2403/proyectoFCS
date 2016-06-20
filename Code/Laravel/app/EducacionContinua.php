@@ -25,6 +25,11 @@ class EducacionContinua extends Model
   						'otros_gastos',
               'id_director'
   						];
+
+    public function director(){
+        return $this->belongsTo('FCS\Profesor', 'id_director');
+    }
+
     public static $reglas_crear = array(
       'nombre' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
       'numero_acta' => 'required|digits_between:2,9',

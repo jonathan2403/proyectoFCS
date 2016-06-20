@@ -1,14 +1,12 @@
 <?php
-
 namespace FCS\Http\Controllers;
-
 use Illuminate\Http\Request;
 use FCS\JovenInvestigador;
 use FCS\Estudiante;
 use FCS\Grupo;
+use FCS\Externo;
 use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
-
 
 class JovenInvestigadorController extends Controller
 {
@@ -16,13 +14,11 @@ class JovenInvestigadorController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */    
     public function index()
     {
         $indicador_modulo = 24;
-        $jovenes_investigadores = JovenInvestigador::join('estudiantes', 'joven_investigador.id_estudiante', '=', 'estudiantes.id')
-        ->join('grupo', 'joven_investigador.id_grupo', '=', 'grupo.id')
-        ->select('joven_investigador.id', \DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS nombre_estudiante"), \DB::raw("CONCAT(grupo.sigla, ' - ', grupo.descripcion) AS nombre_grupo"))
+        $jovenes_investigadores = JovenInvestigador::select('id_estudiante', 'id_profesor', 'id_grupo', 'id_institucion', \DB::raw("CASE WHEN colciencias = 's' THEN 'Si' ELSE 'No' END AS colciencias"), 'producto')
         ->get();
         return view('componentes.joven_investigador.index', compact('jovenes_investigadores', 'indicador_modulo'));
     }
@@ -36,8 +32,9 @@ class JovenInvestigadorController extends Controller
     {
         $indicador_modulo = 24;
         $grupos = Grupo::all()->lists('NombreGrupo', 'id');
+        $instituciones = Externo::all()->where('tipo_externo', 'e')->lists('FullNameEntidad', 'id');
         $route = ['route' => 'joven-investigador.store', 'method' => 'POST']; 
-        return view('componentes.joven_investigador.addjoven_investigador', compact('route', 'grupos', 'indicador_modulo'));
+        return view('componentes.joven_investigador.addjoven_investigador', compact('route', 'grupos', 'instituciones', 'indicador_modulo'));
     }
 
     /**
@@ -52,9 +49,8 @@ class JovenInvestigadorController extends Controller
         $valida = \Validator::make($datos, JovenInvestigador::$reglas_crear, JovenInvestigador::$mensajes);
         if($valida->fails()){
             return redirect()->back()->withErrors($valida->errors())->withInput($datos);
-        }else{
-            $joven_investigador = JovenInvestigador::create($datos);
         }
+        $joven_investigador = JovenInvestigador::create($datos);
         return redirect('joven-investigador')->with('message', 'Registro Creado!');
     }
 
@@ -86,7 +82,7 @@ class JovenInvestigadorController extends Controller
         $nombre_estudiante = $nombre_estudiante['nombre_estudiante'];
         $grupos = Grupo::all()->lists('NombreGrupo', 'id');
         $route = ['route' => ['joven-investigador.update', $joven_investigador->id], 'method' => 'PUT'];
-        return view('componentes.joven_investigador.editjoven_investigador', compact('route', 'nombre_estudiante', 'joven_investigador', 'grupos'));
+        return view('componentes.joven_investigador.editjoven_investigador', compact('route', 'nombre_estudiante', 'joven_investigador', 'grupos', 'indicador_modulo'));
     }
 
     /**

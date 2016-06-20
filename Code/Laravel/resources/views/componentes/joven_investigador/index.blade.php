@@ -17,7 +17,7 @@
 								<thead>
 									<th>Nombre Investigador</th>
 									<th>Tutor</th>
-									<th>Nombre Grupo</th>
+									<th>Grupo</th>
 									<th>Colciencias</th>
 									<th>Institucion</th>
 									<th>Producto</th>
@@ -26,12 +26,12 @@
 								<tbody>
 									@foreach($jovenes_investigadores as $joven_investigador)
 										<tr>
-											<td>{{$joven_investigador->nombre_estudiante}}</td>
-											<td>Example</td>
-											<td>{{$joven_investigador->nombre_grupo}}</td>
-											<td>Si</td>
-											<td>Example</td>
-											<td>Example</td>
+											<td>{{$joven_investigador->estudiante->full_name}}</td>
+											<td>{{$joven_investigador->profesor->nombre}}</td>
+											<td>{{isset($joven_investigador->grupo) ? $joven_investigador->grupo->nombre_grupo : null}}</td>
+											<td>{{$joven_investigador->colciencias}}</td>
+											<td>{{isset($joven_investigador->institucion) ? $joven_investigador->institucion->full_name_entidad : null}}</td>
+											<td>{{$joven_investigador->producto}}</td>
 											<td>{!! link_to_route('joven-investigador.edit', $title='Editar', $parameters=$joven_investigador->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}</td>
 										</tr>
 									@endforeach

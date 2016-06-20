@@ -20,7 +20,7 @@
                   <div class="row">
                     <div class="pad">
                        @if($opciongrado->tipo_opcion_grado == 'Pasantía')
-                          {!! Form::model($opciongrado,$route + ['id' => 'pas-form', 'class' => 'formulario_validado'])!!}
+                          {!! Form::model($opciongrado,$route + ['id' => 'pasantia-form', 'class' => 'formulario_validado'])!!}
                           @include('componentes.opcion_grado_proyeccion.crear.pas_form')
                        @endif
                        @if($opciongrado->tipo_opcion_grado == 'EPPS')
@@ -28,7 +28,7 @@
                           @include('componentes.opcion_grado_proyeccion.crear.epps_form')
                        @endif
                        @if($opciongrado->tipo_opcion_grado == 'Posgrado')
-                          {!! Form::model($opciongrado,$route + ['id' => 'pos-form', 'class' => 'formulario_validado'])!!}
+                          {!! Form::model($opciongrado,$route + ['id' => 'posgrado-form', 'class' => 'formulario_validado'])!!}
                           @include('componentes.opcion_grado_proyeccion.crear.pos_form')
                        @endif
                       {!!Form::submit('Editar', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/opcion-grado-proyeccion')}}" class="btn btn-danger" >Cancelar</a>

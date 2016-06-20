@@ -15,21 +15,21 @@
             {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
     </br>
 
-  {!! Form::label('director n° 2 del proyecto') !!}
- 
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'director2','placeholder'=>'Buscar por nombre o Cédula']) !!}
-            <div id="label_oculto_profesor"></div>                     
-            {!! Form::hidden('id_supervisor', null, ['id' => 'id_profesor']) !!}
-  
+    {!! Form::label('director n° 2 del proyecto') !!}
+    <div id="div_profesor">
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_jurado','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_jurado"></div>                     
+            {!! Form::hidden('id_jurado', null, ['id' => 'id_profesor']) !!}
+    </div>
    </br>
 
     {!!Form::label('proyecto al que pertenece')!!}
     {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
-        </br></br>
+        </br>
 
     {!!Form::label('grupo')!!}
     {!!Form::select('id_grupo', $nombre_grupo->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
-            </br></br>
+        </br>
 
     {!!Form::label('línea de investigación')!!}
     {!! Form::select('linea_investigacion', array(''=>'','cu' => 'Cuidado', 'sp' => 'Salud Pública'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
@@ -254,10 +254,16 @@
       
     {!!Form::label('Finalizado')!!}
       </br>
-    {!!Form::label('Si')!!}
-    {!!Form::radio('finalizado', 'Si', false)!!} &nbsp
-    {!!Form::label('No')!!}
-    {!!Form::radio('finalizado', 'No', false)!!}
+    <div class="row text-center">
+      <div class="col-xs-2">
+        {!!Form::label('Si')!!}
+        {!!Form::radio('finalizado', 's', false, ['class' => 'iradio_minimal-red'])!!}
+      </div>
+      <div class="col-xs-1">
+        {!!Form::label('No')!!}
+        {!!Form::radio('finalizado', 'n', false, ['class' => 'iradio_minimal-red'])!!}
+      </div>
+    </div>
 
 </div>
     </br>

@@ -251,10 +251,16 @@
 
     {!!Form::label('Finalizado')!!}
       </br>
-    {!!Form::label('Si')!!}
-    {!!Form::radio('finalizado', 'Si', false)!!}
-    {!!Form::label('No')!!}
-    {!!Form::radio('finalizado', 'No', false)!!}
+    <div class="row text-center">
+      <div class="col-xs-2">
+        {!!Form::label('Si')!!}
+        {!!Form::radio('finalizado', 's', false, ['class' => 'iradio_minimal-red'])!!}
+      </div>
+      <div class="col-xs-1">
+        {!!Form::label('No')!!}
+        {!!Form::radio('finalizado', 'n', false, ['class' => 'iradio_minimal-red'])!!}
+      </div>
+    </div>
 
 </div>
     </br>
