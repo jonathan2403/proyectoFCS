@@ -10,30 +10,36 @@
 
     {!! Form::label('Investigador Principal') !!}
     {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
-     <div id="label_oculto_profesor"></div>                     
+     <div id="label_oculto_profesor"></div>
     {!! Form::hidden('id_investigador_principal', null, ['id' => 'id_profesor']) !!}
     </br>
-   
+
 	{!!Form::label('tema central')!!}<br>
 	{!!Form::text('tema_central', null, ['class'=>'form-control', 'placeholder'=>''])!!}
 		</br>
 
-	{!!Form::label('red de conocimiento')!!}<br>
-    {!!Form::select('id_red_conocimiento',$nombre_red->toArray(), null, ['id' => 'select_profesor', 'class' => 'form-control select', 'placeholder' => ' ']) !!}
-		</br></br>
-
-
-    {!!Form::label('Fecha de Inicio')!!}
-    <div class="input-group">
-        <div class="input-group-addon">
+	<div class="box">
+		<h4 class="box-title">Inicio</h4>
+		<div class="row">
+			<div class="col-xs-6">
+				{!!Form::label('Fecha')!!}<br>
+				<div class="input-group">
+				<div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-    {!!Form::text('fecha_inicio', null, ['class'=>'picker form-control', 'readonly'])!!}
-    </div></br>
+    		{!!Form::text('fecha_inicio', null, ['class'=>'picker form-control', 'readonly'])!!}
+				</div>
+			</div>
+			<div class="col-xs-6">
+				{!!Form::label('N° de acta')!!}<br>
+				{!!Form::text('numero_acta', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
+			</div>
+		</div>
+	</div>
 
-    {!!Form::label('Numero de Acta')!!}
-    {!!Form::text('numero_acta', null, ['class'=>'form-control', 'placeholder'=>'Digite Numero de Acta'])!!}
-        </br>
+	{!!Form::label('red de conocimiento')!!}<br>
+    {!!Form::select('id_red_conocimiento',$nombre_red->toArray(), null, ['class' => 'form-control', 'placeholder' => ' ']) !!}
+		</br>
 
     <!--Avances-->
     <h4 class="box-title text-center">Avances</h4>
@@ -47,7 +53,7 @@
                       <i class="fa fa-calendar"></i>
                     </div>
                 {!!Form::text('fecha_avance1', null, ['class'=>'picker form-control', 'readonly'])!!}
-                </div>            
+                </div>
                 </div>
                 <div class="col-xs-4">
                 {!!Form::label('avance n° 2')!!}
@@ -56,7 +62,7 @@
                          <i class="fa fa-calendar"></i>
                        </div>
                  {!!Form::text('fecha_avance2', null, ['class'=>'picker form-control', 'readonly'])!!}
-                    </div>                    
+                    </div>
                 </div>
                 <div class="col-xs-4">
                 {!!Form::label('avance n° 3')!!}
@@ -65,7 +71,7 @@
                       <i class="fa fa-calendar"></i>
                     </div>
                 {!!Form::text('fecha_avance3', null, ['class'=>'picker form-control', 'readonly'])!!}
-                </div>                    
+                </div>
                 </div>
             </div>
         </div>

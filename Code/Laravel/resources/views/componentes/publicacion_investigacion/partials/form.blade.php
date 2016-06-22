@@ -5,16 +5,16 @@
     </br>
 
     {!!Form::label('Proyecto')!!}
-    {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
-    </br></br>
+    {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), null, ['class' => 'form-control', 'placeholder' => '']) !!}
+    </br>
 
 	{!!Form::label('Opción de Grado')!!}
-    {!!Form::select('id_opcion_grado', $nombre_opcion_grado->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
-    </br></br>
+    {!!Form::select('id_opcion_grado', $nombre_opcion_grado->toArray(), null, ['class' => 'form-control', 'placeholder' => '']) !!}
+    </br>
 
     {!!Form::label('Grupo')!!}
-    {!!Form::select('id_grupo', $nombre_grupo->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
-    </br></br>
+    {!!Form::select('id_grupo', $nombre_grupo->toArray(), null, ['class' => 'form-control', 'placeholder' => '']) !!}
+    </br>
 
     {!! Form::label('Tipo')!!}
 	{!! Form::select('tipo', array('' => '', 'ri' => 'Revista Indexada', 're' => 'Revista Especializada', 'li' => 'Libro', 'ar' => 'Artículo'), null, ['class' => 'form-control']) !!}

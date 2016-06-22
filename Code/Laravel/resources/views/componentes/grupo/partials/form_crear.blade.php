@@ -1,10 +1,10 @@
 <div class="form-group" id="form-content">
-	{!!Form::label('Sigla')!!}
+    {!!Form::label('Sigla')!!}
     {!!Form::text('sigla', null, ['class'=>'form-control', 'placeholder'=>'sigla del grupo'])!!}
 
     {!!Form::label('Nombre', null, ['for' => 'descripcion'])!!}
     {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'nombre del grupo'])!!}
-	</br>
+    </br>
 
     @if($tipo_grupo == 'investigacion')
     <font size="3px">{!!Form::label('Tipo')!!}</font>

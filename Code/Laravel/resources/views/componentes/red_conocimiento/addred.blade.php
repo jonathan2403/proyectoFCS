@@ -1,6 +1,7 @@
 @section('scripts')
-   {!!Html::script('/assets/js/load_views.js')!!}
+      {!!Html::script('/assets/js/load_views.js')!!}
       {!!Html::script('/assets/js/base/profesor_modal.js')!!}
+      {!!Html::script('/assets/js/componentes/redesConocimiento/validaRedConocimiento.js')!!}
 @endsection
 @extends('layaouts.tablas')
 @section('content')
@@ -18,10 +19,10 @@
             <div class="box-body">
               <div class="row">
                 <div class="pad">
-                  {!! Form::open($route)!!}
+                  {!! Form::open($route + ['id' => 'red-conocimiento-form', 'class' => 'formulario_validado'])!!}
                   @include('componentes.red_conocimiento.partials.form')
                   {!! Form::submit('Crear', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/red-conocimiento')}}" class="btn btn-danger" >Cancelar</a>
-                  {!!Form::close()!!}    
+                  {!!Form::close()!!}
                 </div>
               </div><!-- /.row pad-->
             </div><!-- /.box-body -->

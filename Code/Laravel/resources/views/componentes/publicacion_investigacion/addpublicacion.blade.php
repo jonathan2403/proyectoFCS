@@ -1,9 +1,10 @@
 @extends('layaouts.tablas')
 @section('scripts')
    {!!Html::script('/assets/js/load_views.js')!!}
+   {!!Html::script('/assets/js/componentes/publicaciones/validaPublicacion.js')!!}
 @endsection
 @section('content')
-  <section class="content"> 
+  <section class="content">
     <div class="row">
       <div class="col-md-9">
         @include('errors.partials.requesterror')
@@ -17,10 +18,10 @@
             <div class="box-body">
               <div class="row">
                 <div class="pad">
-                  {!! Form::open($route)!!}
+                  {!! Form::open($route + ['id' => 'publicacion-investigacion-form', 'class' => 'formulario_validado'])!!}
                   @include('componentes.publicacion_investigacion.partials.form')
                   {!! Form::submit('Crear', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/publicacion-investigacion')}}" class="btn btn-danger" >Cancelar</a>
-                  {!!Form::close()!!}    
+                  {!!Form::close()!!}
                 </div>
               </div><!-- /.row pad-->
             </div><!-- /.box-body -->
