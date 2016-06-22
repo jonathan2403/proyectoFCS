@@ -4,7 +4,7 @@
     @include('componentes.cursos.partials.modal')  
     <div class="row">
       <div class="col-xs-12">
-        <div class="box">
+        <div class="xample">
           <div class="box-header">
             @include('layaouts.partials.mensaje')
             <h3 class="box-title">Listado Cursos</h3>
@@ -12,10 +12,8 @@
           <div class="box-body">
             <div class="row form-group">
               <div class="col-md-3">
-                <a href="{!! URL('cursos/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Curso</a>
-              </div>
-            </div>
-            <table id="example3" class="table table-bordered table-striped">
+            <a href="{!! URL('cursos/create') !!}" class="btn btna fa-plus"></i> Nuevo Curso</a> </div> </div>
+            <table id="" class="table table-bordered table-striped">
               <thead>
                 <th>Codigo Del Curso</th>
                 <th>Nombre Del Curso</th>
@@ -27,6 +25,7 @@
                 <th>Acciones</th>
               </thead>
               <tbody>
+		[example]
                 @foreach($cursos as $t)
                   <tr> 
                     <td>{{ $t->codigo_curso}}</td>

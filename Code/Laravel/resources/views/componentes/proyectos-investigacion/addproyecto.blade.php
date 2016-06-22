@@ -2,6 +2,7 @@
 @section('scripts')
    {!!Html::script('/assets/js/base/profesor_modal.js')!!}
    {!!Html::script('/assets/js/load_views.js')!!}
+   {!!Html::script('/assets/js/componentes/proyectos/validaProyecto.js')!!}
 @endsection
 @section('content')
   <section class="content">
@@ -18,7 +19,7 @@
             <div class="box-body">
               <div class="row">
                 <div class="pad">
-                  {!! Form::open($route)!!}
+                  {!! Form::open($route + ['id' => 'proyecto-investigacion-form', 'class' => 'formulario_validado'])!!}
                   @include('componentes.proyectos-investigacion.partials.form')
                   {!! Form::submit('Crear', ['class' => 'btn btn-warning']) !!}&nbsp<a href="{{URL('/proyectos-investigacion')}}" class="btn btn-danger" >Cancelar</a>
                   {!!Form::close()!!}

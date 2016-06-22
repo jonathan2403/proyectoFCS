@@ -14,3 +14,16 @@ formulario.validate({
         id_proyecto: {required:true},
     }
   });
+
+/**
+ * Valida publicaciones investigación
+ */
+
+var formulario = $('#publicacion-investigacion-form');
+
+formulario.validate({
+  rules:{
+    descripcion: {required:true},
+    tipo: {required:true},
+  }
+});
