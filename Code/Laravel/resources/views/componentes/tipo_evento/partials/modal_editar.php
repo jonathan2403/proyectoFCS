@@ -15,7 +15,7 @@
         <input type="hidden" name="" id="id_tipoevento">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" id="btnEditaTipoEvento">Guardar</button>
       </div>
     </div><!-- /.modal-content -->

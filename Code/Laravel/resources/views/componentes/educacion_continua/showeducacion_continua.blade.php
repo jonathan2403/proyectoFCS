@@ -79,13 +79,14 @@
 <div class="box-body">
   <div class="row form-group">
     <div class="col-xs-3">
-      {!!Form::select('tipo_participante', ['es' => 'Estudiante', 'p' => 'Profesor'], null, ['id' => 'tipo_participante', 'class' => 'form-control'])!!}
-    </div>  
+      {!!Form::select('tipo_participante', ['es' => 'Estudiante', 'p' => 'Profesor'], null, ['id' => 'tipo_participante', 'class' => 'form-control', 'title' => 'Seleccione tipo de participante.'])!!}
+    </div>
     <div class="col-md-3">
       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Coinvestigador</button>
     </div>
   </div>
   <div id="dvData">
+
    <table  class="table table-striped text-center">
     <thead>
       <th>Cédula</th>

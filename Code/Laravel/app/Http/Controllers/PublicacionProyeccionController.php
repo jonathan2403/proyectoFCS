@@ -29,7 +29,7 @@ class PublicacionProyeccionController extends Controller
          ->get();
        return view('componentes.publicacion_proyeccion.index', compact('publicaciones', 'indicador_modulo'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.

@@ -2,6 +2,9 @@
 @section('scripts')
 {!!Html::script('/assets/js/load_modal.js')!!}
 {!!Html::script('/assets/js/base/participacion.js')!!}
+{!!Html::script('/assets/js/base/estudiante_modal.js')!!}
+{!!Html::script('/assets/js/base/profesor_modal.js')!!}
+{!!Html::script('/assets/js/base/persona_externo_modal.js')!!}
 @endsection
 @section('content')
 <section class="content">
@@ -112,30 +115,17 @@
       </div>
 </div>
 <div class="box-body">
- <div class="row form-group">
-  <div class="col-md-12">
-  {!! Form::open(['route' => 'asistencia.store', 'method' => 'POST']) !!}
-  {!!Form::hidden('id_evento', $eventos[0]->id)!!}
-  <div class="col-md-2">
-    {!!Form::select('tipo_participante', ['es' => 'Estudiante', 'p' => 'Profesor', 'ex' => 'Externo'], null, ['class' => 'form-control', 'id' => 'tipo_participante'])!!}
+  <div class="row form-group">
+    <div class="col-xs-3">
+      {!!Form::select('tipo_participante', ['es' => 'Estudiante', 'p' => 'Profesor', 'ex' => 'Externo'], null, ['class' => 'form-control', 'id' => 'tipo_participante', 'title' => 'Seleccione tipo de participante.'])!!}
+    </div>
+    <div class="col-md-3">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo</button>
+    </div>
   </div>
-  <div id="div_estudiante" class="col-md-4">
-    {!! Form::select('id_estudiante', $nombre_estudiante->toArray(), null, ['class' => 'form-control select', 'placeholder' => 'Busca por nombre o código']) !!}
-  </div>
-  <div id="div_profesor" class="col-md-4">
-    {!! Form::select('id_profesor', $nombre_profesor->toArray(), null, ['class' => 'form-control select', 'placeholder' => 'Busca por nombre o cédula']) !!}
-  </div>
-  <div id="div_externo" class="col-md-4">
-    {!! Form::select('id_externo', $nombre_externo->toArray(), null, ['class' => 'form-control select', 'placeholder' => 'Busca por nombre']) !!}
-  </div>
-  <button type="submit" class="btn btn-success">Registrar</button>
-  {!! Form::close() !!}
-  <hr>
- </div>
-</div>
   @include('errors.partials.requesterror')
 <div id="dvData">
-  <table id="example3" class="table table-bordered table-striped text-center">
+  <table class="table table-bordered table-striped text-center">
    <thead>
     <th>Cédula</th>
     <th>Nombre</th>
