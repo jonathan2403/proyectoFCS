@@ -19,6 +19,10 @@ class Grupo extends Model
       return ucwords($name);
     }
 
+    public function getFullNameAttribute(){
+      return $this->attributes['descripcion'];
+    }
+
     // relación uno a muchos con la tabla adscripciones
     public function adscripciones(){
       return $this->hasMany('FCS\Adscripcion', 'id_grupo');

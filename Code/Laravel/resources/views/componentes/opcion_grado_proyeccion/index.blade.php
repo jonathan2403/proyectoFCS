@@ -12,7 +12,7 @@
 						<div class="row form-group">
 							<div class="col-md-3">
 								{!! Form::open(array('route' => 'opcion-grado-proyeccion.create', 'method' => 'GET')) !!}
-								{!! Form::select('tipo', array('epps' => 'Proyecto EPPS', 'pas' => 'Pasantía', 'pos' => 'Curso de Posgrado'), null, [ 'id' => 'select1', 'class' => 'form-control']) !!}
+								{!! Form::select('tipo', array('epps' => 'Proyecto EPPS', 'pas' => 'Pasantía', 'pos' => 'Curso de Posgrado'), null, [ 'id' => 'select1', 'class' => 'form-control', 'title' => 'Seleccione tipo de opción de grado.']) !!}
 							</div>
 							<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Registro</button>
           			{!! Form::close() !!}
@@ -48,13 +48,13 @@
 											@else
 											<td>{{$opciongrado->fecha_aprobacion}} - Acta: {{$opciongrado->numero_acta}}</td>
 											@endif
-											@if($opciongrado->concepto_1=='ap')
+											@if($opciongrado->concepto_1 =='ap')
 											<td><center>Aprobado</center></td>
 											@endif
-											@if($opciongrado->concepto_1=='aa')
+											@if($opciongrado->concepto_1 =='aa')
 											<td><center>Apr. con Ajustes</center></td>
 											@endif
-											@if($opciongrado->concepto_1=='na')
+											@if($opciongrado->concepto_1 =='na')
 											<td><center>No Aprobado</center></td>
 											@endif
 											@if(empty($opciongrado->concepto_1))
@@ -63,7 +63,7 @@
 											<td>
 												<center>
 												 {!! link_to_route('opcion-grado-proyeccion.edit', $title='Editar', $parameters=[$opciongrado->id, $opciongrado->tipo_opcion_grado], $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-												 
+
 											 </center>
 											</td>
 										</tr>

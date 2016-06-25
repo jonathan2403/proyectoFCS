@@ -55,10 +55,10 @@ class EducacionContinuaController extends Controller
         if($valida->fails()){
             return redirect()->back()->withErrors($valida->errors())->withInput($datos);
         }else{
-            EducacionContinua::create($datos);    
+            EducacionContinua::create($datos);
         }
         return redirect('educacion-continua')->with('message','Registro Creado!');
-    
+
     }
 
     /**
@@ -132,7 +132,7 @@ class EducacionContinuaController extends Controller
      */
     public function destroy($id)
     {
-        
+
     }
 
     /**

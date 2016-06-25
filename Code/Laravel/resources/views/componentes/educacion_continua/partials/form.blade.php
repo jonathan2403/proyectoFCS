@@ -6,11 +6,11 @@
   {!!Form::label('Director')!!}
   <div id="div_profesor">
             {!! Form::text('profesor', isset($educacion_continua) ? $educacion_continua->director->nombre : null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
-            <div id="label_oculto_profesor"></div>                     
-            {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
+            <div id="label_oculto_profesor"></div>
+            {!! Form::hidden('id_director', null, ['id' => 'id_director']) !!}
   </div>
 </br></br>
-  
+
   <div class="box box-danger">
     <div class="box-header with-border">
       <h3 class="box-title">Aprobación</h3>
@@ -57,7 +57,7 @@
          {!!Form::text('departamento',null,['class'=>'form-control','placeholder' => 'Departamento/Provincia'])!!}
        </div>
        <div class="col-xs-4">
-          {!!Form::text('ciudad', null, ['class'=>'form-control', 'placeholder' => 'Ciudad', 'id' => 'text_unidad'])!!}   
+          {!!Form::text('ciudad', null, ['class'=>'form-control', 'placeholder' => 'Ciudad', 'id' => 'text_unidad'])!!}
        </div>
     </div>
   </div>
@@ -101,8 +101,8 @@
           </td>
           </tr>
           </tbody>
-        </table> 
-     </div>      
+        </table>
+     </div>
     </div>
 </div>
 </div>

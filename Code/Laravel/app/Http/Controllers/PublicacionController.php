@@ -35,7 +35,8 @@ class PublicacionController extends Controller
     {
         $route = [ 'route' => 'publicacion.store','method'=>'POST' ];
         $nombre_grupo = Grupo::all()->lists('full_name','id');
-         $nombre_profesor = Profesor::all()->lists('full_name','id');
+        dd($nombre_grupo);
+        $nombre_profesor = Profesor::all()->lists('full_name','id');
         $nombre_proyecto = Proyecto::all()->lists('full_name','id');
         return view('componentes.publicacion.addpublicacion', compact('route','nombre_proyecto','nombre_grupo','nombre_profesor'));
     }
