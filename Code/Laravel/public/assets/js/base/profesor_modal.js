@@ -10,7 +10,7 @@
             $("#id_director").val('');
             $("#label_oculto_profesor").text("No ha seleccionado un registro correcto");
             });
-            $.getJSON("/buscarProfesor/"+request.term,{
+            $.getJSON(URL_SERVIDOR+"/buscarProfesor/"+request.term,{
             },response);//fin get JSON
         }, /* este es el script que realiza la busqueda */
 
@@ -40,7 +40,7 @@
             $("#id_jurado").val('');
             $("#label_oculto_jurado").text("No ha seleccionado un registro correcto");
             });
-            $.getJSON("/buscarProfesor/"+request.term,{
+            $.getJSON(URL_SERVIDOR+"/buscarProfesor/"+request.term,{
             },response);//fin get JSON
         }, /* este es el script que realiza la busqueda */
 

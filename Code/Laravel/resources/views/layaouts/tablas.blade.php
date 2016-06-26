@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script>
+            var URL_SERVIDOR="{{URL::to('/')}}";
+        </script>
         <meta charset="UTF-8">
         <title>{{ $page_title or "Sistema de Gestion de Indicadores CNA" }}</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>

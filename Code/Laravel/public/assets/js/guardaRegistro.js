@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	var table = $('#datos');
-	var route = 'consultar/tipo/evento';
+	var route = URL_SERVIDOR+'/consultar/tipo/evento';
 	$.get(route, function(res){
 		$(res).each(function(key, value){
 			table.append("<tr><td>"+value.nombre_tipoevento+"</td><td><button value='"+value.id+"' OnClick='mostrar(this)' data-toggle='modal' data-target='#modalEditarTipoEvento' class='btn btn-warning btn-sm'>Editar</button></td></tr>");
@@ -18,7 +18,7 @@ $(document).ready(function(){
 		$.ajax({
 			method: "POST",
 			headers: { 'X-XSRF-TOKEN' : _token },
-			url: "/crear/tipo/evento",
+			url: URL_SERVIDOR+"/crear/tipo/evento",
 			data: { nombre_tipoevento: txt_tipo_evento },
 			success:function(data){
   				$('#example > tbody').append('<tr><td>'
@@ -42,8 +42,9 @@ $(document).ready(function(){
 function carga(){
 	var table = $('#datos');
 	table.empty();
-	var route = 'http://localhost:8000/consultar/tipo/evento';
+	var route = URL_SERVIDOR+'/consultar/tipo/evento';
 	$.get(route, function(res){
+		console.log(res);
 		$(res).each(function(key, value){
 			table.append("<tr><td>"+value.nombre_tipoevento+"</td><td><button value='"+value.id+"' OnClick='mostrar(this)' data-toggle='modal' data-target='#modalEditarTipoEvento' class='btn btn-warning btn-sm'>Editar</button></td></tr>");
 		});
@@ -52,7 +53,7 @@ function carga(){
 
 // muestra datos correspondientes en editar
 function mostrar(btn){
-		var route = '/tipo-evento/'+btn.value+'/edit';
+		var route = URL_SERVIDOR+'/tipo-evento/'+btn.value+'/edit';
 		$.get(route, function(res){
 			console.log(res);
 			$('#nombre_tipo_evento').val(res.nombre_tipoevento);
@@ -68,7 +69,7 @@ function actualizar(){
 	$.ajax({
 		method: "PUT",
 		headers: {'X-XSRF-TOKEN' : _token},
-		url: '/tipo-evento/'+id+'',
+		url: URL_SERVIDOR+'/tipo-evento/'+id+'',
 		data: {
 			id: id,
 			nombre_tipoevento: txt_tipo_evento
