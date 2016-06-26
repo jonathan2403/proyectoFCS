@@ -34,7 +34,7 @@ var boton=$("#consignarsaldo");
                     //console.log(idestudiante_oculto.val());
                 $("#label_oculto_estudiante").text("No ha seleccionado un registro correcto");
             });
-            $.getJSON("/buscarEstudiante/"+request.term,{
+            $.getJSON(URL_SERVIDOR+"/buscarEstudiante/"+request.term,{
             },response);//fin get JSON
         }, /* este es el script que realiza la busqueda */
 

@@ -18,7 +18,7 @@
                 <div class="icon">
                   <i class="ion-person-stalker"></i>
                 </div>
-                <a href="/indicadores/proyeccion/show/grupos" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{URL::to('http://www.google.com')}}" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -57,7 +57,7 @@
                 <div class="icon">
                   <i class="ion-university"></i>
                 </div>
-                <a href="/indicadores/proyeccion/show/opciones_grado" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{URL::to('indicadores/proyeccion/show/opciones_grado')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">

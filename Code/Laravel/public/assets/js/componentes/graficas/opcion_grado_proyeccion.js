@@ -5,7 +5,7 @@ consultarDatosGeneralGrafica();
  * * 
  * */
 function consultarDatosGeneralGrafica(){
-    var route = '/datos/grafica/opcion/grados/proyeccion';
+    var route = URL_SERVIDOR+'/datos/grafica/opcion/grados/proyeccion';
     $.get(route, function(res){
         if(res){
             console.log(res);

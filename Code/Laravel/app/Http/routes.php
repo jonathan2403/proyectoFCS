@@ -48,7 +48,6 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::group(['middleware' => 'auth_proyeccion'], function(){
 			Route::resource('educacion-continua','EducacionContinuaController');
 			Route::resource('evento','EventoController');
-			Route::resource('grupo-proyeccion','GrupoProyeccionController');
 			Route::resource('opcion-grado-proyeccion', 'OpcionGradoProyeccionController');
 			Route::resource('proyectos-proyeccion','ProyectoProyeccionController');
 			Route::resource('publicacion-proyeccion', 'PublicacionProyeccionController');
