@@ -15,6 +15,7 @@ class EducacionContinua extends Model
   						'recurso', 
   						'pais', 
               'departamento',
+              'municipio',
   						'horas_certificadas',
   						'area_conocimiento',
   						'recurso_humano',
@@ -23,11 +24,20 @@ class EducacionContinua extends Model
   						'material',
   						'gastos_viaje',
   						'otros_gastos',
-              'id_director'
+              'id_director',
+              'contexto'
   						];
+
+    public function setMunicipioAttribute($value){
+           $this->attributes['municipio'] = empty($value) ? null : $value;
+     }
 
     public function director(){
         return $this->belongsTo('FCS\Profesor', 'id_director');
+    }
+
+    public function municipios(){
+      return $this->belongsTo('FCS\Municipio', 'municipio');
     }
 
     public static $reglas_crear = array(
@@ -36,8 +46,8 @@ class EducacionContinua extends Model
       'id_director' => 'required|exists:profesores,id',
       'fecha_aprobacion' => 'required|date_format:m/d/Y',
       'fecha_inicio' => 'required|date_format:m/d/Y',
-      'pais' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
-      'ciudad' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+      //'pais' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
+      //'ciudad' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
       );
 
     public static $mensajes = array(

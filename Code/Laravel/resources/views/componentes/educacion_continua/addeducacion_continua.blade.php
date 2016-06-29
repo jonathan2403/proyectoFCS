@@ -1,8 +1,9 @@
 @extends('layaouts.tablas')
 @section('scripts')
-   {!!Html::script('/assets/js/load_views.js')!!}
+   {!!Html::script('/assets/js/load_views.js')!!}    
    {!!Html::script('/assets/js/componentes/educacionContinua/educacionContinua.js')!!}
    {!!Html::script('/assets/js/base/profesor_modal.js')!!}
+   {!!Html::script('/assets/js/base/lugar_realizacion.js')!!}
 @endsection
 @section('content')
    <section class="content">
@@ -16,16 +17,7 @@
                       </div>
                   </div>
               <div class="box-body">
-                @if($errors->any())
-                  <div class="alert alert-danger" role="alert">
-                    <p>Por favor corrige errores</p>
-                      <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                      </ul>
-                  </div>
-                @endif
+                @include('errors.partials.requesterror')
                   <div class="row">
                     <div class="pad">
                         {!! Form::open($route + ['id' => 'educacion-continua-form', 'class'=>'formulario_validado'])!!}

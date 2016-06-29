@@ -9,9 +9,14 @@
           </div><!-- /.box-header -->
           <div class="box-body">
             <div class="row form-group">
+            {!!Form::open(['url' => 'externo/proyeccion/create', 'method' => 'GET'])!!}
               <div class="col-md-3">
-                <a href="{!! URL('externo/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Externo</a>
+                {!!Form::select('tipo_externo', ['e' => 'Entidad', 'p' => 'Persona'],null, ['class' => 'form-control', 'id' => 'select_tipo_externo'])!!}
               </div>
+              <div class="col-md-3">
+                {!!Form::submit('Nuevo Externo', ['class' => 'btn btn-success'])!!}
+              </div>
+            {!!Form::close()!!}
             </div>
             <div id="dvData">
               <table id="example3" class="table table-bordered table-striped">
@@ -29,7 +34,7 @@
                       @if($externo->tipo_externo == 'e')
                       <td>{{$externo->nombre_externo}}</td>
                       @else
-                      <td>{!! link_to_route('externo.show', $externo->nombre_externo, $parameters=$externo->id) !!}</td>
+                      <td><a href="{{URL::to('externo/ver/'.$externo->id)}}">{{$externo->nombre_externo}}</a></td>
                       @endif
                       <td>{{$externo->correo}}</td>
                       <td>{{$externo->telefono}}</td>
@@ -40,7 +45,7 @@
                       <td>Persona</td>
                       @endif
                       <td><center>
-                      {!! link_to_route('externo.edit', $title='Editar', $parameters=$externo->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
+                        <a href="{{URL::to('externo/edit/'.$externo->id.'/'.$componente)}}" class="btn btn-warning btn-sm">Editar</a>
                          </center>
                       </td>
                     </tr>

@@ -134,6 +134,7 @@ class GrupoController extends Controller
     public function update()
     {
         $datos = request()->all();
+        dd($datos);
         $grupo = Grupo::find($datos['id_grupo']);
         $valida = \Validator::make($datos, Grupo::$reglas, Grupo::$mensajes);
         if($valida->fails()){
@@ -167,7 +168,7 @@ class GrupoController extends Controller
        switch ($tipo_grupo) {
             case 'investigacion':
                 $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw('CASE WHEN grupo.tipo = "i" THEN "investigación" ELSE "estudio" END AS Tipo'))
+                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investigación' WHEN grupo.tipo='e' THEN 'Estudio' END AS Tipo"))
                 ->where('grupo.tipo', 'i')
                 ->orWhere('grupo.tipo', 'e')
                 ->get();
@@ -180,7 +181,7 @@ class GrupoController extends Controller
 
             case 'proyeccion':
                 $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw('CASE WHEN grupo.tipo = "i" THEN "investigación" ELSE "estudio" END AS Tipo'))
+                ->select('grupo.sigla as Sigla', 'grupo.descripcion as Nombre', 'grupo.categoria as Categoría', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Coordinador"), DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investigación' WHEN grupo.tipo='e' THEN 'Estudio' END AS Tipo"))
                 ->where('grupo.tipo', 'ps')
                 ->get();
                 $reporte = new ExportFiles();

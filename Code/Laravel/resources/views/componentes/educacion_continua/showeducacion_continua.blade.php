@@ -18,15 +18,17 @@
               <th>Nombre</th>
               <th>Área de Conocimiento</th>
               <th>Fecha de Inicio</th>
-              <th>Departamento</th>
               <th>Ciudad</th>
             </thead>
             <tbody>
              <td>{{ ucfirst(strtolower($educacion_continua->nombre)) }}</td>
              <td>{{ ucfirst(strtolower($educacion_continua->area_conocimiento)) }}</td>
              <td>{{ $educacion_continua->fecha_inicio }}</td>
-             <td>{{ ucfirst(strtolower($educacion_continua->departamento)) }}</td>
-             <td>{{ ucfirst(strtolower($educacion_continua->ciudad)) }}</td>
+             @if($educacion_continua->contexto == 'n')
+             <td>{{$educacion_continua->municipios->nombre}}</td>
+             @else
+             <td>{{ucwords($educacion_continua->ciudad)}}</td>
+             @endif
            </tbody>
          </table>
          <!--Inicia fuentes de financiación-->
@@ -45,7 +47,7 @@
               <dl class="dl-horizontal">
                <dt>Recurso Humano </dt>
                <dd>{{ $educacion_continua->recurso_humano }}</dd>
-               <dt>Compra de Muebles y Equipos </dt>
+               <dt title="Compra de Muebles y Equipos">Compra de Muebles y Equipos </dt>
                <dd>{{ $educacion_continua->muebles_equipo }}</dd>
                <dt>Servicios </dt>
                <dd>{{ $educacion_continua->servicios }}</dd>
@@ -53,7 +55,7 @@
            </td>
            <td><center>
              <dl class="dl-horizontal">
-              <dt>Material Bibliografico y Papeleria </dt>
+              <dt title="Material Bibliográfico y Papelería">Material Bibliográfico y Papelería </dt>
               <dd>{{ $educacion_continua->material }}</dd>
               <dt>Gastos de Viaje </dt>
               <dd>{{ $educacion_continua->gastos_viaje }}</dd>

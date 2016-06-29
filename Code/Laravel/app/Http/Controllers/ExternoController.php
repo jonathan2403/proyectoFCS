@@ -17,11 +17,19 @@ class ExternoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($componente)
     {
-        $indicador_modulo = 16;
-        $externos = Externo::all();
-        return view('componentes.externo.index', compact('externos', 'indicador_modulo'));
+        switch($componente){
+            case 'proyeccion':
+            $indicador_modulo = 16;
+            $externos = Externo::all();
+            break;
+            case 'investigacion':
+            $indicador_modulo = 22;
+            $externos = Externo::all();
+            break;
+        }
+        return view('componentes.externo.index', compact('externos', 'indicador_modulo', 'componente'));
     }
 
     /**
@@ -29,12 +37,18 @@ class ExternoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $componente)
     {
-        $indicador_modulo = 16;
-        $route = ['route' => 'externo.store','method'=>'POST'];
-        $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.externo.addexterno', compact('route', 'nombre_profesor', 'indicador_modulo'));
+        $tipo_externo = $request->get('tipo_externo');
+        switch ($componente) {
+            case 'proyeccion':
+                $indicador_modulo = 16;       
+                break;
+            default:
+                $indicador_modulo = 22;
+                break;
+        }
+        return view('componentes.externo.addexterno', compact('indicador_modulo', 'tipo_externo', 'componente'));
     }
 
     /**
@@ -48,11 +62,10 @@ class ExternoController extends Controller
       $datos = $request->all();
       $valida = \Validator::make($datos, Externo::$reglas);
       if($valida->fails()){
-        return redirect()->back()->withErrors($valida->errors())->withInput($datos);
-      }else{
-            Externo::create($datos);
+        return redirect()->back()->withErrors($valida->errors())->withInput();
       }
-      return redirect('externo')->with('message','Registro Creado!');
+      Externo::create($datos);
+      return redirect('externo/'.$datos['componente'])->with('message','Registro Creado!');
     }
 
     /**
@@ -76,14 +89,20 @@ class ExternoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $componente)
     {
-        $indicador_modulo = 16;
+        switch ($componente) {
+            case 'proyeccion':
+                $indicador_modulo = 16;       
+                break;
+            default:
+                $indicador_modulo = 22;
+                break;
+        }
         $externo = Externo::find($id);
         if(!$externo)
             return redirect()->back();
-        $route = ['route'=>['externo.update', $externo->id], 'method'=>'PUT'];
-        return view('componentes.externo.editexterno', compact('externo', 'route', 'indicador_modulo'));
+        return view('componentes.externo.editexterno', compact('externo', 'indicador_modulo', 'componente'));
     }
 
     /**
@@ -93,18 +112,17 @@ class ExternoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $datos = $request->all();
         $valida = \Validator::make($datos, Externo::$reglas);
         if($valida->fails()){
             return redirect()->back()->withErrors($valida->errors())->withInput($datos);
-        }else{
-            $externo  = Externo::find($id);
-            $externo->fill($datos);
-            $externo->save();
         }
-        return redirect('externo')->with('message','Registro Actualizado!');
+         $externo  = Externo::find($datos['id_externo']);
+         $externo->fill($datos);
+         $externo->save();
+        return redirect('externo/'.$datos['componente'])->with('message','Registro Actualizado!');
     }
 
     /**

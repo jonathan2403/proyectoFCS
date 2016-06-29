@@ -10,6 +10,8 @@ use DB, View, Session, Redirect;
 use FCS\Profesor;
 use FCS\Estudiante;
 use FCS\Participacion;
+use FCS\Departamento;
+use FCS\Municipio;
 use FCS\Base\ExportFiles;
 
 class EducacionContinuaController extends Controller
@@ -24,7 +26,7 @@ class EducacionContinuaController extends Controller
         $indicador_modulo = 18;
         $edus = EducacionContinua::join('profesores', 'educacion_continua.id_director', '=', 'profesores.id')
         ->select('educacion_continua.id', 'educacion_continua.nombre', 'educacion_continua.fecha_aprobacion', 'educacion_continua.numero_acta'
-            , 'educacion_continua.pais','educacion_continua.ciudad', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
+            , 'educacion_continua.pais','educacion_continua.ciudad', 'educacion_continua.id_director', 'educacion_continua.contexto')
         ->get();
         return view('componentes.educacion_continua.index', compact('edus', 'indicador_modulo'));
     }
@@ -39,7 +41,8 @@ class EducacionContinuaController extends Controller
        $indicador_modulo = 18;
        $route = [ 'route' => 'educacion-continua.store', 'method' => 'POST' ];
        $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.educacion_continua.addeducacion_continua',compact('route', 'nombre_profesor', 'indicador_modulo'));
+       $departamentos = Departamento::all()->lists('nombre', 'departamento');
+        return view('componentes.educacion_continua.addeducacion_continua',compact('route', 'nombre_profesor', 'departamentos', 'indicador_modulo'));
     }
 
     /**
@@ -70,11 +73,7 @@ class EducacionContinuaController extends Controller
     public function show($id)
     {
         $indicador_modulo = 18;
-        $educacion_continua = EducacionContinua::select('id', 'nombre', 'fecha_inicio', 'departamento', 'ciudad', 'recurso', 'horas_certificadas',
-            'area_conocimiento', 'recurso_humano', 'muebles_equipo', 'servicios', 'material', 'gastos_viaje',
-            'otros_gastos', 'horas_certificadas')
-        ->where('id', $id)
-        ->first();
+        $educacion_continua = EducacionContinua::find($id);
         if(!$educacion_continua)
             return redirect()->back();
         $profesores = Participacion::join('profesores', 'participacion.id_profesor', '=', 'profesores.id')
@@ -101,11 +100,16 @@ class EducacionContinuaController extends Controller
     {
         $indicador_modulo = 18;
         $educacion_continua = EducacionContinua::find($id);
+        $departamentos = Departamento::all()->lists('nombre', 'departamento');
+        $municipios = Municipio::all()->lists('nombre', 'municipio');
+        if($educacion_continua->departamento != ""){
+            $municipios = Municipio::where('departamento', $educacion_continua->departamento)->lists('nombre', 'municipio');
+        }
         if(!$educacion_continua)
             return redirect()->back();
         $route = [ 'route'=>['educacion-continua.update',$educacion_continua->id],'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
-        return view('componentes.educacion_continua.editeducacion_continua', compact('route', 'nombre_profesor', 'educacion_continua', 'indicador_modulo'));
+        return view('componentes.educacion_continua.editeducacion_continua', compact('route', 'nombre_profesor', 'educacion_continua', 'departamentos', 'municipios', 'indicador_modulo'));
     }
 
     /**
@@ -132,7 +136,8 @@ class EducacionContinuaController extends Controller
      */
     public function destroy($id)
     {
-
+        EducacionContinua::destroy($id);
+        return redirect::to('educacion-continua');
     }
 
     /**
