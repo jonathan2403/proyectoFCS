@@ -17,8 +17,9 @@ class JovenInvestigadorController extends Controller
      */    
     public function index()
     {
+
         $indicador_modulo = 24;
-        $jovenes_investigadores = JovenInvestigador::select('id_estudiante', 'id_profesor', 'id_grupo', 'id_institucion', \DB::raw("CASE WHEN colciencias = 's' THEN 'Si' ELSE 'No' END AS colciencias"), 'producto')
+        $jovenes_investigadores = JovenInvestigador::select('id_estudiante', 'id_profesor', 'id_grupo', 'id_institucion', \DB::raw("CASE WHEN joven_investigador.colciencias='s' THEN 'Si' WHEN joven_investigador.colciencias='n' THEN 'No' END AS colciencias"), 'producto')
         ->get();
         return view('componentes.joven_investigador.index', compact('jovenes_investigadores', 'indicador_modulo'));
     }

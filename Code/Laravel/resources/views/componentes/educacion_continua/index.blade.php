@@ -26,11 +26,15 @@
                 @foreach($edus as $edu)
                   <tr>
                     <td>{!! link_to_route('educacion-continua.show', ucfirst(strtolower($edu->nombre)), $parameters=$edu->id) !!}</td>
-                    <td>{{ ucwords(strtolower($edu->full_name))}}</td>
+                    <td>{{ $edu->director->nombre}}</td>
                     <td>{{ $edu->fecha_aprobacion }} - Acta: {{ $edu->numero_acta }}</td>
-                    <td>{{ ucwords(strtolower($edu->pais)) }}</td>
-                    <td><center>
-                      {!! link_to_route('educacion-continua.edit', $title='Editar', $parameters=$edu->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}</center>
+                    @if($edu->contexto == 'n')
+                    <td>Colombia</td>
+                    @else
+                    <td>{{ucwords($edu->pais)}}</td>
+                    @endif
+                    <td>
+                      {!! link_to_route('educacion-continua.edit', $title='Editar', $parameters=$edu->id, ['class'=>'btn btn-warning btn-sm']) !!}|<a href="{{URL::to('educacion/continua/'.$edu->id)}}" class="btn btn-danger btn-sm">Borrar</a>
                     </td>
                   </tr>
                 @endforeach

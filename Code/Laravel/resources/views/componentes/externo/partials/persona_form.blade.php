@@ -1,21 +1,10 @@
 <div class="form-group">
-	{!!Form::label('Nombre')!!}
+	{!!Form::label('nombre')!!}
     {!!Form::text('nombre_externo', null, ['class'=>'form-control', 'placeholder'=>''])!!}
 	</br>
-		
-	{!!Form::label('Tipo Externo')!!}
-	 </br>
-	<div class="row">
-		<div class="col-xs-2">
-			{!!Form::label('Persona')!!}
-			{!!Form::radio('tipo_externo', 'p', false, ['class' => 'iradio_minimal-red'])!!} 		
-		</div>
-		<div class="col-xs-2">
-			{!!Form::label('Entidad')!!}
-			{!!Form::radio('tipo_externo', 'e', false, ['class' => 'iradio_minimal-red'])!!}		
-		</div>
-	</div>
-	</br>
+	{!!Form::hidden('tipo_externo', isset($tipo_externo) ? $tipo_externo : null )!!}
+	{!!Form::hidden('id_externo', isset($externo) ? $externo->id : null )!!}
+	{!!Form::hidden('componente', $componente)!!}
 
   {!!Form::label('Teléfono')!!}
 	<div class="input-group">
@@ -47,9 +36,10 @@
     </br>
     
     {!!Form::label('Nivel de Estudio')!!}
-  {!!Form::text('nivel_estudio', null, ['class'=>'form-control', 'placeholder'=>''])!!}
-  </br>
-{!!Form::label('Años de Experiencia')!!}
-  {!!Form::text('experiencia', null, ['class'=>'form-control', 'placeholder'=>''])!!}
+  	{!!Form::text('nivel_estudio', null, ['class'=>'form-control', 'placeholder'=>''])!!}
+  	</br>
+
+	{!!Form::label('Años de Experiencia')!!}
+  	{!!Form::text('experiencia', null, ['class'=>'form-control', 'placeholder'=>''])!!}
 		</br>
 </div>

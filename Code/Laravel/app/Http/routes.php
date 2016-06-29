@@ -13,6 +13,7 @@
 
 Route::post('/crear/tipo/evento', 'TipoEventoController@crear');
 Route::get('/consultar/tipo/evento', 'TipoEventoController@consultar');
+Route::get('/consultar/municipios/{id_departamento}', 'ServiciosBaseController@consultarMunicipios');
 
 Route::controllers([
 	'auth'		=> 'Auth\AuthController',
@@ -33,7 +34,12 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::resource('participacion','ParticipacionController');
 		Route::resource('publica', 'PublicaController');
 		Route::resource('adquisicion', 'AdquisicionController');
-		Route::resource('externo','ExternoController');
+		Route::get('externo/{componente}', 'ExternoController@index');
+		Route::get('externo/{componente}/create','ExternoController@create');
+		Route::get('externo/edit/{id_externo}/{componente}', 'ExternoController@edit');
+		Route::get('externo/ver/{id_externo}','ExternoController@show');
+		Route::resource('externo/store', 'ExternoController@store');
+		Route::resource('externo', 'ExternoController@update');
 		Route::get('grupos/{tipo_grupo}/create','GrupoController@create');
 		Route::get('grupos/ver/{id_grupo}','GrupoController@show');
 		Route::get('grupos/{tipo_grupo}', 'GrupoController@index');
@@ -47,6 +53,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 		// Rutas para Proyeccion Social
 		Route::group(['middleware' => 'auth_proyeccion'], function(){
 			Route::resource('educacion-continua','EducacionContinuaController');
+			Route::get('educacion/continua/{id}', 'EducacionContinuaController@destroy');
 			Route::resource('evento','EventoController');
 			Route::resource('opcion-grado-proyeccion', 'OpcionGradoProyeccionController');
 			Route::resource('proyectos-proyeccion','ProyectoProyeccionController');

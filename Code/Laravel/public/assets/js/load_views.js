@@ -14,7 +14,6 @@
     $('.picker').datepicker({
       format : "dd/mm/yyyy"
     })
-    $('input').iCheck({
-        checkboxClass: 'icheckbox_minimal',
+    /*$('input[type=radio]').iCheck({
         radioClass: 'iradio_minimal-red'
-      });
+      });*/

@@ -15,7 +15,6 @@
                   <th>Área de Conocimiento</th>
                   <th>Nivel de Estudio</th>
                   <th>Experiencia</th>
-                  <th>Acción</th>
                 </thead>
                 <tbody>
                   <tr>
@@ -23,10 +22,6 @@
                     <td>{{$externo->area_conocimiento}}</td>
                     <td>{{$externo->nivel_estudio}}</td>
                     <td>{{$externo->experiencia}}</td>
-                    <td><center>
-                      {!! link_to_route('externo.edit', $title='Editar', $parameters=$externo->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-                         </center>
-                    </td>
                   </tr>
                 </tbody>
               </table>

@@ -19,10 +19,13 @@
               <div class="box-body">
                   <div class="row">
                     <div class="pad">
-                      {!! Form::model($externo,$route)!!}
-                      @include('layaouts.partials.mensaje')
-                      @include('componentes.externo.partials.form')
-                      {!! Form::submit('Editar',['class'=>'btn btn-warning']) !!}&nbsp<a href="{{URL('/externo')}}" class="btn btn-danger" >Cancelar</a>
+                      {!! Form::model($externo, ['route' => 'externo.update', 'method' => 'PUT'])!!}
+                      @if($externo->tipo_externo == 'p')
+                      @include('componentes.externo.partials.persona_form')
+                      @else
+                      @include('componentes.externo.partials.entidad_form')
+                      @endif
+                      {!! Form::submit('Editar',['class'=>'btn btn-warning']) !!}&nbsp<a href="{{URL('/externo/'.$componente)}}" class="btn btn-danger" >Cancelar</a>
                       {!!Form::close()!!}
                     </div>
                   </div><!-- /.row pad-->

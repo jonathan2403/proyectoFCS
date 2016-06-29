@@ -3,6 +3,7 @@
    {!!Html::script('/assets/js/load_views.js')!!}
    {!!Html::script('/assets/js/componentes/educacionContinua/educacionContinua.js')!!}
    {!!Html::script('/assets/js/base/profesor_modal.js')!!}
+   {!!Html::script('/assets/js/base/lugar_realizacion.js')!!}
 @endsection
 @section('content')
   <section class="content">
@@ -19,7 +20,7 @@
                   <div class="row">
                     <div class="pad">
                       {!! Form::model($educacion_continua ,$route + ['id' => 'educacion-continua-form', 'class'=>'formulario_validado'])!!}
-                      @include('componentes.educacion_continua.partials.form')
+                      @include('componentes.educacion_continua.partials.edit_form')
                       {!!Form::submit('Editar', ['class' => 'btn btn-warning'])!!}&nbsp<a href="{{URL('/educacion-continua')}}" class="btn btn-danger" >Cancelar</a>
                   {!!Form::close()!!}
                     </div>
