@@ -9,6 +9,8 @@ var formulario=$("#eventos-form");
 
 formulario.validate({
     rules: {
+    departamento: {required: true},
+    municipio: {required: true},
     numero_consejo: {required: true},
     fecha: {required: true},
     nombre_evento: {required: true},

@@ -4,15 +4,13 @@
    {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
 
   {!! Form::label('Tutor') !!}
-    <div id="div_profesor">
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
-            <div id="label_oculto_profesor"></div>                     
+    <div id="label_oculto_profesor"></div>                     
             {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
-    </div>
+            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
     </br>
                    
    {!! Form::label('Grupo al que pertenece') !!}
-   {!! Form::select('id_grupo', $grupos->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
+   {!! Form::select('id_grupo', $grupos->toArray(), null, ['class' => 'select form-control', 'placeholder' => '', 'id' => 'select_id_grupo']) !!}
    	</br>
 
    {!!Form::label('Colciencias')!!}
@@ -28,7 +26,7 @@
    	</br>
 
    {!! Form::label('Producto') !!}
-   {!! Form::text('producto', null,['class' => 'form-control', 'id' => 'nombre_estudiante','placeholder'=>'']) !!}
+   {!! Form::text('producto', null, ['class' => 'form-control']) !!}
    </br>
 
 

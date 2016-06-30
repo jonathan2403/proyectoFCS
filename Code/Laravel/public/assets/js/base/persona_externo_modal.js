@@ -8,7 +8,7 @@
             $("#nombre_persona_externa").change(function(){
                 $("#label_persona").text("No ha seleccionado un registro correcto");
             });
-            $.getJSON("/buscarExternoPersona/"+request.term,{
+            $.getJSON(URL_SERVIDOR+"/buscarExternoPersona/"+request.term,{
             },response);//fin get JSON
         }, /* este es el script que realiza la busqueda */
 

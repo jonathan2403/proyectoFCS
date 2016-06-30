@@ -12,6 +12,7 @@ formulario.validate({
     rules: {
     descripcion: {required:true},
     id_externo: {required:true},
+    id_entidad: {required:true},
     fecha_entrega_ci: {required:true},
     concepto_1: {required:true},
     fecha_aprobacion: {required:true},
@@ -41,7 +42,7 @@ formulario.validate({
     id_director: {required:true},
     profesor: {required:true},
     persona_externa: {required:true},
-  }
+  },
 });
 
 /*

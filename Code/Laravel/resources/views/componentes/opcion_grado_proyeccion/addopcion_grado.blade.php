@@ -13,7 +13,13 @@
         @include('errors.partials.requesterror')
           <div class="box box-solid box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">Registrar Nueva Opción de Grado</h3>
+            @if($tipo == 'pas')
+              <h3 class="box-title">Registrar Nueva Pasantía</h3>
+            @elseif($tipo == 'epps')
+              <h3 class="box-title">Registrar Nuevo Proyecto EPPS</h3>
+            @else
+              <h3 class="box-title">Registrar Nuevo Curso de Posgrado</h3>
+            @endif
                 <div class="box-tools pull-right">
                   <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>

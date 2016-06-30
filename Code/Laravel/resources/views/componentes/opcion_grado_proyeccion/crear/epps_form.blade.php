@@ -1,12 +1,11 @@
-<div class="form-group">
     {!! Form::hidden('tipo_opcion_grado', 'epps', ['id' => 'id_opcion_grado']) !!}
     {!!Form::label('Título')!!}
     {!!Form::text('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Digite Título'])!!}
       <br>
+     <div id="label_oculto_profesor"></div>                     
+    {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
     {!!Form::label('Director del Proyecto')!!}
     {!!Form::text('profesor', isset($opciongrado) ? $opciongrado->director->nombre : null , ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre o Cédula', 'id' => 'nombre_profesor'])!!}
-    <div id="label_oculto_profesor"></div>                     
-    {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
     <br>
 
     {!!Form::label('Coordinador Externo')!!}
@@ -136,30 +135,27 @@
              {!!Form::label('Director')!!}
              </br>
               {!!Form::label('Si')!!}
-              {!!Form::radio('carta_director', 'Si', Null)!!} &nbsp
+              {!!Form::radio('carta_director', 's', null, ['class' => 'iradio_minimal-red'])!!} &nbsp
               {!!Form::label('No')!!}
-              {!!Form::radio('carta_director', 'No', Null)!!}
+              {!!Form::radio('carta_director', 'n', null, ['class' => 'iradio_minimal-red'])!!}
            </div>
            <div class="col-xs-6">
              {!!Form::label('Coordinador Externo')!!}
              </br>
             {!!Form::label('Si')!!}
-            {!!Form::radio('carta_coordinador', 'Si', Null)!!} &nbsp
+            {!!Form::radio('carta_coordinador', 's', null, ['class' => 'iradio_minimal-red'])!!} &nbsp
             {!!Form::label('No')!!}
-            {!!Form::radio('carta_coordinador', 'No', Null)!!}
+            {!!Form::radio('carta_coordinador', 'n', null, ['class' => 'iradio_minimal-red'])!!}
            </div>
          </div>
        </div>
      </div><!--fin cartas de cumplimiento-->
   </div><!-- /.box-body -->
 </div><!-- termina Informe-->
-  
   <div class="row">
     <div class="col-xs-3">
     {!!Form::label('Finalizado')!!}
-    {!!Form::select('finalizado', ['' => '', 's' => 'Si', 'n' => 'No'], null, ['class' => 'form-control'])!!}  
+    {!!Form::select('finalizado', ['s' => 'Si', 'n' => 'No'], null, ['class' => 'form-control', 'placeholder' => ''])!!}  
     </div>
   </div>
-
-</div>
 <hr>

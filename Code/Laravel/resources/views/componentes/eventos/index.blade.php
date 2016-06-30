@@ -1,7 +1,7 @@
 @extends('layaouts.tablas')
 @section('content')
   <section class="content">
-    @include('componentes.eventos.partials.modal')
+    
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
@@ -29,10 +29,10 @@
                     <td><center>{{ $evento->numero_consejo }}</center></td>
                     <td>{!! link_to_route('evento.show', ucfirst($evento->nombre_evento), $parameters=$evento->id) !!}</td>
                     <td>{{ $evento->fecha }}</td>
-                    <td>{{ $evento->lugar }}</td>
+                    <td>{{ $evento->municipios->nombre }}</td>
                     <td>{{ $evento->tipo->nombre_tipoevento }}</td>
                     <td><center>
-                      {!! link_to_route('evento.edit', $title='Editar', $parameters=$evento->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
+                      {!! link_to_route('evento.edit', $title='Editar', $parameters=$evento->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('evento/eliminar/'.$evento->id)}}">Borrar</a>
                       </center>
                     </td>
                   </tr>

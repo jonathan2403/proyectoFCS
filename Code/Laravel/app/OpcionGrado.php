@@ -63,12 +63,7 @@ class OpcionGrado extends Model
           'fecha_aprobacion' => 'required|date_format:m/d/Y',
           'concepto_1' => 'required|in:ap,na,aa',
           'numero_acta' => 'required|digits_between:2,9',
-          'fecha_entrega_1' => 'required|date_format:m/d/Y',
-          'numero_acta_2' => 'digits_between:2,9',
-          'fecha_entrega_2' => 'required|date_format:m/d/Y',
-          'concepto_2' => 'in:ap,na,aa',
-          'numero_acta_3' => 'digits_between:2,9',
-          'finalizado' => 'in:Si,No'
+          'finalizado' => 'in:s,n'
      ];
 
      public static $mensajes_pas = [
@@ -87,16 +82,11 @@ class OpcionGrado extends Model
           'descripcion' => "required|max:150|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
           'id_director' => 'required|exists:profesores,id',
           'id_externo' => 'required|exists:externo,id',
-          'id_entidad' => 'required|exists:externo,id',
           'fecha_aprobacion' => 'required|date_format:m/d/Y',
+          'fecha_entrega_ci'  => 'required|date_format:m/d/Y',
           'concepto_1' => 'required|in:ap,na,aa',
           'numero_acta' => 'required|digits_between:2,9',
-          'fecha_entrega_1' => 'required|date_format:m/d/Y',
-          'numero_acta_2' => 'digits_between:2,9',
-          'fecha_entrega_2' => 'required|date_format:m/d/Y',
-          'concepto_2' => 'in:ap,na,aa',
-          'numero_acta_3' => 'digits_between:2,9',
-          'finalizado' => 'in:Si,No'
+          'finalizado' => 'required|in:s,n'
      ];
 
      public static $mensajes_epps = [
@@ -106,9 +96,11 @@ class OpcionGrado extends Model
         'id_director.exists' => 'El director no existe.',
         'id_externo.required' => 'El campo entidad es obligatotio.',
         'id_externo.exists' => 'Entidad no existe.',
-        'id_entidad.required' => 'El campo entidad es obligatotio.',
-        'id_entidad.exists' => 'Entidad no existe.',
-        'fecha_aprobacion.required' => 'Fecha de entrega al comité es obligatorio.'
+        'fecha_aprobacion.required' => 'Fecha de entrega al comité de revisión es obligatorio.',
+        'fecha_entrega_ci.required' => 'Fecha de entrega al centro de P. S.',
+        'concepto_1.required' => 'Concepto de entrega al comité de revisión es obligatorio.',
+        'numero_acta.required'  => 'N° de acta de entrega al comité de revisión es obligatorio.',
+        'finalizado.required' => 'El campo finalizado es obligatorio.'
      ];
 
      public static $reglas_pos = [

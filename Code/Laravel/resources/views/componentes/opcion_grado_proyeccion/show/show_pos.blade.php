@@ -55,30 +55,29 @@
             <div class="box-body">
               <div class="row">
                     <div class="col-xs-12">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo Registro</button>
+                      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Estudiante</button>
                       <hr>
                       <table class="table table-bordered table-striped text-center">
                         <thead>
+                          <th>N° de Documento</th>
                           <th>Código</th>
-                          <th>N° Documento</th>
                           <th>Nombre</th>
                           <th>Teléfono</th>
                           <th>Email</th>
                           <th>Acción</th>
                         </thead>
                         <tbody>
-                        @foreach($estudiantes as $estudiante)
+                        @foreach($sustentaciones as $sustentacion)
                           <tr>
-                            <td>{{$estudiante->codigo_estudiante}}</td>
-                            <td>{{$estudiante->numero_documento}}</td>
-                            <td>{{ucwords($estudiante->nombre_estudiante)}}</td>
-                            <td>{{$estudiante->telefono}}</td>
-                            <td>{{$estudiante->email}}</td>
+                            <td>{{$sustentacion->estudiante->numero_documento}}</td>
+                            <td>{{$sustentacion->estudiante->codigo_estudiante}}</td>
+                            <td>{{$sustentacion->estudiante->full_name}}</td>
+                            <td>{{$sustentacion->estudiante->telefono}}</td>
+                            <td>{{$sustentacion->estudiante->email}}</td>
                             <td>
-                            <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $estudiante->sustentacion !!}').modal();">Borrar</button>
+                              <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $sustentacion->id !!}').modal(this);">Borrar</button></center>
                             </td>
                           </tr>
-                        </tbody>
                         @endforeach
                     </table>
                     </div>                    

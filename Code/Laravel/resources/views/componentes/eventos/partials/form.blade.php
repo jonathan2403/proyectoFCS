@@ -22,8 +22,19 @@
     {!!Form::select('id_tipoeventos', $tipo_evento, null, ['id' => 'id', 'class' => 'form-control'])!!}
 </br>
 
-    {!!Form::label('Ciudad')!!}
-    {!!Form::text('ciudad',null,['class'=>'form-control','placeholder'=>''])!!}
+    {!!Form::label('lugar de realización')!!}
+    <div class="row">
+       <div id="div_lugar_nacional">
+         <div class="col-xs-5">
+         {!!Form::label('departamento')!!}
+         {!!Form::select('departamento', $departamentos, null, ['class' => 'form-control', 'id' => 'select_departamento', 'placeholder' => 'Seleccione Departamento'])!!}
+       </div>
+       <div class="col-xs-5">
+       {!!Form::label('municipio')!!}
+         {!!Form::select('municipio', isset($municipios) ? $municipios : ['' => ''], null, ['class' => 'form-control', 'id' => 'select_municipio'])!!}
+       </div>
+       </div>
+    </div>
 </br>
     {!!Form::label('Valor Efectivo')!!}
     {!!Form::text('valor_efectivo',null,['class'=>'form-control','placeholder'=>''])!!}

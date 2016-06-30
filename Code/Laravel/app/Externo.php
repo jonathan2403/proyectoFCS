@@ -19,7 +19,7 @@ class Externo extends Model
      if($this->attributes['tipo_externo'] == "p")
      return ucwords($this->nombre_externo);
   }
-  public function getNombreEntidadAttribute($value)
+  public function getNombreExternoAttribute($value)
     {
       return ucfirst($value);
     }
