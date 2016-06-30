@@ -38,6 +38,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::get('externo/{componente}/create','ExternoController@create');
 		Route::get('externo/edit/{id_externo}/{componente}', 'ExternoController@edit');
 		Route::get('externo/ver/{id_externo}','ExternoController@show');
+		Route::get('externo/eliminar/{id_externo}', 'ExternoController@destroy');
 		Route::resource('externo/store', 'ExternoController@store');
 		Route::resource('externo', 'ExternoController@update');
 		Route::get('grupos/{tipo_grupo}/create','GrupoController@create');
@@ -46,6 +47,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::get('grupos/edit/{id_grupo}', 'GrupoController@edit');
 		Route::resource('grupos/store', 'GrupoController@store');
 		Route::resource('grupos', 'GrupoController@update');
+		Route::get('grupos/eliminar/{id_grupo}', 'GrupoController@destroy');
 		Route::resource('indicadores-investigacion','IndicadorInvestigacionController');
 		Route::get('indicadores/proyeccion/index', 'IndicadorProyeccionController@index');
 		Route::get('indicadores/proyeccion/show/{indicador}', 'IndicadorProyeccionController@show');
@@ -55,7 +57,9 @@ Route::group([ 'middleware' => 'auth'], function(){
 			Route::resource('educacion-continua','EducacionContinuaController');
 			Route::get('educacion/continua/{id}', 'EducacionContinuaController@destroy');
 			Route::resource('evento','EventoController');
+			Route::get('evento/eliminar/{id}', 'EventoController@destroy');
 			Route::resource('opcion-grado-proyeccion', 'OpcionGradoProyeccionController');
+			Route::get('opcion-grado-proyeccion/eliminar/{id_opcion_grado}', 'OpcionGradoProyeccionController@destroy');
 			Route::resource('proyectos-proyeccion','ProyectoProyeccionController');
 			Route::resource('publicacion-proyeccion', 'PublicacionProyeccionController');
 			Route::resource('tipo-evento','TipoEventoController');

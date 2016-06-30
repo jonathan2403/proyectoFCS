@@ -45,7 +45,7 @@
                       <td>Persona</td>
                       @endif
                       <td><center>
-                        <a href="{{URL::to('externo/edit/'.$externo->id.'/'.$componente)}}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{URL::to('externo/edit/'.$externo->id.'/'.$componente)}}" class="btn btn-warning btn-sm">Editar</a>|<a class="btn btn-danger btn-sm" href="{{URL::to('externo/eliminar/'.$externo->id)}}">Borrar</a>
                          </center>
                       </td>
                     </tr>

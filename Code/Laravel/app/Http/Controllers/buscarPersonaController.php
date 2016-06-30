@@ -10,17 +10,14 @@ class buscarPersonaController extends Controller{
 
 	public function buscarEstudiante($palabra){
 		$estudiantes = Estudiante::select('id', 'primer_nombre', 'segundo_nombre', 'codigo_estudiante', 'apellido_paterno', 'apellido_materno')
-		->where('primer_nombre', 'like', '%'.$palabra.'%')
-		->orWhere('segundo_nombre', 'like', '%'.$palabra.'%')
-		->orWhere('codigo_estudiante', 'like', '%'.$palabra.'%')
-		->orWhere('apellido_paterno', 'like', '%'.$palabra.'%')
-		->orWhere('apellido_materno', 'like', '%'.$palabra.'%')
+		->orWhere('primer_nombre', 'like', '%'.$palabra.'%')
+		->orWhere(\DB::raw("LOWER(CONCAT(primer_nombre, ' ', segundo_nombre, ' ', apellido_paterno, ' ', apellido_materno))"), 'like', '%'.$palabra.'%')
 		->get();
 		return response()->json($estudiantes);
 	}
 
 	public function buscarPersonaExterno($palabra){
-		$persona = Externo::where('nombre_externo', 'like', '%'.$palabra.'%')
+		$persona = Externo::where(\DB::raw("LOWER(nombre_externo)"), 'like', '%'.$palabra.'%')
 		->where('tipo_externo', 'p')
 		->get();
 		return response()->json($persona);
@@ -28,11 +25,8 @@ class buscarPersonaController extends Controller{
 
 	public function buscarProfesor($palabra){
 		$profesores = Profesor::select('id', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido')
-		->where('cedula', 'like', '%'.$palabra.'%')
-		->orWhere('primer_nombre', 'like', '%'.$palabra.'%')
-		->orWhere('segundo_nombre', 'like', '%'.$palabra.'%')
-		->orWhere('primer_apellido', 'like', '%'.$palabra.'%')
-		->orWhere('segundo_apellido', 'like', '%'.$palabra.'%')
+		->orwhere('cedula', 'like', '%'.$palabra.'%')
+		->orWhere(\DB::raw("LOWER(CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido))"), 'like', '%'.$palabra.'%')
 		->get();
 		return response()->json($profesores);
 	}

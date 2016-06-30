@@ -11,6 +11,8 @@ use FCS\Http\Requests\CreateEventoRequest;
 use FCS\Profesor;
 use FCS\Estudiante;
 use FCS\Externo;
+use FCS\Departamento;
+use FCS\Municipio;
 use FCS\Base\ExportFiles;
 use FCS\Asistencia;
 
@@ -26,7 +28,7 @@ class EventoController extends Controller
     public function index()
     {
         $indicador_modulo = 10;
-        $eventos=Evento::All();
+        $eventos=Evento::all();
         return view('componentes.eventos.index',compact('eventos', 'indicador_modulo'));
     }
 
@@ -39,8 +41,9 @@ class EventoController extends Controller
     {
         $indicador_modulo = 10;
         $tipo_evento = TipoEvento::allLists();
+        $departamentos = Departamento::all()->lists('nombre', 'departamento');
         $route = [ 'route' => 'evento.store', 'method' => 'POST' ];
-        return view('componentes.eventos.addevento',compact('tipo_evento','route', 'indicador_modulo'));
+        return view('componentes.eventos.addevento',compact('tipo_evento','route', 'departamentos','indicador_modulo'));
     }
 
     /**
@@ -68,10 +71,8 @@ class EventoController extends Controller
     public function show($id)
     {
         $indicador_modulo = 10;
-        $eventos = \DB::table('eventos')
-        ->where('id', $id)
-        ->get();
-        if(!$eventos)
+        $evento = Evento::find($id);
+        if(!$evento)
             return redirect()->back();
         $profesores = Asistencia::join('profesores', 'asistencia.id_profesor', '=', 'profesores.id')
         ->join('eventos', 'asistencia.id_evento', '=', 'eventos.id')
@@ -91,7 +92,7 @@ class EventoController extends Controller
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         $nombre_externo = Externo::all()->lists('full_name_persona', 'id');
-        return view('componentes.eventos.showevento', compact('eventos', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo', 'nombre_externo', 'externos', 'asistencias'));
+        return view('componentes.eventos.showevento', compact('evento', 'profesores', 'nombre_profesor', 'estudiantes', 'nombre_estudiante', 'indicador_modulo', 'nombre_externo', 'externos', 'asistencias'));
     }
 
     /**
@@ -104,11 +105,15 @@ class EventoController extends Controller
     {
         $indicador_modulo = 10;
         $tipo_evento = TipoEvento::allLists();
+        $departamentos = Departamento::all()->lists('nombre', 'departamento');
+        $municipios = Municipio::all()->lists('nombre', 'municipio');
         $eventos = Evento::find($id);
+        if($eventos->municipio != null)
+            $municipios = Municipio::where('departamento', $eventos->departamento)->lists('nombre', 'municipio');
         if(!$eventos)
             return redirect()->back();
         $route = [ 'route'=>['evento.update',$eventos->id],'method'=>'PUT'];
-        return view('componentes.eventos.editevento', compact('tipo_evento','route','eventos', 'indicador_modulo'));
+        return view('componentes.eventos.editevento', compact('tipo_evento','route','eventos', 'municipios', 'departamentos', 'indicador_modulo'));
     }
 
     /**

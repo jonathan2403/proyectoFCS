@@ -16,8 +16,8 @@
         {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
                   </br>
                   </br>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success">Registrar</button>
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success btn-sm">Registrar</button>
         {!! Form::close() !!}
       </div>
     </div>

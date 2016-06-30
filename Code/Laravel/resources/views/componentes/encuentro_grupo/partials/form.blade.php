@@ -26,9 +26,9 @@
 
 	{!!Form::label('Modalidad')!!}</br>
     {!!Form::label('Oral')!!}
-    {!!Form::radio('modalidad', 'oral', false)!!} &nbsp
+    {!!Form::radio('modalidad', 'oral', false, ['class' => 'iradio_minimal-red'])!!} &nbsp
     {!!Form::label('Póster')!!}
-    {!!Form::radio('modalidad', 'poster', false)!!}
+    {!!Form::radio('modalidad', 'poster', false, ['class' => 'iradio_minimal-red'])!!}
 	</br></br>
 
 	{!!Form::label('Lugar')!!}

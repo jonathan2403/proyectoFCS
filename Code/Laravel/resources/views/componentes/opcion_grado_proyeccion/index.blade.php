@@ -62,8 +62,7 @@
 											@endif
 											<td>
 												<center>
-												 {!! link_to_route('opcion-grado-proyeccion.edit', $title='Editar', $parameters=[$opciongrado->id, $opciongrado->tipo_opcion_grado], $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-
+												 {!! link_to_route('opcion-grado-proyeccion.edit', $title='Editar', $parameters=[$opciongrado->id, $opciongrado->tipo_opcion_grado], ['class'=>'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('opcion-grado-proyeccion/eliminar/'.$opciongrado->id)}}">Borrar</a>
 											 </center>
 											</td>
 										</tr>

@@ -34,7 +34,7 @@
 											<td>{{ucfirst($grupo->categoria)}}</td>
 											<td>{{$grupo->adscripciones->count()}}</td>
 											<td>
-											<a href="{{URL::to('grupos/edit/'.$grupo->id)}}" class="btn btn-warning btn-sm" >Editar</a>
+											<a href="{{URL::to('grupos/edit/'.$grupo->id)}}" class="btn btn-warning btn-sm" >Editar</a>|<a class="btn btn-danger btn-sm" href="{{URL::to('grupos/eliminar/'.$grupo->id)}}">Borrar</a>
 											</td>
 										</tr>
 									@endforeach

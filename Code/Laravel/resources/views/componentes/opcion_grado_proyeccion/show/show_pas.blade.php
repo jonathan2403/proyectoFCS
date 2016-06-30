@@ -105,13 +105,14 @@
 <div class="box-body">
   <div class="row form-group">
     <div class="col-md-3">
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Estudiante</button>
+      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Estudiante</button>
     </div>
   </div>
   <hr>
   <div id="dvData">
    <table  class="table table-striped text-center">
     <thead>
+      <th>N° de Documento</th>
       <th>Cédula</th>
       <th>Nombre</th>
       <th>Teléfono</th>
@@ -119,14 +120,15 @@
       <th>Acción</th>
     </thead>
     <tbody>
-      @foreach($estudiantes as $estudiante)
+      @foreach($sustentaciones as $sustentacion)
       <tr>
-        <td>{{$estudiante->numero_documento}}</td>
-        <td>{{ucwords($estudiante->full_name)}}</td>
-        <td>{{$estudiante->telefono}}</td>
-        <td>{{$estudiante->email}}</td>
+        <td>{{$sustentacion->estudiante->numero_documento}}</td>
+        <td>{{$sustentacion->estudiante->codigo_estudiante}}</td>
+        <td>{{$sustentacion->estudiante->full_name}}</td>
+        <td>{{$sustentacion->estudiante->telefono}}</td>
+        <td>{{$sustentacion->estudiante->email}}</td>
         <td>
-          <center><button type="button" value="{{$estudiante->full_name}}" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $estudiante->id !!}').modal(this);">Borrar</button></center>
+          <center><button type="button" class="btn btn-danger btn-sm" onclick="$('#modalBorrar{!! $sustentacion->id !!}').modal(this);">Borrar</button></center>
         </td>
       </tr>
       @endforeach

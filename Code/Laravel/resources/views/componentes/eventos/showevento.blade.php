@@ -23,10 +23,10 @@
        <th><center>Beneficiados</center></th>
      </thead>
      <tbody>
-       <td>{{ ucfirst(strtolower($eventos[0]->nombre_evento)) }}</td>
-       <td><center>{{ $eventos[0]->valor_efectivo }}</center></td>
-       <td><center>{{ $eventos[0]->horas_certificadas }}</center></td>
-       <td><center>{{ $eventos[0]->beneficiados }}</center></td>
+       <td>{{ ucfirst($evento->nombre_evento) }}</td>
+       <td><center>{{ $evento->valor_efectivo }}</center></td>
+       <td><center>{{ $evento->horas_certificadas }}</center></td>
+       <td><center>{{ $evento->beneficiados }}</center></td>
      </tbody>
    </table>
  </div><!-- /.box-header -->
@@ -51,54 +51,54 @@
        <td><center>
         <dl class="dl-horizontal">
          <dt>Administrativos </dt>
-         <dd>{{ $eventos[0]->beneficiados_administrativos }}</dd>
+         <dd>{{ $evento->beneficiados_administrativos }}</dd>
          <dt>Estudiantes </dt>
-         <dd>{{ $eventos[0]->beneficiados_estudiantes }}</dd>
+         <dd>{{ $evento->beneficiados_estudiantes }}</dd>
          <dt>Egresados </dt>
-         <dd>{{ $eventos[0]->beneficiados_egresado }}</dd>
+         <dd>{{ $evento->beneficiados_egresado }}</dd>
          <dt>Docentes</dt>
-         <dd>{{ $eventos[0]->beneficiados_docentes }}</dd>
+         <dd>{{ $evento->beneficiados_docentes }}</dd>
        </dl></center>
      </td>
      <td><center>
        <dl class="dl-horizontal">
         <dt>Sector Público </dt>
-        <dd>{{ $eventos[0]->beneficiados_publico }}</dd>
+        <dd>{{ $evento->beneficiados_publico }}</dd>
         <dt>Sector Privado </dt>
-        <dd>{{ $eventos[0]->beneficiados_privado }}</dd>
+        <dd>{{ $evento->beneficiados_privado }}</dd>
         <dt>Público en General </dt>
-        <dd>{{ $eventos[0]->beneficiados_general }}</dd>
+        <dd>{{ $evento->beneficiados_general }}</dd>
         <dt>Academia </dt>
-        <dd>{{ $eventos[0]->beneficiados_general }}</dd>
+        <dd>{{ $evento->beneficiados_general }}</dd>
         <dt>Alianza Sectorial </dt>
-        <dd>{{ $eventos[0]->beneficiados_general }}</dd>
+        <dd>{{ $evento->beneficiados_general }}</dd>
         <dt>Sociedad civil Organizada</dt>
-        <dd>{{ $eventos[0]->beneficiados_general }}</dd>
+        <dd>{{ $evento->beneficiados_general }}</dd>
         <dt>Otros</dt>
-        <dd>{{ $eventos[0]->beneficiados_general }}</dd>
+        <dd>{{ $evento->beneficiados_general }}</dd>
       </dl></center>
     </td>
     <td><center>
      <dl class="dl-horizontal">
       <dt>0 - 10 años </dt>
-      <dd>{{ $eventos[0]->beneficiados_0_10 }}</dd>
+      <dd>{{ $evento->beneficiados_0_10 }}</dd>
       <dt>11 - 20 años </dt>
-      <dd>{{ $eventos[0]->beneficiados_11_20 }}</dd>
+      <dd>{{ $evento->beneficiados_11_20 }}</dd>
       <dt>21 - 30 años </dt>
-      <dd>{{ $eventos[0]->beneficiados_21_30 }}</dd>
+      <dd>{{ $evento->beneficiados_21_30 }}</dd>
       <dt>31 - 60 años</dt>
-      <dd>{{ $eventos[0]->beneficiados_31_60 }}</dd>
+      <dd>{{ $evento->beneficiados_31_60 }}</dd>
       <dt>Mayores de 60 años</dt>
-      <dd>{{ $eventos[0]->beneficiados_mayores_60 }}</dd>
+      <dd>{{ $evento->beneficiados_mayores_60 }}</dd>
     </dl></center>
   </td>
 
   <td><center>
    <dl class="dl-horizontal">
     <dt>Hombres </dt>
-    <dd>{{ $eventos[0]->beneficiados_hombres }}</dd>
+    <dd>{{ $evento->beneficiados_hombres }}</dd>
     <dt>Mujeres </dt>
-    <dd>{{ $eventos[0]->beneficiados_mujeres }}</dd>
+    <dd>{{ $evento->beneficiados_mujeres }}</dd>
   </dl></center>
 </td>
 </tr>

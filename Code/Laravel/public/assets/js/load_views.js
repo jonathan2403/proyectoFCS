@@ -1,8 +1,6 @@
     $('.select').select2({
-       width : '100%',
-       minimumInputLength: '1',
-       placeholder : 'seleccione opción'
-      });
+      width : '100%'
+    });
     $('.select_tipo').select2({
       width : '100%',
       placeholder : 'Seleccion Tipo'
@@ -16,4 +14,9 @@
     })
     /*$('input[type=radio]').iCheck({
         radioClass: 'iradio_minimal-red'
+      });
+    $('.select').select2({
+       width : '100%',
+       minimumInputLength: '1',
+       placeholder : 'seleccione opción'
       });*/
