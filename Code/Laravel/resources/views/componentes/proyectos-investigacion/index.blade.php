@@ -28,11 +28,11 @@
 										<tr>
 											<td>{!!link_to_route('proyectos-investigacion.show', ucfirst($proyecto->titulo_proyecto), $parameters=$proyecto->id)!!}</td>
 											<td>{{$proyecto->tipo}}</td>
-											<td>{{ucwords($proyecto->name_investigador)}}</td>
-											<td><center>{{$proyecto->ejecutado}}</center></td>
-											<td>{{$proyecto->tema_central}}</td>
+											<td class="text-center">{{$proyecto->investigador_principal->nombre}}</td>
+											<td class="text-center">{{$proyecto->tema_central}}</td>
+											<td class="text-center">{{$proyecto->ejecutado}}</td>
 											<td><center>
-													 {!! link_to_route('proyectos-investigacion.edit', $title='Editar', $parameters=$proyecto->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!} 
+													 {!! link_to_route('proyectos-investigacion.edit', $title='Editar', $proyecto->id, ['class'=>'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('proyecto/investigacion/eliminar/'.$proyecto->id)}}">Borrar</a>
 											</td>
 										</tr>
 									@endforeach

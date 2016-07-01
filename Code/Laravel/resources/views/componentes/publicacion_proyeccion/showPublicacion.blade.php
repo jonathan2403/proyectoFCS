@@ -12,6 +12,7 @@
           <div class="box-header">
             @include('layaouts.partials.mensaje')
             @include('componentes.publicacion_investigacion.partials.modal_publicacion')
+            @include('componentes.publicacion_investigacion.partials.modal_borrarPublicacion')
             <table class="table text-center">
               <thead>
                 <th>Título</th>

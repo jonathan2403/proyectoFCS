@@ -12,8 +12,8 @@
               <div id="div_estudiante">
             {!! Form::text('estudiante', null,['class' => 'form-control', 'id' => 'nombre_estudiante','placeholder'=>'Buscar por nombre o Código']) !!}
       
-        <div id="label_oculto_estudiante"></div>                     
-        {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
+            <div id="label_oculto_estudiante"></div>                     
+            {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
           </div>
 
           <div id="div_profesor">
@@ -22,8 +22,8 @@
             {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
           </div>
             </br></br>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success">Registrar</button>
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success btn-sm">Registrar</button>
         {!! Form::close() !!}
       </div>
     </div>

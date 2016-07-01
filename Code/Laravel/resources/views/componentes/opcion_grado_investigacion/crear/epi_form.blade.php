@@ -10,25 +10,25 @@
       </br>
 
     {!! Form::label('Director Del Proyecto') !!}
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            {!! Form::text('profesor', isset($opciongrado->director) ? $opciongrado->director->nombre : null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
             <div id="label_oculto_profesor"></div>                     
             {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
     </br>
 
     {!! Form::label('director n° 2 del proyecto') !!}
     <div id="div_profesor">
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_jurado','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            {!! Form::text('jurado', isset($opciongrado->jurado) ? $opciongrado->jurado->nombre : null,['class' => 'form-control', 'id' => 'nombre_jurado','placeholder'=>'Buscar por nombre o Cédula']) !!}
             <div id="label_oculto_jurado"></div>                     
-            {!! Form::hidden('id_jurado', null, ['id' => 'id_profesor']) !!}
+            {!! Form::hidden('id_jurado', null, ['id' => 'id_jurado']) !!}
     </div>
    </br>
 
     {!!Form::label('proyecto al que pertenece')!!}
-    {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
+    {!!Form::select('id_proyecto', $nombre_proyecto->toArray(), null, ['class' => 'form-control', 'placeholder' => '']) !!}
         </br>
 
     {!!Form::label('grupo')!!}
-    {!!Form::select('id_grupo', $nombre_grupo->toArray(), null, ['class' => 'select form-control', 'placeholder' => '']) !!}
+    {!!Form::select('id_grupo', $nombre_grupo->toArray(), null, ['class' => 'form-control', 'placeholder' => '']) !!}
         </br>
 
     {!!Form::label('línea de investigación')!!}

@@ -20,9 +20,9 @@ class Municipio extends Model
      *
      * @var array
      */
-    public function departamento() 
+    public function departamentos() 
     {
-        return $this->belongsTo(Departamento::class, 'departamento','departamento');
+        return $this->belongsTo('FCS\Departamento', 'departamento');
     }
 
 }

@@ -22,7 +22,7 @@ class RedConocimiento extends Model
     'proposito' => "max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
     'compromiso' => "max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
     'telefono' => 'required|digits_between:8,15|max:15',
-    'direccion' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\#°.:\(\)]+$/",
+    'direccion' => "required|max:100|regex:/^[A-Za-z1-9ñÑáéíóúÁÉÍÓÚ\! '\#°.:\(\)]+$/",
     'email' => 'required|email',
     'fecha_ultima_reunion' => 'required|date_format:m/d/Y',
     'asistentes' => 'digits_between:0,9|max:20',

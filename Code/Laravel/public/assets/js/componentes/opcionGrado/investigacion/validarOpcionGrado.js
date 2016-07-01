@@ -32,7 +32,7 @@ var formulario=$("#mon_revision-form");
 formulario.validate({
     rules: {
     descripcion: {required:true},
-    nombre_profesor: {required:true},
+    profesor: {required:true},
     fecha_entrega_ci: {required:true},
     fecha_entrega_cr: {required:true},
     fecha_entrega_jurado: {required:true},
@@ -52,7 +52,9 @@ var formulario=$("#mon_investigativa-form");
 formulario.validate({
   rules: {
     descripcion: {required:true},
-    nombre_profesor: {required:true},
+    profesor: {required:true},
+    jurado: {required:true},
+    id_entidad: {required:true},
     fecha_entrega_ci: {required:true},
     fecha_entrega_cr: {required:true},
     fecha_entrega_jurado: {required:true},
@@ -72,7 +74,11 @@ var formulario=$("#epi-form");
 formulario.validate({
   rules: {
     descripcion: {required:true},
-    nombre_profesor: {required:true},
+    profesor: {required:true},
+    jurado: {required:true},
+    id_proyecto: {required:true},
+    id_grupo: {required:true},
+    linea_investigacion: {required:true},
     fecha_entrega_ci: {required:true},
     fecha_entrega_cr: {required:true},
     fecha_entrega_jurado: {required:true},

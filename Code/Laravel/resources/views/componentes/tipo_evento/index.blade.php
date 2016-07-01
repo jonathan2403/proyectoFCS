@@ -19,8 +19,8 @@
                 <button class="btn btn-success" data-toggle="modal" data-target="#modalTipoEvento"><i class="fa fa-plus"></i> Tipo Evento</button>
               </div>
             </div>
-            <div class="col-xs-6">
-              <table id="example" class="table table-bordered table-striped text-center">
+            <div class="col-xs-9">
+              <table id="example3" class="table table-bordered table-striped text-center">
                 <thead>
                   <th>Tipo Evento</th>
                   <th>Acción</th>

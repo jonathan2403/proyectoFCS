@@ -1,6 +1,7 @@
 @extends('layaouts.tablas')
 @section('scripts')
-{!!Html::script('/assets/js/base/profesor_modal.js')!!}
+   {!!Html::script('/assets/js/load_views.js')!!}
+   {!!Html::script('/assets/js/base/profesor_modal.js')!!}
    {!!Html::script('/assets/js/buscarEntidadExterno.js')!!}
    {!! Html::script('assets/js/componentes/opcionGrado/investigacion/validarOpcionGrado.js') !!}
 @endsection

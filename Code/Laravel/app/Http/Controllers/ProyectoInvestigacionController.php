@@ -25,9 +25,7 @@ class ProyectoInvestigacionController extends Controller
     public function index()
     {
         $indicador_modulo = 9;
-        $proyectos = Proyecto::join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
-        ->select('proyecto.id', 'proyecto.titulo_proyecto', DB::raw("CASE WHEN proyecto.tipo_proyecto='cp' THEN 'Conv. Planta' WHEN proyecto.tipo_proyecto='ccr' THEN 'Conv. con Recursos' WHEN proyecto.tipo_proyecto='cc' THEN 'Conv. Colciencias' WHEN proyecto.tipo_proyecto='cct' THEN 'Conv. con Tiempo' WHEN proyecto.tipo_proyecto='cre' THEN 'Conv. con Rec. Externos' END AS tipo"), 'proyecto.ejecutado',
-                DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS name_investigador"))
+        $proyectos = Proyecto::select('id', 'id_director', 'titulo_proyecto', 'tema_central', DB::raw("CASE WHEN proyecto.tipo_proyecto='cp' THEN 'Conv. Planta' WHEN proyecto.tipo_proyecto='ccr' THEN 'Conv. con Recursos' WHEN proyecto.tipo_proyecto='cc' THEN 'Conv. Colciencias' WHEN proyecto.tipo_proyecto='cct' THEN 'Conv. con Tiempo' WHEN proyecto.tipo_proyecto='cre' THEN 'Conv. con Rec. Externos' END AS tipo"), 'ejecutado')
         ->where('tipo', 'i')
         ->get();
         return view('componentes.proyectos-investigacion.index', compact('proyectos', 'indicador_modulo'));
@@ -58,7 +56,7 @@ class ProyectoInvestigacionController extends Controller
     {
         $datos = $request->all();
         $this->validate($request, Proyecto::$reglas, Proyecto::$mensajes);
-        Proyecto::create($request->all());
+        Proyecto::create($datos);
         return redirect('proyectos-investigacion')->with('message','Registro Creado!');
     }
 
@@ -117,7 +115,7 @@ class ProyectoInvestigacionController extends Controller
     public function update(Request $request, $id)
     {
         $datos = $request->all();
-        $this->validate($datos, Proyecto::$reglas, Proyecto::$mensajes);
+        $this->validate($request, Proyecto::$reglas, Proyecto::$mensajes);
         $proyecto=Proyecto::find($id);
         $proyecto->fill($datos);
         $proyecto->save();
@@ -133,7 +131,7 @@ class ProyectoInvestigacionController extends Controller
     public function destroy($id)
     {
         Proyecto::destroy($id);
-        Session::flash('message','Proyecto Eliminado Correctamente');
+        Session::flash('message','Registro Eliminado!');
         return Redirect::to('/proyectos-investigacion');
     }
 

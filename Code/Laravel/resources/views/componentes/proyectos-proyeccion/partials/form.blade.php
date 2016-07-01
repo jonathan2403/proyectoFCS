@@ -7,7 +7,7 @@
         {!!Form::label('Director')!!}<br>
         {!!Form::text('profesor', null, ['class'=>'form-control', 'placeholder'=>'Buscar por Nombre o Cédula', 'id' => 'nombre_profesor'])!!}
         <div id="label_oculto_profesor"></div>                     
-        {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
+        {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
         <br>
         
         <div class="box box-danger">

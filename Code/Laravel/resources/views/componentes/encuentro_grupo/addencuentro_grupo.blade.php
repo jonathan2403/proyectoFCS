@@ -3,6 +3,7 @@
   {!!Html::script('/assets/js/load_views.js')!!}
   {!!Html::script('/assets/js/base/profesor_modal.js')!!}
   {!!Html::script('/assets/js/componentes/encuentroGrupos/validaEncuentroGrupos.js')!!}
+  {!!Html::script('/assets/js/base/lugar_realizacion.js')!!}
 @endsection
 @section('content')
   <section class="content">

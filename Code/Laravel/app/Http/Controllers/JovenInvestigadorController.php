@@ -17,9 +17,8 @@ class JovenInvestigadorController extends Controller
      */    
     public function index()
     {
-
         $indicador_modulo = 24;
-        $jovenes_investigadores = JovenInvestigador::select('id_estudiante', 'id_profesor', 'id_grupo', 'id_institucion', \DB::raw("CASE WHEN joven_investigador.colciencias='s' THEN 'Si' WHEN joven_investigador.colciencias='n' THEN 'No' END AS colciencias"), 'producto')
+        $jovenes_investigadores = JovenInvestigador::select('id', 'id_estudiante', 'id_profesor', 'id_grupo', 'id_institucion', \DB::raw("CASE WHEN joven_investigador.colciencias='s' THEN 'Si' WHEN joven_investigador.colciencias='n' THEN 'No' END AS colciencias"), 'producto')
         ->get();
         return view('componentes.joven_investigador.index', compact('jovenes_investigadores', 'indicador_modulo'));
     }
@@ -76,14 +75,11 @@ class JovenInvestigadorController extends Controller
     {
         $indicador_modulo = 24;
         $joven_investigador = JovenInvestigador::find($id);
-        $nombre_estudiante = JovenInvestigador::join('estudiantes', 'joven_investigador.id_estudiante', '=', 'estudiantes.id')
-        ->select(\DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.segundo_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS nombre_estudiante"))
-        ->where('joven_investigador.id', $id)
-        ->first();
-        $nombre_estudiante = $nombre_estudiante['nombre_estudiante'];
+        $instituciones = Externo::all()->where('tipo_externo', 'e')->lists('FullNameEntidad', 'id');
         $grupos = Grupo::all()->lists('NombreGrupo', 'id');
+        //dd($joven_investigador->estudiante->full_name);
         $route = ['route' => ['joven-investigador.update', $joven_investigador->id], 'method' => 'PUT'];
-        return view('componentes.joven_investigador.editjoven_investigador', compact('route', 'nombre_estudiante', 'joven_investigador', 'grupos', 'indicador_modulo'));
+        return view('componentes.joven_investigador.editjoven_investigador', compact('route', 'instituciones', 'joven_investigador', 'grupos', 'indicador_modulo'));
     }
 
     /**
@@ -109,7 +105,8 @@ class JovenInvestigadorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        JovenInvestigador::destroy($id);
+        return redirect('joven-investigador')->with('message', 'Registro Eliminado!');
     }
 
     /**

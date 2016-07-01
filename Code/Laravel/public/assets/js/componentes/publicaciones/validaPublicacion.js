@@ -12,6 +12,9 @@ formulario.validate({
     rules: {
         descripcion: {required:true},
         id_proyecto: {required:true},
+        tipo: {required:true},
+        id_opcion_grado: {required:true},
+        fecha_publicacion: {required:true},
     }
   });
 

@@ -8,7 +8,10 @@ use FCS\Http\Requests;
 use FCS\Http\Controllers\Controller;
 use FCS\EncuentroGrupo;
 use FCS\Profesor;
+use FCS\Departamento;
+use FCS\Municipio;
 use FCS\Base\ExportFiles;
+use Session, Redirect;
 
 
 class EncuentroGrupoController extends Controller
@@ -21,9 +24,7 @@ class EncuentroGrupoController extends Controller
     public function index()
     {
         $indicador_modulo = 21;
-        $encuentros = EncuentroGrupo::join('profesores','encuentros_grupos.id_profesor', '=', 'profesores.id')
-        ->select('encuentros_grupos.id', 'encuentros_grupos.nombre_encuentro', 'encuentros_grupos.fecha_realizacion', 'encuentros_grupos.tipo_grupo', 'encuentros_grupos.modalidad', 'encuentros_grupos.lugar', \DB::raw("CONCAT(profesores.primer_nombre,' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS ponente"))
-        ->get();
+        $encuentros = EncuentroGrupo::all();
         return view('componentes.encuentro_grupo.index', compact('encuentros', 'indicador_modulo'));
     }
 
@@ -36,7 +37,8 @@ class EncuentroGrupoController extends Controller
     {
         $indicador_modulo = 21;
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.encuentro_grupo.addencuentro_grupo', compact('nombre_profesor', 'indicador_modulo'));
+        $departamentos = Departamento::all()->lists('nombre', 'departamento');
+        return view('componentes.encuentro_grupo.addencuentro_grupo', compact('nombre_profesor', 'departamentos', 'indicador_modulo'));
     }
 
     /**
@@ -74,11 +76,12 @@ class EncuentroGrupoController extends Controller
     {
         $indicador_modulo = 21;
         $encuentro = EncuentroGrupo::find($id);
+        $departamentos = Departamento::all()->lists('nombre', 'departamento');
+        $municipios = Municipio::all()->lists('nombre', 'municipio');
         if(!$encuentro)
             return redirect()->back();
         $route = ['route'=>['encuentro-grupo.update', $encuentro->id], 'method'=>'PUT'];
-        $nombre_profesor = Profesor::all()->lists('full_name', 'id');
-        return view('componentes.encuentro_grupo.editencuentro_grupo', compact('encuentro', 'route', 'nombre_profesor', 'indicador_modulo'));
+        return view('componentes.encuentro_grupo.editencuentro_grupo', compact('encuentro', 'route', 'departamentos', 'municipios', 'indicador_modulo'));
     }
 
     /**
@@ -109,7 +112,9 @@ class EncuentroGrupoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        EncuentroGrupo::destroy($id);
+        Session::flash('message', 'Registro Eliminado!');
+        return Redirect::to('encuentro-grupo');
     }
 
 

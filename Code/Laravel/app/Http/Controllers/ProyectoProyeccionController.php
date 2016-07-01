@@ -23,10 +23,7 @@ class ProyectoProyeccionController extends Controller
     public function index()
     {
         $indicador_modulo = 15;
-        $proyectos = Proyecto::join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
-        ->select( 'proyecto.id', 'proyecto.titulo_proyecto', 'proyecto.tipo_proyecto', 'proyecto.fecha_inicio', 'proyecto.ejecutado', 'proyecto.numero_acta',
-              DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_profesor"))
-        ->where('tipo', 'ps')
+        $proyectos = Proyecto::where('tipo', 'ps')
         ->get();
         return view('componentes.proyectos-proyeccion.index', compact('proyectos', 'indicador_modulo'));
     }
@@ -79,15 +76,11 @@ class ProyectoProyeccionController extends Controller
         ->select('participacion.id', 'estudiantes.telefono', 'estudiantes.numero_documento', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.segundo_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
         ->where('proyecto.id', $id)
         ->get();
-        $investigador_principal = Proyecto::join('profesores', 'proyecto.id_investigador_principal', '=', 'profesores.id')
-        ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
-        ->where('proyecto.id', $id)
-        ->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         $nombre_estudiante = Estudiante::all()->lists('full_name', 'id');
         $participaciones = Participacion::where('id_proyecto', $id)
                          ->get();
-        return view('componentes.proyectos-proyeccion.showProyecto', compact('proyecto', 'profesores', 'nombre_profesor', 'nombre_estudiante', 'investigador_principal', 'estudiantes', 'indicador_modulo', 'participaciones'));
+        return view('componentes.proyectos-proyeccion.showProyecto', compact('proyecto', 'profesores', 'nombre_profesor', 'nombre_estudiante', 'estudiantes', 'indicador_modulo', 'participaciones'));
     }
 
     /**
