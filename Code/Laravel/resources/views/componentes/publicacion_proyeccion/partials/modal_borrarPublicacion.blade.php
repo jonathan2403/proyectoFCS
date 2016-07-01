@@ -11,8 +11,8 @@
         </div>
         <div class="modal-footer">
           {!! Form::open(array("route"=>array("sustentacion.destroy",$publicacion->id),"method"=>"DELETE")) !!}
-          <button type="submit" class="btn btn-success">Aceptar</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success btn-sm">Aceptar</button>
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
             {!! Form::close() !!}
         </div>
       </div><!-- /.modal-content -->

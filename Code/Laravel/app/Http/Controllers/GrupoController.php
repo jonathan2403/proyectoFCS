@@ -26,15 +26,13 @@ class GrupoController extends Controller
         switch($tipo_grupo){
         case 'investigacion':
         $indicador_modulo = 1;
-        $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-        ->select('grupo.id' , 'grupo.sigla', 'grupo.descripcion', DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investigación' WHEN grupo.tipo='e' THEN 'Estudio' END AS tipo"), 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
+        $grupos = Grupo::select('id', 'sigla', 'descripcion', 'id_profesor', 'categoria', DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investivagión' WHEN grupo.tipo='e' THEN 'Estudio' WHEN grupo.tipo='ps' THEN 'Proyección Social' END AS tipo"))
         ->whereIn('grupo.tipo', ['i', 'e'])
         ->get();
         break;
         case 'proyeccion':
         $indicador_modulo = 20;
-        $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-        ->select('grupo.id' ,'grupo.sigla', 'grupo.descripcion', DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investivagión' WHEN grupo.tipo='e' THEN 'Estudio' WHEN grupo.tipo='ps' THEN 'Proyección Social' END AS tipo"), 'grupo.categoria', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
+        $grupos = Grupo::select('id', 'sigla', 'descripcion', 'id_profesor', 'categoria', DB::raw("CASE WHEN grupo.tipo='i' THEN 'Investivagión' WHEN grupo.tipo='e' THEN 'Estudio' WHEN grupo.tipo='ps' THEN 'Proyección Social' END AS tipo"))
         ->where('grupo.tipo', 'ps')
         ->get();
         break;
@@ -86,22 +84,17 @@ class GrupoController extends Controller
      */
     public function show($id)
     {
+        if(!is_numeric($id) || !$grupo=Grupo::find($id))
+           return redirect()->back();
         $indicador_modulo = 1;
-        $grupo = Grupo::find($id);
-        if(!$grupo)
-            return redirect()->back();
-        $grupos = Grupo::join('profesores', 'grupo.id_profesor', '=', 'profesores.id')
-        ->select('grupo.id', 'grupo.sigla', 'descripcion', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_coordinador"))
-        ->where('grupo.id', $id)
-        ->get();
         $estudiantes = Adscripcion::join('estudiantes', 'adscripcion.id_estudiante', '=', 'estudiantes.id')
         ->join('grupo', 'adscripcion.id_grupo', '=', 'grupo.id')
-        ->select('adscripcion.id', 'estudiantes.codigo_estudiante', 'estudiantes.email', DB::raw("CONCAT(estudiantes.primer_nombre, ' ', estudiantes.apellido_paterno, ' ', estudiantes.apellido_materno) AS full_name"))
+        ->select('adscripcion.id', 'estudiantes.numero_documento', 'estudiantes.codigo_estudiante', 'estudiantes.email')
         ->where('grupo.id', $id)
         ->get();
         if($grupo->tipo == 'ps')
             $indicador_modulo = 20;
-        return view('componentes.grupo.showgrupo', compact('grupos', 'estudiantes', 'indicador_modulo'));
+        return view('componentes.grupo.showgrupo', compact('grupo', 'estudiantes', 'indicador_modulo'));
     }
 
     /**
@@ -134,7 +127,6 @@ class GrupoController extends Controller
     public function update()
     {
         $datos = request()->all();
-        dd($datos);
         $grupo = Grupo::find($datos['id_grupo']);
         $valida = \Validator::make($datos, Grupo::$reglas, Grupo::$mensajes);
         if($valida->fails()){

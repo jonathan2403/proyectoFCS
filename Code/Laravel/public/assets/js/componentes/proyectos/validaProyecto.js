@@ -36,5 +36,6 @@ formulario.validate({
       tema_central: {required:true},
       id_red_conocimiento: {required:true},
       fecha_avance1: {required:true},
+      ejecutado: {required:true},
     }
   });

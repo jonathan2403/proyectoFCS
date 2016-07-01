@@ -10,23 +10,19 @@
       </br>
 
     {!! Form::label('Director del Proyecto') !!}
-    <div id="div_profesor">
+            {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
             {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
             <div id="label_oculto_profesor"></div>                     
-            {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
-    </div>
    </br>
 
     {!! Form::label('Jurado Del Proyecto') !!}
-    <div id="div_profesor">
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+    {!! Form::hidden('id_jurado', null, ['id' => 'id_jurado']) !!}
+            {!! Form::text('jurado', null,['class' => 'form-control', 'id' => 'nombre_jurado','placeholder'=>'Buscar por nombre o Cédula']) !!}
             <div id="label_oculto_profesor"></div>                     
-            {!! Form::hidden('id_supervisor', null, ['id' => 'id_profesor']) !!}
-    </div>
    </br>
 
     {!! Form::label('entidad') !!}   
-    {!! Form::text('entidad', isset($nombre_estudiante) ? $nombre_estudiante:null,['class' => 'form-control', 'id' => 'nombre_entidad','placeholder'=>'Nombre de la Entidad']) !!}
+    {!! Form::select('id_entidad', $nombre_entidad, null, ['class' => 'form-control', 'placeholder' => '']) !!}
    <div id="label_oculto"></div>                     
    {!! Form::hidden('id_entidad', null, ['id' => 'id_entidad']) !!}
     </br>

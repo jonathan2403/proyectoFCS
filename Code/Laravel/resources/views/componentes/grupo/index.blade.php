@@ -29,9 +29,15 @@
 										<tr data-id="{{ $grupo->id }}">
 											<td>{{ucwords($grupo->sigla)}}</td>
 											<td><a href="{{URL::to('grupos/ver/'.$grupo->id)}}">{{$grupo->descripcion}}</a></td>
-											<td>{{ucwords($grupo->nombre_coordinador)}}</td>
+											<td>{{ucwords($grupo->coordinador->nombre)}}</td>
 											<td>{{$grupo->tipo}}</td>
-											<td>{{ucfirst($grupo->categoria)}}</td>
+											@if($grupo->categoria == 'a')
+											<td><span style="font-size:14px" class="label label-primary">{{ucfirst($grupo->categoria)}}</span></td>
+											@elseif($grupo->categoria == 'b')
+											<td><span style="font-size:14px" class="label label-info">{{ucfirst($grupo->categoria)}}</span></td>
+											@else
+											<td><span style="font-size:14px" class="label label-default">{{ucfirst($grupo->categoria)}}</span></td>
+											@endif
 											<td>{{$grupo->adscripciones->count()}}</td>
 											<td>
 											<a href="{{URL::to('grupos/edit/'.$grupo->id)}}" class="btn btn-warning btn-sm" >Editar</a>|<a class="btn btn-danger btn-sm" href="{{URL::to('grupos/eliminar/'.$grupo->id)}}">Borrar</a>

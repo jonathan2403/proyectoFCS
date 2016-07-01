@@ -18,9 +18,9 @@
               </thead>
               <tbody>
                 <td>{{$opciongrado->descripcion}}</td>
-                <td>{{$director->nombre_director}}</td>
-                <td>{{isset($supervisor) ? $supervisor->nombre_supervisor : 'No Registra'}}</td>
-                <td>{{isset($entidad) ? $entidad->nombre_entidad : 'No Registra'}}</td>
+                <td>{{$opciongrado->director->nombre}}</td>
+                <td>{{$opciongrado->jurado->nombre}}</td>
+                <td>{{isset($opciongrado->entidadexterna) ? $opciongrado->entidadexterna->nombre_externo : 'No Registra'}}</td>
               </tbody>
             </table>
 
@@ -29,7 +29,7 @@
                 <div class="row text-center">
                   <div class="col-xs-4"> 
                       {!!Form::label('proyecto al que pertenece')!!}<br>
-                      {{isset($nombre_proyecto) ? $nombre->titulo_proyecto : 'No Registra'}}
+                      {{isset($opciongrado->proyecto) ? $opciongrado->proyecto->titulo_proyecto : 'No Registra'}}
                   </div>
                   <div class="col-xs-4"> 
                       {!!Form::label('línea de investigación')!!}<br>

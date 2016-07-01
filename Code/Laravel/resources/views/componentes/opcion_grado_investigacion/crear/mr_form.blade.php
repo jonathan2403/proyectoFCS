@@ -10,7 +10,7 @@
 
    {!! Form::label('Director del Proyecto') !!}
 
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            {!! Form::text('profesor', isset($opciongrado->director) ? $opciongrado->director->nombre : null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
             <div id="label_oculto_profesor"></div>                     
             {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
     
@@ -18,9 +18,9 @@
 
     {!! Form::label('Jurado Del Proyecto') !!}
    
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_jurado','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            {!! Form::text('profesor', isset($opciongrado->jurado) ? $opciongrado->jurado->nombre : null, ['class' => 'form-control', 'id' => 'nombre_jurado','placeholder'=>'Buscar por nombre o Cédula']) !!}
             <div id="label_oculto_jurado"></div>                     
-            {!! Form::hidden('id_jurado', null, ['id' => 'id_supervisor']) !!}
+            {!! Form::hidden('id_jurado', null, ['id' => 'id_jurado']) !!}
     
    </br>
 

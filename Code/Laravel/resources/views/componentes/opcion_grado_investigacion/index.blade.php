@@ -46,9 +46,15 @@
 											<td>{{$opciongrado->tipo_opcion_grado}}</td>									  
 											<td>{{$opciongrado->fecha_aprobacion}} - Acta: {{$opciongrado->numero_acta}}</td>
 											<td>{{$opciongrado->fecha_entrega_informe_final}} - Acta: {{$opciongrado->numero_acta_2}}</td>
-											<td><center>{{$opciongrado->finalizado}}</center></td>
 											<td><center>
-													 {!! link_to_route('opcion-grado-investigacion.edit', $title="Editar", $parameters=[$opciongrado->id, $opciongrado->tipo_opcion_grado], $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
+											@if($opciongrado->finalizado == 'Si')
+												<span style="font-size:14px" class="label label-pill label-primary">{{$opciongrado->finalizado}}</span>
+											@else
+												<span style="font-size:14px" class="label label-pill label-info">{{$opciongrado->finalizado}}</span>
+											@endif
+											</center></td>
+											<td><center>
+													 {!! link_to_route('opcion-grado-investigacion.edit', $title="Editar", $opciongrado->id, ['class'=>'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('opcion-grado-investigacion/eliminar/'.$opciongrado->id)}}">Borrar</a>
 												 </center>
 											</td>	
 										 </tr>

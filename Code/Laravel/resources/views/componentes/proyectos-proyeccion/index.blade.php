@@ -26,14 +26,11 @@
 									@foreach($proyectos as $proyecto)
 										<tr>
 											<td>{!!link_to_route('proyectos-proyeccion.show', $proyecto->titulo_proyecto, $parameters=$proyecto->id)!!}</td>
-											<td>{{ucwords($proyecto->nombre_profesor)}}</td>
+											<td>{{ucwords($proyecto->investigador_principal->nombre)}}</td>
 											<td>{{$proyecto->fecha_inicio}} - Acta: {{$proyecto->numero_acta}}</td>
 											<td><center>{{$proyecto->ejecutado}}</center></td>
-											<td><center>
-										 <div style="font-size: 20px;">
-											 <!--{!! link_to_route('proyectos-proyeccion.edit', $title="", $parameters=$proyecto->id, $atrributes=['id' => 'edit', 'class'=>'fa fa-pencil fa-fw']) !!}-->
-                       {!! link_to_route('proyectos-proyeccion.edit', $title='Editar', $parameters=$proyecto->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}
-										 </div></center>
+											<td class="text-center">
+										 	{!! link_to_route('proyectos-proyeccion.edit', $title='Editar', $parameters=$proyecto->id, ['class'=>'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('proyectos/proyeccion/eliminar/'.$proyecto->id)}}">Borrar</a>
 											</td>
 										</tr>
 									@endforeach

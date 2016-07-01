@@ -57,7 +57,7 @@ class PublicacionProyeccionController extends Controller
     {
         $this->validate($request, Publicacion::$reglas);
         Publicacion::create($request->all());
-        return redirect('publicacion-proyeccion')->with('message','Regsitro Creado!');
+        return redirect('publicacion-proyeccion')->with('message','Registro Creado!');
     }
 
     /**
@@ -136,6 +136,8 @@ class PublicacionProyeccionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Publicacion::destroy($id);
+        Session::flash('message', 'Registro Eliminado!');
+        return Redirect::to('publicacion-proyeccion');
     }
 }

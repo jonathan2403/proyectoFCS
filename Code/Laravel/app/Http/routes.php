@@ -61,17 +61,24 @@ Route::group([ 'middleware' => 'auth'], function(){
 			Route::resource('opcion-grado-proyeccion', 'OpcionGradoProyeccionController');
 			Route::get('opcion-grado-proyeccion/eliminar/{id_opcion_grado}', 'OpcionGradoProyeccionController@destroy');
 			Route::resource('proyectos-proyeccion','ProyectoProyeccionController');
+			Route::get('proyectos/proyeccion/eliminar/{id_proyecto}', 'ProyectoProyeccionController@destroy');
 			Route::resource('publicacion-proyeccion', 'PublicacionProyeccionController');
+			Route::get('publicacion/proyeccion/eliminar/{id_publicacion}', 'PublicacionProyeccionController@destroy');
 			Route::resource('tipo-evento','TipoEventoController');
+
 		});
 
 		// Rutas para Investigacion
 		Route::group(['middleware' => 'auth_investigacion'], function(){
 
 			Route::resource('encuentro-grupo','EncuentroGrupoController');
+			Route::get('encuentro/grupo/eliminar/{id_encuentro}', 'EncuentroGrupoController@destroy');
 			Route::resource('joven-investigador','JovenInvestigadorController');
+			Route::get('joven/investigador/eliminar/{id_joven_investigador}', 'JovenInvestigadorController@destroy');
 			Route::resource('opcion-grado-investigacion','OpcionGradoInvestigacionController');
+			Route::get('opcion-grado-investigacion/eliminar/{id_opcion_grado}', 'OpcionGradoInvestigacionController@destroy');
 			Route::resource('proyectos-investigacion','ProyectoInvestigacionController');
+			Route::get('proyecto/investigacion/eliminar/{id_proyecto}', 'ProyectoInvestigacionController@destroy');
 			Route::resource('publicacion-investigacion', 'PublicacionInvestigacionController');
 			Route::resource('red-conocimiento','RedConocimientoController');		
 		

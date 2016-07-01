@@ -27,9 +27,9 @@
               @foreach($encuentros as $encuentro)
               <tr>
                 <td>{{ucfirst($encuentro->nombre_encuentro)}}</td>
-                <td>{{ucwords($encuentro->ponente)}}</td>
+                <td>{{ucwords($encuentro->profesor->nombre)}}</td>
                 <td><center>{{$encuentro->fecha_realizacion}}</center></td>
-                <td><center>{{ucfirst($encuentro->lugar)}}</center></td>
+                <td><center>{{$encuentro->municipios->nombre.' - '.$encuentro->municipios->departamentos->nombre}}</center></td>
                 @if($encuentro->tipo_grupo=='i')
                 <td><center>Investigación</center></td>
                 @endif
@@ -39,8 +39,8 @@
                 @if($encuentro->tipo_grupo=='e')
                 <td><center>Estudio</center></td>
                 @endif
-                <td><center>{{ucfirst($encuentro->modalidad)}}</center></td>
-                <td><center>{!! link_to_route('encuentro-grupo.edit', $title='Editar', $parameters=$encuentro->id, $attributes=['class' => 'btn btn-warning btn-sm']) !!}</center></td>
+                <td class="text-center">{{ucfirst($encuentro->modalidad)}}</td>
+                <td><center>{!! link_to_route('encuentro-grupo.edit', $title='Editar', $encuentro->id,['class' => 'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('encuentro/grupo/eliminar/'.$encuentro->id)}}">Borrar</a></center></td>
                 </tr>
                 @endforeach
               </tbody>

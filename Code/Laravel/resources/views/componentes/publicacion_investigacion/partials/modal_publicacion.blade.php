@@ -29,8 +29,8 @@
           <hr>
         </div>
               {!! Form::hidden('id_publicacion', $publicacion->id, ['id' => 'id_opcion_grado']) !!}
-         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         <button type="submit" class="btn btn-success">Registrar</button>
+         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+         <button type="submit" class="btn btn-success btn-sm">Registrar</button>
         {!! Form::close() !!}
       </div>
     </div>

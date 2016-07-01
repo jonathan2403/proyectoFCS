@@ -9,9 +9,9 @@
         </br>
 
     {!! Form::label('Investigador Principal') !!}
-    {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+    {!! Form::text('profesor', isset($proyecto->investigador_principal) ? $proyecto->investigador_principal->nombre : null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
      <div id="label_oculto_profesor"></div>
-    {!! Form::hidden('id_investigador_principal', null, ['id' => 'id_profesor']) !!}
+    {!! Form::hidden('id_director', null, ['id' => 'id_profesor']) !!}
     </br>
 
 	{!!Form::label('tema central')!!}<br>
@@ -100,11 +100,18 @@
 
 	{!!Form::label('ejecutado')!!}
 			 </br>
-    {!!Form::label('si')!!}
-    {!!Form::radio('ejecutado', 'Si', null)!!}&nbsp
-    {!!Form::label('no')!!}
-    {!!Form::radio('ejecutado', 'No', null)!!}
-            </br> </br>
+    <div class="row text-center">
+        <div class="col-xs-2">
+            {!!Form::label('si')!!}
+            {!!Form::radio('ejecutado', 'Si', null, ['class' => 'iradio_minimal-red'])!!}
+        </div>
+        <div class="col-xs-1">
+            {!!Form::label('no')!!}
+            {!!Form::radio('ejecutado', 'No', null, ['class' => 'iradio_minimal-red'])!!}
+        </div>
+    </div>
+    </br>
+
     {!!Form::label('tipo de beneficiados')!!}
     {!!Form::text('tipo_beneficiado', null, ['class'=>'form-control'])!!}
      </br>

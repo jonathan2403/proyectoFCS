@@ -19,7 +19,7 @@
 									<th>Tutor</th>
 									<th>Grupo</th>
 									<th>Colciencias</th>
-									<th>Institucion</th>
+									<th>Institución</th>
 									<th>Producto</th>
 									<th>Acción</th>
 								</thead>
@@ -29,10 +29,14 @@
 											<td>{{$joven_investigador->estudiante->full_name}}</td>
 											<td>{{$joven_investigador->profesor->nombre}}</td>
 											<td>{{isset($joven_investigador->grupo) ? $joven_investigador->grupo->nombre_grupo : null}}</td>
-											<td>{{$joven_investigador->colciencias}}</td>
+											@if($joven_investigador->colciencias == 'n')
+												<td><span style="font-size:14px" class="label label-pill label-info">{{$joven_investigador->colciencias}}</span></td>
+											@else
+												<td><span style="font-size:14px" class="label label-pill label-primary">{{$joven_investigador->colciencias}}</span></td>
+											@endif
 											<td>{{isset($joven_investigador->institucion) ? $joven_investigador->institucion->full_name_entidad : null}}</td>
 											<td>{{$joven_investigador->producto}}</td>
-											<td>{!! link_to_route('joven-investigador.edit', $title='Editar', $parameters=$joven_investigador->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}</td>
+											<td>{!! link_to_route('joven-investigador.edit', $title='Editar', $joven_investigador->id, ['class'=>'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('joven/investigador/eliminar/'.$joven_investigador->id)}}">Borrar</a></td>
 										</tr>
 									@endforeach
 								</tbody>

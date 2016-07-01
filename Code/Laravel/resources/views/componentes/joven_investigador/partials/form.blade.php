@@ -1,12 +1,12 @@
    {!! Form::label('Estudiante') !!}   
-   {!! Form::text('estudiante', isset($nombre_estudiante) ? $nombre_estudiante:null,['class' => 'form-control', 'id' => 'nombre_estudiante','placeholder'=>'Nombre del Estudiante']) !!}
+   {!! Form::text('estudiante', isset($joven_investigador->estudiante) ? $joven_investigador->estudiante->full_name : null,['class' => 'form-control', 'id' => 'nombre_estudiante','placeholder'=>'Buscar por Nombre o Código']) !!}
    <div id="label_oculto"></div>                     
    {!! Form::hidden('id_estudiante', null, ['id' => 'id_estudiante']) !!}
 
-  {!! Form::label('Tutor') !!}
-    <div id="label_oculto_profesor"></div>                     
+  {!! Form::label('Tutor') !!}                  
             {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
-            {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            {!! Form::text('profesor', isset($joven_investigador->profesor) ? $joven_investigador->profesor->nombre : null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+            <div id="label_oculto_profesor"></div>   
     </br>
                    
    {!! Form::label('Grupo al que pertenece') !!}

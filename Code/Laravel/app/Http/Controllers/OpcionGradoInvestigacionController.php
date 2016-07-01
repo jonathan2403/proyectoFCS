@@ -60,7 +60,18 @@ class OpcionGradoInvestigacionController extends Controller
     public function store(Request $request)
     {
         $datos = $request->all();
-        $valida = \Validator::make($datos, OpcionGrado::$reglas_investigacion, OpcionGrado::$mensajes_investigacion);
+        switch ($datos['tipo_opcion_grado']) {
+            case 'mr':
+                $reglas = OpcionGrado::$reglas_monografia_revision;
+                break;
+            case 'mi':
+                $reglas = OpcionGrado::$reglas_monografia_investigativa;
+                break;
+            case 'epi':
+                $reglas = OpcionGrado::$reglas_proyecto_epi;
+                break;
+        }
+        $valida = \Validator::make($datos, $reglas);
         if($valida->fails()){
             return redirect()->back()->withErrors($valida->errors())->withInput($datos);
         }
@@ -80,14 +91,6 @@ class OpcionGradoInvestigacionController extends Controller
         if(!$opciongrado)
             return redirect()->back();
         $indicador_modulo = 7;
-        $director = OpcionGrado::join('profesores', 'opcion_grado.id_director', '=', 'profesores.id')
-        ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_director"))
-        ->where('opcion_grado.id', $id)
-        ->first();
-        $supervisor = OpcionGrado::join('profesores', 'opcion_grado.id_supervisor', '=', 'profesores.id')
-        ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS nombre_supervisor"))
-        ->where('opcion_grado.id', $id)
-        ->first();
         $entidad = OpcionGrado::join('externo', 'opcion_grado.id_externo', '=', 'externo.id')
         ->select('externo.nombre_externo AS nombre_entidad')
         ->first();
@@ -105,9 +108,9 @@ class OpcionGradoInvestigacionController extends Controller
         ->where('opcion_grado.id', $id)
         ->first();
         if($opciongrado->tipo_opcion_grado == 'Mon. Investigativa' || $opciongrado->tipo_opcion_grado == 'Mon. de Revisión')
-            return view('componentes.opcion_grado_investigacion.show.show_mon', compact('estudiantes', 'director', 'opciongrado', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
+            return view('componentes.opcion_grado_investigacion.show.show_mon', compact('estudiantes', 'opciongrado', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
         else
-            return view('componentes.opcion_grado_investigacion.show.show_epi', compact('estudiantes', 'director', 'opciongrado', 'supervisor', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
+            return view('componentes.opcion_grado_investigacion.show.show_epi', compact('estudiantes', 'opciongrado', 'grupo', 'nombre_proyecto', 'entidad', 'indicador_modulo'));
     }
 
     /**
