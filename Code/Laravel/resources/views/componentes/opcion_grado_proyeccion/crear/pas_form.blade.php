@@ -17,7 +17,7 @@
         </br>
 
     {!!Form::label('Entidad')!!}
-    {!! Form::select('id_entidad', $nombre_entidad->toArray(), null, ['class' => 'form-control', 'placeholder' => '']) !!}
+    {!! Form::select('id_entidad', $nombre_entidad->toArray(), null, ['class' => 'form-control select2', 'placeholder' => '', 'id' => 'select_id_entidad']) !!}
   </br></br>
 
     <!--inicio entrega al comite-->

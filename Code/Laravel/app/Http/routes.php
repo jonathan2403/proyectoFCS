@@ -10,9 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::post('/crear/tipo/evento', 'TipoEventoController@crear');
-Route::get('/consultar/tipo/evento', 'TipoEventoController@consultar');
 Route::get('/consultar/municipios/{id_departamento}', 'ServiciosBaseController@consultarMunicipios');
 
 Route::controllers([
@@ -65,12 +62,14 @@ Route::group([ 'middleware' => 'auth'], function(){
 			Route::resource('publicacion-proyeccion', 'PublicacionProyeccionController');
 			Route::get('publicacion/proyeccion/eliminar/{id_publicacion}', 'PublicacionProyeccionController@destroy');
 			Route::resource('tipo-evento','TipoEventoController');
-
+			Route::post('/crear/tipo/evento', 'TipoEventoController@store');
+			Route::get('/consultar/tipo/evento', 'TipoEventoController@consultar');
+			Route::get('tipo-evento/actualizar/{id_evento}', 'TipoEventoController@update');
+			Route::get('tipo-evento/eliminar/{id_tipo_evento}', 'TipoEventoController@destroy');
 		});
 
 		// Rutas para Investigacion
 		Route::group(['middleware' => 'auth_investigacion'], function(){
-
 			Route::resource('encuentro-grupo','EncuentroGrupoController');
 			Route::get('encuentro/grupo/eliminar/{id_encuentro}', 'EncuentroGrupoController@destroy');
 			Route::resource('joven-investigador','JovenInvestigadorController');
@@ -80,8 +79,10 @@ Route::group([ 'middleware' => 'auth'], function(){
 			Route::resource('proyectos-investigacion','ProyectoInvestigacionController');
 			Route::get('proyecto/investigacion/eliminar/{id_proyecto}', 'ProyectoInvestigacionController@destroy');
 			Route::resource('publicacion-investigacion', 'PublicacionInvestigacionController');
+			Route::get('publicacion/investigacion/eliminar/{id_publicacion}', 'PublicacionInvestigacionController@destroy');
 			Route::resource('red-conocimiento','RedConocimientoController');		
-		
+			Route::get('red/conocimiento/eliminar/{id_red}', 'RedConocimientoController@destroy');
+			Route::post('adquisicion/crear', 'AdquisicionController@store');
 	});
 
 });

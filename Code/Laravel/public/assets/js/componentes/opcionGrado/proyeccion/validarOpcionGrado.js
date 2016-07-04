@@ -42,7 +42,7 @@ formulario.validate({
     id_director: {required:true},
     profesor: {required:true},
     persona_externa: {required:true},
-  },
+  }
 });
 
 /*

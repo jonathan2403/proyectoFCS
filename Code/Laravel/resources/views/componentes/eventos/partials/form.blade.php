@@ -84,7 +84,7 @@
          <dt>Alianza Sectorial </dt>
         <dd>{!!Form::text('beneficiados_alianza', null, ['id' => 'entrega1', 'class'=>'form-control'])!!}</dd>
          <dt>Sociedad civil Organizada</dt>
-        <dd>{!!Form::text('beneficiados_sociedad', null, ['id' => 'entrega1', 'class'=>'form-control'])!!}</dd>
+        <dd>{!!Form::text('beneficiados_sociedad', null, ['id' => 'entrega1', 'class'=>'form-control', 'title' => 'Sociedad civil Organizada'])!!}</dd>
         <dt>Otros</dt>
         <dd>{!!Form::text('beneficiados_otros', null, ['id' => 'entrega1', 'class'=>'form-control'])!!}</dd>
        </dl></center>

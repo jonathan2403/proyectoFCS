@@ -31,7 +31,7 @@
 				                    <td>{{$red->direccion}}</td>
 				                    <td>{{$red->email}}</td>
 				                    <td>
-				                     <center> {!! link_to_route('red-conocimiento.edit', $title='Editar', $parameters=$red->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}</center>
+				                     <center> {!! link_to_route('red-conocimiento.edit', 'Editar', $red->id, ['class'=>'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('red/conocimiento/eliminar/'.$red->id)}}">Borrar</a></center>
 				                    </td>
 				                  </tr>
 				                  @endforeach

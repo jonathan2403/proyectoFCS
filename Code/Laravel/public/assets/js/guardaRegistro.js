@@ -4,14 +4,34 @@ $(document).ready(function(){
 	var route = URL_SERVIDOR+'/consultar/tipo/evento';
 	$.get(route, function(res){
 		$(res).each(function(key, value){
-			table.append("<tr><td>"+value.nombre_tipoevento+"</td><td><button value='"+value.id+"' OnClick='mostrar(this)' data-toggle='modal' data-target='#modalEditarTipoEvento' class='btn btn-warning btn-sm'>Editar</button></td></tr>");
+			table.append("<tr><td>"+value.nombre_tipoevento+"</td><td><button value='"+value.id+"' OnClick='mostrar(this)' data-toggle='modal' data-target='#modalEditarTipoEvento' class='btn btn-warning btn-sm'>Editar</button>|<button value='"+value.id+"' OnClick='eliminar(this)' class='btn btn-danger btn-sm'>Borrar</button></td></tr>");
 		});
 	});
 
-	// click botón agregar tipo evento
-	var btnTipoEvento = $('#btnGuardaEtipoEvento');
-	btnTipoEvento.click(function(){
-		
+	// click botón editar tipo evento
+	$("#btnEditaTipoEvento").click(function(){
+		actualizar();
+	});
+
+	// click botón crear tipo evento
+	$('#btnGuardatipoEvento').on('click', function(){
+		registrar_tipo_evento();
+	});
+
+}); // termina document ready
+
+// click mensaje error
+$("#msg-error").click(function(){
+	$("#msg-error").toggle(200);
+});
+
+// click mensaje success
+$("#msg-success").click(function(){
+	$("#msg-success").toggle(200);
+});
+
+// click botón agregar tipo evento
+	function registrar_tipo_evento(){	
 		var _token = $('#token').val();
 		var txt_tipo_evento = $('#txt_tipo_evento').val();
 		var modal = $('#modalTipoEvento');
@@ -21,22 +41,22 @@ $(document).ready(function(){
 			url: URL_SERVIDOR+"/crear/tipo/evento",
 			data: { nombre_tipoevento: txt_tipo_evento },
 			success:function(data){
-  				$('#example > tbody').append('<tr><td>'
-  					+data.nombre_tipoevento+'</td><td><button class="btn btn-warning btn-sm" value="'+data.id+'" OnClick="mostrar(this)" data-toggle="modal" data-target="#modalEditarTipoEvento">Editar</button></td></tr>');			
-  				//carga();
+				if(data.error){
+					//console.log(data.errores);
+					$("#mensaje_error").html(data.errores['nombre_tipoevento']);
+					$("#msg-error").fadeIn();
+				}else{
+					$('#example > tbody').append('<tr><td>'
+  					+data.nombre_tipoevento+'</td><td><button class="btn btn-warning btn-sm" value="'+data.id+'" OnClick="mostrar(this)" data-toggle="modal" data-target="#modalEditarTipoEvento">Editar</button>|<button OnClick="eliminar(this)" value="'+data.id+'" class="btn btn-danger btn-sm">Borrar</button></td></tr>');			
+  					$("#msg-error").fadeOut();
+  					$("#mensaje_success").html("Registro Exitoso!");
+  					$("#msg-success").fadeIn();
+				}
 			}
 		}); // cierra petición
 		$('#txt_tipo_evento').val('')
 		modal.modal('hide');
-	}); // cierra click
-
-	// click botón editar tipo evento
-	var btnEditaTipoEvento = $('#btnEditaTipoEvento');
-	btnEditaTipoEvento.click(function(){
-		actualizar();
-	});
-
-});
+	}; // cierra click
 
 //	carga datos
 function carga(){
@@ -46,7 +66,7 @@ function carga(){
 	$.get(route, function(res){
 		console.log(res);
 		$(res).each(function(key, value){
-			table.append("<tr><td>"+value.nombre_tipoevento+"</td><td><button value='"+value.id+"' OnClick='mostrar(this)' data-toggle='modal' data-target='#modalEditarTipoEvento' class='btn btn-warning btn-sm'>Editar</button></td></tr>");
+			table.append("<tr><td>"+value.nombre_tipoevento+"</td><td><button value='"+value.id+"' OnClick='mostrar(this)' data-toggle='modal' data-target='#modalEditarTipoEvento' class='btn btn-warning btn-sm'>Editar</button>|<button value='"+value.id+"' OnClick='eliminar(this)' class='btn btn-danger btn-sm'>Borrar</button></td></tr>");
 		});
 	});
 }
@@ -61,15 +81,34 @@ function mostrar(btn){
 		});
 	}
 
+function eliminar(btn){
+	var _token = $('#token').val();
+	var id = btn.value;
+	$.ajax({
+		method: "GET",
+		headers: {'X-XSRF-TOKEN' : _token},
+		url: URL_SERVIDOR+'/tipo-evento/eliminar/'+id,
+		data: {
+			id: id
+		},
+	success:function(){
+		carga();
+		$("#mensaje_success").html("Registro Eliminado!");
+  		$("#msg-success").fadeIn();
+		$("#msg-error").fadeOut();
+	}
+	}); // cierra ajax
+}
+
 // actualiza registro
 function actualizar(){
 	var txt_tipo_evento = $('#nombre_tipo_evento').val();
 	var _token = $('#token').val();
 	var id = $('#id_tipoevento').val();
 	$.ajax({
-		method: "PUT",
+		method: "GET",
 		headers: {'X-XSRF-TOKEN' : _token},
-		url: URL_SERVIDOR+'/tipo-evento/'+id+'',
+		url: URL_SERVIDOR+'/tipo-evento/actualizar/'+id+'',
 		data: {
 			id: id,
 			nombre_tipoevento: txt_tipo_evento
@@ -77,6 +116,8 @@ function actualizar(){
 	success:function(){
 		carga();
 		$('#modalEditarTipoEvento').modal('hide');
+		$("#mensaje_success").html("Registro Actualizado!");
+  		$("#msg-success").fadeIn();
 	}
 	}); // cierra ajax
 }

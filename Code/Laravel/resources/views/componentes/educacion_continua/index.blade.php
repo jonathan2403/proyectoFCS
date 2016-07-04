@@ -9,6 +9,7 @@
             @include('layaouts.partials.mensaje')
           </div><!-- /.box-header -->
           <div class="box-body">
+          <div class="pull-right"><span style="font-size:14px" class="label label-default"><a href="" data-toggle="tooltip" data-placement="bottom" title data-original-title="Descargar"><i class="fa fa-download fa-lg"></i></a></span></div>
             <div class="row form-group">
               <div class="col-md-3">
                 <a href="{!! URL('educacion-continua/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Registro</a>
@@ -25,7 +26,7 @@
               <tbody>
                 @foreach($edus as $edu)
                   <tr>
-                    <td>{!! link_to_route('educacion-continua.show', ucfirst(strtolower($edu->nombre)), $parameters=$edu->id) !!}</td>
+                    <td>{!! link_to_route('educacion-continua.show', ucfirst($edu->nombre), $parameters=$edu->id) !!}</td>
                     <td>{{ $edu->director->nombre}}</td>
                     <td>{{ $edu->fecha_aprobacion }} - Acta: {{ $edu->numero_acta }}</td>
                     @if($edu->contexto == 'n')

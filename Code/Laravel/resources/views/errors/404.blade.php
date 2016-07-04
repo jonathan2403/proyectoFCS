@@ -1,10 +1,9 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
  <html>
  <head>
      <title>Página no encontrada</title>
- 
      <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
- 
      <style>
          html, body {
              height: 100%;
