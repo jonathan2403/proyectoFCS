@@ -11,7 +11,8 @@
     //formato fecha
     $('.picker').datepicker({
       format : "dd/mm/yyyy"
-    })
+    });
+    $(".select2").select2();
     /*$('input[type=radio]').iCheck({
         radioClass: 'iradio_minimal-red'
       });

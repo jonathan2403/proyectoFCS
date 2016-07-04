@@ -39,8 +39,10 @@ class AdquisicionController extends Controller
      */
     public function store(Request $request)
     {
-        Adquisicion::create($request->all());
-        return redirect()->back();
+        $adquisicion = Adquisicion::create($request->all());
+        return response()->json([
+            'datos' => $adquisicion->toArray()
+            ]);
     }
 
     /**

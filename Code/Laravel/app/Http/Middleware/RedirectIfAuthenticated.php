@@ -39,9 +39,9 @@ class RedirectIfAuthenticated
         
          if ($this->auth->check())
             {
-                return redirect('/home');
+                //return redirect('/home');
+                return redirect('/encuentro-grupo');
             }
-
         return $next($request);
     }
 }

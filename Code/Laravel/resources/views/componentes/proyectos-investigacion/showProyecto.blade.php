@@ -1,12 +1,14 @@
 @extends('layaouts.tablas')
 @section('scripts')
     {!!Html::script('assets/js/load.js')!!}
-    {!!Html::script('/assets/js/base/profesor_modal.js')!!}
+    {!!Html::script('assets/js/base/profesor_modal.js')!!}
+    {!!Html::script('assets/js/componentes/adquisicion/adquisicionCrud.js')!!}
 @endsection
 @section('content')
 <section class="content">
 @include('componentes.proyectos-investigacion.partials.modal_participacion')
- @include('componentes.proyectos-investigacion.partials.modal_borrarParticipacion')
+@include('componentes.proyectos-investigacion.partials.modal_borrarParticipacion')
+@include('componentes.proyectos-investigacion.partials.modal_adquisicion')
     <div class="row">
       <div class="col-xs-11">
         <div class="box">
@@ -17,7 +19,7 @@
               <div class="box-body">
                 <div class="row text-center">
                   <div class="col-xs-3">
-                    {!!Form::label('inicio - # acta')!!}<br>
+                    {!!Form::label('inicio - n° acta')!!}<br>
                     {{$proyectos[0]->fecha_inicio.' - '.$proyectos[0]->numero_acta}}
                   </div>
                   <div class="col-xs-3">
@@ -61,7 +63,7 @@
                   {!!Form::label('beneficiados')!!}
                   </div>
                   <div class="col-xs-3"><br>
-                  {!!Form::label('poblacion Estudio')!!}
+                  {!!Form::label('población Estudio')!!}
                   </div>
                   <div class="col-xs-3"><br>
                   {!!Form::label('producto')!!}
@@ -71,13 +73,19 @@
               </div>
             </div><!--Cierra box tabla de datos-->
 
-            <!--Participantes-->
-          <div class="box box-danger">
-                    <div class="box-header with-border">
-                      <h5 class="box-title">Participantes</h5>
-                    </div>
-            <div class="box-body">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo Registro</button>
+      <!-- START CUSTOM TABS -->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_1" data-toggle="tab"><h4 class="box-title">Participantes</h4></a></li>
+              <li><a href="#tab_2" data-toggle="tab"><h4 class="box-title">Bienes Adquiridos</h4></a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                <div class="box-body">
+            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo Participante</button>
               <div class="row text-center">
                     <div class="col-xs-12">
                       <hr>
@@ -106,7 +114,28 @@
                     </div>                    
               </div>
             </div>
-           </div><!--Cierra participantes-->
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2">
+              <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal_adquisicion"><i class="fa fa-plus"></i> Adquisición</button>
+                <table id="table_adquisicion" class="table table-bordered">
+                  <thead>
+                  </thead>
+                  <tbody id="tbody_adquisicion">
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      <!-- END CUSTOM TABS -->
+
         </div><!-- /.box -->
       </div><!-- /.col -->
     </div><!-- /.row -->

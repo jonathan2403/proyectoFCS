@@ -38,7 +38,7 @@
 											<td>Artículo</td>
 											@endif
 											<td>{{$publicacion->fecha_publicacion}}</td>
-											<td><center>{!! link_to_route('publicacion-investigacion.edit', $title='Editar', $parameters=$publicacion->id, $atrributes=['class'=>'btn btn-warning btn-sm']) !!}	
+											<td><center>{!! link_to_route('publicacion-investigacion.edit', 'Editar', $publicacion->id, ['class'=>'btn btn-warning btn-sm']) !!}|<a class="btn btn-danger btn-sm" href="{{URL::to('publicacion/investigacion/eliminar/'.$publicacion->id)}}">Borrar</a>
 											</center></td>
 										</tr>
 									@endforeach

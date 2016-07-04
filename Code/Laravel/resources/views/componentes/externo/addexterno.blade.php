@@ -1,5 +1,5 @@
 @section('scripts')
-   {!!Html::script('/assets/js/componentes/externos/validarExterno.js')!!}
+   {!!Html::script('assets/js/componentes/externos/validarExterno.js')!!}
 @endsection
 @extends('layaouts.tablas')
 @section('content')
@@ -23,7 +23,7 @@
             <div class="box-body">
               <div class="row">
                 <div class="pad">
-                  {!! Form::open(['url' => 'externo/store', 'method' => 'POST'])!!}
+                  {!! Form::open(['url' => 'externo/store', 'method' => 'POST', 'id' => 'externos-form', 'class' => 'formulario_validado'])!!}
                   @if($tipo_externo == 'e')
                     @include('componentes.externo.partials.entidad_form')
                   @else

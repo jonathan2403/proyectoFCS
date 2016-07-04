@@ -65,12 +65,15 @@ class TipoEventoController extends Controller
     {
         $datos = $request->all();
         $valida = \Validator::make($datos, TipoEvento::$reglas, TipoEvento::$mensajes);
-        if($valida->fails()){
-            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
-        }else{
-            TipoEvento::create($datos);    
-        }
-        return redirect('tipo-evento')->with('message', 'Registro Creado!');
+        if($valida->fails())
+            return response()->json([
+                //'errores' => $valida->errors()->toArray(),
+                'errores' => $valida->errors(),
+                'error' => true
+                ]);
+        $tipo_evento = TipoEvento::create($datos);    
+        return response()->json($tipo_evento);
+        //return redirect('tipo-evento')->with('message', 'Registro Creado!');
     }
 
     /**
@@ -133,8 +136,12 @@ class TipoEventoController extends Controller
      */
     public function destroy($id)
     {
-        TipoEvento::destroy($id);
-        Session::flash('message','Tipo Evento Eliminado Correctamente');
-        return Redirect::to('/tipo-evento');
+        $tipo_evento = TipoEvento::destroy($id);
+        if($tipo_evento){
+            return response()->json([
+            'mensaje' => 'OK',
+            'error' => false
+            ]);
+        }
     }
 }

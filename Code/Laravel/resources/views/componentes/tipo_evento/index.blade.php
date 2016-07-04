@@ -11,16 +11,22 @@
         <div class="box">
           <div class="box-header">
             @include('layaouts.partials.mensaje')
+            <div id="msg-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
+              <strong id="mensaje_success"></strong>
+            </div>
+            <div id="msg-error" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
+              <h4><i class="icon fa fa-warning"></i>Error!</h4>
+              <strong id="mensaje_error"></strong>
+            </div>
           </div><!-- /.box-header -->
           <div class="box-body">
             <div class="row form-group">
               <div class="col-md-3">
-                <!--<a href="{!! URL('tipo-evento/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Evento</a>-->
                 <button class="btn btn-success" data-toggle="modal" data-target="#modalTipoEvento"><i class="fa fa-plus"></i> Tipo Evento</button>
               </div>
             </div>
             <div class="col-xs-9">
-              <table id="example3" class="table table-bordered table-striped text-center">
+              <table id="example" class="table table-bordered table-striped text-center">
                 <thead>
                   <th>Tipo Evento</th>
                   <th>Acción</th>

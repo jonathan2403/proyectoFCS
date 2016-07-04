@@ -265,12 +265,12 @@ $.extend($.validator, {
 	messages: {
 		required: "Este campo es requerido.",
 		remote: "Please fix this field.",
-		email: "Please enter a valid email address.",
+		email: "Email no es válido.",
 		url: "Please enter a valid URL.",
 		date: "Please enter a valid date.",
 		dateISO: "Please enter a valid date (ISO).",
 		number: "Please enter a valid number.",
-		digits: "Please enter only digits.",
+		digits: "Este campo debe ser numérico.",
 		creditcard: "Please enter a valid credit card number.",
 		equalTo: "Please enter the same value again.",
 		maxlength: $.validator.format("Please enter no more than {0} characters."),
@@ -1100,8 +1100,8 @@ $.extend($.validator, {
 			return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
 		},
 
-		andrea: function(value, element) {
-			return this.optional(element) || /^[A-Za-zñÑáéíóúÁÉÍÓÚ\-! ,\'\"\/@\.:\(\)]+$/.test(value);
+		formato: function(value, element) {
+			return this.optional(element) || /^[A-Za-zñÑáéíóúÁÉÍÓÚ\-! \'\"\/@\:\(\)]+$/.test(value);
 		},
 
         fecha_andrea: function(value, element) {

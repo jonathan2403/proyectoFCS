@@ -11,10 +11,35 @@ formulario.validate({
     rules: {
     departamento: {required: true},
     municipio: {required: true},
-    numero_consejo: {required: true},
+    numero_consejo: {required: true, digits: true},
     fecha: {required: true},
-    nombre_evento: {required: true},
+    nombre_evento: {required: true, formato:true},
     id_tipoeventos: {required: true},    
+    valor_efectivo: {digits: true},
+    horas_certificadas: {digits: true},
+    beneficiados_administrativos: {digits: true},
+    beneficiados_estudiantes: {digits: true},
+    beneficiados_egresado: {digits: true},
+    beneficiados_docentes: {digits: true},
+    beneficiados_publico: {digits: true},
+    beneficiados_privado: {digits: true},
+    beneficiados_general: {digits: true},
+    beneficiados_academia: {digits: true},
+    beneficiados_alianza: {digits: true},
+    beneficiados_sociedad: {digits: true},
+    beneficiados_otros: {digits: true},
+    beneficiados_0_10: {digits: true},
+    beneficiados_11_20: {digits: true},
+    beneficiados_21_30: {digits: true},
+    beneficiados_31_60: {digits: true},
+    beneficiados_mayores_60: {digits: true},
+    beneficiados_hombres: {digits: true},
+    beneficiados_mujeres: {digits: true},
+
+    },
+    messages:{
+      numero_consejo: {digits: "Este campo debe ser numérico."},
+      nombre_evento: {formato: "Formato inválido."}
     }
   });
 

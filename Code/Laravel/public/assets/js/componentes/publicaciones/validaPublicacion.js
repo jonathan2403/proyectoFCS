@@ -23,10 +23,10 @@ formulario.validate({
  */
 
 var formulario = $('#publicacion-investigacion-form');
-
 formulario.validate({
   rules:{
     descripcion: {required:true},
     tipo: {required:true},
+    fecha_publicacion: {required:true},
   }
 });
