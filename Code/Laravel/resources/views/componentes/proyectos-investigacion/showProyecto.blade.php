@@ -9,6 +9,7 @@
 @include('componentes.proyectos-investigacion.partials.modal_participacion')
 @include('componentes.proyectos-investigacion.partials.modal_borrarParticipacion')
 @include('componentes.proyectos-investigacion.partials.modal_adquisicion')
+@include('componentes.proyectos-investigacion.partials.modal_editarAdquisicion')
     <div class="row">
       <div class="col-xs-11">
         <div class="box">
@@ -79,17 +80,26 @@
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
+              @if(session('adquisicion'))
+              <li><a href="#tab_1" data-toggle="tab"><h4 class="box-title">Participantes</h4></a></li>
+              <li class="active"><a href="#tab_2" data-toggle="tab"><h4 class="box-title">Bienes Adquiridos</h4></a></li>
+              @else
               <li class="active"><a href="#tab_1" data-toggle="tab"><h4 class="box-title">Participantes</h4></a></li>
-              <li><a href="#tab_2" data-toggle="tab"><h4 class="box-title">Bienes Adquiridos</h4></a></li>
+              <li ><a href="#tab_2" data-toggle="tab"><h4 class="box-title">Bienes Adquiridos</h4></a></li>
+              @endif
             </ul>
             <div class="tab-content">
+            @if(session('adquisicion'))
+              <div class="tab-pane" id="tab_1">
+            @else
               <div class="tab-pane active" id="tab_1">
+            @endif
                 <div class="box-body">
             <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo Participante</button>
               <div class="row text-center">
                     <div class="col-xs-12">
                       <hr>
-                      <table class="table table-bordered table-striped text-center">
+                      <table class="table table-bordered table-striped">
                         <thead>
                           <th>N° Documento</th>
                           <th>Nombre</th>
@@ -116,14 +126,36 @@
             </div>
               </div>
               <!-- /.tab-pane -->
+            @if(session('adquisicion'))
+              <div class="tab-pane active" id="tab_2">
+            @else
               <div class="tab-pane" id="tab_2">
-              <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal_adquisicion"><i class="fa fa-plus"></i> Adquisición</button>
-                <table id="table_adquisicion" class="table table-bordered">
+            @endif
+              <div class="box-body">
+                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal_adquisicion"><i class="fa fa-plus"></i> Adquisición</button>
+              <div class="row text-center">
+                <div class="col-xs-12">
+                  <table id="table_adquisicion" class="table table-striped">
                   <thead>
+                    <th>Nombre del Artículo</th>
+                    <th>Valor Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
                   </thead>
                   <tbody id="tbody_adquisicion">
+                  @foreach($bienes as $bien)
+                  <tr>
+                    <td>{{$bien->nombre_articulo}}</td>
+                    <td>{{$bien->valor_unidad}}</td>
+                    <td>{{$bien->cantidad}}</td>
+                    <td><button type="button" class="btn btn-warning btn-sm" onClick="editarAdquisicion(this)" data-target="#modal_editar_adquisicion" data-toggle="modal" value="<?php echo $bien->id;?>">Editar</button>|<a class="btn btn-danger btn-sm" href="{{URL::to('proyectos-investigacion/adquisicion/eliminar/'.$bien->id)}}">Borrar</a></td>
+                  </tr>
+                  @endforeach
                   </tbody>
                 </table>
+                </div>
+              </div>
+              </div>
               </div>
               <!-- /.tab-pane -->
             </div>
