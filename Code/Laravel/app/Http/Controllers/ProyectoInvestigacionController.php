@@ -10,6 +10,7 @@ use FCS\Profesor;
 use FCS\Proyecto;
 use FCS\Participacion;
 use FCS\RedConocimiento;
+use FCS\Adquisicion;
 use DB, View, Session, Redirect;
 use FCS\TipoProyecto;
 use FCS\Base\ExportFiles;
@@ -80,11 +81,7 @@ class ProyectoInvestigacionController extends Controller
         ->select('participacion.id', 'profesores.telefono', 'profesores.cedula', 'profesores.email', DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
         ->where('proyecto.id', $id)
         ->get();
-        $bienes = \DB::table('adquisicion')
-        ->join('proyecto', 'adquisicion.id_proyecto', '=', 'proyecto.id')
-        ->select('adquisicion.id', 'adquisicion.nombre_articulo', 'adquisicion.cantidad', 'adquisicion.valor_unidad')
-        ->where('proyecto.id', $id)
-        ->get();
+        $bienes = Adquisicion::where('id_proyecto', $id)->get();
         $nombre_profesor = Profesor::all()->lists('full_name', 'id');
         return view('componentes.proyectos-investigacion.showProyecto', compact('proyectos', 'profesores', 'nombre_profesor', 'bienes', 'indicador_modulo'));
     }

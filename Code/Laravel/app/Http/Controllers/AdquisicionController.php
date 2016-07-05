@@ -40,9 +40,10 @@ class AdquisicionController extends Controller
     public function store(Request $request)
     {
         $adquisicion = Adquisicion::create($request->all());
-        return response()->json([
+        /*return response()->json([
             'datos' => $adquisicion->toArray()
-            ]);
+            ]);*/
+        return redirect()->back()->with('adquisicion', true);
     }
 
     /**
@@ -64,7 +65,8 @@ class AdquisicionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $adquisicion = Adquisicion::find($id);
+        return response()->json(['datos' => $adquisicion->toArray()]);
     }
 
     /**
@@ -74,9 +76,13 @@ class AdquisicionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $datos = $request->all();
+        $adquisicion = Adquisicion::find($datos['id_adquisicion']);
+        $adquisicion->fill($datos);
+        $adquisicion->save();
+        return redirect()->back()->with('adquisicion', true);
     }
 
     /**
@@ -87,6 +93,7 @@ class AdquisicionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Adquisicion::destroy($id);
+        return redirect()->back()->with('adquisicion', true);
     }
 }

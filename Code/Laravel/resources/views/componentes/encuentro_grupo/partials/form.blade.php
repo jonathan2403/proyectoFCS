@@ -25,7 +25,7 @@
 	</div></br>
 
 	{!!Form::label('Modalidad')!!}
-	<div class="row">
+	<div class="row text-center">
 		<div class="col-xs-2">
 		{!!Form::label('Oral')!!}
     	{!!Form::radio('modalidad', 'oral', false, ['class' => 'iradio_minimal-red'])!!}		

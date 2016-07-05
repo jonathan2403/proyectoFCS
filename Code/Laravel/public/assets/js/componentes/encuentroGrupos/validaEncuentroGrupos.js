@@ -10,10 +10,13 @@ var formulario=$("#encuentros-form");
 
 formulario.validate({
     rules: {
-        nombre_encuentro: {required:true},
+        nombre_encuentro: {required:true, formato:true},
         profesor: {required:true},
         fecha_realizacion: {required:true},
         modalidad: {required:true},
         municipio: {required:true},
+    },
+    messages:{
+    	nombre_encuentro:{formato:"Formato inválido."}
     }
   });

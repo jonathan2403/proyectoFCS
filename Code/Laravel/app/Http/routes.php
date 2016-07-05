@@ -30,7 +30,6 @@ Route::group([ 'middleware' => 'auth'], function(){
 		Route::resource('asistencia','AsistenciaController');
 		Route::resource('participacion','ParticipacionController');
 		Route::resource('publica', 'PublicaController');
-		Route::resource('adquisicion', 'AdquisicionController');
 		Route::get('externo/{componente}', 'ExternoController@index');
 		Route::get('externo/{componente}/create','ExternoController@create');
 		Route::get('externo/edit/{id_externo}/{componente}', 'ExternoController@edit');
@@ -82,7 +81,10 @@ Route::group([ 'middleware' => 'auth'], function(){
 			Route::get('publicacion/investigacion/eliminar/{id_publicacion}', 'PublicacionInvestigacionController@destroy');
 			Route::resource('red-conocimiento','RedConocimientoController');		
 			Route::get('red/conocimiento/eliminar/{id_red}', 'RedConocimientoController@destroy');
-			Route::post('adquisicion/crear', 'AdquisicionController@store');
+			Route::post('proyectos-investigacion/adquisicion/crear', 'AdquisicionController@store');
+			Route::post('proyectos-investigacion/adquisicion/editar', 'AdquisicionController@update');
+			Route::get('proyectos-investigacion/adquisicion/eliminar/{id_adquisicion}', 'AdquisicionController@destroy');
+			Route::get('proyectos-investigacion/adquisicion/editar/{id_adquisicion}', 'AdquisicionController@edit');
 	});
 
 });

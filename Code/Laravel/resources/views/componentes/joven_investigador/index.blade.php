@@ -29,7 +29,7 @@
 											<td>{{$joven_investigador->estudiante->full_name}}</td>
 											<td>{{$joven_investigador->profesor->nombre}}</td>
 											<td>{{isset($joven_investigador->grupo) ? $joven_investigador->grupo->nombre_grupo : null}}</td>
-											@if($joven_investigador->colciencias == 'n')
+											@if($joven_investigador->colciencias == 'Si')
 												<td><span style="font-size:14px" class="label label-pill label-info">{{$joven_investigador->colciencias}}</span></td>
 											@else
 												<td><span style="font-size:14px" class="label label-pill label-primary">{{$joven_investigador->colciencias}}</span></td>
