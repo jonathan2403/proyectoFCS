@@ -24,11 +24,8 @@ class EducacionContinuaController extends Controller
     public function index()
     {
         $indicador_modulo = 18;
-        $edus = EducacionContinua::join('profesores', 'educacion_continua.id_director', '=', 'profesores.id')
-        ->select('educacion_continua.id', 'educacion_continua.nombre', 'educacion_continua.fecha_aprobacion', 'educacion_continua.numero_acta'
-            , 'educacion_continua.pais','educacion_continua.ciudad', 'educacion_continua.id_director', 'educacion_continua.contexto')
-        ->get();
-        return view('componentes.educacion_continua.index', compact('edus', 'indicador_modulo'));
+        $edus = EducacionContinua::all();
+        return view('componentes.educacion_continua.index', compact('indicador_modulo', 'edus'));
     }
 
     /**
@@ -40,9 +37,8 @@ class EducacionContinuaController extends Controller
     {
        $indicador_modulo = 18;
        $route = [ 'route' => 'educacion-continua.store', 'method' => 'POST' ];
-       $nombre_profesor = Profesor::all()->lists('full_name', 'id');
        $departamentos = Departamento::all()->lists('nombre', 'departamento');
-        return view('componentes.educacion_continua.addeducacion_continua',compact('route', 'nombre_profesor', 'departamentos', 'indicador_modulo'));
+        return view('componentes.educacion_continua.addeducacion_continua',compact('route', 'departamentos', 'indicador_modulo'));
     }
 
     /**
@@ -56,12 +52,10 @@ class EducacionContinuaController extends Controller
         $datos = $request->all();
         $valida = \Validator::make($datos, EducacionContinua::$reglas_crear, EducacionContinua::$mensajes);
         if($valida->fails()){
-            return redirect()->back()->withErrors($valida->errors())->withInput($datos);
-        }else{
-            EducacionContinua::create($datos);
+            return redirect()->back()->withErrors($valida->errors())->withInput();
         }
+        EducacionContinua::create($datos);
         return redirect('educacion-continua')->with('message','Registro Creado!');
-
     }
 
     /**
@@ -102,11 +96,11 @@ class EducacionContinuaController extends Controller
         $educacion_continua = EducacionContinua::find($id);
         $departamentos = Departamento::all()->lists('nombre', 'departamento');
         $municipios = Municipio::all()->lists('nombre', 'municipio');
+        if(!$educacion_continua)
+            return redirect()->back();
         if($educacion_continua->departamento != ""){
             $municipios = Municipio::where('departamento', $educacion_continua->departamento)->lists('nombre', 'municipio');
         }
-        if(!$educacion_continua)
-            return redirect()->back();
         $route = [ 'route'=>['educacion-continua.update',$educacion_continua->id],'method'=>'PUT'];
         $nombre_profesor = Profesor::all()->lists('full_name','id');
         return view('componentes.educacion_continua.editeducacion_continua', compact('route', 'nombre_profesor', 'educacion_continua', 'departamentos', 'municipios', 'indicador_modulo'));
@@ -144,18 +138,21 @@ class EducacionContinuaController extends Controller
      * Genera reporte
      */
     public function reporte($tipo_archivo){
+        dd($tipo_archivo);
         $edus = EducacionContinua::join('profesores', 'educacion_continua.id_director', '=', 'profesores.id')
         ->select('educacion_continua.nombre AS Título', \DB::raw("CONCAT('Fecha: ', educacion_continua.fecha_aprobacion, ' - Acta: ', educacion_continua.numero_acta) AS Aprobación"), \DB::raw("CONCAT(educacion_continua.ciudad, ' - ', educacion_continua.pais) AS Lugar"), \DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.segundo_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS Director"))
         ->get();
+        $edus = EducacionContinua::all();
         $reporte = new ExportFiles();
-        switch($tipo_archivo){
-            case 'excel':
-            $reporte->createExcel($edus, 'Educación Continua', 'D1');
-            break;
-            default:
-            $reporte->createPdf($edus, 'Educación Continua', 'D1');
-            break;
-        }
     }
+
+   public function exportarReporte(Request $request){
+    $desde = $request->input('from');
+    $hasta = $request->input('to');
+    $educacion_continua = EducacionContinua::where('fecha_aprobacion', '>=', $desde)
+    ->where('fecha_aprobacion', '<=', $hasta)->get();   
+    $reporte = new ExportFiles();
+    $reporte->createExcel($educacion_continua, 'Educación Continua', 'E1');
+   }
 
 }

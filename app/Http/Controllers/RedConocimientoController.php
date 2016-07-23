@@ -70,10 +70,7 @@ class RedConocimientoController extends Controller
       $red = RedConocimiento::find($id);
       if(!$red)
         return redirect()->back();
-      $responsable = RedConocimiento::join('profesores', 'red_conocimiento.id_responsable', '=', 'profesores.id')
-      ->select(DB::raw("CONCAT(profesores.primer_nombre, ' ', profesores.primer_apellido, ' ', profesores.segundo_apellido) AS full_name"))
-      ->first();
-      return view('componentes.red_conocimiento.showRedConocimiento', compact('red', 'responsable', 'indicador_modulo'));
+      return view('componentes.red_conocimiento.showRedConocimiento', compact('red', 'indicador_modulo'));
     }
 
     /**

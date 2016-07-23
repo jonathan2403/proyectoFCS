@@ -1,15 +1,78 @@
 @extends('layaouts.tablas')
+@section('scripts')
+{!!Html::script('/assets/js/load_views.js')!!}
+{!!Html::script('/assets/js/componentes/educacionContinua/reporteEducacionContinua.js')!!}
+<script type="text/javascript">
+
+  // configura datepicker
+  $.datepicker.setDefaults($.datepicker.regional['es']);
+  $(".date_picker").datepicker();
+
+  // click descargar reporte
+  
+    $("form_reporte").submit(function( event ) {
+      alert( "Handler for .submit() called." );
+      event.preventDefault();
+      var fecha_desde = new Date($("#from").val());
+      var fecha_hasta = new Date($("#to").val());
+      alert(valida_fechas(fecha_desde, fecha_hasta));
+      if(valida_fechas(fecha_desde, fecha_hasta)){
+        $("form_reporte").submit(function( event ) {
+          alert( "Handler for .submit() called." );
+          event.preventDefault();
+      });
+      }else{
+        muestra_error();  
+      }
+      });
+
+  // función valida fechas return true si pasó la validación, false muestra error
+  function valida_fechas(fecha_desde, fecha_hasta){
+      if(fecha_hasta < fecha_desde)
+        return false;
+      else
+        return true;
+  }
+
+  function muestra_error(){
+    $("#msg_error").slideDown(function(){
+      setTimeout(function(){
+        $("#msg_error").slideUp();
+      }, 2000);
+    });
+  }
+</script>
+@endsection
 @section('content')
   <section class="content">
-
     <div class="row">
+    
       <div class="col-xs-12">
-        <div class="box">
+         <div class="box">
           <div class="box-header">
             @include('layaouts.partials.mensaje')
+            <div id="msg_error" style="display:none">
+              <p>Mesaje de Error</p>
+            </div>
           </div><!-- /.box-header -->
           <div class="box-body">
-          <div class="pull-right"><span style="font-size:14px" class="label label-default"><a href="" data-toggle="tooltip" data-placement="bottom" title data-original-title="Descargar"><i class="fa fa-download fa-lg"></i></a></span></div>
+          <div class="pull-right">
+          <button id="btn_reporte" onclick="mostrarFechas()" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i> Reporte</button>
+          <div class="row text-right" id="div_fechas" style="display:none">
+          <form id="form_reporte" class="formulario_validado" action="/exportar/excel/educacion-continua" method="GET">
+          <div class="col-xs-4 text-center">
+              <input type="text" id="from" name="from" class="form-control date_picker" placeholder="DD/MM/AAAA">
+          </div>
+          <div class="col-xs-4 text-center">
+              <input type="text" id="to" name="to" class="form-control date_picker" placeholder="DD/MM/AAAA">
+          </div>
+          <div class="col-xs-4">
+            <input type="submit" name="" class="btn btn-default" value="Descargar">
+            <button type="button" id="btn_cerrar_fechas" class="btn btn-default"><i class="fa fa-times" aria-hidden="true"></i></button>
+          </div>
+          </form>
+          </div>
+          </div>
             <div class="row form-group">
               <div class="col-md-3">
                 <a href="{!! URL('educacion-continua/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Registro</a>
@@ -43,7 +106,6 @@
             </table>
           </div><!-- /.box-body -->
         </div><!-- /.box -->
-        <a href="{{URL('/educacion/continua/excel')}}" class="btn btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>|<a href="{{URL('/educacion/continua/pdf')}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> PDF</a>
       </div><!-- /.col -->
     </div>
   </section><!-- /.content -->

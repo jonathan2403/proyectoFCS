@@ -131,3 +131,5 @@ Route::get('/eventos/{tipo_archivo}', 'EventoController@reporte');
 
 // consulta datos para graficar opciones de grado proyección
 Route::get('/datos/grafica/opcion/grados/proyeccion', 'IndicadorProyeccionController@consultaOpcionGrado');
+
+Route::get('/exportar/excel/educacion-continua', 'EducacionContinuaController@exportarReporte');

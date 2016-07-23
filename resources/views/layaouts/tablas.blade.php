@@ -24,6 +24,7 @@
         {!!Html::style('assets/dist/css/skins/_all-skins.min.css')!!}
         <!-- Validar -->
         {!!Html::style('assets/css/base/base.css')!!}
+        @yield('css_first')
     </head>
     <body class="skin-red sidebar-mini">
         <div class="wrapper">
@@ -68,7 +69,8 @@
         {!!Html::script('assets/dist/js/app.min.js')!!}
         <!-- AdminLTE for demo purposes -->
         {!!Html::script('assets/dist/js/demo.js')!!}
-
+        <!--Mayusculas-->
+        {!!Html::script('/assets/js/base/cambiarMayuscula.js')!!}
         <!--  Jquery UI  -->
         {!!Html::script('/assets/js/jquery-ui.min.js')!!}
         <!-- Charts Graficas -->
@@ -78,7 +80,7 @@
         {!!Html::script('assets/plugins/flot/jquery.flot.resize.min.js')!!}
         {!!Html::script('assets/plugins/flot/jquery.flot.pie.min.js')!!}
         {!!Html::script('assets/plugins/flot/jquery.flot.categories.min.js')!!}
-
+        
         <!-- Font Awesome Icons -->
         {!! Html::style('assets/bootstrap/css/font-awesome.min.css')!!}
         
@@ -86,7 +88,6 @@
         <!-- page script -->
         <script type="text/javascript">
             $(function () {
-                $("#example1").DataTable();
                 $('#example3').DataTable({
                     language: {
                         lengthMenu:        "Mostrar _MENU_ Registros por Pagina",
