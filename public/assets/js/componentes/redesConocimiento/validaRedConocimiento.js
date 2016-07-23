@@ -6,11 +6,14 @@ var formulario = $("#red-conocimiento-form");
 
 formulario.validate({
   rules:{
-    nombre: {required:true},
+    nombre: {required:true, formato:true},
     profesor: {required:true},
-    telefono: {required:true},
-    email: {required:true},
+    telefono: {required:true, digits:true},
+    email: {required:true, email:true},
     direccion: {required:true},
     fecha_ultima_reunion: {required:true},
+  },
+  messages:{
+  	nombre: {formato:"Formato Inválido"}
   }
 });

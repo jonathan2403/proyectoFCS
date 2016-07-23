@@ -9,7 +9,7 @@
           </div><!-- /.box-header -->
           <div class="box-body">
             <div class="row form-group">
-            {!!Form::open(['url' => 'externo/proyeccion/create', 'method' => 'GET'])!!}
+            {!!Form::open(['url' => 'externo/'.$componente.'/create', 'method' => 'GET'])!!}
               <div class="col-md-3">
                 {!!Form::select('tipo_externo', ['e' => 'Entidad', 'p' => 'Persona'],null, ['class' => 'form-control', 'id' => 'select_tipo_externo'])!!}
               </div>

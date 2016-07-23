@@ -4,9 +4,9 @@
     </br>
 
  {!! Form::label('Responsable') !!}
-    {!! Form::text('profesor', null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
+    {!! Form::text('profesor', isset($red_conocimiento->profesor) ? $red_conocimiento->profesor->nombre : null,['class' => 'form-control', 'id' => 'nombre_profesor','placeholder'=>'Buscar por nombre o Cédula']) !!}
      <div id="label_oculto_profesor"></div>                     
-    {!! Form::hidden('id_responsable', null, ['id' => 'id_profesor']) !!}
+    {!! Form::hidden('id_profesor', null, ['id' => 'id_profesor']) !!}
     </br>
 
     {!!Form::label('Propósito')!!}

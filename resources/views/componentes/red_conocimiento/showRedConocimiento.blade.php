@@ -14,7 +14,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{ $responsable->full_name }}</td>
+                  <td>{{ $red->profesor->nombre }}</td>
                   <td>{{ $red->proposito }}</td>
                   <td>{{ $red->compromiso }}</td>
                   <td>{{ $red->asistentes }}</td>

@@ -15,8 +15,13 @@ class RedConocimiento extends Model
                           'email',
                           'fecha_ultima_reunion',
                           'asistentes',
-                          'id_responsable'
+                          'id_profesor'
                         ];
+
+  //relación con profesor
+  public function profesor(){
+    return $this->BelongsTo('FCS\Profesor', 'id_profesor');
+  }
   public static $reglas = array(
     'nombre' => "required|max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
     'proposito' => "max:100|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ\! '\@\.:\(\)]+$/",
@@ -26,12 +31,13 @@ class RedConocimiento extends Model
     'email' => 'required|email',
     'fecha_ultima_reunion' => 'required|date_format:m/d/Y',
     'asistentes' => 'digits_between:0,9|max:20',
-    'id_responsable' => 'required|exists:profesores,id'
+    'id_profesor' => 'required|exists:profesores,id'
     );
 
   public static $mensajes = array(
     'id_responsable.required' => 'El campo responsable es obligatorio.'
     );
+
 
   public function getNombreAttribute($value)
              {

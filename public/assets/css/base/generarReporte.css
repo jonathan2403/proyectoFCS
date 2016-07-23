@@ -1,0 +1,15 @@
+#formDiv{
+    background-color:blue;
+    height: 10em;
+    width:10em;
+}
+
+#showHide
+{
+    width:10em;
+    border: 1px red solid;
+}
+.clearer
+{
+    clear: both;
+}
